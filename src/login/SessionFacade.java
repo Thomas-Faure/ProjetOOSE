@@ -6,7 +6,7 @@ import DAO.MySQLDAOFactory;
 import DAO.UserDAO;
 import user.User;
 
-public class SessionFacade implements Facade {
+public class SessionFacade implements ISessionFacade {
 	AbstractDAOFactory factory;
 	UserDAO daoMySQL;
 	User user;

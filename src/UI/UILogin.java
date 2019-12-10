@@ -31,10 +31,8 @@ public class UILogin extends Application implements UIGlobal {
 	public boolean login(String username, String password) {
 
 		if (loginController.login(username, password)) {
-			System.out.println("nous somme connecté");
 			return true;
 		} else {
-			System.out.println("erreur de connexion");
 			return false;
 		}
 	}
