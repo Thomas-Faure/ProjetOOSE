@@ -1,19 +1,16 @@
 package DAO;
 
 public abstract class AbstractDAOFactory {
-	public abstract UserDAO createUserDAO();
-	public abstract AnnouncementDAO createAnnouncementDAO();
-	public abstract ChatDAO createChatDAO();
-	public abstract IdeaDAO createIdeaDAO();
-	public abstract MeetingDAO createMeetingDAO();
-	public abstract MemberDAO createMemberUDAO();
-	public abstract ProjectDAO createProjectDAO();
-	public abstract RessourceDAO createRessourceDAO();
-	public abstract RoleDAO createRoleDAO();
-	public abstract SprintDAO createSprintDAO();
-	public abstract TaskDAO createTaskDAO();
-	public abstract TicketDAO createTicketDAO();
-
-
-
+	protected abstract UserDAO createUserDAO();
+	protected abstract AnnouncementDAO createAnnouncementDAO();
+	protected abstract ChatDAO createChatDAO();
+	protected abstract IdeaDAO createIdeaDAO();
+	protected abstract MeetingDAO createMeetingDAO();
+	protected abstract MemberDAO createMemberUDAO();
+	protected abstract ProjectDAO createProjectDAO();
+	protected abstract RessourceDAO createRessourceDAO();
+	protected abstract RoleDAO createRoleDAO();
+	protected abstract SprintDAO createSprintDAO();
+	protected abstract TaskDAO createTaskDAO();
+	protected abstract TicketDAO createTicketDAO();
 }

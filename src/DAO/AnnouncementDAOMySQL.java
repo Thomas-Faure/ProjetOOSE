@@ -14,21 +14,20 @@ import User.User;
 public class AnnouncementDAOMySQL implements AnnouncementDAO  {
 
 
-	protected Connection connect = null;
+
 	private static final String INSERT = "INSERT INTO announcement (title, message, date, user) VALUES (?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE announcement SET title=?, message=?, date=?, user=? WHERE id=?";
     private static final String DELETE = "DELETE FROM announcement WHERE id=?";
 	
 	public AnnouncementDAOMySQL() {
 
-		this.connect=MySQLConnector.getInstance().getConnection();
 	}
 	@Override
 	public Announcement createAnnouncementById(int id) {
 		 Announcement announcement=null;
 		    try {
 		    String query = "SELECT * FROM announcement WHERE id="+id;
-		      ResultSet result = this.connect.createStatement(
+		      ResultSet result = MySQLConnector.getSQLConnection().createStatement(
 			      ResultSet.TYPE_SCROLL_INSENSITIVE,
 			      ResultSet.CONCUR_READ_ONLY).executeQuery(query);
 		      if(result.first()) {
@@ -52,7 +51,7 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO  {
 	public boolean save(Announcement a) {
 		try {
 			 
-            PreparedStatement ps = connect.prepareStatement(INSERT);
+            PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(INSERT);
  
             ps.setString(1, a.getTitle());
             ps.setString(2, a.getMessage());
@@ -74,7 +73,7 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO  {
 	public boolean update(Announcement a) {
 		try {
 			 
-            PreparedStatement ps = connect.prepareStatement(UPDATE);
+            PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(UPDATE);
 
             ps.setString(1, a.getTitle());
             ps.setString(2, a.getMessage());
@@ -99,7 +98,7 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO  {
  
         try {
  
-            PreparedStatement ps = connect.prepareStatement(DELETE);
+            PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(DELETE);
  
             ps.setInt(1, id);
  

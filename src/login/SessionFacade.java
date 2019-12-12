@@ -7,11 +7,10 @@ import DAO.UserDAO;
 import User.User;
 
 public class SessionFacade implements ISessionFacade {
-	
 	UserDAO dao;
 	User user;
 	public SessionFacade() {
-		dao = MySQLDAOFactory.getInstance().createUserDAO();
+		dao = MySQLDAOFactory.getUserDAO();
 		
 	}
 	public boolean login(String username,String password) {

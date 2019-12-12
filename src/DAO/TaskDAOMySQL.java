@@ -11,20 +11,20 @@ import User.User;
 
 public class TaskDAOMySQL implements TaskDAO{
 
-	protected Connection connect = null;
+	
     private static final String INSERT = "INSERT INTO task (username, firstname, lastname, password) VALUES (?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE task SET username=?, firstName=?, lastName=?, password=? WHERE id=?";
     private static final String DELETE = "DELETE FROM task WHERE id=?";
 	
 	public TaskDAOMySQL() {
-		this.connect=MySQLConnector.getInstance().getConnection();
+		
 	}
 	@Override
 	public Task createTaskById(int id) {
 		 Task task=null;
 		    try {
 		    String query = "SELECT * FROM task WHERE id="+id;
-		      ResultSet result = this.connect.createStatement(
+		      ResultSet result = MySQLConnector.getSQLConnection().createStatement(
 			      ResultSet.TYPE_SCROLL_INSENSITIVE,
 			      ResultSet.CONCUR_READ_ONLY).executeQuery(query);
 		      if(result.first()) {
@@ -46,7 +46,7 @@ public class TaskDAOMySQL implements TaskDAO{
 	@Override
 	public boolean save(Task task) {
 		try {
-            PreparedStatement ps = connect.prepareStatement(INSERT);
+            PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(INSERT);
             ps.setString(1, task.getName());
             ps.setInt(2, task.getPriority());
             ps.setDate(3, java.sql.Date.valueOf(task.getDeadline()));
@@ -68,7 +68,7 @@ public class TaskDAOMySQL implements TaskDAO{
 	public boolean update(Task task) {
 		try {
 			 
-            PreparedStatement ps = connect.prepareStatement(UPDATE);
+            PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(UPDATE);
             ps.setString(1, task.getName());
             ps.setInt(2, task.getPriority());
             ps.setDate(3, java.sql.Date.valueOf( task.getDeadline() ));
@@ -93,7 +93,7 @@ public class TaskDAOMySQL implements TaskDAO{
 		 
         try {
  
-            PreparedStatement ps = connect.prepareStatement(DELETE);
+            PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(DELETE);
  
             ps.setInt(1, id);
  
@@ -103,7 +103,7 @@ public class TaskDAOMySQL implements TaskDAO{
             System.out.println("Task with id: " + id + " was sucesfully deleted from DB.");
  
         } catch (SQLException e) {
-            //e.printStackTrace();
+
             throw new RuntimeException(e);
         }
 		

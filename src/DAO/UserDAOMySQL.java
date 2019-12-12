@@ -10,20 +10,20 @@ import User.User;
 
 public class UserDAOMySQL implements UserDAO {
 
-	protected Connection connect = null;
+	
     private static final String INSERT = "INSERT INTO user (username, firstname, lastname, password) VALUES (?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE user SET username=?, firstName=?, lastName=?, password=? WHERE id=?";
     private static final String DELETE = "DELETE FROM user WHERE id=?";
 
     public UserDAOMySQL() {
-    	this.connect = MySQLConnector.getInstance().getConnection();
+    	
 	}
 	@Override
 	public User createUser(String username, String password) { 
 	    User user=null;
 	    try {
 	    String query = "SELECT * FROM user WHERE username =\""+username+"\" and password=\""+password+"\";";
-	      ResultSet result = this.connect.createStatement(
+	      ResultSet result = MySQLConnector.getSQLConnection().createStatement(
 		      ResultSet.TYPE_SCROLL_INSENSITIVE,
 		      ResultSet.CONCUR_READ_ONLY).executeQuery(query);
 	      if(result.first()) {
@@ -40,12 +40,12 @@ public class UserDAOMySQL implements UserDAO {
 	    return user;
 	}
 
-	//later
+	
 	@Override
 	public boolean save(User user) {
 		try {
 			 
-            PreparedStatement ps = connect.prepareStatement(INSERT);
+            PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(INSERT);
  
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getFirstname());
@@ -64,12 +64,12 @@ public class UserDAOMySQL implements UserDAO {
 		
 	
 	}
-	//laterw
+	
 	@Override
 	public boolean update(User user) {
 		try {
 			 
-            PreparedStatement ps = connect.prepareStatement(UPDATE);
+            PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(UPDATE);
 
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getFirstname());
@@ -95,7 +95,7 @@ public class UserDAOMySQL implements UserDAO {
  
         try {
  
-            PreparedStatement ps = connect.prepareStatement(DELETE);
+            PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(DELETE);
  
             ps.setInt(1, id);
  

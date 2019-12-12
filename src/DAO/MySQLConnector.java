@@ -20,6 +20,9 @@ public class MySQLConnector {
         PASS = "";
         conn = null;
     }
+    public static Connection getSQLConnection() {
+    	return getInstance().getConnection();
+    }
     public static MySQLConnector getInstance() {
     	if(instance == null) {
     		instance = new MySQLConnector();
@@ -27,7 +30,7 @@ public class MySQLConnector {
     	}
     	return instance;
     }
-    public void openConnection(){
+    private void openConnection(){
         try{
             //Register JDBC driver
             Class.forName(JDBC_DRIVER);         
@@ -49,7 +52,7 @@ public class MySQLConnector {
         }
         System.out.println("Connection closed");
     }
-    public Connection getConnection(){
+    private Connection getConnection(){
         return conn;
     }
     public static void main(String[] args) {

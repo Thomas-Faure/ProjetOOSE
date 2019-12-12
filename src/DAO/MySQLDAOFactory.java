@@ -12,74 +12,85 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
 		}
 		return instance;
 	}
-	//mettre ici la connexion JDBC
-	@Override
-	public UserDAO createUserDAO() {
+	
+	public static UserDAO getUserDAO() {
+		return getInstance().createUserDAO();
+	}
+	
+	protected UserDAO createUserDAO() {
 		return new UserDAOMySQL();
 	}
+	
+	public static AnnouncementDAO getAnnouncementDAO() {
+		return getInstance().createAnnouncementDAO();
+	}
+	
 
 	@Override
-	public AnnouncementDAO createAnnouncementDAO() {
+	protected AnnouncementDAO createAnnouncementDAO() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ChatDAO createChatDAO() {
+	protected ChatDAO createChatDAO() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public IdeaDAO createIdeaDAO() {
+	protected IdeaDAO createIdeaDAO() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public MeetingDAO createMeetingDAO() {
+	protected MeetingDAO createMeetingDAO() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public MemberDAO createMemberUDAO() {
+	protected MemberDAO createMemberUDAO() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ProjectDAO createProjectDAO() {
+	protected ProjectDAO createProjectDAO() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public RessourceDAO createRessourceDAO() {
+	protected RessourceDAO createRessourceDAO() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public RoleDAO createRoleDAO() {
+	protected RoleDAO createRoleDAO() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public SprintDAO createSprintDAO() {
+	protected SprintDAO createSprintDAO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	protected static TaskDAO getTaskDAO() {
+		return getInstance().createTaskDAO();
+	}
+	@Override
+	protected TaskDAO createTaskDAO() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public TaskDAO createTaskDAO() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public TicketDAO createTicketDAO() {
+	protected TicketDAO createTicketDAO() {
 		// TODO Auto-generated method stub
 		return null;
 	}

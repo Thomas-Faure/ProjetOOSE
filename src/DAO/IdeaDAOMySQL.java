@@ -10,10 +10,10 @@ import Idea.Idea;
 import User.User;
 
 public class IdeaDAOMySQL implements IdeaDAO {
-	protected Connection connect = null;
+
 	
 	public IdeaDAOMySQL() {
-		this.connect=MySQLConnector.getInstance().getConnection();
+	
 	}
 
 	@Override
@@ -21,7 +21,7 @@ public class IdeaDAOMySQL implements IdeaDAO {
 		 Idea idea=null;
 		    try {
 		    String query = "SELECT * FROM idea WHERE id="+id;
-		      ResultSet result = this.connect.createStatement(
+		      ResultSet result = MySQLConnector.getSQLConnection().createStatement(
 			      ResultSet.TYPE_SCROLL_INSENSITIVE,
 			      ResultSet.CONCUR_READ_ONLY).executeQuery(query);
 		      if(result.first()) {
