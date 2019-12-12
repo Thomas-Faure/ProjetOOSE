@@ -1,4 +1,4 @@
-package UI;
+package Controller;
 
 import login.SessionFacade;
 

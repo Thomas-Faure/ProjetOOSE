@@ -1,24 +1,26 @@
 package DAO;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import user.User;
+import User.User;
 
 public class UserDAOMySQL implements UserDAO {
 
 	protected Connection connect = null;
-	
-	public UserDAOMySQL() {
-		MySQLConnector connector = new MySQLConnector();
-		connector.openConnection();
-		this.connect=connector.getConnection();
+    private static final String INSERT = "INSERT INTO user (username, firstname, lastname, password) VALUES (?, ?, ?, ?)";
+    private static final String UPDATE = "UPDATE user SET username=?, firstName=?, lastName=?, password=? WHERE id=?";
+    private static final String DELETE = "DELETE FROM user WHERE id=?";
+
+    public UserDAOMySQL() {
+    	this.connect = MySQLConnector.getInstance().getConnection();
 	}
 	@Override
 	public User createUser(String username, String password) { 
-	     User user=null;
+	    User user=null;
 	    try {
 	    String query = "SELECT * FROM user WHERE username =\""+username+"\" and password=\""+password+"\";";
 	      ResultSet result = this.connect.createStatement(
@@ -26,10 +28,11 @@ public class UserDAOMySQL implements UserDAO {
 		      ResultSet.CONCUR_READ_ONLY).executeQuery(query);
 	      if(result.first()) {
 	    		  System.out.println("correct");
-	    		  user= new User(    
+	    		  user= new User( result.getInt("id"),
 	    		          result.getString("username"),
 	    		          result.getString("firstname"),
-	    		          result.getString("lastname")); 
+	    		          result.getString("lastname"),
+	    				  result.getString("password"));
 	      }
 	    } catch (SQLException e) {
 	      e.printStackTrace();
@@ -39,15 +42,83 @@ public class UserDAOMySQL implements UserDAO {
 
 	//later
 	@Override
-	public boolean save() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean save(User user) {
+		try {
+			 
+            PreparedStatement ps = connect.prepareStatement(INSERT);
+ 
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getFirstname());
+            ps.setString(3, user.getLastname());
+            ps.setString(4, user.getPassword());
+            ps.executeUpdate();
+            ps.close();
+ 
+            System.out.println("Nouvel utilisateur dans la base: " + user.toString());
+            return true;
+        } catch (SQLException e) {
+            
+        	System.out.println(e);
+            return false;
+        }
+		
+	
 	}
-	//later
+	//laterw
 	@Override
-	public boolean update() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean update(User user) {
+		try {
+			 
+            PreparedStatement ps = connect.prepareStatement(UPDATE);
+
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getFirstname());
+            ps.setString(3, user.getLastname());
+            ps.setString(4, user.getPassword());
+            ps.setInt(5, user.getId());
+             
+            ps.executeUpdate();
+            ps.close();
+ 
+            System.out.println("L'utilisateur " + user.getId() + " contient maintenant: " + user.toString());
+ 
+            return true;
+        } catch (SQLException e) {
+           
+            System.out.println(e);
+            return false;
+        }
+		
+	}
+	@Override
+    public void delete(int id) {
+ 
+        try {
+ 
+            PreparedStatement ps = connect.prepareStatement(DELETE);
+ 
+            ps.setInt(1, id);
+ 
+            ps.executeUpdate();
+            ps.close();
+ 
+            System.out.println("User with id: " + id + " was sucesfully deleted from DB.");
+ 
+        } catch (SQLException e) {
+            //e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+ 
+    }
+
+	
+	public static void main(String[] args) {
+		User user = new User(3,"toto2","first","last","password");
+		UserDAOMySQL sql = new UserDAOMySQL();
+		sql.update(user);
+			
+			
+		
 	}
 	
 

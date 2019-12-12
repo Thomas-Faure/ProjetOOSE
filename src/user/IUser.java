@@ -1,4 +1,4 @@
-package user;
+package User;
 
 public interface IUser {
 	String getName();

@@ -2,15 +2,19 @@ package UI;
 
 import javax.swing.*;
 
+import Controller.UILoginController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -38,41 +42,24 @@ public class UILogin extends Application implements UIGlobal {
 	}
 
 	@Override
-	public void start(Stage arg0) throws Exception {
-		arg0.setTitle("JavaFX Welcome");
-		GridPane grid = new GridPane();
-		grid.setAlignment(Pos.CENTER);
-		grid.setHgap(10);
-		grid.setVgap(10);
-		grid.setPadding(new Insets(25, 25, 25, 25));
+	public void start(Stage stage) throws Exception {
+		
+		Parent root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
+		Scene scene = new Scene(root, 1000, 600);
+		   
+        stage.setResizable(false);
+		TextField userTextField = (TextField) scene.lookup("#inputUsername");
+		PasswordField pwBox = (PasswordField) scene.lookup("#inputPassword");
 
-		Text scenetitle = new Text("Welcome");
-		scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-		grid.add(scenetitle, 0, 0, 2, 1);
+		Button btn = (Button) scene.lookup("#loginButton");
 
-		Label userName = new Label("User Name:");
-		grid.add(userName, 0, 1);
-
-		TextField userTextField = new TextField();
-		grid.add(userTextField, 1, 1);
-
-		Label pw = new Label("Password:");
-		grid.add(pw, 0, 2);
-
-		PasswordField pwBox = new PasswordField();
-		grid.add(pwBox, 1, 2);
-		Button btn = new Button("Sign in");
-		HBox hbBtn = new HBox(10);
-
-		hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
-		hbBtn.getChildren().add(btn);
-		grid.add(hbBtn, 1, 4);
-		final Text actiontarget = new Text();
-		grid.add(actiontarget, 1, 6);
+		final Text actiontarget = (Text) scene.lookup("#info");
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent e) {
+				System.out.println(userTextField.getText());
+				System.out.println(pwBox.getText());
 
 				if (login(userTextField.getText(), pwBox.getText())) {
 					actiontarget.setFill(Color.CHARTREUSE);
@@ -84,9 +71,10 @@ public class UILogin extends Application implements UIGlobal {
 
 			}
 		});
-		Scene scene = new Scene(grid, 300, 275);
-		arg0.setScene(scene);
-		arg0.show();
+		
+		stage.setScene(scene);
+		
+		stage.show();
 
 	}
 

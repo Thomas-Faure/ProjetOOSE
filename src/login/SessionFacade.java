@@ -4,19 +4,19 @@ import DAO.AbstractDAOFactory;
 
 import DAO.MySQLDAOFactory;
 import DAO.UserDAO;
-import user.User;
+import User.User;
 
 public class SessionFacade implements ISessionFacade {
-	AbstractDAOFactory factory;
-	UserDAO daoMySQL;
+	
+	UserDAO dao;
 	User user;
 	public SessionFacade() {
-		factory = new MySQLDAOFactory();
-		daoMySQL = factory.createUserDAO();
+		dao = MySQLDAOFactory.getInstance().createUserDAO();
+		
 	}
 	public boolean login(String username,String password) {
 		if(user == null) {
-			this.user = daoMySQL.createUser(username, password);
+			this.user = dao.createUser(username, password);
 			if(this.user != null) {
 				System.out.println("nous avons un nouvel utilisateur connecté :"+user.getName());
 				return true;

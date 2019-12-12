@@ -12,13 +12,20 @@ public class MySQLConnector {
     private String USER;
     private String PASS;
     private Connection conn;
-
-    public MySQLConnector(){
+    private static MySQLConnector instance= null;
+    private MySQLConnector(){
         JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
         DB_URL = "jdbc:mysql://localhost:3308/projetoose?useUnicode=yes&characterEncoding=UTF-8";
         USER = "root";
         PASS = "";
         conn = null;
+    }
+    public static MySQLConnector getInstance() {
+    	if(instance == null) {
+    		instance = new MySQLConnector();
+    		instance.openConnection();
+    	}
+    	return instance;
     }
     public void openConnection(){
         try{

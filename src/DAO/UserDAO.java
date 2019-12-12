@@ -1,9 +1,10 @@
 package DAO;
 
-import user.User;
+import User.User;
 
 public interface UserDAO{
 	public User createUser(String identifiant,String username);
-	public boolean save();
-	public boolean update();
+	public boolean save(User user);
+	public boolean update(User user);
+	void delete(int id);
 }
