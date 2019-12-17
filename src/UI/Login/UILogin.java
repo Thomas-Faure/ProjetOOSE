@@ -1,8 +1,9 @@
-package UI;
+package UI.Login;
 
 import javax.swing.*;
 
 import Controller.UILoginController;
+import UI.UIGlobal;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -40,7 +41,6 @@ public class UILogin extends Application implements UIGlobal {
 			return false;
 		}
 	}
-
 	@Override
 	public void start(Stage stage) throws Exception {
 		
