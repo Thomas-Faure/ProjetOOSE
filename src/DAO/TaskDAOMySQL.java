@@ -1,13 +1,13 @@
 package DAO;
 
-import java.sql.Connection;
+
+import BuisnessLogic.Task.Task;
+import BuisnessLogic.User.User;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 
-import Task.Task;
-import User.User;
 
 public class TaskDAOMySQL implements TaskDAO{
 
@@ -29,13 +29,13 @@ public class TaskDAOMySQL implements TaskDAO{
 			      ResultSet.CONCUR_READ_ONLY).executeQuery(query);
 		      if(result.first()) {
 		    		  System.out.println("correct");
-		    		  //à changer
+		    		  //ï¿½ changer
 		    		  task= new Task(    
 		    				  result.getInt("id"),
 		    		          result.getString("username"),
 		    		          result.getInt("test"),
 		    		          result.getDate("deadline").toLocalDate(),
-		    		          new User()); 
+		    		          new User());
 		      }
 		    } catch (SQLException e) {
 		      e.printStackTrace();

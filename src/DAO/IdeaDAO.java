@@ -1,7 +1,7 @@
 package DAO;
 
-import Announcement.Announcement;
-import Idea.Idea;
+
+import BuisnessLogic.Idea.Idea;
 
 public interface IdeaDAO {
 	public Idea createIdeaById(int id);

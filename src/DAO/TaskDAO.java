@@ -1,10 +1,7 @@
 package DAO;
 
-import java.util.Date;
 
-import Announcement.Announcement;
-import Task.Task;
-import User.User;
+import BuisnessLogic.Task.Task;
 
 public interface TaskDAO {
 	public Task createTaskById(int id);

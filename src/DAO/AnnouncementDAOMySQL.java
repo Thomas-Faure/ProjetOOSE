@@ -1,15 +1,13 @@
 package DAO;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.Date;
 
-import Announcement.Announcement;
-import Task.Task;
-import User.User;
+import BuisnessLogic.Announcement.Announcement;
+import BuisnessLogic.User.User;
+
 
 public class AnnouncementDAOMySQL implements AnnouncementDAO  {
 
@@ -32,13 +30,13 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO  {
 			      ResultSet.CONCUR_READ_ONLY).executeQuery(query);
 		      if(result.first()) {
 		    		  System.out.println("correct");
-		    		  //à changer
+		    		  //ï¿½ changer
 		    		  announcement= new Announcement( 
 		    				  result.getInt("id"),
 		    		          result.getString("title"),
 		    		          result.getString("message"),
 		    		          result.getDate("date").toLocalDate(),
-		    		          new User()); 
+		    		          new User());
 		      }
 		    } catch (SQLException e) {
 		      e.printStackTrace();

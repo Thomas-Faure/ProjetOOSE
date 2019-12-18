@@ -1,9 +1,6 @@
 package DAO;
 
-import java.util.Date;
-
-import Announcement.Announcement;
-import User.User;
+import BuisnessLogic.Announcement.Announcement;
 
 public interface AnnouncementDAO {
 	public Announcement createAnnouncementById(int id);

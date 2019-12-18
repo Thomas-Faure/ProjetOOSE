@@ -1,6 +1,7 @@
 package Controller;
 
-import login.SessionFacade;
+
+import Facade.SessionFacade;
 
 public class UILoginController {
 	

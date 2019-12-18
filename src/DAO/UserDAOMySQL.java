@@ -1,12 +1,10 @@
 package DAO;
 
-import java.sql.Connection;
+import BuisnessLogic.User.User;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
-import User.User;
 
 public class UserDAOMySQL implements UserDAO {
 
@@ -19,7 +17,7 @@ public class UserDAOMySQL implements UserDAO {
     	
 	}
 	@Override
-	public User createUser(String username, String password) { 
+	public User createUser(String username, String password) {
 	    User user=null;
 	    try {
 	    String query = "SELECT * FROM user WHERE username =\""+username+"\" and password=\""+password+"\";";
@@ -48,8 +46,8 @@ public class UserDAOMySQL implements UserDAO {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(INSERT);
  
             ps.setString(1, user.getUsername());
-            ps.setString(2, user.getFirstname());
-            ps.setString(3, user.getLastname());
+            ps.setString(2, user.getPrenom());
+            ps.setString(3, user.getNom());
             ps.setString(4, user.getPassword());
             ps.executeUpdate();
             ps.close();
@@ -72,8 +70,8 @@ public class UserDAOMySQL implements UserDAO {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(UPDATE);
 
             ps.setString(1, user.getUsername());
-            ps.setString(2, user.getFirstname());
-            ps.setString(3, user.getLastname());
+            ps.setString(2, user.getPrenom());
+            ps.setString(3, user.getNom());
             ps.setString(4, user.getPassword());
             ps.setInt(5, user.getId());
              

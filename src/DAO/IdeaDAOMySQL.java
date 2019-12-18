@@ -1,13 +1,10 @@
 package DAO;
 
-import java.sql.Connection;
+import BuisnessLogic.Idea.Idea;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 
-import Announcement.Announcement;
-import Idea.Idea;
-import User.User;
 
 public class IdeaDAOMySQL implements IdeaDAO {
 
@@ -26,7 +23,7 @@ public class IdeaDAOMySQL implements IdeaDAO {
 			      ResultSet.CONCUR_READ_ONLY).executeQuery(query);
 		      if(result.first()) {
 		    		  System.out.println("correct");
-		    		  //à changer
+		    		  //ï¿½ changer
 		    		  idea= new Idea(    
 		    		          result.getString("name"),
 		    		          result.getString("description"),
