@@ -1,39 +1,83 @@
 package UI.Task;
 
-
+import BuisnessLogic.Task.Task;
+import BuisnessLogic.User.User;
+import Controller.TaskController;
+import Controller.UILoginController;
+import Main.App;
+import UI.UIGlobal;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class UIAddTask extends Application{
+import java.time.LocalDate;
+import java.time.LocalTime;
 
-	public void start(Stage stage) throws Exception {
+public class UIAddTask implements UIGlobal {
 
-		Parent root = FXMLLoader.load(getClass().getResource("../PPMUI.fxml"));
-		
-		Scene scene = new Scene(root, 1000, 600);
-		
-		FXMLLoader loader2 = new FXMLLoader(getClass().getResource("testUI.fxml"));
-		AnchorPane pane = loader2.load();
-		AnchorPane actualPane = (AnchorPane) scene.lookup("#toFill");
-		actualPane.getChildren().add(pane);
-        stage.setResizable(false);
+	TaskController TaskController;
 
-		stage.setScene(scene);
-		
-		stage.show();
-		
+	public UIAddTask(){
+		this.TaskController=new TaskController();
 	}
 
+	public boolean addTask(String name,String description, int priority, LocalDate deadline){
+		return TaskController.addTask(name,description,priority,deadline);
+	}
+
+
+	public Scene loadScene(){
+		Parent root = null;
+		try {
+			root = FXMLLoader.load(getClass().getResource("AddTaskUI.fxml"));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		Scene scene = new Scene(root, 1000, 600);
+
+		TextField name = (TextField) scene.lookup("#subject");
+		TextField description = (TextField) scene.lookup("#description");
+		TextField deadline = (TextField) scene.lookup("#deadline");
+		TextField priority = (TextField) scene.lookup("#priority");
+
+
+		Button btn = (Button) scene.lookup("#addTask");
+		btn.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				addTask(name.getText(),description.getText(),Integer.parseInt(priority.getText()),LocalDate.now());
+
+
+
+
+			}
+		});
+		Button btnBack = (Button) scene.lookup("#backButton");
+		btnBack.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent e) {
+
+
+
+
+
+			}
+		});
+
+
+
+		return scene;
+	}
 
 
 }

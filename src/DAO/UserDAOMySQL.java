@@ -59,8 +59,6 @@ public class UserDAOMySQL implements UserDAO {
         	System.out.println(e);
             return false;
         }
-		
-	
 	}
 	
 	@Override

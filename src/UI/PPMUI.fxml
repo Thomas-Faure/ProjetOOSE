@@ -16,16 +16,15 @@
           <children>
             <VBox alignment="CENTER" layoutX="12.0" layoutY="145.0" prefHeight="350.0" prefWidth="200.0">
               <children>
-                <Button mnemonicParsing="false" text="Login" />
-                <Button mnemonicParsing="false" text="Projects" />
-                <Button mnemonicParsing="false" text="Announcement" />
-                <Button mnemonicParsing="false" text="Tickets" />
-                <Button mnemonicParsing="false" text="Idea box" />
-                <Button mnemonicParsing="false" text="My ideas" />
-                <Button mnemonicParsing="false" text="User list" />
+                <Button fx:id="MenuLogin" mnemonicParsing="false" text="Login" />
+                <Button fx:id="MenuProject" mnemonicParsing="false" text="Projects" />
+                <Button fx:id="MenuAnnouncement" mnemonicParsing="false" text="Announcement" />
+                <Button fx:id="MenuTicket" mnemonicParsing="false" text="Tickets" />
+                <Button fx:id="MenuIdea" mnemonicParsing="false" text="Idea box" />
+                <Button fx:id="MenuMyIdea" mnemonicParsing="false" text="My ideas" />
+                <Button fx:id="MenuUser" mnemonicParsing="false" text="User list" />
               </children>
             </VBox>
-
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="41.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
               <image>
                 <Image url="file:/C:/Users/thoma/Downloads/LOGO_PPM.png" />
@@ -33,7 +32,7 @@
             </ImageView>
           </children>
         </AnchorPane>
-        <AnchorPane id="toFill" prefHeight="600.0" prefWidth="768.0" style="&#10;&#10;" />
+        <AnchorPane fx:id="appContent" prefHeight="600.0" prefWidth="768.0" style="&#10;&#10;" />
       </children>
     </HBox>
   </children>

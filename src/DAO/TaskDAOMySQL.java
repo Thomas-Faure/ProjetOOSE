@@ -7,13 +7,14 @@ import BuisnessLogic.User.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 
 public class TaskDAOMySQL implements TaskDAO{
 
 	
-    private static final String INSERT = "INSERT INTO task (username, firstname, lastname, password) VALUES (?, ?, ?, ?)";
-    private static final String UPDATE = "UPDATE task SET username=?, firstName=?, lastName=?, password=? WHERE id=?";
+    private static final String INSERT = "INSERT INTO task (name, priority, deadline, creator,description) VALUES (?, ?, ?, ?,?)";
+    private static final String UPDATE = "UPDATE task SET name=?, priority=?, deadline=?, creator=?, description=? WHERE id=?";
     private static final String DELETE = "DELETE FROM task WHERE id=?";
 	
 	public TaskDAOMySQL() {
@@ -32,7 +33,8 @@ public class TaskDAOMySQL implements TaskDAO{
 		    		  //� changer
 		    		  task= new Task(    
 		    				  result.getInt("id"),
-		    		          result.getString("username"),
+		    		          result.getString("name"),
+                              result.getString("description"),
 		    		          result.getInt("test"),
 		    		          result.getDate("deadline").toLocalDate(),
 		    		          new User());
@@ -51,6 +53,7 @@ public class TaskDAOMySQL implements TaskDAO{
             ps.setInt(2, task.getPriority());
             ps.setDate(3, java.sql.Date.valueOf(task.getDeadline()));
             ps.setInt(4, task.getCreator().getId());
+            ps.setString(5, task.getDescription());
             ps.executeUpdate();
             ps.close();
  
@@ -106,7 +109,23 @@ public class TaskDAOMySQL implements TaskDAO{
 
             throw new RuntimeException(e);
         }
+
+
 		
 	}
+
+    public static void main(String[] args) {
+        User user = new User(3,"toto2","first","last","password");
+
+       // Task task = new Task(1,"Tache 1 bis",1,LocalDate.now(),user);
+
+        TaskDAOMySQL sql = new TaskDAOMySQL();
+        //sql.save(task);
+      //  sql.update(task);
+      //  sql.delete(task.getId());
+
+
+
+    }
 
 }

@@ -13,8 +13,10 @@
     <Text layoutX="276.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" />
     <Text layoutX="275.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" />
     <Text layoutX="455.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login Page" />
-    <Text fx:id="info" layoutX="482.0" layoutY="526.0" scaleX="4.667960630348122" scaleY="2.211290585739925" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
     <TextField fx:id="inputUsername" layoutX="275.0" layoutY="232.0" prefWidth="448.0" />
     <PasswordField fx:id="inputPassword" layoutX="276.0" layoutY="363.0" prefWidth="448.0" />
+    <Button fx:id="passwordForgotten" layoutX="14.0" layoutY="554.0" mnemonicParsing="false" text="Password forgotten" />
+    <Button fx:id="addTaskPage" layoutX="397.0" layoutY="554.0" mnemonicParsing="false" text="addTask" />
+    <Text fx:id="info" layoutX="483.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
   </children>
 </AnchorPane>

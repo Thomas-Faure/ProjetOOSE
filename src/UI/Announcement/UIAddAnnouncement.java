@@ -1,49 +1,61 @@
 package UI.Announcement;
 
+import BuisnessLogic.Announcement.Announcement;
+import BuisnessLogic.User.User;
+import Controller.AnnouncementController;
+import Controller.TaskController;
 import UI.UIGlobal;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
-public class UIAddAnnouncement extends Application {
+import java.time.LocalDate;
 
-	@Override
-	public void start(Stage stage) throws Exception {
-		
-		//� remplacer avec la bonne page
-		Parent root = FXMLLoader.load(getClass().getResource("AddAnnouncementPage.fxml"));
+public class UIAddAnnouncement implements UIGlobal {
+
+	AnnouncementController AnnouncementController;
+
+	public UIAddAnnouncement(){
+		this.AnnouncementController=new AnnouncementController();
+	}
+
+	public boolean addAnnouncement(String title,String description){
+		//return AnnouncementController.addAnnouncement(title,description);
+		return true;
+	}
+
+
+	public Scene loadScene(){
+		Parent root = null;
+		try {
+			root = FXMLLoader.load(getClass().getResource("AddAnnouncementUI.fxml"));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		Scene scene = new Scene(root, 1000, 600);
-		   
-        stage.setResizable(false);
-		TextField titleField = (TextField) scene.lookup("#inputTitle");
-		TextField messageField = (TextField) scene.lookup("#inputMessage");
-		Button btn = (Button) scene.lookup("#addNewAnnouncementButton");
-		final Text actiontarget = (Text) scene.lookup("#info");
+
+		TextField title = (TextField) scene.lookup("#title");
+		TextArea description = (TextArea) scene.lookup("#description");
+
+		Button btn = (Button) scene.lookup("#addAnnouncement");
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				System.out.println("Button pushed !");
+				addAnnouncement(title.getText(),description.getText());
+
+
+
+
 			}
 		});
-		Button btnBack = (Button) scene.lookup("#backButton");
-		btnBack.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				System.out.println("Button pushed ! back to menu");
-			}
-		});
-		
-		stage.setScene(scene);
-		
-		stage.show();
-		
+
+		return scene;
 	}
+
 
 }

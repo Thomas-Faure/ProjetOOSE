@@ -42,9 +42,16 @@ public class Task extends AbstractTask {
 	String name;
 	int priority;
 	LocalDate deadline;
+
+	public String getDescription() {
+		return description;
+	}
+
 	User creator;
-	public Task(int id,String name,int priority,LocalDate deadline,User creator) {
+	String description;
+	public Task(int id,String name,String description,int priority,LocalDate deadline,User creator) {
 		this.id=id;
+		this.description=description;
 		this.name=name;
 		this.priority=priority;
 		this.deadline=deadline;

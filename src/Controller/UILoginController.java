@@ -10,8 +10,8 @@ public class UILoginController {
 		
 	}
 	public boolean login(String username,String password) {
-		session = new SessionFacade();
-		return session.login(username, password);
+
+		return SessionFacade.getInstance().login(username, password);
 		
 	}
 

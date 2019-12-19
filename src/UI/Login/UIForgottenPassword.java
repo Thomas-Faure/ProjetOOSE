@@ -1,5 +1,7 @@
 package UI.Login;
 
+import Main.App;
+import UI.UIGlobal;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,31 +15,44 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class UIForgottenPassword extends Application {
+public class UIForgottenPassword implements UIGlobal {
 
-	@Override
-	public void start(Stage stage) throws Exception {
-		
-		//à remplacer avec la bonne page
-		Parent root = FXMLLoader.load(getClass().getResource("ForgottenPasswordPage.fxml"));
+
+	public UIForgottenPassword(){
+
+	}
+
+
+	public Scene loadScene(){
+		Parent root = null;
+		try {
+			root = FXMLLoader.load(getClass().getResource("ForgottenPasswordPage.fxml"));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		Scene scene = new Scene(root, 1000, 600);
-		   
-        stage.setResizable(false);
-		TextField emailField = (TextField) scene.lookup("#inputEmail");
-		Button btn = (Button) scene.lookup("#forgottenPasswordButton");
 
-		final Text actiontarget = (Text) scene.lookup("#info");
-		btn.setOnAction(new EventHandler<ActionEvent>() {
+		TextField mailTextField = (TextField) scene.lookup("#inputMail");
+
+
+		Button btn = (Button) scene.lookup("#getNewPassword");
+		Button btnBack = (Button) scene.lookup("#backButton");
+		btnBack.setOnAction(new EventHandler<ActionEvent>() {
+
 			@Override
 			public void handle(ActionEvent e) {
-				System.out.println("Button pushed !");
+				UILogin login = new UILogin();
+				App.setInstanceScene(login.loadScene());
+
+
+
 			}
 		});
-		
-		stage.setScene(scene);
-		
-		stage.show();
-		
+
+
+
+		return scene;
 	}
+
 
 }
