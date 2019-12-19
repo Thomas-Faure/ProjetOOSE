@@ -92,7 +92,7 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO  {
         }
 	}
 	@Override
-    public void delete(int id) {
+    public boolean delete(int id) {
  
         try {
  
@@ -106,9 +106,10 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO  {
             System.out.println("Announcement with id: " + id + " was sucesfully deleted from DB.");
  
         } catch (SQLException e) {
-            //e.printStackTrace();
+
             throw new RuntimeException(e);
         }
+        return true;
  
     }
 	

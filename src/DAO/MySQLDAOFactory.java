@@ -1,5 +1,7 @@
 package DAO;
 
+import BuisnessLogic.Announcement.Announcement;
+
 public  class MySQLDAOFactory extends AbstractDAOFactory {
 
 	private static MySQLDAOFactory instance;
@@ -31,7 +33,7 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
 	@Override
 	protected AnnouncementDAO createAnnouncementDAO() {
 		// TODO Auto-generated method stub
-		return null;
+		return new AnnouncementDAOMySQL();
 	}
 
 	@Override

@@ -57,8 +57,6 @@ public class UIAddTask implements UIGlobal {
 				addTask(name.getText(),description.getText(),Integer.parseInt(priority.getText()),LocalDate.now());
 
 
-
-
 			}
 		});
 		Button btnBack = (Button) scene.lookup("#backButton");

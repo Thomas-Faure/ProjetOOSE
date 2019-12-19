@@ -11,14 +11,19 @@ import java.time.LocalDate;
 
 public class TaskController {
     private ITaskFacade tFacade;
-    private ISessionFacade sFacade;
+
     public TaskController(){
         tFacade = new TaskFacade();
 
     }
+    public boolean modifyTask(int id,String subject,String description, int priority, LocalDate deadline){
+
+        Task task = new Task(id,subject,description,priority,deadline,SessionFacade.getInstance().getUser());
+        return tFacade.modifyTask(task);
+    }
     public boolean addTask(String subject,String description, int priority, LocalDate deadline){
 
-        Task task = new Task(0,subject,description,priority,deadline,sFacade.getUser());
-        return sFacade.addTask(task);
+        Task task = new Task(0,subject,description,priority,deadline,SessionFacade.getInstance().getUser());
+        return tFacade.addTask(task);
     }
 }

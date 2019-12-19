@@ -18,13 +18,13 @@ public class Menu implements UIGlobal {
     public Scene loadScene(){
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("PPMUI.fxml"));
+            root = FXMLLoader.load(getClass().getResource("PPMUI2.fxml"));
         }catch(Exception e){
             e.printStackTrace();
         }
         Scene scene = new Scene(root, 1000, 600);
 
-        Button btnLogin = (Button) scene.lookup("#MenuLogin");
+       /* Button btnLogin = (Button) scene.lookup("#MenuLogin");
         btnLogin.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -89,7 +89,7 @@ public class Menu implements UIGlobal {
 
 
             }
-        });
+        });*/
 
         return scene;
     }

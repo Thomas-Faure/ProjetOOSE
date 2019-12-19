@@ -5,7 +5,7 @@ import BuisnessLogic.User.User;
 
 public interface ISessionFacade {
 
-    public boolean addTask(Task task);
-    public User getUser();
+
+    User getUser();
 
 }

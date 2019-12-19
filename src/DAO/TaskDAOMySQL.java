@@ -92,7 +92,7 @@ public class TaskDAOMySQL implements TaskDAO{
 	}
 
 	@Override
-	public void delete(int id) {
+	public boolean delete(int id) {
 		 
         try {
  
@@ -104,14 +104,16 @@ public class TaskDAOMySQL implements TaskDAO{
             ps.close();
  
             System.out.println("Task with id: " + id + " was sucesfully deleted from DB.");
+
  
         } catch (SQLException e) {
 
             throw new RuntimeException(e);
         }
+        return true;
 
 
-		
+
 	}
 
     public static void main(String[] args) {

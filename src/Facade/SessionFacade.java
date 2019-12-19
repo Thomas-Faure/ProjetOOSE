@@ -30,14 +30,7 @@ public class SessionFacade implements ISessionFacade {
 	public User getUser(){
 		return user;
 	}
-	@Override
-	public boolean addTask(Task task) {
-		if(taskDAO.save(task)){
-			return true;
-		}else {
-			return false;
-		}
-	}
+
 	public boolean login(String username,String password) {
 		if(user == null) {
 			this.user = userDAO.createUser(username, password);
