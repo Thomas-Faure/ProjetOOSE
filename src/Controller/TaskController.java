@@ -10,20 +10,26 @@ import Facade.TaskFacade;
 import java.time.LocalDate;
 
 public class TaskController {
-    private ITaskFacade tFacade;
+    public static TaskController instance;
 
-    public TaskController(){
-        tFacade = new TaskFacade();
+    private TaskController(){
+
 
     }
-    public boolean modifyTask(int id,String subject,String description, int priority, LocalDate deadline){
+    public static TaskController getInstance(){
+        if(instance == null){
+            instance= new TaskController();
+        }
+        return instance;
+    }
+    public static boolean modifyTask(int id,String subject,String description, int priority, LocalDate deadline){
 
         Task task = new Task(id,subject,description,priority,deadline,SessionFacade.getInstance().getUser());
-        return tFacade.modifyTask(task);
+        return TaskFacade.getInstance().modifyTask(task);
     }
     public boolean addTask(String subject,String description, int priority, LocalDate deadline){
 
         Task task = new Task(0,subject,description,priority,deadline,SessionFacade.getInstance().getUser());
-        return tFacade.addTask(task);
+        return TaskFacade.getInstance().addTask(task);
     }
 }

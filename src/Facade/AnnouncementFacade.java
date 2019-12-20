@@ -14,12 +14,19 @@ import java.util.List;
 public class AnnouncementFacade implements IAnnouncementFacade {
     private List<Announcement> announcements;
     private AnnouncementDAO dao;
+    public static AnnouncementFacade instance;
 
 
-
-    public AnnouncementFacade(){
+    private AnnouncementFacade(){
         dao = MySQLDAOFactory.getAnnouncementDAO();
         this.announcements = new ArrayList<>();
+    }
+
+    public static AnnouncementFacade getInstance(){
+        if(instance ==null){
+            instance =new AnnouncementFacade();
+        }
+        return instance;
     }
     @Override
     public boolean addAnnouncement(Announcement announcement) {

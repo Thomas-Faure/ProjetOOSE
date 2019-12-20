@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -24,14 +25,14 @@ import java.time.LocalTime;
 
 public class UIAddTask implements UIGlobal {
 
-	TaskController TaskController;
+
 
 	public UIAddTask(){
-		this.TaskController=new TaskController();
+
 	}
 
 	public boolean addTask(String name,String description, int priority, LocalDate deadline){
-		return TaskController.addTask(name,description,priority,deadline);
+		return TaskController.getInstance().addTask(name,description,priority,deadline);
 	}
 
 
@@ -64,7 +65,10 @@ public class UIAddTask implements UIGlobal {
 
 			@Override
 			public void handle(ActionEvent e) {
-
+				TaskUI task = new TaskUI();
+				HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+				box.getChildren().remove(1);
+				box.getChildren().add(task.loadScene().getRoot());
 
 
 

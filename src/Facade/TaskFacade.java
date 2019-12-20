@@ -14,16 +14,28 @@ public class TaskFacade implements ITaskFacade {
     private TaskDAO daoFactory;
 
 
-    public TaskFacade(){
+    public static TaskFacade instance;
+    private TaskFacade(){
         daoFactory = MySQLDAOFactory.getTaskDAO();
         this.tasks = new ArrayList<>();
     }
 
+    public static TaskFacade getInstance(){
+        if(instance == null){
+            instance = new TaskFacade();
+        }
+        return instance;
+    }
+
+    public TaskDAO getDao(){
+        return this.daoFactory;
+    }
+
     @Override
-    public boolean addTask(Task task) {
-        if(daoFactory.save(task)){
+    public  boolean addTask(Task task) {
+        if(instance.getDao().save(task)){
             //on ajouter la nouvelle tache à la liste
-            this.tasks.add(task);
+            instance.tasks.add(task);
             return true;
         }else {
             return false;

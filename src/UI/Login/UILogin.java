@@ -1,5 +1,6 @@
 package UI.Login;
 
+import Controller.LoginController;
 import Controller.UILoginController;
 import UI.Menu;
 import UI.Task.UIAddTask;
@@ -23,13 +24,11 @@ import javafx.stage.Stage;
 
 public class UILogin implements UIGlobal {
 
-	UILoginController loginController;
+
 
 	public UILogin() {
-	loginController = new UILoginController();
+
 	}
-
-
 
 	public Scene loadScene(){
 
@@ -81,12 +80,9 @@ public class UILogin implements UIGlobal {
 				if (login(userTextField.getText(), pwBox.getText())) {
 					actiontarget.setFill(Color.CHARTREUSE);
 					actiontarget.setText("Connected");
-					//Menu menu = new Menu();
-					UIAddTask task = new UIAddTask();
-					//App.setInstanceScene(menu.loadScene());
+
 					App.setMenuScene();
-					BorderPane box = (BorderPane) App.getInstanceScene().lookup("#Border");
-					box.setCenter(task.loadScene().getRoot());
+				
 
 
 
@@ -108,7 +104,7 @@ public class UILogin implements UIGlobal {
 
 	public boolean login(String username, String password) {
 
-		if (loginController.login(username, password)) {
+		if (UILoginController.getInstance().login(username, password)) {
 			return true;
 		} else {
 			return false;

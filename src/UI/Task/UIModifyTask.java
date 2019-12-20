@@ -24,14 +24,14 @@ import java.time.LocalTime;
 
 public class UIModifyTask implements UIGlobal {
 
-	TaskController TaskController;
+
 
 	public UIModifyTask(){
-		this.TaskController=new TaskController();
+
 	}
 
 	public boolean modifyTask(int id,String name,String description, int priority, LocalDate deadline){
-		return TaskController.modifyTask(id,name,description,priority,deadline);
+		return TaskController.getInstance().modifyTask(id,name,description,priority,deadline);
 	}
 
 
