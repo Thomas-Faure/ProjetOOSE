@@ -31,11 +31,6 @@ public class UIAddTask implements UIGlobal {
 
 	}
 
-	public boolean addTask(String name,String description, int priority, LocalDate deadline){
-		return TaskController.getInstance().addTask(name,description,priority,deadline);
-	}
-
-
 	public Scene loadScene(){
 		Parent root = null;
 		try {
@@ -44,38 +39,6 @@ public class UIAddTask implements UIGlobal {
 			e.printStackTrace();
 		}
 		Scene scene = new Scene(root, 1000, 600);
-
-		TextField name = (TextField) scene.lookup("#subject");
-		TextField description = (TextField) scene.lookup("#description");
-		TextField deadline = (TextField) scene.lookup("#deadline");
-		TextField priority = (TextField) scene.lookup("#priority");
-
-
-		Button btn = (Button) scene.lookup("#addTask");
-		btn.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				addTask(name.getText(),description.getText(),Integer.parseInt(priority.getText()),LocalDate.now());
-
-
-			}
-		});
-		Button btnBack = (Button) scene.lookup("#backButton");
-		btnBack.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent e) {
-				TaskUI task = new TaskUI();
-				HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-				box.getChildren().remove(1);
-				box.getChildren().add(task.loadScene().getRoot());
-
-
-
-
-			}
-		});
-
 
 
 		return scene;

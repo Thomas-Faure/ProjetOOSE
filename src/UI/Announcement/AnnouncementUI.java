@@ -9,6 +9,7 @@ import UI.UIGlobal;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -36,23 +37,13 @@ public class AnnouncementUI implements UIGlobal {
     public Scene loadScene(){
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("AnnouncementUI.fxml"));
+            FXMLLoader loader = new FXMLLoader();
+            root = loader.load(getClass().getResourceAsStream("AnnouncementUI.fxml"));
         }catch(Exception e){
             e.printStackTrace();
         }
         Scene scene = new Scene(root, 1000, 600);
 
-        Button btn = (Button) scene.lookup("#addAnAnnouncement");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                UIAddAnnouncement addAnnouncement = new UIAddAnnouncement();
-                HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-                box.getChildren().remove(1);
-                box.getChildren().add(addAnnouncement.loadScene().getRoot());
-
-            }
-        });
 
 
         return scene;

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" fx:id="Content" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" fx:id="Content" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
   <children>
     <HBox fx:id="HBOX" layoutX="0.0" layoutY="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
@@ -21,16 +21,16 @@
                       <Image url="file:/C:/Users/thoma/Downloads/LOGO_PPM.png" />
                     </image>
                   </ImageView>
-                <Button fx:id="MenuLogin" accessibleRole="PARENT" mnemonicParsing="false" text="Login" VBox.vgrow="ALWAYS">
+                <Button fx:id="menuLogin" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMenuLogin" text="Login" VBox.vgrow="ALWAYS">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin></Button>
-                <Button fx:id="MenuProject" mnemonicParsing="false" text="Projects" />
-                <Button fx:id="MenuAnnouncement" mnemonicParsing="false" text="Announcement" />
-                <Button fx:id="MenuTicket" mnemonicParsing="false" text="Tickets" />
-                <Button fx:id="MenuIdea" mnemonicParsing="false" text="Idea box" />
-                <Button fx:id="MenuMyIdea" mnemonicParsing="false" text="My ideas" />
-                <Button fx:id="MenuUser" mnemonicParsing="false" text="User list" />
+                <Button fx:id="menuProject" mnemonicParsing="false" onAction="#goMenuProject" text="Projects" />
+                <Button fx:id="menuAnnouncement" mnemonicParsing="false" onAction="#goMenuAnnouncement" text="Announcement" />
+                <Button fx:id="menuTicket" mnemonicParsing="false" onAction="#goMenuTicket" text="Tickets" />
+                <Button fx:id="menuIdea" mnemonicParsing="false" onAction="#goMenuIdea" text="Idea box" />
+                <Button fx:id="menuMyIdea" mnemonicParsing="false" onAction="#goMenuMyIdea" text="My ideas" />
+                <Button fx:id="menuUser" mnemonicParsing="false" onAction="#goMenuUser" text="User list" />
               </children>
             </VBox>
           </children>

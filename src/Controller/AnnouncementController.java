@@ -4,20 +4,31 @@ import BuisnessLogic.Announcement.Announcement;
 import Facade.AnnouncementFacade;
 import Facade.IAnnouncementFacade;
 import Facade.SessionFacade;
+import Main.App;
+import UI.Task.UIAddTask;
 import com.mysql.cj.Session;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 
 import java.time.LocalDate;
 
 public class AnnouncementController {
-    static AnnouncementController instance;
-    private AnnouncementController(){
+    @FXML
+    private Button addAnAnnouncement;
 
+    @FXML
+    void addAnnouncementPage(ActionEvent actionEvent) {
+        UIAddTask addTask = new UIAddTask();
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+
+        box.getChildren().remove(1);
+        box.getChildren().add(addTask.loadScene().getRoot());
     }
-    public static AnnouncementController getInstance(){
-        if(instance == null){
-            instance= new AnnouncementController();
-        }
-        return instance;
+
+    public AnnouncementController(){
+
     }
 
 

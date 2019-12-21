@@ -31,7 +31,7 @@ public class UIModifyTask implements UIGlobal {
 	}
 
 	public boolean modifyTask(int id,String name,String description, int priority, LocalDate deadline){
-		return TaskController.getInstance().modifyTask(id,name,description,priority,deadline);
+		return false;
 	}
 
 

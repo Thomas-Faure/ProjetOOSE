@@ -27,7 +27,7 @@ public class UIAddAnnouncement implements UIGlobal {
 	}
 
 	public boolean addAnnouncement(String title,String description){
-		return AnnouncementController.getInstance().addAnnouncement(title,description);
+		return false;
 
 	}
 
