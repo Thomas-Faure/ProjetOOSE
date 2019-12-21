@@ -27,6 +27,11 @@ public class TaskFacade implements ITaskFacade {
         return instance;
     }
 
+
+    public List<AbstractTask> getListTasks(){
+        return this.tasks;
+    }
+
     public TaskDAO getDao(){
         return this.daoFactory;
     }
@@ -63,6 +68,12 @@ public class TaskFacade implements ITaskFacade {
         }else {
             return false;
         }
+    }
+
+    @Override
+    public boolean getAllTasks() {
+        this.tasks = daoFactory.getAllTasks();
+        return true;
     }
 
 }

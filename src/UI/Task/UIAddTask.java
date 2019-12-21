@@ -30,7 +30,6 @@ public class UIAddTask implements UIGlobal {
 	public UIAddTask(){
 
 	}
-
 	public Scene loadScene(){
 		Parent root = null;
 		try {
@@ -39,10 +38,6 @@ public class UIAddTask implements UIGlobal {
 			e.printStackTrace();
 		}
 		Scene scene = new Scene(root, 1000, 600);
-
-
 		return scene;
 	}
-
-
 }

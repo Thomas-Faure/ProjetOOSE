@@ -1,6 +1,7 @@
 package DAO;
 
 
+import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.Task;
 import BuisnessLogic.User.User;
 
@@ -8,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class TaskDAOMySQL implements TaskDAO{
@@ -16,6 +19,7 @@ public class TaskDAOMySQL implements TaskDAO{
     private static final String INSERT = "INSERT INTO task (name, priority, deadline, creator,description) VALUES (?, ?, ?, ?,?)";
     private static final String UPDATE = "UPDATE task SET name=?, priority=?, deadline=?, creator=?, description=? WHERE id=?";
     private static final String DELETE = "DELETE FROM task WHERE id=?";
+    private static final String ALL = "SELECT * from task";
 	
 	public TaskDAOMySQL() {
 		
@@ -115,6 +119,42 @@ public class TaskDAOMySQL implements TaskDAO{
 
 
 	}
+
+    @Override
+    public List<AbstractTask> getAllTasks() {
+	    List<AbstractTask> list = new ArrayList<>();
+        try {
+
+            PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(ALL);
+
+
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                System.out.println("ajout");
+                Task task = new Task(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        rs.getInt("priority"),
+                        rs.getDate("deadline").toLocalDate(),
+                        null);
+
+
+
+                list.add(task);
+
+            }
+            ps.close();
+
+
+
+
+        } catch (SQLException e) {
+
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
 
     public static void main(String[] args) {
         User user = new User(3,"toto2","first","last","password");

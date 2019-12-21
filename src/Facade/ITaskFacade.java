@@ -10,4 +10,6 @@ public interface ITaskFacade {
 
       boolean deleteTask(Task task);
 
+      boolean getAllTasks();
+
 }

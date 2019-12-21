@@ -48,8 +48,6 @@ public class TaskUI implements UIGlobal {
         }
         Scene scene = new Scene(root, 1000, 600);
 
-
-
         return scene;
     }
 
