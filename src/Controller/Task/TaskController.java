@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Task;
 
 import BuisnessLogic.Task.Task;
 
@@ -8,6 +8,7 @@ import Facade.TaskFacade;
 import Main.App;
 import UI.Task.TaskUI;
 import UI.Task.UIAddTask;
+import UI.Task.UIModifyTask;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,42 +29,6 @@ import java.util.ResourceBundle;
 
 public class TaskController implements Initializable {
 
-    //AddTaskPage
-    @FXML
-    private TextField subject;
-    @FXML
-    private TextField description;
-    @FXML
-    private TextField deadline;
-    @FXML
-    private TextField priority;
-    @FXML
-    private Button backButton;
-    @FXML
-    private Button addTaskButton;
-
-
-    @FXML
-    void addNewTask(ActionEvent actionEvent){
-        Task task = new Task(0,subject.getText(),description.getText(),Integer.parseInt(priority.getText()),LocalDate.now(),SessionFacade.getInstance().getUser());
-        if(TaskFacade.getInstance().addTask(task)){
-            TaskUI taskP = new TaskUI();
-            HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-            if(box.getChildren().size() >1 )
-                box.getChildren().remove(1);
-            box.getChildren().add(taskP.loadScene().getRoot());
-        }else{
-            //pas ok
-        }
-    }
-    @FXML
-    void backToTaskPage(ActionEvent actionEvent){
-        TaskUI task = new TaskUI();
-        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-        if(box.getChildren().size() >1 )
-            box.getChildren().remove(1);
-        box.getChildren().add(task.loadScene().getRoot());
-    }
 
     //Task Page
     @FXML
@@ -79,37 +44,51 @@ public class TaskController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 
-
+        //uniquement pour la page des taches manager
         if(taskList != null){
-        //si on peut récuperer les taches
-        if(TaskFacade.getInstance().getAllTasks()) {
-            ArrayList<Task> listeElement = ((ArrayList) TaskFacade.getInstance().getListTasks());
-            ObservableList<Task> listView = FXCollections.observableArrayList(listeElement);
+            //si on peut récuperer les taches
+            if(TaskFacade.getInstance().getAllTasks()) {
+                ArrayList<Task> listeElement = ((ArrayList) TaskFacade.getInstance().getListTasks());
+                ObservableList<Task> listView = FXCollections.observableArrayList(listeElement);
 
-            taskList.setItems(listView);
-            taskList.setCellFactory(param -> new Cell());
-        }
+                taskList.setItems(listView);
+                taskList.setCellFactory(param -> new Cell());
+            }
         }
 
     }
 
+
+
     static class Cell extends ListCell<Task> {
         Task task;
         HBox hbox = new HBox();
-        Button btn = new Button("Delete");
+        Button btnD = new Button("Delete");
+        Button btnM = new Button("Modify");
         Label label = new Label("");
         Pane pane = new Pane();
-       // Image profile = new Image("https://www.mkyong.com/image/mypic.jpg");
-       // ImageView img = new ImageView(profile);
+        // Image profile = new Image("https://www.mkyong.com/image/mypic.jpg");
+        // ImageView img = new ImageView(profile);
         public Cell(){
             super();
-            hbox.getChildren().addAll(label,pane,btn);
-            btn.setOnAction(new EventHandler<ActionEvent>() {
+            hbox.getChildren().addAll(label,pane,btnM,btnD);
+            btnD.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
                     getListView().getItems().remove(getItem());
 
                     TaskFacade.getInstance().deleteTask(task);
+
+                }
+            });
+            btnM.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    UIModifyTask modifyTask = new UIModifyTask(task.getId());
+                    HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+
+                    box.getChildren().remove(1);
+                       box.getChildren().add(modifyTask.loadScene().getRoot());
 
                 }
             });

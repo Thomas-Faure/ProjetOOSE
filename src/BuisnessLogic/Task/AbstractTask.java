@@ -14,6 +14,7 @@ public abstract class AbstractTask {
     public abstract LocalDate getDeadline();
 
     public abstract User getCreator();
+    public abstract String getDescription();
 
 
 }

@@ -1,9 +1,5 @@
 package UI.Announcement;
 
-import BuisnessLogic.Announcement.Announcement;
-import BuisnessLogic.User.User;
-import Controller.AnnouncementController;
-import Controller.TaskController;
 import Main.App;
 import UI.UIGlobal;
 import javafx.event.ActionEvent;
@@ -15,8 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-
-import java.time.LocalDate;
 
 public class UIAddAnnouncement implements UIGlobal {
 

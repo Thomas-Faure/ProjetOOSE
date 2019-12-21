@@ -20,6 +20,7 @@ public class TaskDAOMySQL implements TaskDAO{
     private static final String UPDATE = "UPDATE task SET name=?, priority=?, deadline=?, creator=?, description=? WHERE id=?";
     private static final String DELETE = "DELETE FROM task WHERE id=?";
     private static final String ALL = "SELECT * from task";
+    private static final String TASKBYID = "SELECT * from task where id=?";
 	
 	public TaskDAOMySQL() {
 		
@@ -34,7 +35,7 @@ public class TaskDAOMySQL implements TaskDAO{
 			      ResultSet.CONCUR_READ_ONLY).executeQuery(query);
 		      if(result.first()) {
 		    		  System.out.println("correct");
-		    		  //� changer
+		    		  //à changer
 		    		  task= new Task(    
 		    				  result.getInt("id"),
 		    		          result.getString("name"),
@@ -80,7 +81,8 @@ public class TaskDAOMySQL implements TaskDAO{
             ps.setInt(2, task.getPriority());
             ps.setDate(3, java.sql.Date.valueOf( task.getDeadline() ));
             ps.setInt(4, task.getCreator().getId());
-            ps.setInt(5, task.getId());
+            ps.setString(5, task.getDescription());
+            ps.setInt(6, task.getId());
              
             ps.executeUpdate();
             ps.close();
@@ -119,6 +121,29 @@ public class TaskDAOMySQL implements TaskDAO{
 
 
 	}
+	@Override
+    public AbstractTask getTaskById(int id){
+	    Task task = null;
+        try {
+            PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(TASKBYID);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+
+                task = new Task(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        rs.getInt("priority"),
+                        rs.getDate("deadline").toLocalDate(),
+                        new User(3,"thomas","faure","faure","faure"));
+            }
+            ps.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+	    return task;
+    }
 
     @Override
     public List<AbstractTask> getAllTasks() {
@@ -130,7 +155,7 @@ public class TaskDAOMySQL implements TaskDAO{
 
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                System.out.println("ajout");
+
                 Task task = new Task(
                         rs.getInt("id"),
                         rs.getString("name"),
@@ -138,17 +163,9 @@ public class TaskDAOMySQL implements TaskDAO{
                         rs.getInt("priority"),
                         rs.getDate("deadline").toLocalDate(),
                         null);
-
-
-
                 list.add(task);
-
             }
             ps.close();
-
-
-
-
         } catch (SQLException e) {
 
             throw new RuntimeException(e);
@@ -156,18 +173,6 @@ public class TaskDAOMySQL implements TaskDAO{
         return list;
     }
 
-    public static void main(String[] args) {
-        User user = new User(3,"toto2","first","last","password");
 
-       // Task task = new Task(1,"Tache 1 bis",1,LocalDate.now(),user);
-
-        TaskDAOMySQL sql = new TaskDAOMySQL();
-        //sql.save(task);
-      //  sql.update(task);
-      //  sql.delete(task.getId());
-
-
-
-    }
 
 }

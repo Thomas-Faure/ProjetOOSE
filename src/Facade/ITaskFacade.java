@@ -1,5 +1,6 @@
 package Facade;
 
+import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.Task;
 
 public interface ITaskFacade {
@@ -11,5 +12,7 @@ public interface ITaskFacade {
       boolean deleteTask(Task task);
 
       boolean getAllTasks();
+
+      AbstractTask getTaskById(int id);
 
 }

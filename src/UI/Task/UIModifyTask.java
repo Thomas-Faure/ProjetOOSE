@@ -1,77 +1,73 @@
 package UI.Task;
 
-import BuisnessLogic.Task.Task;
-import BuisnessLogic.User.User;
-import Controller.TaskController;
-import Controller.UILoginController;
-import Main.App;
+import Controller.Task.ModifyTaskController;
 import UI.UIGlobal;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.Callable;
 
 public class UIModifyTask implements UIGlobal {
 
 
 
-	public UIModifyTask(){
 
+
+	int id;
+	public UIModifyTask(int id){
+		this.id=id;
 	}
 
-	public boolean modifyTask(int id,String name,String description, int priority, LocalDate deadline){
-		return false;
-	}
 
 
 	public Scene loadScene(){
+		Map<Class, Callable<?>> creators = new HashMap<>();
+		creators.put(ModifyTaskController.class , new Callable<ModifyTaskController>() {
+
+			@Override
+			public ModifyTaskController call() throws Exception {
+				System.out.println(id+" voila");
+				return new ModifyTaskController(id);
+			}
+
+		});
 		Parent root = null;
 		try {
-			root = FXMLLoader.load(getClass().getResource("ModifyTaskUI.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifyTaskUI.fxml"));
+			loader.setControllerFactory(new Callback<Class<?>, Object>() {
+				@Override
+				public Object call(Class<?> param) {
+					Callable<?> callable = creators.get(param);
+					if (callable == null) {
+						try {
+							// default handling: use no-arg constructor
+							return param.newInstance();
+						} catch (InstantiationException | IllegalAccessException ex) {
+							throw new IllegalStateException(ex);
+						}
+					} else {
+						try {
+							return callable.call();
+						} catch (Exception ex) {
+							throw new IllegalStateException(ex);
+						}
+					}
+				}
+			});
+			root = loader.load();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		Scene scene = new Scene(root, 1000, 600);
-
-		TextField id = (TextField) scene.lookup("#id");
-		TextField name = (TextField) scene.lookup("#subject");
-		TextField description = (TextField) scene.lookup("#description");
-		TextField deadline = (TextField) scene.lookup("#deadline");
-		TextField priority = (TextField) scene.lookup("#priority");
-
-
-		Button btn = (Button) scene.lookup("#modifyTask");
-		btn.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				modifyTask(Integer.parseInt(id.getText()),name.getText(),description.getText(),Integer.parseInt(priority.getText()),LocalDate.now());
-
-
-			}
-		});
-		Button btnBack = (Button) scene.lookup("#backButton");
-		btnBack.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent e) {
-
-
-
-
-
-			}
-		});
 
 
 

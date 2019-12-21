@@ -12,5 +12,6 @@ public interface TaskDAO {
 	public boolean update(Task task);
 	boolean delete(int id);
 	List<AbstractTask> getAllTasks();
+	AbstractTask getTaskById(int id);
 
 }

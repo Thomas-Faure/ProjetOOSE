@@ -2,6 +2,7 @@ package Facade;
 
 import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.Task;
+import BuisnessLogic.User.AbstractUser;
 import DAO.AbstractDAOFactory;
 import DAO.MySQLDAOFactory;
 import DAO.TaskDAO;
@@ -68,6 +69,12 @@ public class TaskFacade implements ITaskFacade {
         }else {
             return false;
         }
+    }
+    @Override
+    public AbstractTask getTaskById(int id){
+        AbstractTask task;
+        task = daoFactory.getTaskById(id);
+        return task;
     }
 
     @Override
