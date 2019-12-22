@@ -19,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
@@ -27,6 +28,8 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TaskController implements Initializable {
 
@@ -41,7 +44,8 @@ public class TaskController implements Initializable {
     @FXML
     private Button addATask;
 
-
+    //permet de garder la liste de base
+    private static ObservableList<Task> listViewTemp;
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -51,14 +55,57 @@ public class TaskController implements Initializable {
             if(TaskFacade.getInstance().getAllTasks()) {
                 ArrayList<Task> listeElement = ((ArrayList) TaskFacade.getInstance().getListTasks());
                 ObservableList<Task> listView = FXCollections.observableArrayList(listeElement);
+                listViewTemp= FXCollections.observableArrayList(listeElement);
 
                 taskList.setItems(listView);
                 taskList.setCellFactory(param -> new Cell());
+
             }
         }
 
     }
 
+
+    public static void main(String[] args) {
+        System.out.println("myvar".matches("(.*)my(.*)"));
+    }
+    @FXML
+    public void testFct(KeyEvent keyEvent) {
+        System.out.println(inputSearch.getText().length());
+        if(!(inputSearch.getText().length() == 0)) {
+
+
+            ArrayList<Task> array = new ArrayList<>(listViewTemp);
+            ArrayList<Task> toDelete = new ArrayList<>();
+            for (int i = 0; i < array.size(); ++i) {
+
+                String inputS =inputSearch.getText();
+                if(inputS.charAt(0) == '*'){
+                    inputS= "\\"+inputS;
+                }
+                String regex = "(.*)" + inputS + "(.*)";
+                if (array.get(i).getName().matches(regex)) {
+
+                } else {
+                    toDelete.add(array.get(i));
+
+                }
+            }
+
+            for (Task i : toDelete) {
+
+                array.remove(i);
+            }
+
+
+            ObservableList<Task> listViewT = FXCollections.observableArrayList(array);
+            taskList.setItems(listViewT);
+
+        }else{
+            taskList.setItems(listViewTemp);
+        }
+
+    }
 
 
     static class Cell extends ListCell<Task> {
@@ -84,7 +131,7 @@ public class TaskController implements Initializable {
                 @Override
                 public void handle(ActionEvent e) {
                     getListView().getItems().remove(getItem());
-
+                    listViewTemp.remove(getItem());
                     TaskFacade.getInstance().deleteTask(task);
 
                 }
@@ -106,7 +153,6 @@ public class TaskController implements Initializable {
 
                     UIReadTask read = new UIReadTask(task.getId());
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-
                     box.getChildren().remove(1);
                     box.getChildren().add(read.loadScene().getRoot());
 
@@ -143,6 +189,7 @@ public class TaskController implements Initializable {
         box.getChildren().remove(1);
         box.getChildren().add(addTask.loadScene().getRoot());
     }
+
 
 
     void search(String search){

@@ -25,6 +25,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
@@ -49,6 +50,44 @@ public class AnnouncementController implements Initializable {
     private Button addAnAnnouncement;
 
 
+    //permet de garder la liste de base
+    private static ObservableList<Announcement> listViewTemp;
+    @FXML
+    public void testFct(KeyEvent keyEvent) {
+        System.out.println(inputSearch.getText().length());
+        if(!(inputSearch.getText().length() == 0)) {
+            ArrayList<Announcement> array = new ArrayList<>(listViewTemp);
+            ArrayList<Announcement> toDelete = new ArrayList<>();
+            for (int i = 0; i < array.size(); ++i) {
+                String inputS =inputSearch.getText();
+                if(inputS.charAt(0) == '*'){
+                    inputS= "\\"+inputS;
+                }
+                String regex = "(.*)" + inputS + "(.*)";
+                if (array.get(i).getTitle().matches(regex)) {
+
+                } else {
+                    toDelete.add(array.get(i));
+
+                }
+            }
+
+            for (Announcement i : toDelete) {
+
+                array.remove(i);
+            }
+
+
+            ObservableList<Announcement> listViewT = FXCollections.observableArrayList(array);
+            announcementList.setItems(listViewT);
+
+        }else{
+            announcementList.setItems(listViewTemp);
+        }
+
+    }
+
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -58,7 +97,7 @@ public class AnnouncementController implements Initializable {
             if(AnnouncementFacade.getInstance().getAllAnnouncements()) {
                 ArrayList<Announcement> listeElement = ((ArrayList) AnnouncementFacade.getInstance().getListAnnouncements());
                 ObservableList<Announcement> listView = FXCollections.observableArrayList(listeElement);
-
+                listViewTemp = FXCollections.observableArrayList(listeElement);
                 announcementList.setItems(listView);
                 announcementList.setCellFactory(param -> new Cell());
             }
@@ -108,7 +147,7 @@ public class AnnouncementController implements Initializable {
             btnR.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    System.out.println(announcement.getId()+"");
+
                     UIReadAnnouncement read = new UIReadAnnouncement(announcement.getId());
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
 
