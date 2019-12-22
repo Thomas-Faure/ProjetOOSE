@@ -128,7 +128,7 @@ public class AnnouncementController implements Initializable {
                 @Override
                 public void handle(ActionEvent e) {
                     getListView().getItems().remove(getItem());
-
+                    listViewTemp.remove(getItem());
                     AnnouncementFacade.getInstance().deleteAnnouncement(announcement);
 
                 }
