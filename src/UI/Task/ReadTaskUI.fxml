@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Task.ReadTaskController">
   <children>
-    <TextField layoutX="234.0" layoutY="64.0" prefWidth="452.0" />
-    <TextField layoutX="234.0" layoutY="143.0" prefHeight="140.0" prefWidth="452.0" />
-    <TextField layoutX="234.0" layoutY="335.0" prefWidth="452.0" />
-    <TextField layoutX="234.0" layoutY="422.0" prefWidth="452.0" />
+    <TextField fx:id="subject" editable="false" layoutX="234.0" layoutY="64.0" prefWidth="452.0" />
+    <TextField fx:id="description" editable="false" layoutX="234.0" layoutY="143.0" prefHeight="140.0" prefWidth="452.0" />
+    <TextField fx:id="deadline" editable="false" layoutX="234.0" layoutY="335.0" prefWidth="452.0" />
+    <TextField fx:id="priority" editable="false" layoutX="234.0" layoutY="422.0" prefWidth="452.0" />
     <Text layoutX="163.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject:" />
     <Text layoutX="131.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" />
     <Text layoutX="152.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deadline:" />
     <Text layoutX="165.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priority:" />
-    <Button layoutX="24.0" layoutY="530.0" mnemonicParsing="false" text="Back" />
+    <Button layoutX="24.0" layoutY="530.0" mnemonicParsing="false" onAction="#backToTasks" text="Back" />
   </children>
 </AnchorPane>

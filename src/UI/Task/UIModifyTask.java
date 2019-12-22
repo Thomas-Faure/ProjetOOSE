@@ -35,7 +35,7 @@ public class UIModifyTask implements UIGlobal {
 
 			@Override
 			public ModifyTaskController call() throws Exception {
-				System.out.println(id+" voila");
+				System.out.println(id+"");
 				return new ModifyTaskController(id);
 			}
 

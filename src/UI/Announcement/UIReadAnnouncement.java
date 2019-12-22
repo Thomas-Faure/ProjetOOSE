@@ -1,41 +1,75 @@
 package UI.Announcement;
 
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import Controller.Announcement.ReadAnnouncementController;
+
+import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
+import javafx.util.Callback;
 
-public class UIReadAnnouncement extends Application {
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.Callable;
 
-	@Override
-	public void start(Stage stage) throws Exception {
-		/***
-		 * Get currents values of a announcement and put them on the differents inputs
-		 */
-		Parent root = FXMLLoader.load(getClass().getResource("ReadAnnouncementPage.fxml"));
-		Scene scene = new Scene(root, 1000, 600);
-		   
-        stage.setResizable(false);
-		TextField titleField = (TextField) scene.lookup("#inputTitle");
-		TextField messageField = (TextField) scene.lookup("#inputMessage");
-		Button btnBack = (Button) scene.lookup("#backButton");
-		btnBack.setOnAction(new EventHandler<ActionEvent>() {
+public class UIReadAnnouncement implements UIGlobal {
+
+
+
+
+
+	int id;
+	public UIReadAnnouncement(int id){
+
+		this.id=id;
+
+	}
+
+
+	public Scene loadScene(){
+
+
+		Map<Class, Callable<?>> creators = new HashMap<>();
+		creators.put(ReadAnnouncementController.class , new Callable<ReadAnnouncementController>() {
+
 			@Override
-			public void handle(ActionEvent e) {
-				System.out.println("Button pushed ! back to menu");
+			public ReadAnnouncementController call() throws Exception {
+
+
+				return new ReadAnnouncementController(id);
 			}
 		});
-		
-		stage.setScene(scene);
-		
-		stage.show();
-		
+		Parent root = null;
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("ReadAnnouncementUI.fxml"));
+			loader.setControllerFactory(new Callback<Class<?>, Object>() {
+				@Override
+				public Object call(Class<?> param) {
+					Callable<?> callable = creators.get(param);
+					if (callable == null) {
+						try {
+							// default handling: use no-arg constructor
+							return param.newInstance();
+						} catch (InstantiationException | IllegalAccessException ex) {
+							throw new IllegalStateException(ex);
+						}
+					} else {
+						try {
+							return callable.call();
+						} catch (Exception ex) {
+							throw new IllegalStateException(ex);
+						}
+					}
+				}
+			});
+			root = loader.load();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		Scene scene = new Scene(root, 1000, 600);
+
+		return scene;
 	}
+
 
 }

@@ -1,11 +1,17 @@
-package Controller.Task;
+package Controller.Announcement;
 
+import BuisnessLogic.Announcement.AbstractAnnouncement;
+import BuisnessLogic.Announcement.Announcement;
+import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.Task;
 
 import BuisnessLogic.User.User;
+import Facade.AnnouncementFacade;
 import Facade.SessionFacade;
 import Facade.TaskFacade;
 import Main.App;
+import UI.Announcement.UIModifyAnnouncement;
+import UI.Announcement.UIReadAnnouncement;
 import UI.Task.TaskUI;
 import UI.Task.UIAddTask;
 import UI.Task.UIModifyTask;
@@ -26,9 +32,10 @@ import javax.xml.soap.Text;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
-public class TaskController implements Initializable {
+public class AnnouncementController implements Initializable {
 
 
     //Task Page
@@ -37,34 +44,32 @@ public class TaskController implements Initializable {
     @FXML
     private Button buttonSearch;
     @FXML
-    private ListView<Task> taskList;
+    private ListView<Announcement> announcementList;
     @FXML
-    private Button addATask;
+    private Button addAnAnnouncement;
 
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 
         //uniquement pour la page des taches manager
-        if(taskList != null){
-            //si on peut récuperer les taches
-            if(TaskFacade.getInstance().getAllTasks()) {
-                ArrayList<Task> listeElement = ((ArrayList) TaskFacade.getInstance().getListTasks());
-                ObservableList<Task> listView = FXCollections.observableArrayList(listeElement);
+        if(announcementList != null){
+            //si on peut récuperer les annonces
+            if(AnnouncementFacade.getInstance().getAllAnnouncements()) {
+                ArrayList<Announcement> listeElement = ((ArrayList) AnnouncementFacade.getInstance().getListAnnouncements());
+                ObservableList<Announcement> listView = FXCollections.observableArrayList(listeElement);
 
-                taskList.setItems(listView);
-                taskList.setCellFactory(param -> new Cell());
+                announcementList.setItems(listView);
+                announcementList.setCellFactory(param -> new Cell());
             }
         }
 
     }
 
-
-
-    static class Cell extends ListCell<Task> {
-        Task task;
+    static class Cell extends ListCell<Announcement> {
+        Announcement announcement;
         HBox hbox = new HBox();
-        Image image = new Image("crayon.png");
+        Image image = new Image("megaphone.png");
         ImageView img = new ImageView(image);
         Button btnR = new Button("Read");
         Button btnD = new Button("Delete");
@@ -85,26 +90,26 @@ public class TaskController implements Initializable {
                 public void handle(ActionEvent e) {
                     getListView().getItems().remove(getItem());
 
-                    TaskFacade.getInstance().deleteTask(task);
+                    AnnouncementFacade.getInstance().deleteAnnouncement(announcement);
 
                 }
             });
             btnM.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    UIModifyTask modifyTask = new UIModifyTask(task.getId());
+                    UIModifyAnnouncement modifyAnnouncement = new UIModifyAnnouncement(announcement.getId());
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
 
                     box.getChildren().remove(1);
-                       box.getChildren().add(modifyTask.loadScene().getRoot());
+                    box.getChildren().add(modifyAnnouncement.loadScene().getRoot());
 
                 }
             });
             btnR.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-
-                    UIReadTask read = new UIReadTask(task.getId());
+                    System.out.println(announcement.getId()+"");
+                    UIReadAnnouncement read = new UIReadAnnouncement(announcement.getId());
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
 
                     box.getChildren().remove(1);
@@ -116,14 +121,14 @@ public class TaskController implements Initializable {
 
         }
         @Override
-        public void updateItem(Task name, boolean empty){
+        public void updateItem(Announcement name, boolean empty){
             super.updateItem(name,empty);
             setText(null);
             setGraphic(null);
 
             if(name != null && !empty){
-                task = name;
-                label.setText(name.getId()+" "+name.getName());
+                announcement = name;
+                label.setText(name.getId()+" "+name.getTitle());
                 setGraphic(hbox);
             }
 
@@ -132,11 +137,11 @@ public class TaskController implements Initializable {
 
     }
 
-    public TaskController(){
+    public AnnouncementController(){
     }
 
     @FXML
-    void addTaskPage(ActionEvent actionEvent) {
+    void addAnnouncementPage(ActionEvent actionEvent) {
         UIAddTask addTask = new UIAddTask();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
 
@@ -144,10 +149,13 @@ public class TaskController implements Initializable {
         box.getChildren().add(addTask.loadScene().getRoot());
     }
 
-
     void search(String search){
-        //effectue un trie pour chercher les annonces
+        List<AbstractAnnouncement> AnnouncementsSearched = AnnouncementFacade.getInstance().getAnnouncementByTitle(search);
+
     }
+
+
+
 
 
 

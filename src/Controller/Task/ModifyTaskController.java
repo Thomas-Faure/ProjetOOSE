@@ -33,12 +33,9 @@ public class ModifyTaskController implements Initializable {
     int id;
     public ModifyTaskController(int id){
         this.id=id;
+        System.out.println(this.id+" voila");
     }
 
-    /**
-     *
-     * Page Modify Task
-     */
     @FXML
     private Text TaskIDField;
     @FXML
@@ -79,9 +76,6 @@ public class ModifyTaskController implements Initializable {
         }
 
     }
-
-
-
 
 
 

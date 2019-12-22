@@ -13,5 +13,6 @@ public interface TaskDAO {
 	boolean delete(int id);
 	List<AbstractTask> getAllTasks();
 	AbstractTask getTaskById(int id);
+	List<AbstractTask> getTaskByName(String name);
 
 }

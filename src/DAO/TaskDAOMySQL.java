@@ -21,6 +21,7 @@ public class TaskDAOMySQL implements TaskDAO{
     private static final String DELETE = "DELETE FROM task WHERE id=?";
     private static final String ALL = "SELECT * from task";
     private static final String TASKBYID = "SELECT * from task where id=?";
+    private static final String TASKBYNAME = "SELECT * from task where name=?";
 	
 	public TaskDAOMySQL() {
 		
@@ -145,6 +146,29 @@ public class TaskDAOMySQL implements TaskDAO{
 	    return task;
     }
 
+    @Override
+    public List<AbstractTask> getTaskByName(String name) {
+        List<AbstractTask> tasks = null;
+        try {
+            PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(TASKBYNAME);
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+
+                tasks.add(new Task(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        rs.getInt("priority"),
+                        rs.getDate("deadline").toLocalDate(),
+                        new User(3,"thomas","faure","faure","faure")));
+            }
+            ps.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return tasks;
+    }
     @Override
     public List<AbstractTask> getAllTasks() {
 	    List<AbstractTask> list = new ArrayList<>();

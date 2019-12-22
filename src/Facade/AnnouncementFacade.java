@@ -2,6 +2,7 @@ package Facade;
 
 import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Announcement.Announcement;
+import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.Task;
 import DAO.AbstractDAOFactory;
 import DAO.AnnouncementDAO;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AnnouncementFacade implements IAnnouncementFacade {
-    private List<Announcement> announcements;
+    private List<AbstractAnnouncement> announcements;
     private AnnouncementDAO dao;
     public static AnnouncementFacade instance;
 
@@ -61,6 +62,33 @@ public class AnnouncementFacade implements IAnnouncementFacade {
             return false;
         }
     }
+
+    @Override
+    public boolean getAllAnnouncements() {
+        this.announcements = dao.getAllAnnouncements();
+        return true;
+    }
+
+    @Override
+    public List<AbstractAnnouncement> getListAnnouncements() {
+        return this.announcements;
+    }
+
+    @Override
+    public AbstractAnnouncement getAnnouncementById(int id){
+        AbstractAnnouncement announcement;
+        announcement = dao.getAnnouncementById(id);
+        return announcement;
+    }
+
+    @Override
+    public List<AbstractAnnouncement> getAnnouncementByTitle(String title){
+        List<AbstractAnnouncement> announcement=dao.getAnnouncementByTitle(title);
+
+        return announcement;
+    }
+
+
 
 
 }

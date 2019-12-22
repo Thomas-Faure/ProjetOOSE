@@ -1,5 +1,6 @@
 package Facade;
 
+import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.Task;
 import BuisnessLogic.User.AbstractUser;
@@ -74,6 +75,13 @@ public class TaskFacade implements ITaskFacade {
     public AbstractTask getTaskById(int id){
         AbstractTask task;
         task = daoFactory.getTaskById(id);
+        return task;
+    }
+
+    @Override
+    public List<AbstractTask> getTaskByName(String name){
+        List<AbstractTask> task=daoFactory.getTaskByName(name);
+
         return task;
     }
 

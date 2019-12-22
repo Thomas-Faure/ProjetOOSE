@@ -4,8 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Announcement.Announcement;
+import BuisnessLogic.Task.AbstractTask;
+import BuisnessLogic.Task.Task;
 import BuisnessLogic.User.User;
 
 
@@ -16,6 +21,9 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO  {
 	private static final String INSERT = "INSERT INTO announcement (title, message, date, user) VALUES (?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE announcement SET title=?, message=?, date=?, user=? WHERE id=?";
     private static final String DELETE = "DELETE FROM announcement WHERE id=?";
+	private static final String ALL = "SELECT * from announcement";
+	private static final String ANNOUNCEMENTBYID = "SELECT * from announcement where id=?";
+	private static final String ANNOUNCEMENTBYTITLE = "SELECT * from task where title=?";
 	
 	public AnnouncementDAOMySQL() {
 
@@ -112,13 +120,90 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO  {
         return true;
  
     }
-	
+
+	@Override
+	public List<AbstractAnnouncement> getAllAnnouncements() {
+		List<AbstractAnnouncement> list = new ArrayList<>();
+		try {
+
+			PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(ALL);
+
+
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+
+
+				Announcement announcement = new Announcement(
+						rs.getInt("id"),
+						rs.getString("title"),
+						rs.getString("message"),
+						rs.getDate("date").toLocalDate(),
+						null
+				);
+
+				list.add(announcement);
+			}
+			ps.close();
+		} catch (SQLException e) {
+
+			throw new RuntimeException(e);
+		}
+		return list;
+	}
+
+	@Override
+	public AbstractAnnouncement getAnnouncementById(int id) {
+		Announcement announcement = null;
+		try {
+			PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(ANNOUNCEMENTBYID);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+
+				announcement = new Announcement(
+						rs.getInt("id"),
+						rs.getString("title"),
+						rs.getString("message"),
+						rs.getDate("date").toLocalDate(),
+						new User(3,"thomas","faure","faure","faure"));
+			}
+			ps.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return announcement;
+	}
+
+	@Override
+	public List<AbstractAnnouncement> getAnnouncementByTitle(String title) {
+		List<AbstractAnnouncement> announcements = null;
+		try {
+			PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(ANNOUNCEMENTBYTITLE);
+			ps.setString(1, title);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+
+				announcements.add(new Announcement(
+						rs.getInt("id"),
+						rs.getString("title"),
+						rs.getString("message"),
+						rs.getDate("date").toLocalDate(),
+						new User(3,"thomas","faure","faure","faure")));
+			}
+			ps.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return announcements;
+	}
+
+
 	public static void main(String[] args) {
-		User user = new User(3,"thomas","faure","faure","faure");
-		Announcement announcement = new Announcement(0,"commencement2","c'est le commencement",LocalDate.now(),user);
+
 		AnnouncementDAOMySQL sql = new AnnouncementDAOMySQL();
-		//sql.delete(0);
-		sql.save(announcement);
+		AbstractAnnouncement an = sql.getAnnouncementById(4);
+		System.out.println(an.getTitle());
+
 	}
 
 }
