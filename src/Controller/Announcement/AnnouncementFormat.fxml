@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="164.0" prefWidth="500.0" style="-fx-background-color: #787a7d; -fx-border-width: 2px; -fx-border-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text fx:id="date" layoutX="14.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="23/12/2019" />
+      <AnchorPane layoutX="137.0" layoutY="3.0" prefHeight="160.0" prefWidth="538.0" style="-fx-background-color: #a4a7ab;">
+         <children>
+            <Button fx:id="more" layoutX="487.0" layoutY="87.0" mnemonicParsing="false" text="More" />
+            <Text fx:id="username" layoutX="8.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
+      
+                  <Text fx:id="AnnouncementTitle" layoutX="180.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Announcement Title">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -17,7 +17,7 @@ public class AnnouncementUI implements UIGlobal {
         Parent root = null;
         try {
             FXMLLoader loader = new FXMLLoader();
-            root = loader.load(getClass().getResourceAsStream("AnnouncementUI.fxml"));
+            root = loader.load(getClass().getResourceAsStream("ReadingAnnouncementUI.fxml"));
         }catch(Exception e){
             e.printStackTrace();
         }

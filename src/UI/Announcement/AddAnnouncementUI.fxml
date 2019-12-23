@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Announcement.AddAnnouncementController">
   <children>
     <TextField fx:id="title" layoutX="227.0" layoutY="118.0" prefWidth="450.0" />
     <TextArea fx:id="message" layoutX="227.0" layoutY="175.0" prefWidth="450.0" wrapText="true" />
     <Text layoutX="165.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title:" />
     <Text layoutX="129.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Message:" />
-    <Button fx:id="backButton" layoutX="19.0" layoutY="540.0" mnemonicParsing="false" text="Back" />
-    <Button fx:id="addAnnouncement" layoutX="358.0" layoutY="450.0" mnemonicParsing="false" text="Add announcement" />
+    <Button fx:id="backButton" layoutX="19.0" layoutY="540.0" mnemonicParsing="false" onAction="#backToAnnouncementManagerPage" text="Back" />
+    <Button fx:id="addAnnouncement" layoutX="358.0" layoutY="450.0" mnemonicParsing="false" onAction="#addNewAnnouncement" text="Add announcement" />
   </children>
 </AnchorPane>

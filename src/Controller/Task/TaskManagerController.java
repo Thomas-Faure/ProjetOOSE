@@ -31,7 +31,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TaskController implements Initializable {
+public class TaskManagerController implements Initializable {
 
 
     //Task Page
@@ -178,7 +178,7 @@ public class TaskController implements Initializable {
 
     }
 
-    public TaskController(){
+    public TaskManagerController(){
     }
 
     @FXML

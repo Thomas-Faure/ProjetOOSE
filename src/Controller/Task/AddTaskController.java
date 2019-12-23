@@ -9,6 +9,7 @@ import Main.App;
 import UI.Task.TaskUI;
 import UI.Task.UIAddTask;
 import UI.Task.UIModifyTask;
+import UI.Task.UITaskManagement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -53,7 +54,7 @@ public class AddTaskController implements Initializable {
     void addNewTask(ActionEvent actionEvent){
         Task task = new Task(0,subject.getText(),description.getText(),Integer.parseInt(priority.getText()),LocalDate.now(),SessionFacade.getInstance().getUser());
         if(TaskFacade.getInstance().addTask(task)){
-            TaskUI taskP = new TaskUI();
+            UITaskManagement taskP = new UITaskManagement();
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(1);
@@ -64,7 +65,7 @@ public class AddTaskController implements Initializable {
     }
     @FXML
     void backToTaskPage(ActionEvent actionEvent){
-        TaskUI task = new TaskUI();
+        UITaskManagement task = new UITaskManagement();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);

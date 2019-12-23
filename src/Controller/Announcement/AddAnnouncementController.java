@@ -1,13 +1,17 @@
 package Controller.Announcement;
+import BuisnessLogic.Announcement.Announcement;
 import BuisnessLogic.Task.Task;
 
 import BuisnessLogic.User.User;
+import Facade.AnnouncementFacade;
 import Facade.SessionFacade;
 import Facade.TaskFacade;
 import Main.App;
+import UI.Announcement.UIAnnouncementManagement;
 import UI.Task.TaskUI;
 import UI.Task.UIAddTask;
 import UI.Task.UIModifyTask;
+import UI.Task.UITaskManagement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,13 +39,10 @@ public class AddAnnouncementController implements Initializable {
      * Page Add Task
      */
     @FXML
-    private TextField subject;
+    private TextField title;
     @FXML
-    private TextField description;
-    @FXML
-    private TextField deadline;
-    @FXML
-    private TextField priority;
+    private TextArea message;
+
     @FXML
     private Button backButton;
     @FXML
@@ -49,44 +50,35 @@ public class AddAnnouncementController implements Initializable {
 
 
     @FXML
-    void addNewTask(ActionEvent actionEvent){
-        Task task = new Task(0,subject.getText(),description.getText(),Integer.parseInt(priority.getText()),LocalDate.now(),SessionFacade.getInstance().getUser());
-        if(TaskFacade.getInstance().addTask(task)){
-            TaskUI taskP = new TaskUI();
+    void addNewAnnouncement(ActionEvent actionEvent){
+        Announcement announcement = new Announcement(0,title.getText(),message.getText(),LocalDate.now(),SessionFacade.getInstance().getUser());
+        if(AnnouncementFacade.getInstance().addAnnouncement(announcement)){
+            UIAnnouncementManagement announcementP = new UIAnnouncementManagement();
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(1);
-            box.getChildren().add(taskP.loadScene().getRoot());
+            box.getChildren().add(announcementP.loadScene().getRoot());
         }else{
             //pas ok
         }
     }
+
+
+
     @FXML
-    void backToTaskPage(ActionEvent actionEvent){
-        TaskUI task = new TaskUI();
+    void backToAnnouncementManagerPage(ActionEvent actionEvent){
+        UIAnnouncementManagement announcementManagement = new UIAnnouncementManagement();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
-        box.getChildren().add(task.loadScene().getRoot());
+        box.getChildren().add(announcementManagement.loadScene().getRoot());
     }
-
-
-
-
-
 
 
     public AddAnnouncementController(){
     }
 
-    @FXML
-    void addTaskPage(ActionEvent actionEvent) {
-        UIAddTask addTask = new UIAddTask();
-        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
 
-        box.getChildren().remove(1);
-        box.getChildren().add(addTask.loadScene().getRoot());
-    }
 
 
     @Override

@@ -6,6 +6,7 @@ import Facade.TaskFacade;
 import Main.App;
 import UI.Task.TaskUI;
 
+import UI.Task.UITaskManagement;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
@@ -36,7 +37,7 @@ public class ReadTaskController implements Initializable {
 
     @FXML
     void backToTasks(ActionEvent actionEvent){
-        TaskUI task = new TaskUI();
+        UITaskManagement task = new UITaskManagement();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);

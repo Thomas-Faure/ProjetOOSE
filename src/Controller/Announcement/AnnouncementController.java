@@ -10,6 +10,7 @@ import Facade.AnnouncementFacade;
 import Facade.SessionFacade;
 import Facade.TaskFacade;
 import Main.App;
+import UI.Announcement.UIAddAnnouncement;
 import UI.Announcement.UIModifyAnnouncement;
 import UI.Announcement.UIReadAnnouncement;
 import UI.Task.TaskUI;
@@ -68,7 +69,6 @@ public class AnnouncementController implements Initializable {
 
                 } else {
                     toDelete.add(array.get(i));
-
                 }
             }
 
@@ -181,11 +181,11 @@ public class AnnouncementController implements Initializable {
 
     @FXML
     void addAnnouncementPage(ActionEvent actionEvent) {
-        UIAddTask addTask = new UIAddTask();
+        UIAddAnnouncement addAnnouncement = new UIAddAnnouncement();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
 
         box.getChildren().remove(1);
-        box.getChildren().add(addTask.loadScene().getRoot());
+        box.getChildren().add(addAnnouncement.loadScene().getRoot());
     }
 
     void search(String search){

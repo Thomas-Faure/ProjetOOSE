@@ -10,6 +10,7 @@ import Main.App;
 import UI.Task.TaskUI;
 import UI.Task.UIAddTask;
 import UI.Task.UIModifyTask;
+import UI.Task.UITaskManagement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -56,7 +57,7 @@ public class ModifyTaskController implements Initializable {
     @FXML
 
     void backToTasks(ActionEvent actionEvent){
-        TaskUI task = new TaskUI();
+        UITaskManagement task = new UITaskManagement();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
@@ -66,7 +67,7 @@ public class ModifyTaskController implements Initializable {
     void modifyATask(ActionEvent actionEvent){
         Task task = new Task(id,modifySubject.getText(),modifyDescription.getText(),Integer.parseInt(modifyPriority.getText()),LocalDate.now(),new User(3,"thomas","faure","faure","faure"));
         if(TaskFacade.getInstance().modifyTask(task)){
-            TaskUI taskPage = new TaskUI();
+            UITaskManagement taskPage = new UITaskManagement();
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(1);

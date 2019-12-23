@@ -35,30 +35,6 @@ public class UIAddAnnouncement implements UIGlobal {
 		}
 		Scene scene = new Scene(root, 1000, 600);
 
-		TextField title = (TextField) scene.lookup("#title");
-		TextArea description = (TextArea) scene.lookup("#message");
-
-		Button btnBack = (Button) scene.lookup("#backButton");
-		btnBack.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				AnnouncementUI announcement = new AnnouncementUI();
-				HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-				box.getChildren().remove(1);
-				box.getChildren().add(announcement.loadScene().getRoot());
-			}
-		});
-		Button btn = (Button) scene.lookup("#addAnnouncement");
-		btn.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				System.out.println(title.getText());
-				System.out.println(description.getText());
-				addAnnouncement(title.getText(),description.getText());
-
-
-			}
-		});
 
 		return scene;
 	}

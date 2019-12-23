@@ -27,6 +27,7 @@
                            </VBox.margin></Button>
                 <Button fx:id="menuProject" mnemonicParsing="false" onAction="#goMenuProject" text="Projects" />
                 <Button fx:id="menuAnnouncement" mnemonicParsing="false" onAction="#goMenuAnnouncement" text="Announcement" />
+                <Button fx:id="menuAnnouncementManager" mnemonicParsing="false" onAction="#goMenuAnnouncementManager" text="AnnouncementManager" />
                 <Button fx:id="menuTicket" mnemonicParsing="false" onAction="#goMenuTicket" text="Tickets" />
                 <Button fx:id="menuIdea" mnemonicParsing="false" onAction="#goMenuIdea" text="Idea box" />
                 <Button fx:id="menuMyIdea" mnemonicParsing="false" onAction="#goMenuMyIdea" text="My ideas" />

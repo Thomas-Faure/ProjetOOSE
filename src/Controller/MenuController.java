@@ -2,7 +2,9 @@ package Controller;
 
 import Main.App;
 import UI.Announcement.AnnouncementUI;
+import UI.Announcement.UIAnnouncementManagement;
 import UI.Task.TaskUI;
+import UI.Task.UITaskManagement;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -27,7 +29,7 @@ public class MenuController {
 
     @FXML
     void goMenuLogin(ActionEvent event){
-        TaskUI task = new TaskUI();
+        UITaskManagement task = new UITaskManagement();
 
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
@@ -40,8 +42,8 @@ public class MenuController {
 
     }
     @FXML
-    void goMenuAnnouncement(ActionEvent event){
-        AnnouncementUI announcement = new AnnouncementUI();
+    void goMenuAnnouncementManager(ActionEvent event){
+        UIAnnouncementManagement announcement = new UIAnnouncementManagement();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
@@ -62,6 +64,15 @@ public class MenuController {
     }
     @FXML
     void goMenuUser(ActionEvent event){
+
+    }
+    @FXML
+    void goMenuAnnouncement(ActionEvent event){
+        AnnouncementUI announcement = new AnnouncementUI();
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(announcement.loadScene().getRoot());
 
     }
 

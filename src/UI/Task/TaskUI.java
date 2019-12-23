@@ -18,7 +18,7 @@ public class TaskUI implements UIGlobal {
         Parent root = null;
         try {
             FXMLLoader loader = new FXMLLoader();
-            root = loader.load(getClass().getResourceAsStream("TaskUI.fxml"));
+            root = loader.load(getClass().getResourceAsStream("TaskManagementUI.fxml"));
         }catch(Exception e){
             e.printStackTrace();
         }
