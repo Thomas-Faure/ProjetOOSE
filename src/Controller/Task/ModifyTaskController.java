@@ -7,6 +7,7 @@ import BuisnessLogic.User.User;
 import Facade.SessionFacade;
 import Facade.TaskFacade;
 import Main.App;
+import UI.Confirm.UIConfirm;
 import UI.Task.TaskUI;
 import UI.Task.UIAddTask;
 import UI.Task.UIModifyTask;
@@ -67,7 +68,13 @@ public class ModifyTaskController implements Initializable {
     @FXML
     void modifyATask(ActionEvent actionEvent){
         Task task = new Task(id,modifySubject.getText(),modifyDescription.getText(),Integer.parseInt(modifyPriority.getText()),LocalDate.now(),new User(3,"thomas","faure","faure","faure"));
-        if(TaskFacade.getInstance().modifyTask(task)){
+
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        UIConfirm taskPage = new UIConfirm("Task","Modify",task,box.getChildren().get(1));
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(taskPage.loadScene().getRoot());
+        /**if(TaskFacade.getInstance().modifyTask(task)){
             UITaskManagement taskPage = new UITaskManagement();
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             if(box.getChildren().size() >1 )
@@ -80,7 +87,7 @@ public class ModifyTaskController implements Initializable {
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(1);
-        }
+        }**/
 
     }
 

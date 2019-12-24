@@ -6,6 +6,7 @@ import BuisnessLogic.User.User;
 import Facade.SessionFacade;
 import Facade.TaskFacade;
 import Main.App;
+import UI.Confirm.UIConfirm;
 import UI.Task.*;
 import UI.UIError;
 import javafx.collections.FXCollections;
@@ -130,13 +131,19 @@ public class TaskManagerController implements Initializable {
                 public void handle(ActionEvent e) {
                     getListView().getItems().remove(getItem());
                     listViewTemp.remove(getItem());
-                    if(!(TaskFacade.getInstance().deleteTask(task))){
+                    HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+                    UIConfirm taskPage = new UIConfirm("Task","Delete",task,box.getChildren().get(1));
+                    box.getChildren().add(taskPage.loadScene().getRoot());
+                    if(box.getChildren().size() >1 )
+                        box.getChildren().remove(1);
+
+                    /**if(!(TaskFacade.getInstance().deleteTask(task))){
                         UIError error = new UIError(new UITaskManagement());
                         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
                         box.getChildren().add(error.loadScene().getRoot());
                         if(box.getChildren().size() >1 )
                             box.getChildren().remove(2);
-                    }
+                    }**/
 
                 }
             });

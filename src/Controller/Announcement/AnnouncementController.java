@@ -14,6 +14,7 @@ import UI.Announcement.AnnouncementUI;
 import UI.Announcement.UIAddAnnouncement;
 import UI.Announcement.UIModifyAnnouncement;
 import UI.Announcement.UIReadAnnouncement;
+import UI.Confirm.UIConfirm;
 import UI.Task.TaskUI;
 import UI.Task.UIAddTask;
 import UI.Task.UIModifyTask;
@@ -129,13 +130,19 @@ public class AnnouncementController implements Initializable {
                 public void handle(ActionEvent e) {
                     getListView().getItems().remove(getItem());
                     listViewTemp.remove(getItem());
+                    HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+                    UIConfirm taskPage = new UIConfirm("Announcement","Delete",announcement,box.getChildren().get(1));
+                    box.getChildren().add(taskPage.loadScene().getRoot());
+                    if(box.getChildren().size() >1 )
+                        box.getChildren().remove(1);
+                    /*
                     if(!(AnnouncementFacade.getInstance().deleteAnnouncement(announcement))){
                         UIError error = new UIError(new AnnouncementUI());
                         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
                         box.getChildren().add(error.loadScene().getRoot());
                         if(box.getChildren().size() >1 )
                             box.getChildren().remove(2);
-                    };
+                    };*/
 
                 }
             });

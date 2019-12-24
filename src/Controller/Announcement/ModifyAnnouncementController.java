@@ -12,6 +12,7 @@ import Facade.TaskFacade;
 import Main.App;
 import UI.Announcement.AnnouncementUI;
 import UI.Announcement.UIAnnouncementManagement;
+import UI.Confirm.UIConfirm;
 import UI.Task.TaskUI;
 
 import UI.UIError;
@@ -53,6 +54,14 @@ public class ModifyAnnouncementController implements Initializable {
         AbstractAnnouncement announcement = AnnouncementFacade.getInstance().getAnnouncementById(id);
         announcement.setTitle(title.getText());
         announcement.setMessage(message.getText());
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        UIConfirm taskPage = new UIConfirm("Announcement","Modify",announcement,box.getChildren().get(1));
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(taskPage.loadScene().getRoot());
+        /*
+        announcement.setTitle(title.getText());
+        announcement.setMessage(message.getText());
         if(AnnouncementFacade.getInstance().modifyAnnouncement((Announcement)announcement)){
             AnnouncementUI announcementUI = new AnnouncementUI();
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
@@ -66,7 +75,7 @@ public class ModifyAnnouncementController implements Initializable {
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(1);
             box.getChildren().add(error.loadScene().getRoot());
-        }
+        }*/
 
     }
 
@@ -88,7 +97,6 @@ public class ModifyAnnouncementController implements Initializable {
 
         }
     }
-
 
     public ModifyAnnouncementController(){
 
