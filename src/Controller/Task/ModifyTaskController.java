@@ -11,6 +11,7 @@ import UI.Task.TaskUI;
 import UI.Task.UIAddTask;
 import UI.Task.UIModifyTask;
 import UI.Task.UITaskManagement;
+import UI.UIError;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -74,20 +75,34 @@ public class ModifyTaskController implements Initializable {
             box.getChildren().add(taskPage.loadScene().getRoot());
         }else{
 
+            UIError error = new UIError(new UITaskManagement());
+            HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+            box.getChildren().add(error.loadScene().getRoot());
+            if(box.getChildren().size() >1 )
+                box.getChildren().remove(1);
         }
 
     }
-
-
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         System.out.println(this.id);
         AbstractTask taskToModify = TaskFacade.getInstance().getTaskById(id);
-        modifySubject.setText(taskToModify.getName());
-        modifyDescription.setText(taskToModify.getDescription());
-        modifyDeadline.setText("");
-        modifyPriority.setText(taskToModify.getPriority()+"");
+        System.out.println(taskToModify);
+        if(taskToModify != null) {
+            modifySubject.setText(taskToModify.getName());
+            modifyDescription.setText(taskToModify.getDescription());
+            modifyDeadline.setText("");
+            modifyPriority.setText(taskToModify.getPriority() + "");
+        }else{
+            System.out.println("on affiche la page classique");
+            UIError error = new UIError(new UITaskManagement());
+            HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+            box.getChildren().add(error.loadScene().getRoot());
+            if(box.getChildren().size() >1 )
+                box.getChildren().remove(2);
+
+        }
 
     }
 

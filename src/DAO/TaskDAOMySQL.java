@@ -51,6 +51,8 @@ public class TaskDAOMySQL implements TaskDAO{
 		    return task;
 	}
 
+
+
 	@Override
 	public boolean save(Task task) {
 		try {
@@ -73,6 +75,15 @@ public class TaskDAOMySQL implements TaskDAO{
 		
 	}
 
+    public static void main(String[] args) {
+	    TaskDAOMySQL sql = new TaskDAOMySQL();
+
+        AbstractTask tast = sql.getTaskById(2);
+        System.out.println(tast.getName());
+        tast.setId(3);
+
+        sql.update((Task)tast);
+    }
 	@Override
 	public boolean update(Task task) {
 		try {
@@ -84,19 +95,26 @@ public class TaskDAOMySQL implements TaskDAO{
             ps.setInt(4, task.getCreator().getId());
             ps.setString(5, task.getDescription());
             ps.setInt(6, task.getId());
-             
-            ps.executeUpdate();
+
+            int i = ps.executeUpdate();
             ps.close();
- 
-            System.out.println("La task " + task.getId() + " contient maintenant: " + task.toString());
- 
-            return true;
+            if (i > 0) {
+                System.out.println("success");
+                return true;
+            } else {
+                System.out.println("stuck somewhere");
+                return false;
+            }
+
+
+
         } catch (SQLException e) {
            
-            System.out.println(e);
+
             return false;
         }
 	}
+
 
 	@Override
 	public boolean delete(int id) {
@@ -107,17 +125,24 @@ public class TaskDAOMySQL implements TaskDAO{
  
             ps.setInt(1, id);
  
-            ps.executeUpdate();
+            int i = ps.executeUpdate();
             ps.close();
+            if (i > 0) {
+                System.out.println("success");
+                return true;
+            } else {
+                System.out.println("stuck somewhere");
+                return false;
+            }
  
-            System.out.println("Task with id: " + id + " was sucesfully deleted from DB.");
+
 
  
         } catch (SQLException e) {
 
             throw new RuntimeException(e);
         }
-        return true;
+
 
 
 

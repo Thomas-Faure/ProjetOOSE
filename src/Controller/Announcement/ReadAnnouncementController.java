@@ -8,8 +8,10 @@ import Facade.AnnouncementFacade;
 import Facade.TaskFacade;
 import Main.App;
 import UI.Announcement.AnnouncementUI;
+import UI.Announcement.UIAnnouncementManagement;
 import UI.Task.TaskUI;
 
+import UI.UIError;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
@@ -24,35 +26,54 @@ import java.util.ResourceBundle;
 
 public class ReadAnnouncementController implements Initializable {
     int id;
-    public ReadAnnouncementController(int id){
-        this.id=id;
-    }
+
     @FXML
     private TextField title;
     @FXML
     private TextArea message;
 
 
-
-
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        System.out.println(id);
-      AbstractAnnouncement AnnouncementToModify = AnnouncementFacade.getInstance().getAnnouncementById(id);
-        title.setText(AnnouncementToModify.getTitle());
-        message.setText(AnnouncementToModify.getMessage());
-    }
-
+    boolean adminPanel=false;
     public ReadAnnouncementController(){
 
     }
+    public ReadAnnouncementController(int id,boolean adminPanel){
+        this.id=id; this.adminPanel=adminPanel;
+    }
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        System.out.println(id);
+        AbstractAnnouncement AnnouncementToRead = AnnouncementFacade.getInstance().getAnnouncementById(id);
+        if(AnnouncementToRead != null) {
+            title.setText(AnnouncementToRead.getTitle());
+            message.setText(AnnouncementToRead.getMessage());
+        }else{
+            UIError error;
+            if(!adminPanel){
+                error = new UIError(new AnnouncementUI());
+            }else{
+                error = new UIError(new UIAnnouncementManagement());
+            }
+            HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+            box.getChildren().add(error.loadScene().getRoot());
+            if(box.getChildren().size() >1 )
+                box.getChildren().remove(2);
+        }
+    }
+
 
     @FXML
     public void backtoAnnouncements(ActionEvent actionEvent) {
-        AnnouncementUI announcement = new AnnouncementUI();
+
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
-        box.getChildren().add(announcement.loadScene().getRoot());
+        if(adminPanel) {
+            UIAnnouncementManagement announcement = new UIAnnouncementManagement();
+            box.getChildren().add(announcement.loadScene().getRoot());
+        }else{
+            AnnouncementUI announcement = new AnnouncementUI();
+            box.getChildren().add(announcement.loadScene().getRoot());
+        }
     }
 }

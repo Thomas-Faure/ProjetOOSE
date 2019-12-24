@@ -49,6 +49,7 @@ public class AddAnnouncementController implements Initializable {
     private Button addTaskButton;
 
 
+
     @FXML
     void addNewAnnouncement(ActionEvent actionEvent){
         Announcement announcement = new Announcement(0,title.getText(),message.getText(),LocalDate.now(),SessionFacade.getInstance().getUser());
@@ -83,6 +84,10 @@ public class AddAnnouncementController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
+    public void returnAction(ActionEvent actionEvent) {
 
     }
 }

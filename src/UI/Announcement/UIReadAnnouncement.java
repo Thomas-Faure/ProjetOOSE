@@ -14,13 +14,14 @@ import java.util.concurrent.Callable;
 
 public class UIReadAnnouncement implements UIGlobal {
 
+	boolean adminPanel = false;
 
 
 
 
 	int id;
-	public UIReadAnnouncement(int id){
-
+	public UIReadAnnouncement(int id,boolean adminPanel){
+		this.adminPanel=adminPanel;
 		this.id=id;
 
 	}
@@ -36,7 +37,7 @@ public class UIReadAnnouncement implements UIGlobal {
 			public ReadAnnouncementController call() throws Exception {
 
 
-				return new ReadAnnouncementController(id);
+				return new ReadAnnouncementController(id,adminPanel);
 			}
 		});
 		Parent root = null;

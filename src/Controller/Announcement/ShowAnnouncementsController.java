@@ -2,6 +2,8 @@ package Controller.Announcement;
 
 import BuisnessLogic.Announcement.AbstractAnnouncement;
 import Facade.AnnouncementFacade;
+import Main.App;
+import UI.Announcement.UIReadAnnouncement;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -15,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -57,8 +60,6 @@ public class ShowAnnouncementsController implements Initializable {
         vboxList.getChildren().clear();
         Parent root = null;
 
-
-
         for(int i = (currentPage*3)-3;i<(currentPage*3) && i<announcementList.size();++i){
             try {
                 FXMLLoader loader = new FXMLLoader();
@@ -88,7 +89,12 @@ public class ShowAnnouncementsController implements Initializable {
     private class clickMore implements EventHandler<Event> {
         @Override
         public void handle(Event evt) {
-            System.out.println(((Control)evt.getSource()).getId());
+            UIReadAnnouncement read = new UIReadAnnouncement(Integer.parseInt(((Control)evt.getSource()).getId()),false);
+            HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+
+            box.getChildren().remove(1);
+            box.getChildren().add(read.loadScene().getRoot());
+            System.out.println();
         }
     }
 

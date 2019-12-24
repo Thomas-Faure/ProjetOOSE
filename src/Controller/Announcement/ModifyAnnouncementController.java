@@ -11,8 +11,10 @@ import Facade.AnnouncementFacade;
 import Facade.TaskFacade;
 import Main.App;
 import UI.Announcement.AnnouncementUI;
+import UI.Announcement.UIAnnouncementManagement;
 import UI.Task.TaskUI;
 
+import UI.UIError;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
@@ -59,7 +61,11 @@ public class ModifyAnnouncementController implements Initializable {
             box.getChildren().add(announcementUI.loadScene().getRoot());
 
         }else{
-
+            UIError error = new UIError(new UIAnnouncementManagement());
+            HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+            if(box.getChildren().size() >1 )
+                box.getChildren().remove(1);
+            box.getChildren().add(error.loadScene().getRoot());
         }
 
     }
@@ -69,8 +75,18 @@ public class ModifyAnnouncementController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         AbstractAnnouncement announcementToModify = AnnouncementFacade.getInstance().getAnnouncementById(id);
-        title.setText(announcementToModify.getTitle());
-        message.setText(announcementToModify.getMessage());
+        if(announcementToModify !=null) {
+            title.setText(announcementToModify.getTitle());
+            message.setText(announcementToModify.getMessage());
+        }
+        else{
+            UIError error = new UIError(new UIAnnouncementManagement());
+            HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+            box.getChildren().add(error.loadScene().getRoot());
+            if(box.getChildren().size() >1 )
+                box.getChildren().remove(2);
+
+        }
     }
 
 
@@ -80,7 +96,7 @@ public class ModifyAnnouncementController implements Initializable {
 
 
     public void backtoAnnouncements(ActionEvent actionEvent) {
-        AnnouncementUI announcementUI = new AnnouncementUI();
+        UIAnnouncementManagement announcementUI = new UIAnnouncementManagement();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);

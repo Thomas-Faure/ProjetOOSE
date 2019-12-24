@@ -10,6 +10,7 @@ import Facade.AnnouncementFacade;
 import Facade.SessionFacade;
 import Facade.TaskFacade;
 import Main.App;
+import UI.Announcement.AnnouncementUI;
 import UI.Announcement.UIAddAnnouncement;
 import UI.Announcement.UIModifyAnnouncement;
 import UI.Announcement.UIReadAnnouncement;
@@ -17,6 +18,7 @@ import UI.Task.TaskUI;
 import UI.Task.UIAddTask;
 import UI.Task.UIModifyTask;
 import UI.Task.UIReadTask;
+import UI.UIError;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -115,13 +117,11 @@ public class AnnouncementController implements Initializable {
         Button btnM = new Button("Modify");
         Label label = new Label("");
         Pane pane = new Pane();
-
         public Cell(){
             super();
             hbox.setSpacing(10);
             img.setFitHeight(20);
             img.setFitWidth(20);
-
 
             hbox.getChildren().addAll(img,label,pane,btnR,btnM,btnD);
             btnD.setOnAction(new EventHandler<ActionEvent>() {
@@ -129,7 +129,13 @@ public class AnnouncementController implements Initializable {
                 public void handle(ActionEvent e) {
                     getListView().getItems().remove(getItem());
                     listViewTemp.remove(getItem());
-                    AnnouncementFacade.getInstance().deleteAnnouncement(announcement);
+                    if(!(AnnouncementFacade.getInstance().deleteAnnouncement(announcement))){
+                        UIError error = new UIError(new AnnouncementUI());
+                        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+                        box.getChildren().add(error.loadScene().getRoot());
+                        if(box.getChildren().size() >1 )
+                            box.getChildren().remove(2);
+                    };
 
                 }
             });
@@ -148,7 +154,7 @@ public class AnnouncementController implements Initializable {
                 @Override
                 public void handle(ActionEvent e) {
 
-                    UIReadAnnouncement read = new UIReadAnnouncement(announcement.getId());
+                    UIReadAnnouncement read = new UIReadAnnouncement(announcement.getId(),true);
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
 
                     box.getChildren().remove(1);

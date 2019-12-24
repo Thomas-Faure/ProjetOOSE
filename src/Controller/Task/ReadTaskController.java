@@ -7,6 +7,7 @@ import Main.App;
 import UI.Task.TaskUI;
 
 import UI.Task.UITaskManagement;
+import UI.UIError;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
@@ -48,12 +49,21 @@ public class ReadTaskController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        AbstractTask taskToModify = TaskFacade.getInstance().getTaskById(id);
-        System.out.println(taskToModify.getName());
-        subject.setText(taskToModify.getName());
-        description.setText(taskToModify.getDescription());
-        deadline.setText("");
-        priority.setText(taskToModify.getPriority()+"");
+        AbstractTask taskToRead = TaskFacade.getInstance().getTaskById(id);
+
+        if(taskToRead!= null) {
+            subject.setText(taskToRead.getName());
+            description.setText(taskToRead.getDescription());
+            deadline.setText("");
+            priority.setText(taskToRead.getPriority() + "");
+        }else{
+            UIError error = new UIError(new UITaskManagement());
+            HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+            box.getChildren().add(error.loadScene().getRoot());
+            if(box.getChildren().size() >1 )
+                box.getChildren().remove(2);
+
+        }
 
     }
 

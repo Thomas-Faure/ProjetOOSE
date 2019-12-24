@@ -87,12 +87,17 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO  {
             ps.setInt(4, a.getUser().getId());
             ps.setInt(5, a.getId());
              
-            ps.executeUpdate();
+            int i = ps.executeUpdate();
             ps.close();
+			if (i > 0) {
+				System.out.println("success");
+				return true;
+			} else {
+				System.out.println("stuck somewhere");
+				return false;
+			}
  
-            System.out.println("L'announcement " + a.getId() + " contient maintenant: " + a.toString());
- 
-            return true;
+
         } catch (SQLException e) {
            
             System.out.println(e);
@@ -108,16 +113,21 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO  {
  
             ps.setInt(1, id);
  
-            ps.executeUpdate();
+            int i = ps.executeUpdate();
             ps.close();
- 
-            System.out.println("Announcement with id: " + id + " was sucesfully deleted from DB.");
- 
+			if (i > 0) {
+				System.out.println("success");
+				return true;
+			} else {
+				System.out.println("stuck somewhere");
+				return false;
+			}
+
         } catch (SQLException e) {
 
             throw new RuntimeException(e);
         }
-        return true;
+
  
     }
 

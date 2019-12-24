@@ -6,10 +6,8 @@ import BuisnessLogic.User.User;
 import Facade.SessionFacade;
 import Facade.TaskFacade;
 import Main.App;
-import UI.Task.TaskUI;
-import UI.Task.UIAddTask;
-import UI.Task.UIModifyTask;
-import UI.Task.UIReadTask;
+import UI.Task.*;
+import UI.UIError;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -132,7 +130,13 @@ public class TaskManagerController implements Initializable {
                 public void handle(ActionEvent e) {
                     getListView().getItems().remove(getItem());
                     listViewTemp.remove(getItem());
-                    TaskFacade.getInstance().deleteTask(task);
+                    if(!(TaskFacade.getInstance().deleteTask(task))){
+                        UIError error = new UIError(new UITaskManagement());
+                        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+                        box.getChildren().add(error.loadScene().getRoot());
+                        if(box.getChildren().size() >1 )
+                            box.getChildren().remove(2);
+                    }
 
                 }
             });
