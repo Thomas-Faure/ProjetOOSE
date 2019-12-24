@@ -5,6 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="paneBasic" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" style="-fx-background-color: #ecf0f5;" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Announcement.AnnouncementController">
@@ -18,5 +19,10 @@
             <Text fill="WHITE" layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/Announcements/" />
          </children>
       </Pane>
+      <Text layoutX="30.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Announcements">
+         <font>
+            <Font name="System Bold" size="37.0" />
+         </font>
+      </Text>
   </children>
 </AnchorPane>
