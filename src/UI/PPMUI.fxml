@@ -1,39 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="Content" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
+<AnchorPane id="AnchorPane" fx:id="Content" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
   <children>
     <HBox fx:id="HBOX" layoutX="0.0" layoutY="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
         <AnchorPane maxWidth="232.0" minWidth="219.0" prefHeight="600.0" prefWidth="219.0" style="-fx-background-color: #c4bfbe;&#10;" HBox.hgrow="ALWAYS">
           <children>
-            <VBox alignment="CENTER" layoutX="12.0" layoutY="145.0" prefHeight="600.0" prefWidth="219.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox alignment="CENTER" layoutX="12.0" layoutY="145.0" prefHeight="600.0" prefWidth="219.0" style="-fx-background-color: #222d32;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <children>
-                  <ImageView accessibleRole="PARENT" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                      <Image url="file:/C:/Users/thoma/Downloads/LOGO_PPM.png" />
-                    </image>
-                  </ImageView>
-                <Button fx:id="menuLogin" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMenuLogin" text="Login" VBox.vgrow="ALWAYS">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin></Button>
-                <Button fx:id="menuProject" mnemonicParsing="false" onAction="#goMenuProject" text="Projects" />
-                <Button fx:id="menuAnnouncement" mnemonicParsing="false" onAction="#goMenuAnnouncement" text="Announcement" />
-                <Button fx:id="menuAnnouncementManager" mnemonicParsing="false" onAction="#goMenuAnnouncementManager" text="AnnouncementManager" />
-                <Button fx:id="menuTicket" mnemonicParsing="false" onAction="#goMenuTicket" text="Tickets" />
-                <Button fx:id="menuIdea" mnemonicParsing="false" onAction="#goMenuIdea" text="Idea box" />
-                <Button fx:id="menuMyIdea" mnemonicParsing="false" onAction="#goMenuMyIdea" text="My ideas" />
-                <Button fx:id="menuUser" mnemonicParsing="false" onAction="#goMenuUser" text="User list" />
+                  <Button fx:id="menuProject" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMenuLogin" prefHeight="64.0" prefWidth="262.0" style="-fx-background-color: #1e282c;" text="Projects" textFill="WHITE" />
+                  <Button fx:id="menuAnnouncement" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMenuAnnouncementManager" prefHeight="64.0" prefWidth="262.0" style="-fx-background-color: #1e282c;" text="Announcements" textFill="WHITE" />
+                  <Button fx:id="menuTicket" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMenuLogin" prefHeight="64.0" prefWidth="262.0" style="-fx-background-color: #1e282c;" text="Tickets" textFill="WHITE" />
+                  <Button fx:id="menuIdea" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMenuLogin" prefHeight="64.0" prefWidth="262.0" style="-fx-background-color: #1e282c;" text="Idea box" textFill="WHITE" />
               </children>
             </VBox>
+                  <Pane prefHeight="49.0" prefWidth="232.0" style="-fx-background-color: #367fa9;">
+                     <children>
+                        <Text fill="WHITE" layoutX="80.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PPM">
+                           <font>
+                              <Font name="Dream MMA" size="32.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
           </children>
         </AnchorPane>
       </children>

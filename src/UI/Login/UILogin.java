@@ -55,18 +55,6 @@ public class UILogin implements UIGlobal {
 			}
 		});
 
-		/////pour le test
-		Button btnTest = (Button) scene.lookup("#addTaskPage");
-		btnTest.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				UIAddTask fg = new UIAddTask();
-				App.setInstanceScene(fg.loadScene());
-
-			}
-		});
-
-
 
 
 		final Text actiontarget = (Text) scene.lookup("#info");
@@ -110,6 +98,5 @@ public class UILogin implements UIGlobal {
 			return false;
 		}
 	}
-
 
 }
