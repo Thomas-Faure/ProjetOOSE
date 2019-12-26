@@ -3,6 +3,7 @@ package Controller.Task;
 import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.Task;
 
+import BuisnessLogic.Task.TaskState;
 import BuisnessLogic.User.User;
 import Facade.SessionFacade;
 import Facade.TaskFacade;
@@ -36,24 +37,27 @@ public class ModifyTaskController implements Initializable {
     int id;
     public ModifyTaskController(int id){
         this.id=id;
-        System.out.println(this.id+" voila");
+
     }
 
-    @FXML
-    private Text TaskIDField;
+
     @FXML
     private TextField modifySubject;
 
     @FXML
-    private TextField modifyDescription;
+    private TextArea modifyDescription;
     @FXML
-    private TextField modifyDeadline;
+    private DatePicker modifyDeadline;
     @FXML
     private TextField modifyPriority;
     @FXML
     private Button modifyTaskButton;
     @FXML
     private Button backButton;
+
+    @FXML
+    private ChoiceBox stateChoiceBox;
+
 
 
     @FXML
@@ -67,7 +71,7 @@ public class ModifyTaskController implements Initializable {
     }
     @FXML
     void modifyATask(ActionEvent actionEvent){
-        Task task = new Task(id,modifySubject.getText(),modifyDescription.getText(),Integer.parseInt(modifyPriority.getText()),LocalDate.now(),new User(3,"thomas","faure","faure","faure"));
+        Task task = new Task(id,modifySubject.getText(),modifyDescription.getText(),Integer.parseInt(modifyPriority.getText()),modifyDeadline.getValue(),new User(3,"thomas","faure","faure","faure"),TaskState.getStateByString((String)stateChoiceBox.getSelectionModel().getSelectedItem()));
 
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         UIConfirm taskPage = new UIConfirm("Task","Modify",task,box.getChildren().get(1));
@@ -93,16 +97,21 @@ public class ModifyTaskController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        System.out.println(this.id);
+
+        for(TaskState st : TaskState.values()){
+            stateChoiceBox.getItems().add(st.getStatetoString());
+        }
         AbstractTask taskToModify = TaskFacade.getInstance().getTaskById(id);
-        System.out.println(taskToModify);
+
+
         if(taskToModify != null) {
+            stateChoiceBox.getSelectionModel().select(taskToModify.getState().getStatetoString());
             modifySubject.setText(taskToModify.getName());
             modifyDescription.setText(taskToModify.getDescription());
-            modifyDeadline.setText("");
+            modifyDeadline.setValue(taskToModify.getDeadline());
             modifyPriority.setText(taskToModify.getPriority() + "");
         }else{
-            System.out.println("on affiche la page classique");
+
             UIError error = new UIError(new UITaskManagement());
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(error.loadScene().getRoot());

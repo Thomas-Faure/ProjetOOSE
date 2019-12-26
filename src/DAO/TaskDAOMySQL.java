@@ -3,6 +3,7 @@ package DAO;
 
 import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.Task;
+import BuisnessLogic.Task.TaskState;
 import BuisnessLogic.User.User;
 
 import java.sql.PreparedStatement;
@@ -16,8 +17,8 @@ import java.util.List;
 public class TaskDAOMySQL implements TaskDAO{
 
 	
-    private static final String INSERT = "INSERT INTO task (name, priority, deadline, creator,description) VALUES (?, ?, ?, ?,?)";
-    private static final String UPDATE = "UPDATE task SET name=?, priority=?, deadline=?, creator=?, description=? WHERE id=?";
+    private static final String INSERT = "INSERT INTO task (name, priority, deadline, creator,description,state) VALUES (?, ?, ?, ?,?,?)";
+    private static final String UPDATE = "UPDATE task SET name=?, priority=?, deadline=?, creator=?, description=?, state=? WHERE id=?";
     private static final String DELETE = "DELETE FROM task WHERE id=?";
     private static final String ALL = "SELECT * from task";
     private static final String TASKBYID = "SELECT * from task where id=?";
@@ -35,7 +36,7 @@ public class TaskDAOMySQL implements TaskDAO{
 			      ResultSet.TYPE_SCROLL_INSENSITIVE,
 			      ResultSet.CONCUR_READ_ONLY).executeQuery(query);
 		      if(result.first()) {
-		    		  System.out.println("correct");
+
 		    		  //à changer
 		    		  task= new Task(    
 		    				  result.getInt("id"),
@@ -43,7 +44,8 @@ public class TaskDAOMySQL implements TaskDAO{
                               result.getString("description"),
 		    		          result.getInt("test"),
 		    		          result.getDate("deadline").toLocalDate(),
-		    		          new User());
+		    		          new User(),
+                              TaskState.getStateByString(result.getString("state")));
 		      }
 		    } catch (SQLException e) {
 		      e.printStackTrace();
@@ -62,14 +64,15 @@ public class TaskDAOMySQL implements TaskDAO{
             ps.setDate(3, java.sql.Date.valueOf(task.getDeadline()));
             ps.setInt(4, task.getCreator().getId());
             ps.setString(5, task.getDescription());
+            ps.setString(6, task.getState().getStatetoString());
             ps.executeUpdate();
             ps.close();
  
-            System.out.println("Nouvelle task dans la base: " + task.toString());
+
             return true;
         } catch (SQLException e) {
             
-        	System.out.println(e);
+        	e.printStackTrace();
             return false;
         }
 		
@@ -79,7 +82,7 @@ public class TaskDAOMySQL implements TaskDAO{
 	    TaskDAOMySQL sql = new TaskDAOMySQL();
 
         AbstractTask tast = sql.getTaskById(2);
-        System.out.println(tast.getName());
+
         tast.setId(3);
 
         sql.update((Task)tast);
@@ -94,15 +97,16 @@ public class TaskDAOMySQL implements TaskDAO{
             ps.setDate(3, java.sql.Date.valueOf( task.getDeadline() ));
             ps.setInt(4, task.getCreator().getId());
             ps.setString(5, task.getDescription());
-            ps.setInt(6, task.getId());
+            ps.setString(6, task.getState().getStatetoString());
+            ps.setInt(7, task.getId());
 
             int i = ps.executeUpdate();
             ps.close();
             if (i > 0) {
-                System.out.println("success");
+
                 return true;
             } else {
-                System.out.println("stuck somewhere");
+
                 return false;
             }
 
@@ -128,10 +132,10 @@ public class TaskDAOMySQL implements TaskDAO{
             int i = ps.executeUpdate();
             ps.close();
             if (i > 0) {
-                System.out.println("success");
+
                 return true;
             } else {
-                System.out.println("stuck somewhere");
+
                 return false;
             }
  
@@ -162,7 +166,8 @@ public class TaskDAOMySQL implements TaskDAO{
                         rs.getString("description"),
                         rs.getInt("priority"),
                         rs.getDate("deadline").toLocalDate(),
-                        new User(3,"thomas","faure","faure","faure"));
+                        new User(3,"thomas","faure","faure","faure"),
+                        TaskState.getStateByString(rs.getString("state")));
             }
             ps.close();
         } catch (SQLException e) {
@@ -186,7 +191,8 @@ public class TaskDAOMySQL implements TaskDAO{
                         rs.getString("description"),
                         rs.getInt("priority"),
                         rs.getDate("deadline").toLocalDate(),
-                        new User(3,"thomas","faure","faure","faure")));
+                        new User(3,"thomas","faure","faure","faure"),
+                        TaskState.getStateByString(rs.getString("state"))));
             }
             ps.close();
         } catch (SQLException e) {
@@ -211,7 +217,8 @@ public class TaskDAOMySQL implements TaskDAO{
                         rs.getString("description"),
                         rs.getInt("priority"),
                         rs.getDate("deadline").toLocalDate(),
-                        null);
+                        null,
+                        TaskState.getStateByString(rs.getString("state")));
                 list.add(task);
             }
             ps.close();

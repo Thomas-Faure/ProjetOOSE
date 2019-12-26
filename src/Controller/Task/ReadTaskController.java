@@ -23,16 +23,17 @@ import java.util.ResourceBundle;
 public class ReadTaskController implements Initializable {
     int id;
     public ReadTaskController(int id){
-        System.out.println("coucou");
-        System.out.println(id+"");
+
         this.id=id;
     }
     @FXML
+    private TextField state;
+    @FXML
     private TextField subject;
     @FXML
-    private TextField description;
+    private TextArea description;
     @FXML
-    private TextField deadline;
+    private DatePicker deadline;
     @FXML
     private TextField priority;
 
@@ -54,8 +55,9 @@ public class ReadTaskController implements Initializable {
         if(taskToRead!= null) {
             subject.setText(taskToRead.getName());
             description.setText(taskToRead.getDescription());
-            deadline.setText("");
+            deadline.setValue(taskToRead.getDeadline());
             priority.setText(taskToRead.getPriority() + "");
+            state.setText(taskToRead.getState().getStatetoString());
         }else{
             UIError error = new UIError(new UITaskManagement());
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");

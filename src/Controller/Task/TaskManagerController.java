@@ -66,11 +66,11 @@ public class TaskManagerController implements Initializable {
 
 
     public static void main(String[] args) {
-        System.out.println("myvar".matches("(.*)my(.*)"));
+
     }
     @FXML
     public void testFct(KeyEvent keyEvent) {
-        System.out.println(inputSearch.getText().length());
+
         if(!(inputSearch.getText().length() == 0)) {
 
 

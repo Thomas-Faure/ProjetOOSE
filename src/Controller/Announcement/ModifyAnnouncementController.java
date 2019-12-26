@@ -59,23 +59,7 @@ public class ModifyAnnouncementController implements Initializable {
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
         box.getChildren().add(taskPage.loadScene().getRoot());
-        /*
-        announcement.setTitle(title.getText());
-        announcement.setMessage(message.getText());
-        if(AnnouncementFacade.getInstance().modifyAnnouncement((Announcement)announcement)){
-            AnnouncementUI announcementUI = new AnnouncementUI();
-            HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-            if(box.getChildren().size() >1 )
-                box.getChildren().remove(1);
-            box.getChildren().add(announcementUI.loadScene().getRoot());
 
-        }else{
-            UIError error = new UIError(new UIAnnouncementManagement());
-            HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-            if(box.getChildren().size() >1 )
-                box.getChildren().remove(1);
-            box.getChildren().add(error.loadScene().getRoot());
-        }*/
 
     }
 

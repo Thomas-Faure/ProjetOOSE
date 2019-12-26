@@ -9,6 +9,13 @@ import BuisnessLogic.User.User;
 
 public class Task extends AbstractTask {
 	int id;
+	TaskState state;
+	public void setState(TaskState state){
+		this.state=state;
+	}
+	public TaskState getState(){
+		return this.state;
+	}
 	public int getId() {
 		return id;
 	}
@@ -55,13 +62,14 @@ public class Task extends AbstractTask {
 
 	User creator;
 	String description;
-	public Task(int id,String name,String description,int priority,LocalDate deadline,User creator) {
+	public Task(int id,String name,String description,int priority,LocalDate deadline,User creator,TaskState state) {
 		this.id=id;
 		this.description=description;
 		this.name=name;
 		this.priority=priority;
 		this.deadline=deadline;
 		this.creator=creator;
+		this.state=state;
 	}
 
 

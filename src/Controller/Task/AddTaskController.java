@@ -2,6 +2,7 @@ package Controller.Task;
 
 import BuisnessLogic.Task.Task;
 
+import BuisnessLogic.Task.TaskState;
 import BuisnessLogic.User.User;
 import Facade.SessionFacade;
 import Facade.TaskFacade;
@@ -39,9 +40,9 @@ public class AddTaskController implements Initializable {
     @FXML
     private TextField subject;
     @FXML
-    private TextField description;
+    private TextArea description;
     @FXML
-    private TextField deadline;
+    private DatePicker deadline;
     @FXML
     private TextField priority;
     @FXML
@@ -52,7 +53,7 @@ public class AddTaskController implements Initializable {
 
     @FXML
     void addNewTask(ActionEvent actionEvent){
-        Task task = new Task(0,subject.getText(),description.getText(),Integer.parseInt(priority.getText()),LocalDate.now(),SessionFacade.getInstance().getUser());
+        Task task = new Task(0,subject.getText(),description.getText(),Integer.parseInt(priority.getText()),deadline.getValue(),SessionFacade.getInstance().getUser(), TaskState.todo);
         if(TaskFacade.getInstance().addTask(task)){
             UITaskManagement taskP = new UITaskManagement();
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");

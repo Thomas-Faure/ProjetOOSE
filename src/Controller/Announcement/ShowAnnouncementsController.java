@@ -55,7 +55,7 @@ public class ShowAnnouncementsController implements Initializable {
 
     }
     public void ActualiseAnnouncements(){
-        System.out.println("actualisation de la page :"+currentPage);
+
         //on remet à zero la liste
         vboxList.getChildren().clear();
         Parent root = null;
@@ -94,7 +94,7 @@ public class ShowAnnouncementsController implements Initializable {
 
             box.getChildren().remove(1);
             box.getChildren().add(read.loadScene().getRoot());
-            System.out.println();
+
         }
     }
 
@@ -127,9 +127,9 @@ public class ShowAnnouncementsController implements Initializable {
         if(currentPage == 1){
             prev.setDisable(false);
         }
-        System.out.println(currentPage+" "+maxPage);
+
         if(currentPage <maxPage){
-            System.out.println("plus");
+
             currentPage +=1;
         }
         if(currentPage == maxPage){
@@ -144,7 +144,7 @@ public class ShowAnnouncementsController implements Initializable {
             next.setDisable(false);
         }
         if(currentPage > 1){
-            System.out.println("moins");
+
             currentPage -=1;
         }
         if(currentPage == 1){

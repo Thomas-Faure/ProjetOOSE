@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Task.ReadTaskController">
+<AnchorPane fx:id="paneBasic" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Task.ReadTaskController">
   <children>
-    <TextField fx:id="subject" editable="false" layoutX="234.0" layoutY="64.0" prefWidth="452.0" />
-    <TextField fx:id="description" editable="false" layoutX="234.0" layoutY="143.0" prefHeight="140.0" prefWidth="452.0" />
-    <TextField fx:id="deadline" editable="false" layoutX="234.0" layoutY="335.0" prefWidth="452.0" />
-    <TextField fx:id="priority" editable="false" layoutX="234.0" layoutY="422.0" prefWidth="452.0" />
+    <TextField fx:id="subject" editable="false" layoutX="234.0" layoutY="64.0" prefWidth="452.0" AnchorPane.bottomAnchor="510.6666666666667" AnchorPane.leftAnchor="234.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="64.0" />
+    <TextField fx:id="priority" editable="false" layoutX="234.0" layoutY="429.0" prefWidth="452.0" AnchorPane.bottomAnchor="145.66666666666663" AnchorPane.leftAnchor="234.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="429.0" />
     <Text layoutX="163.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject:" />
     <Text layoutX="131.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" />
-    <Text layoutX="152.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deadline:" />
-    <Text layoutX="165.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priority:" />
-    <Button layoutX="24.0" layoutY="530.0" mnemonicParsing="false" onAction="#backToTasks" text="Back" />
+    <Text layoutX="152.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deadline:" AnchorPane.bottomAnchor="241.94921875" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="566.658203125" AnchorPane.topAnchor="341.05078125" />
+    <Button fx:id="backButton" layoutX="24.0" layoutY="530.0" mnemonicParsing="false" onAction="#backToTasks" text="Back" AnchorPane.bottomAnchor="44.66666666666667" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="703.3333333333334" AnchorPane.topAnchor="530.0" />
+    <Text layoutX="165.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priority:" AnchorPane.bottomAnchor="150.0390625" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="562.6171875" AnchorPane.topAnchor="434.0" />
+    <DatePicker fx:id="deadline" editable="false" layoutX="234.0" layoutY="336.0" prefHeight="26.0" prefWidth="452.0" />
+      <TextArea fx:id="description" editable="false" layoutX="234.0" layoutY="143.0" prefHeight="183.0" prefWidth="452.0" />
+      <Text layoutX="165.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State:" />
+      <TextField fx:id="state" editable="false" layoutX="234.0" layoutY="470.0" prefWidth="452.0" />
   </children>
 </AnchorPane>

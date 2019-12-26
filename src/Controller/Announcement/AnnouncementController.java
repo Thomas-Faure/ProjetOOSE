@@ -58,7 +58,7 @@ public class AnnouncementController implements Initializable {
     private static ObservableList<Announcement> listViewTemp;
     @FXML
     public void testFct(KeyEvent keyEvent) {
-        System.out.println(inputSearch.getText().length());
+
         if(!(inputSearch.getText().length() == 0)) {
             ArrayList<Announcement> array = new ArrayList<>(listViewTemp);
             ArrayList<Announcement> toDelete = new ArrayList<>();

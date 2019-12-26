@@ -49,7 +49,7 @@ public class TicketController implements Initializable {
     private static ObservableList<Ticket> listViewTemp;
     @FXML
     public void searchBar(KeyEvent keyEvent) {
-        System.out.println(inputSearch.getText().length());
+
         if(!(inputSearch.getText().length() == 0)) {
             ArrayList<Ticket> array = new ArrayList<>(listViewTemp);
             ArrayList<Ticket> toDelete = new ArrayList<>();
@@ -67,7 +67,6 @@ public class TicketController implements Initializable {
             }
 
             for (Ticket i : toDelete) {
-
                 array.remove(i);
             }
             ObservableList<Ticket> listViewT = FXCollections.observableArrayList(array);
@@ -86,7 +85,7 @@ public class TicketController implements Initializable {
                 ArrayList<Ticket> listeElement = ((ArrayList) TicketFacade.getInstance().getListTickets());
                 ObservableList<Ticket> listView = FXCollections.observableArrayList(listeElement);
                 listViewTemp = FXCollections.observableArrayList(listeElement);
-                System.out.println(listView.get(0).getSubject());
+
                 ticketsList.setItems(listView);
                 ticketsList.setCellFactory(param -> new Cell());
             }

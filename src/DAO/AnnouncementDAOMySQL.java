@@ -37,7 +37,7 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO  {
 			      ResultSet.TYPE_SCROLL_INSENSITIVE,
 			      ResultSet.CONCUR_READ_ONLY).executeQuery(query);
 		      if(result.first()) {
-		    		  System.out.println("correct");
+
 		    		  //� changer
 		    		  announcement= new Announcement( 
 		    				  result.getInt("id"),
@@ -65,12 +65,10 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO  {
             ps.setInt(4, a.getUser().getId());
             ps.executeUpdate();
             ps.close();
- 
-            System.out.println("Nouvel Announcement dans la base: " + a.toString());
+
             return true;
         } catch (SQLException e) {
-            
-        	System.out.println(e);
+			e.printStackTrace();
             return false;
         }
 	}
@@ -90,17 +88,16 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO  {
             int i = ps.executeUpdate();
             ps.close();
 			if (i > 0) {
-				System.out.println("success");
+
 				return true;
 			} else {
-				System.out.println("stuck somewhere");
+				
 				return false;
 			}
  
 
         } catch (SQLException e) {
-           
-            System.out.println(e);
+			e.printStackTrace();
             return false;
         }
 	}
@@ -116,10 +113,10 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO  {
             int i = ps.executeUpdate();
             ps.close();
 			if (i > 0) {
-				System.out.println("success");
+
 				return true;
 			} else {
-				System.out.println("stuck somewhere");
+
 				return false;
 			}
 
@@ -212,7 +209,7 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO  {
 
 		AnnouncementDAOMySQL sql = new AnnouncementDAOMySQL();
 		AbstractAnnouncement an = sql.getAnnouncementById(4);
-		System.out.println(an.getTitle());
+
 
 	}
 
