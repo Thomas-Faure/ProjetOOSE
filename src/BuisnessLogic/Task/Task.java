@@ -56,6 +56,9 @@ public class Task extends AbstractTask {
 	int priority;
 	LocalDate deadline;
 
+	public String getStateString(){
+		return state.getStatetoString();
+	}
 	public String getDescription() {
 		return description;
 	}

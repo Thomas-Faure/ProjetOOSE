@@ -57,7 +57,7 @@ public class ReadTaskController implements Initializable {
             description.setText(taskToRead.getDescription());
             deadline.setValue(taskToRead.getDeadline());
             priority.setText(taskToRead.getPriority() + "");
-            state.setText(taskToRead.getState().getStatetoString());
+            state.setText(taskToRead.getStateString());
         }else{
             UIError error = new UIError(new UITaskManagement());
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");

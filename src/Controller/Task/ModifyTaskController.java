@@ -105,7 +105,7 @@ public class ModifyTaskController implements Initializable {
 
 
         if(taskToModify != null) {
-            stateChoiceBox.getSelectionModel().select(taskToModify.getState().getStatetoString());
+            stateChoiceBox.getSelectionModel().select(taskToModify.getStateString());
             modifySubject.setText(taskToModify.getName());
             modifyDescription.setText(taskToModify.getDescription());
             modifyDeadline.setValue(taskToModify.getDeadline());

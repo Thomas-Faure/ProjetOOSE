@@ -16,6 +16,8 @@ public abstract class AbstractTask {
     public abstract User getCreator();
     public abstract String getDescription();
 
+    public abstract  String getStateString();
+
     public abstract void setState(TaskState state);
     public abstract TaskState getState();
     public abstract void setId(int id);

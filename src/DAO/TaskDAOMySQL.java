@@ -97,7 +97,7 @@ public class TaskDAOMySQL implements TaskDAO{
             ps.setDate(3, java.sql.Date.valueOf( task.getDeadline() ));
             ps.setInt(4, task.getCreator().getId());
             ps.setString(5, task.getDescription());
-            ps.setString(6, task.getState().getStatetoString());
+            ps.setString(6, task.getStateString());
             ps.setInt(7, task.getId());
 
             int i = ps.executeUpdate();
