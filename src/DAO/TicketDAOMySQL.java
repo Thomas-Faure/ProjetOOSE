@@ -2,6 +2,7 @@ package DAO;
 
 import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Announcement.Announcement;
+import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Ticket.AbstractTicket;
 import BuisnessLogic.Ticket.Ticket;
 
@@ -49,5 +50,14 @@ public class TicketDAOMySQL implements TicketDAO {
             throw new RuntimeException(e);
         }
         return list;
+    }
+
+    public static void main(String[] args) {
+        TicketDAOMySQL sql = new TicketDAOMySQL();
+        List<AbstractTicket> list =sql.getAllTickets();
+        for(AbstractTicket a : list){
+            System.out.println(a.getProblem());
+        }
+
     }
 }

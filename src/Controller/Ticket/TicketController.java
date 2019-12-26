@@ -1,5 +1,6 @@
 package Controller.Ticket;
 
+import BuisnessLogic.Announcement.Announcement;
 import BuisnessLogic.Ticket.Ticket;
 
 import Facade.ITicketFacade;
@@ -22,10 +23,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
-import java.net.SocketTimeoutException;
+
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
+
 import java.util.ResourceBundle;
 
 public class TicketController implements Initializable {
@@ -39,21 +40,9 @@ public class TicketController implements Initializable {
     @FXML
     private ListView ticketsList ;
 
-
-
-
-    public static TicketController instance;
     private ITicketFacade tFacade = TicketFacade.getInstance();
 
     public TicketController(){
-    }
-
-
-    public static TicketController getInstance(){
-        if(instance == null){
-            instance = new TicketController();
-        }
-        return instance;
     }
 
     //permet de garder la liste de base
@@ -81,8 +70,6 @@ public class TicketController implements Initializable {
 
                 array.remove(i);
             }
-
-
             ObservableList<Ticket> listViewT = FXCollections.observableArrayList(array);
             ticketsList.setItems(listViewT);
 
@@ -101,7 +88,7 @@ public class TicketController implements Initializable {
                 listViewTemp = FXCollections.observableArrayList(listeElement);
                 System.out.println(listView.get(0).getSubject());
                 ticketsList.setItems(listView);
-                ticketsList.setCellFactory(param -> new TicketController.Cell());
+                ticketsList.setCellFactory(param -> new Cell());
             }
         }
 
@@ -135,14 +122,7 @@ public class TicketController implements Initializable {
                     box.getChildren().add(taskPage.loadScene().getRoot());
                     if (box.getChildren().size() > 1)
                         box.getChildren().remove(1);
-                    /*
-                    if(!(AnnouncementFacade.getInstance().deleteAnnouncement(announcement))){
-                        UIError error = new UIError(new AnnouncementUI());
-                        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-                        box.getChildren().add(error.loadScene().getRoot());
-                        if(box.getChildren().size() >1 )
-                            box.getChildren().remove(2);
-                    };*/
+
 
                 }
             });
@@ -170,6 +150,19 @@ public class TicketController implements Initializable {
                 }
             });
 
+
+        }
+        @Override
+        public void updateItem(Ticket name, boolean empty){
+            super.updateItem(name,empty);
+            setText(null);
+            setGraphic(null);
+
+            if(name != null && !empty){
+                ticket = name;
+                label.setText(name.getId()+" "+name.getProblem());
+                setGraphic(hbox);
+            }
 
         }
 
