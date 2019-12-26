@@ -5,6 +5,7 @@ import UI.Announcement.AnnouncementUI;
 import UI.Announcement.UIAnnouncementManagement;
 import UI.Task.TaskUI;
 import UI.Task.UITaskManagement;
+import UI.Ticket.TicketUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -62,7 +63,11 @@ public class MenuController {
     }
     @FXML
     void goMenuTicket(ActionEvent event){
-
+        TicketUI ticket = new TicketUI();
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(ticket.loadScene().getRoot());
     }
     @FXML
     void goMenuIdea(ActionEvent event){
