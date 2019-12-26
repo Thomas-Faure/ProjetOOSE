@@ -18,14 +18,11 @@ public abstract class AbstractTask {
 
 
     public abstract void setId(int id);
-
     public abstract void setName(String name);
-
     public abstract void setPriority(int priority);
-
     public abstract void setDeadline(LocalDate deadline);
-
     public abstract void setCreator(User creator);
+    public abstract void setDescription(String description);
 
 
 }

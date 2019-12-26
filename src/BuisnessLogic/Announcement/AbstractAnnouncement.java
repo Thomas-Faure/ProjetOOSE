@@ -13,4 +13,5 @@ public abstract class AbstractAnnouncement {
     public abstract User getUser();
     public abstract void setTitle(String title);
     public abstract void setMessage(String msg);
+    public abstract void setDate(LocalDate date);
 }

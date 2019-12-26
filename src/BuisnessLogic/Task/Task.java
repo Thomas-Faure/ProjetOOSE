@@ -39,6 +39,12 @@ public class Task extends AbstractTask {
 	public void setCreator(User creator) {
 		this.creator = creator;
 	}
+
+	@Override
+	public void setDescription(String description) {
+		this.description=description;
+	}
+
 	String name;
 	int priority;
 	LocalDate deadline;
