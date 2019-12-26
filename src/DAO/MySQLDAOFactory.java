@@ -28,6 +28,10 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
 	public static AnnouncementDAO getAnnouncementDAO() {
 		return getInstance().createAnnouncementDAO();
 	}
+
+	public static TicketDAO getTicketDAO() {
+		return getInstance().createTicketDAO();
+	}
 	
 
 	@Override
@@ -95,8 +99,7 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
 
 	@Override
 	protected TicketDAO createTicketDAO() {
-		// TODO Auto-generated method stub
-		return null;
+		return new TicketDAOMySQL();
 	}
 
 
