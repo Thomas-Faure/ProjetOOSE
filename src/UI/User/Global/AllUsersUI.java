@@ -1,18 +1,14 @@
-package UI.Role;
+package UI.User.Global;
 
-import Controller.RoleController;
-import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-public class RoleUI implements UIGlobal {
-    private RoleController rController;
-
+public class AllUsersUI {
     public Scene loadScene(){
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("RoleUI.fxml"));
+            root = FXMLLoader.load(getClass().getResource("AllUsersUI.fxml"));
         }catch(Exception e){
             e.printStackTrace();
         }

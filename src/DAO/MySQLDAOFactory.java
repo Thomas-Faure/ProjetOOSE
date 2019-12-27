@@ -1,6 +1,11 @@
 package DAO;
 
-import BuisnessLogic.Announcement.Announcement;
+import DAO.Idea.IdeaDAO;
+import DAO.Idea.IdeaDAOMySQL;
+import DAO.Role.RoleDAO;
+import DAO.Role.RoleDAOMySQL;
+import DAO.User.UserDAO;
+import DAO.User.UserDAOMySQL;
 
 public  class MySQLDAOFactory extends AbstractDAOFactory {
 
@@ -19,10 +24,11 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
 		return getInstance().createUserDAO();
 	}
 
-
-	
-	protected UserDAO createUserDAO() {
-		return new UserDAOMySQL();
+    public static IdeaDAO getIdeaDAO() {
+		return getInstance().createIdeaDAO();
+    }
+	public static RoleDAO getRoleDAO() {
+		return getInstance().createRoleDAO();
 	}
 	
 	public static AnnouncementDAO getAnnouncementDAO() {
@@ -32,7 +38,20 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
 	public static TicketDAO getTicketDAO() {
 		return getInstance().createTicketDAO();
 	}
-	
+
+	protected UserDAO createUserDAO() {
+		return new UserDAOMySQL();
+	}
+
+	@Override
+	protected IdeaDAO createIdeaDAO() {
+		return new IdeaDAOMySQL();
+	}
+
+	@Override
+	protected RoleDAO createRoleDAO() {
+		return new RoleDAOMySQL();
+	}
 
 	@Override
 	protected AnnouncementDAO createAnnouncementDAO() {
@@ -42,12 +61,6 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
 
 	@Override
 	protected ChatDAO createChatDAO() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected IdeaDAO createIdeaDAO() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -76,11 +89,6 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
 		return null;
 	}
 
-	@Override
-	protected RoleDAO createRoleDAO() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	protected SprintDAO createSprintDAO() {

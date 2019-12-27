@@ -1,4 +1,4 @@
-package DAO;
+package DAO.User;
 
 
 import BuisnessLogic.User.User;

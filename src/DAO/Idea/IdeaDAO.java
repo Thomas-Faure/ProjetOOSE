@@ -1,4 +1,4 @@
-package DAO;
+package DAO.Idea;
 
 
 import BuisnessLogic.Idea.Idea;

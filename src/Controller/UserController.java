@@ -1,6 +1,6 @@
 package Controller;
 
-import Facade.IUserFacade;
+import Facade.User.IUserFacade;
 
 public class UserController {
     public static UserController instance;

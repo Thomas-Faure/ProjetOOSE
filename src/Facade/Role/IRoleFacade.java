@@ -1,3 +1,3 @@
-package Facade;
+package Facade.Role;
 public interface IRoleFacade {
 }

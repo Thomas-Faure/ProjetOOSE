@@ -1,6 +1,6 @@
 package Controller;
 
-import Facade.IIdeaFacade;
+import Facade.Idea.IIdeaFacade;
 
 public class IdeaController {
     static IdeaController  instance;

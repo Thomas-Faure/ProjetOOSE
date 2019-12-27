@@ -1,6 +1,6 @@
 package Controller;
 
-import Facade.IRoleFacade;
+import Facade.Role.IRoleFacade;
 
 public class RoleController {
     public static RoleController instance;

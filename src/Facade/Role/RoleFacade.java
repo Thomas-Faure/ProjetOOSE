@@ -1,4 +1,4 @@
-package Facade;
+package Facade.Role;
 
 import BuisnessLogic.Role.AbstractRole;
 import DAO.AbstractDAOFactory;

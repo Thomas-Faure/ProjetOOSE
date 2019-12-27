@@ -1,6 +1,7 @@
-package DAO;
+package DAO.User;
 
 import BuisnessLogic.User.User;
+import DAO.MySQLConnector;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -46,8 +47,8 @@ public class UserDAOMySQL implements UserDAO {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(INSERT);
  
             ps.setString(1, user.getUsername());
-            ps.setString(2, user.getPrenom());
-            ps.setString(3, user.getNom());
+            ps.setString(2, user.getFirstName());
+            ps.setString(3, user.getLastName());
             ps.setString(4, user.getPassword());
             ps.executeUpdate();
             ps.close();
@@ -68,8 +69,8 @@ public class UserDAOMySQL implements UserDAO {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(UPDATE);
 
             ps.setString(1, user.getUsername());
-            ps.setString(2, user.getPrenom());
-            ps.setString(3, user.getNom());
+            ps.setString(2, user.getFirstName());
+            ps.setString(3, user.getLastName());
             ps.setString(4, user.getPassword());
             ps.setInt(5, user.getId());
              

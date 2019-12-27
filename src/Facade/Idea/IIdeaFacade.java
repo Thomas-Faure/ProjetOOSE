@@ -1,4 +1,4 @@
-package Facade;
+package Facade.Idea;
 
 import BuisnessLogic.Idea.AbstractIdea;
 import BuisnessLogic.Idea.Idea;

@@ -1,8 +1,9 @@
-package DAO;
+package DAO.Idea;
 
 import BuisnessLogic.Idea.AbstractIdea;
 import BuisnessLogic.Idea.Idea;
 import BuisnessLogic.User.User;
+import DAO.MySQLConnector;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -1,5 +1,9 @@
 package DAO;
 
+import DAO.Idea.IdeaDAO;
+import DAO.Role.RoleDAO;
+import DAO.User.UserDAO;
+
 public abstract class AbstractDAOFactory {
 	protected abstract UserDAO createUserDAO();
 	protected abstract AnnouncementDAO createAnnouncementDAO();

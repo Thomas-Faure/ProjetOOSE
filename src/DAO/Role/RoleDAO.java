@@ -1,4 +1,4 @@
-package DAO;
+package DAO.Role;
 
 import BuisnessLogic.Role.AbstractRole;
 import BuisnessLogic.Role.Role;
