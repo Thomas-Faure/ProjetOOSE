@@ -1,67 +1,81 @@
 package BuisnessLogic.User;
 
-import Facade.IRoleFacade;
-
 public class User extends AbstractUser {
-    private Integer id;
-    private String nom;
+    private int id;
     private String username;
-    private String prenom;
-    private String ville;
     private String password;
-    private String rue;
-    private String cp;
-    private String tel;
+    private String lastName;
+    private String firstName;
+    private String city;
+    private String phoneNumber;
     private String email;
-    private IRoleFacade companyRole;
+    private String position;
 
-    public User(int id, String username, String firstname, String lastname, String password) {
-        this.id=id;
-        this.username=username;
-        this.prenom=firstname;
-        this.nom=lastname;
-        this.password=password;
+    public User(int newId, String newUsername, String newFirstname, String newLastname, String newPassword) {
+        this.id = newId;
+        this.username = newUsername;
+        this.firstName = newFirstname;
+        this.lastName = newLastname;
+        this.password = newPassword;
     }
 
-    public User() {
+    public User(){
 
     }
 
-    public Integer getId() {
+    public int getId(){
         return id;
     }
-
-    public String getNom() {
-        return nom;
+    public String getUsername(){
+        return username;
     }
-
-    public String getPrenom() {
-        return prenom;
+    public String getPassword(){
+        return password;
     }
-
-    public String getUsername(){return this.username;}
-    public String getVille() {
-        return ville;
+    public String getLastName(){
+        return lastName;
     }
-
-    public String getRue() {
-        return rue;
+    public String getFirstName(){
+        return firstName;
     }
-
-    public String getCp() {
-        return cp;
+    public String getCity(){
+        return city;
     }
-
-    public String getPassword(){return password;}
-    public String getTel() {
-        return tel;
+    public String getPhoneNumber(){
+        return phoneNumber;
     }
-
-    public String getEmail() {
+    public String getEmail(){
         return email;
     }
+    public String getPosition(){
+        return position;
+    }
 
-    public IRoleFacade getCompanyRole() {
-        return companyRole;
+    public void setId(int newId){
+        this.id = newId;
+    }
+    public void setUsername(String newUsername){
+        this.username = newUsername;
+    }
+    public void setPassword(String newPassword){
+        this.password = newPassword;
+    }
+    public void setLastName(String newLastName){
+        this.lastName = newLastName;
+    }
+    public void setFirstName(String newFirstName){
+        this.firstName = newFirstName;
+    }
+    public void setCity(String newCity){
+        this.city = newCity;
+    }
+    public void setPhoneNumber(String newPhoneNumber){
+        this.phoneNumber = newPhoneNumber;
+    }
+    public void setEmail(String newEmail){
+        this.email = newEmail;
+    }
+    public void setPosition(String newPosition){
+        this.position = newPosition;
     }
 }
