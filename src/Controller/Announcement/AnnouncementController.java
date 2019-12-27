@@ -2,24 +2,17 @@ package Controller.Announcement;
 
 import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Announcement.Announcement;
-import BuisnessLogic.Task.AbstractTask;
-import BuisnessLogic.Task.Task;
 
-import BuisnessLogic.User.User;
+
 import Facade.AnnouncementFacade;
-import Facade.SessionFacade;
-import Facade.TaskFacade;
+
 import Main.App;
-import UI.Announcement.AnnouncementUI;
+
 import UI.Announcement.UIAddAnnouncement;
 import UI.Announcement.UIModifyAnnouncement;
 import UI.Announcement.UIReadAnnouncement;
 import UI.Confirm.UIConfirm;
-import UI.Task.TaskUI;
-import UI.Task.UIAddTask;
-import UI.Task.UIModifyTask;
-import UI.Task.UIReadTask;
-import UI.UIError;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -43,7 +36,6 @@ import java.util.ResourceBundle;
 public class AnnouncementController implements Initializable {
 
 
-    //Task Page
     @FXML
     private TextField inputSearch;
     @FXML
@@ -131,8 +123,8 @@ public class AnnouncementController implements Initializable {
                     getListView().getItems().remove(getItem());
                     listViewTemp.remove(getItem());
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-                    UIConfirm taskPage = new UIConfirm("Announcement","Delete",announcement,box.getChildren().get(1));
-                    box.getChildren().add(taskPage.loadScene().getRoot());
+                    UIConfirm confirmPage = new UIConfirm("Announcement","Delete",announcement,box.getChildren().get(1));
+                    box.getChildren().add(confirmPage.loadScene().getRoot());
                     if(box.getChildren().size() >1 )
                         box.getChildren().remove(1);
                     /*

@@ -15,9 +15,9 @@
     <Text layoutX="163.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject:" />
     <Text layoutX="131.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" />
     <Text layoutX="152.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deadline:" AnchorPane.bottomAnchor="241.94921875" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="566.658203125" AnchorPane.topAnchor="341.05078125" />
-    <Button fx:id="backButton" layoutX="24.0" layoutY="530.0" mnemonicParsing="false" onAction="#backToTasks" text="Back" AnchorPane.bottomAnchor="44.66666666666667" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="703.3333333333334" AnchorPane.topAnchor="530.0" />
+    <Button fx:id="backButton" layoutX="23.0" layoutY="526.0" mnemonicParsing="false" onAction="#backToTasks" prefHeight="34.0" prefWidth="63.0" text="Back" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="682.0" AnchorPane.topAnchor="526.0" />
     <Text layoutX="165.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priority:" AnchorPane.bottomAnchor="150.0390625" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="562.6171875" AnchorPane.topAnchor="434.0" />
-    <Button fx:id="modifyTaskButton" layoutX="395.0" layoutY="530.0" mnemonicParsing="false" onAction="#modifyATask" prefHeight="25.0" prefWidth="131.0" text="Modify a task" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="395.0" AnchorPane.rightAnchor="242.0" AnchorPane.topAnchor="530.0" />
+    <Button fx:id="modifyTaskButton" layoutX="389.0" layoutY="526.0" mnemonicParsing="false" onAction="#modifyATask" prefHeight="34.0" prefWidth="142.0" text="Modify a task" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="389.0" AnchorPane.rightAnchor="237.0" AnchorPane.topAnchor="526.0" />
     <DatePicker fx:id="modifyDeadline" layoutX="234.0" layoutY="336.0" prefHeight="26.0" prefWidth="452.0" />
     <TextArea fx:id="modifyDescription" layoutX="234.0" layoutY="143.0" prefHeight="183.0" prefWidth="452.0" />
       <Text layoutX="173.0" layoutY="495.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State:" />

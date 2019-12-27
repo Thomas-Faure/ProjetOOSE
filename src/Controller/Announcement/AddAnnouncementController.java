@@ -1,19 +1,12 @@
 package Controller.Announcement;
 import BuisnessLogic.Announcement.Announcement;
-import BuisnessLogic.Task.Task;
 
-import BuisnessLogic.User.User;
 import Facade.AnnouncementFacade;
 import Facade.SessionFacade;
-import Facade.TaskFacade;
+
 import Main.App;
 import UI.Announcement.UIAnnouncementManagement;
-import UI.Task.TaskUI;
-import UI.Task.UIAddTask;
-import UI.Task.UIModifyTask;
-import UI.Task.UITaskManagement;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -34,10 +27,6 @@ public class AddAnnouncementController implements Initializable {
 
 
 
-    /**
-     *
-     * Page Add Task
-     */
     @FXML
     private TextField title;
     @FXML
@@ -45,8 +34,7 @@ public class AddAnnouncementController implements Initializable {
 
     @FXML
     private Button backButton;
-    @FXML
-    private Button addTaskButton;
+
 
 
 

@@ -14,7 +14,7 @@
     <Text layoutX="163.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject:" />
     <Text layoutX="131.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" />
     <Text layoutX="152.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deadline:" AnchorPane.bottomAnchor="241.94921875" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="566.658203125" AnchorPane.topAnchor="341.05078125" />
-    <Button fx:id="backButton" layoutX="24.0" layoutY="530.0" mnemonicParsing="false" onAction="#backToTasks" text="Back" AnchorPane.bottomAnchor="44.66666666666667" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="703.3333333333334" AnchorPane.topAnchor="530.0" />
+    <Button fx:id="backButton" layoutX="24.0" layoutY="530.0" mnemonicParsing="false" onAction="#backToTasks" prefHeight="33.0" prefWidth="63.0" text="Back" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="681.0" AnchorPane.topAnchor="530.0" />
     <Text layoutX="165.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priority:" AnchorPane.bottomAnchor="150.0390625" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="562.6171875" AnchorPane.topAnchor="434.0" />
     <DatePicker fx:id="deadline" editable="false" layoutX="234.0" layoutY="336.0" prefHeight="26.0" prefWidth="452.0" />
       <TextArea fx:id="description" editable="false" layoutX="234.0" layoutY="143.0" prefHeight="183.0" prefWidth="452.0" />
