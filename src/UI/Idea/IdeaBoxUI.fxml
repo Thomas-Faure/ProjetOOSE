@@ -22,7 +22,11 @@
                 <Font name="System Bold" size="37.0" />
             </font>
         </Text>
+<<<<<<< HEAD
         <Button fx:id="backButton" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#backToMainPage" text="Back" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="275.0" AnchorPane.rightAnchor="525.0" AnchorPane.topAnchor="500.0" />
+=======
+        <Button fx:id="backButton" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#backToIdeaPage" text="Back" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="275.0" AnchorPane.rightAnchor="525.0" AnchorPane.topAnchor="500.0" />
+>>>>>>> 78e821f03ee6db396a5a64a179ef2ee53460f10f
         <Button fx:id="addIdeaButton" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#addNewIdea" text="Add idea" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="625.0" AnchorPane.rightAnchor="175.0" AnchorPane.topAnchor="500.0" />
     </children>
 </AnchorPane>
