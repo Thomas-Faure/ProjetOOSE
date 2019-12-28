@@ -10,5 +10,5 @@ public interface SprintDAO {
     boolean update(AbstractSprint sprint);
     boolean delete(int sprintID);
     AbstractSprint getSprintById(int sprintID);
-    List<AbstractSprint> getAllSprintByProject(int projectID);git
+    List<AbstractSprint> getAllSprintByProject(int projectID);
 }
