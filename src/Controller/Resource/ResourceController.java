@@ -50,12 +50,13 @@ public class ResourceController implements Initializable {
         /*FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(App.getInstanceStage());
         String path_file = file.getAbsolutePath()();
+        String filename = file.getName();
         System.out.println(path_file);
         */
 
         //DropBoxConnexion dropboxPPM = new DropBoxConnexion();
         //dropboxPPM.upload(path_file);
 
-        //ResourceFacade.getInstance().addResource(<dropbox_path_file>,projectID);
+        //ResourceFacade.getInstance().addResource(<dropbox_path_file>,filename);
     }
 }
