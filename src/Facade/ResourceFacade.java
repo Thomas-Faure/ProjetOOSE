@@ -31,12 +31,19 @@ public class ResourceFacade implements IResourceFacade {
         return this.resources;
     }
 
-    /*public boolean addResource(Resource resource){
-         if(FacadeInstance.getDao().save(resource)){
-             FacadeInstance.getListResource().add(resource);
+    @Override
+    public boolean addResource(Resource resource) {
+        /*if(FacadeInstance.getDao().save(resource)){
+            FacadeInstance.getListResource().add(resource);
             return true;
         }else {
             return false;
-        }
-    }*/
+        }*/
+        return false;
+    }
+
+    @Override
+    public boolean getListResourceByProject(int projectID) {
+        return false;
+    }
 }

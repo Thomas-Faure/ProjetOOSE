@@ -15,6 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.stage.FileChooser;
 import java.io.File;
+import Controller.Resource.DropBoxConnexion;
 
 public class ResourceController implements Initializable {
 
@@ -46,8 +47,10 @@ public class ResourceController implements Initializable {
         System.out.println(path_file);
         System.out.println(filename);
 
+        //Le controller doit recuperer l'id du projet
         //DropBoxConnexion dropboxPPM = new DropBoxConnexion();
-        //dropboxPPM.upload(path_file);
+        //String dropboxpath_file = "/<projectname>/<filename>"
+        //dropboxPPM.uploadFile(path_file,dropboxpath_file);
 
         //ResourceFacade.getInstance().addResource(<dropbox_path_file>,filename);
     }
