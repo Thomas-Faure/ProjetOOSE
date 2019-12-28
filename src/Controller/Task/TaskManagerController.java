@@ -1,5 +1,6 @@
 package Controller.Task;
 
+import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.Task;
 
 import Facade.Task.TaskFacade;
@@ -27,20 +28,18 @@ import java.util.ResourceBundle;
 public class TaskManagerController implements Initializable {
 
 
-    //Task Page
     @FXML
     private TextField inputSearch;
     @FXML
     private Button buttonSearch;
     @FXML
-    private ListView<Task> taskList;
-    @FXML
-    private Button addATask;
+    private ListView<AbstractTask> taskList;
 
-    private static Task toManage;
+
+    private static AbstractTask toManage;
 
     //permet de garder la liste de base
-    private static ObservableList<Task> listViewTemp;
+    private static ObservableList<AbstractTask> listViewTemp;
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -48,8 +47,8 @@ public class TaskManagerController implements Initializable {
         if(taskList != null){
             //si on peut récuperer les taches
             if(TaskFacade.getInstance().getAllTasks()) {
-                ArrayList<Task> listeElement = ((ArrayList) TaskFacade.getInstance().getListTasks());
-                ObservableList<Task> listView = FXCollections.observableArrayList(listeElement);
+                ArrayList<AbstractTask> listeElement = ((ArrayList) TaskFacade.getInstance().getListTasks());
+                ObservableList<AbstractTask> listView = FXCollections.observableArrayList(listeElement);
                 listViewTemp= FXCollections.observableArrayList(listeElement);
 
                 taskList.setItems(listView);
@@ -70,8 +69,8 @@ public class TaskManagerController implements Initializable {
         if(!(inputSearch.getText().length() == 0)) {
 
 
-            ArrayList<Task> array = new ArrayList<>(listViewTemp);
-            ArrayList<Task> toDelete = new ArrayList<>();
+            ArrayList<AbstractTask> array = new ArrayList<>(listViewTemp);
+            ArrayList<AbstractTask> toDelete = new ArrayList<>();
             for (int i = 0; i < array.size(); ++i) {
 
                 String inputS =inputSearch.getText();
@@ -87,13 +86,13 @@ public class TaskManagerController implements Initializable {
                 }
             }
 
-            for (Task i : toDelete) {
+            for (AbstractTask i : toDelete) {
 
                 array.remove(i);
             }
 
 
-            ObservableList<Task> listViewT = FXCollections.observableArrayList(array);
+            ObservableList<AbstractTask> listViewT = FXCollections.observableArrayList(array);
             taskList.setItems(listViewT);
 
         }else{
@@ -128,8 +127,8 @@ public class TaskManagerController implements Initializable {
     }
 
 
-    static class Cell extends ListCell<Task> {
-        Task task;
+    static class Cell extends ListCell<AbstractTask> {
+        AbstractTask task;
         HBox hbox = new HBox();
         Image image = new Image("crayon.png");
         ImageView img = new ImageView(image);
@@ -186,7 +185,7 @@ public class TaskManagerController implements Initializable {
 
         }
         @Override
-        public void updateItem(Task name, boolean empty){
+        public void updateItem(AbstractTask name, boolean empty){
             super.updateItem(name,empty);
             setText(null);
             setGraphic(null);

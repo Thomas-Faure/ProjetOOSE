@@ -37,10 +37,6 @@ public class ModifyTaskController implements Initializable {
     private DatePicker modifyDeadline;
     @FXML
     private TextField modifyPriority;
-    @FXML
-    private Button modifyTaskButton;
-    @FXML
-    private Button backButton;
 
     @FXML
     private ChoiceBox stateChoiceBox;
@@ -58,7 +54,7 @@ public class ModifyTaskController implements Initializable {
     }
     @FXML
     void modifyATask(ActionEvent actionEvent){
-        Task task = new Task(id,modifySubject.getText(),modifyDescription.getText(),Integer.parseInt(modifyPriority.getText()),modifyDeadline.getValue(),new User(3,"thomas","faure","faure","faure"),TaskState.getStateByString((String)stateChoiceBox.getSelectionModel().getSelectedItem()));
+        AbstractTask task = new Task(id,modifySubject.getText(),modifyDescription.getText(),Integer.parseInt(modifyPriority.getText()),modifyDeadline.getValue(),new User(3,"thomas","faure","faure","faure"),TaskState.getStateByString((String)stateChoiceBox.getSelectionModel().getSelectedItem()));
 
         toModify = task;
 

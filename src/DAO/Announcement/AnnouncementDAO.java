@@ -7,7 +7,7 @@ import BuisnessLogic.Task.AbstractTask;
 import java.util.List;
 
 public interface AnnouncementDAO {
-	 Announcement createAnnouncementById(int id);
+	 AbstractAnnouncement createAnnouncementById(int id);
 
 	 boolean save(AbstractAnnouncement a);
 	 boolean update(AbstractAnnouncement a);

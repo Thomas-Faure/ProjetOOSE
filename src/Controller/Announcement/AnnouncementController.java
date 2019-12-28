@@ -41,7 +41,7 @@ public class AnnouncementController implements Initializable {
     @FXML
     private Button buttonSearch;
     @FXML
-    private ListView<Announcement> announcementList;
+    private ListView<AbstractAnnouncement> announcementList;
     @FXML
     private Button addAnAnnouncement;
 
@@ -49,13 +49,13 @@ public class AnnouncementController implements Initializable {
 
 
     //permet de garder la liste de base
-    private static ObservableList<Announcement> listViewTemp;
+    private static ObservableList<AbstractAnnouncement> listViewTemp;
     @FXML
     public void testFct(KeyEvent keyEvent) {
 
         if(!(inputSearch.getText().length() == 0)) {
-            ArrayList<Announcement> array = new ArrayList<>(listViewTemp);
-            ArrayList<Announcement> toDelete = new ArrayList<>();
+            ArrayList<AbstractAnnouncement> array = new ArrayList<>(listViewTemp);
+            ArrayList<AbstractAnnouncement> toDelete = new ArrayList<>();
             for (int i = 0; i < array.size(); ++i) {
                 String inputS =inputSearch.getText();
                 if(inputS.charAt(0) == '*'){
@@ -69,13 +69,13 @@ public class AnnouncementController implements Initializable {
                 }
             }
 
-            for (Announcement i : toDelete) {
+            for (AbstractAnnouncement i : toDelete) {
 
                 array.remove(i);
             }
 
 
-            ObservableList<Announcement> listViewT = FXCollections.observableArrayList(array);
+            ObservableList<AbstractAnnouncement> listViewT = FXCollections.observableArrayList(array);
             announcementList.setItems(listViewT);
 
         }else{
@@ -93,7 +93,7 @@ public class AnnouncementController implements Initializable {
             //si on peut récuperer les annonces
             if(AnnouncementFacade.getInstance().getAllAnnouncements()) {
                 ArrayList<Announcement> listeElement = ((ArrayList) AnnouncementFacade.getInstance().getListAnnouncements());
-                ObservableList<Announcement> listView = FXCollections.observableArrayList(listeElement);
+                ObservableList<AbstractAnnouncement> listView = FXCollections.observableArrayList(listeElement);
                 listViewTemp = FXCollections.observableArrayList(listeElement);
                 announcementList.setItems(listView);
                 announcementList.setCellFactory(param -> new Cell());
@@ -128,8 +128,8 @@ public class AnnouncementController implements Initializable {
         toShow.setVisible(true);
     }
 
-    static class Cell extends ListCell<Announcement> {
-        Announcement announcement;
+    static class Cell extends ListCell<AbstractAnnouncement> {
+        AbstractAnnouncement announcement;
         HBox hbox = new HBox();
         Image image = new Image("megaphone.png");
         ImageView img = new ImageView(image);
@@ -184,7 +184,7 @@ public class AnnouncementController implements Initializable {
 
         }
         @Override
-        public void updateItem(Announcement name, boolean empty){
+        public void updateItem(AbstractAnnouncement name, boolean empty){
             super.updateItem(name,empty);
             setText(null);
             setGraphic(null);

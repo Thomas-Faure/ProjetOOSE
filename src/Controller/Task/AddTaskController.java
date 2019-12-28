@@ -1,5 +1,6 @@
 package Controller.Task;
 
+import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.Task;
 
 import BuisnessLogic.Task.TaskState;
@@ -19,12 +20,6 @@ import java.util.ResourceBundle;
 
 public class AddTaskController implements Initializable {
 
-
-
-    /**
-     *
-     * Page Add Task
-     */
     @FXML
     private TextField subject;
     @FXML
@@ -33,15 +28,12 @@ public class AddTaskController implements Initializable {
     private DatePicker deadline;
     @FXML
     private TextField priority;
-    @FXML
-    private Button backButton;
-    @FXML
-    private Button addTaskButton;
+
 
 
     @FXML
     void addNewTask(ActionEvent actionEvent){
-        Task task = new Task(0,subject.getText(),description.getText(),Integer.parseInt(priority.getText()),deadline.getValue(),SessionFacade.getInstance().getUser(), TaskState.todo);
+        AbstractTask task = new Task(0,subject.getText(),description.getText(),Integer.parseInt(priority.getText()),deadline.getValue(),SessionFacade.getInstance().getUser(), TaskState.todo);
         if(TaskFacade.getInstance().addTask(task)){
             UITaskManagement taskP = new UITaskManagement();
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");

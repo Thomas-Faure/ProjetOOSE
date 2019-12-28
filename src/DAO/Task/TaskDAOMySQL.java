@@ -154,7 +154,7 @@ public class TaskDAOMySQL implements TaskDAO {
 	}
 	@Override
     public AbstractTask getTaskById(int id){
-	    Task task = null;
+	    AbstractTask task = null;
         try {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(TASKBYID);
             ps.setInt(1, id);
@@ -212,7 +212,7 @@ public class TaskDAOMySQL implements TaskDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
 
-                Task task = new Task(
+                AbstractTask task = new Task(
                         rs.getInt("id"),
                         rs.getString("name"),
                         rs.getString("description"),

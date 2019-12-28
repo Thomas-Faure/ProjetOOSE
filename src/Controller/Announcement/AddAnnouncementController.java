@@ -1,4 +1,5 @@
 package Controller.Announcement;
+import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Announcement.Announcement;
 
 import Facade.Announcement.AnnouncementFacade;
@@ -34,7 +35,7 @@ public class AddAnnouncementController implements Initializable {
 
     @FXML
     void addNewAnnouncement(ActionEvent actionEvent){
-        Announcement announcement = new Announcement(0,title.getText(),message.getText(),LocalDate.now(),SessionFacade.getInstance().getUser());
+        AbstractAnnouncement announcement = new Announcement(0,title.getText(),message.getText(),LocalDate.now(),SessionFacade.getInstance().getUser());
         if(AnnouncementFacade.getInstance().addAnnouncement(announcement)){
             UIAnnouncementManagement announcementP = new UIAnnouncementManagement();
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");

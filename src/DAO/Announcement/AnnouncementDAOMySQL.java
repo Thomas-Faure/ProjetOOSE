@@ -8,6 +8,7 @@ import java.util.List;
 
 import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Announcement.Announcement;
+import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.User.User;
 
 import DAO.MySQLConnector;
@@ -28,8 +29,8 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 
 	}
 	@Override
-	public Announcement createAnnouncementById(int id) {
-		 Announcement announcement=null;
+	public AbstractAnnouncement createAnnouncementById(int id) {
+		 AbstractAnnouncement announcement=null;
 		    try {
 		    String query = "SELECT * FROM announcement WHERE id="+id;
 		      ResultSet result = MySQLConnector.getSQLConnection().createStatement(
@@ -37,7 +38,7 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 			      ResultSet.CONCUR_READ_ONLY).executeQuery(query);
 		      if(result.first()) {
 
-		    		  //� changer
+
 		    		  announcement= new Announcement( 
 		    				  result.getInt("id"),
 		    		          result.getString("title"),
@@ -139,7 +140,7 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 			while(rs.next()){
 
 
-				Announcement announcement = new Announcement(
+				AbstractAnnouncement announcement = new Announcement(
 						rs.getInt("id"),
 						rs.getString("title"),
 						rs.getString("message"),
@@ -201,15 +202,6 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 			throw new RuntimeException(e);
 		}
 		return announcements;
-	}
-
-
-	public static void main(String[] args) {
-
-		AnnouncementDAOMySQL sql = new AnnouncementDAOMySQL();
-		AbstractAnnouncement an = sql.getAnnouncementById(4);
-
-
 	}
 
 }
