@@ -32,6 +32,12 @@ public class ResourceController implements Initializable {
     @FXML
     private ListView<Announcement> fileList;
 
+    private int projectID;
+
+    public ResourceController(int projectID){
+        this.projectID = projectID;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -47,9 +53,12 @@ public class ResourceController implements Initializable {
         System.out.println(path_file);
         System.out.println(filename);
 
-        //Le controller doit recuperer l'id du projet
+        System.out.println("ID DU PROJET COURANT: "+projectID);
         //DropBoxConnexion dropboxPPM = new DropBoxConnexion();
-        //String dropboxpath_file = "/<projectname>/<filename>"
+
+        //Project p = ProjectFacade.getInstance().getProjectById();
+        //
+        //String dropboxpath_file = "/p.getName()/<filename>"
         //dropboxPPM.uploadFile(path_file,dropboxpath_file);
 
         //ResourceFacade.getInstance().addResource(<dropbox_path_file>,filename);
