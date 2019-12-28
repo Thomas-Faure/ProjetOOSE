@@ -37,9 +37,6 @@ public class Announcement extends AbstractAnnouncement {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-
-
-
 	public LocalDate getDate() {
 		return date;
 	}

@@ -6,11 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 public class UIAddTask implements UIGlobal {
-
-
-
 	public UIAddTask(){
-
 	}
 	public Scene loadScene(){
 		Parent root = null;

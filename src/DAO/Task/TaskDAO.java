@@ -7,7 +7,7 @@ import BuisnessLogic.Task.Task;
 import java.util.List;
 
 public interface TaskDAO {
-	public Task createTaskById(int id);
+	public AbstractTask createTaskById(int id);
 	public boolean save(AbstractTask task);
 	public boolean update(AbstractTask task);
 	boolean delete(int id);

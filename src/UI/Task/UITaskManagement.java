@@ -6,14 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 public class UITaskManagement implements UIGlobal {
-
-
-
 	public UITaskManagement(){
-
-
 	}
-
 	public Scene loadScene(){
 		Parent root = null;
 		try {
@@ -23,9 +17,6 @@ public class UITaskManagement implements UIGlobal {
 			e.printStackTrace();
 		}
 		Scene scene = new Scene(root, 1000, 600);
-
 		return scene;
 	}
-
-
 }
