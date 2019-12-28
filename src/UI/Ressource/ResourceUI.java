@@ -7,7 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 public class ResourceUI implements UIGlobal {
-    private ResourceController rController;
+
+    public ResourceUI(){};
 
     @Override
     public Scene loadScene(){
