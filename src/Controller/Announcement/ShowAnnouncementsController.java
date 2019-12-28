@@ -70,6 +70,9 @@ public class ShowAnnouncementsController implements Initializable {
         }
     }
 
+    public void testFct(KeyEvent keyEvent) {
+    }
+
     private class clickMore implements EventHandler<Event> {
         @Override
         public void handle(Event evt) {

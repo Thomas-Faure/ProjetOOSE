@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.stage.FileChooser;
 import java.io.File;
-import Controller.Resource.DropBoxConnexion;
+
 
 public class ResourceController implements Initializable {
 
