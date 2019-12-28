@@ -38,18 +38,13 @@ public class ResourceController implements Initializable {
 
     @FXML
     void uploadFile(ActionEvent actionEvent) {
-        //Creation d'une FileChooser
-        //Nous retourne le path du fichier
-        //Connection au DropBox
-        //Preparation de l'import
-        //Realisation de l'import
 
-        /*FileChooser fileChooser = new FileChooser();
+        FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(App.getInstanceStage());
-        String path_file = file.getAbsolutePath()();
+        String path_file = file.getAbsolutePath();
         String filename = file.getName();
         System.out.println(path_file);
-        */
+        System.out.println(filename);
 
         //DropBoxConnexion dropboxPPM = new DropBoxConnexion();
         //dropboxPPM.upload(path_file);
