@@ -1,4 +1,4 @@
-package DAO;
+package DAO.Ticket;
 
 import BuisnessLogic.Ticket.AbstractTicket;
 

@@ -1,10 +1,8 @@
-package DAO;
+package DAO.Ticket;
 
-import BuisnessLogic.Announcement.AbstractAnnouncement;
-import BuisnessLogic.Announcement.Announcement;
-import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Ticket.AbstractTicket;
 import BuisnessLogic.Ticket.Ticket;
+import DAO.MySQLConnector;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

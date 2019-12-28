@@ -1,9 +1,8 @@
-package Facade;
+package Facade.Ticket;
 
-import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Ticket.AbstractTicket;
 import DAO.MySQLDAOFactory;
-import DAO.TicketDAO;
+import DAO.Ticket.TicketDAO;
 
 import java.util.ArrayList;
 import java.util.List;

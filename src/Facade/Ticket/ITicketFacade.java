@@ -1,4 +1,4 @@
-package Facade;
+package Facade.Ticket;
 
 import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Ticket.AbstractTicket;
