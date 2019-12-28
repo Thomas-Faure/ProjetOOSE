@@ -1,69 +1,47 @@
 package Controller.Announcement;
 
 import BuisnessLogic.Announcement.AbstractAnnouncement;
-
-import BuisnessLogic.Announcement.Announcement;
 import Facade.Announcement.AnnouncementFacade;
-
 import Main.App;
-
 import UI.Announcement.UIAnnouncementManagement;
-
-
 import UI.Task.UITaskManagement;
 import UI.UIError;
 import UI.UIGlobal;
 import javafx.event.ActionEvent;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-
-
 import java.net.URL;
-
 import java.util.ResourceBundle;
 
 public class ModifyAnnouncementController implements Initializable {
 
     int id;
+    @FXML
+    private TextField title;
+    @FXML
+    private TextArea message;
+    private AbstractAnnouncement toModify;
+
+    public ModifyAnnouncementController(){
+    }
     public ModifyAnnouncementController(int id){
         this.id=id;
 
     }
-
-
-    @FXML
-    private TextField title;
-
-    @FXML
-    private TextArea message;
-
-
-
-    private AbstractAnnouncement toModify;
-
     @FXML
     void modifyAnAnnouncement(ActionEvent actionEvent){
         AbstractAnnouncement announcement = AnnouncementFacade.getInstance().getAnnouncementById(id);
         announcement.setTitle(title.getText());
         announcement.setMessage(message.getText());
         toModify=announcement;
-
-
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#manager");
         toHide.setVisible(false);
         AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#confirm");
         toShow.setVisible(true);
-
-
-
     }
-
-
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -78,14 +56,9 @@ public class ModifyAnnouncementController implements Initializable {
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(2);
-
         }
     }
-
-    public ModifyAnnouncementController(){
-
-
-    }
+    
     public void backtoAnnouncements(ActionEvent actionEvent) {
         UIGlobal announcementUI = new UIAnnouncementManagement();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");

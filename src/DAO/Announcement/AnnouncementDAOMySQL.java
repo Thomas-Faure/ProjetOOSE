@@ -37,8 +37,6 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 			      ResultSet.TYPE_SCROLL_INSENSITIVE,
 			      ResultSet.CONCUR_READ_ONLY).executeQuery(query);
 		      if(result.first()) {
-
-
 		    		  announcement= new Announcement( 
 		    				  result.getInt("id"),
 		    		          result.getString("title"),
@@ -50,22 +48,18 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 		      e.printStackTrace();
 		    }
 		    return announcement;
-		
 	}
 
 	@Override
 	public boolean save(AbstractAnnouncement a) {
 		try {
-			 
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(INSERT);
- 
             ps.setString(1, a.getTitle());
             ps.setString(2, a.getMessage());
             ps.setDate(3, java.sql.Date.valueOf( a.getDate() ));
             ps.setInt(4, a.getUser().getId());
             ps.executeUpdate();
             ps.close();
-
             return true;
         } catch (SQLException e) {
 			e.printStackTrace();
@@ -76,26 +70,19 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 	@Override
 	public boolean update(AbstractAnnouncement a) {
 		try {
-			 
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(UPDATE);
-
             ps.setString(1, a.getTitle());
             ps.setString(2, a.getMessage());
             ps.setDate(3, java.sql.Date.valueOf( a.getDate() ));
             ps.setInt(4, a.getUser().getId());
             ps.setInt(5, a.getId());
-             
             int i = ps.executeUpdate();
             ps.close();
 			if (i > 0) {
-
 				return true;
 			} else {
-
 				return false;
 			}
- 
-
         } catch (SQLException e) {
 			e.printStackTrace();
             return false;
@@ -103,25 +90,18 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 	}
 	@Override
     public boolean delete(int id) {
- 
         try {
- 
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(DELETE);
- 
             ps.setInt(1, id);
- 
             int i = ps.executeUpdate();
             ps.close();
 			if (i > 0) {
-
 				return true;
 			} else {
 
 				return false;
 			}
-
         } catch (SQLException e) {
-
             throw new RuntimeException(e);
         }
 
@@ -132,14 +112,9 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 	public List<AbstractAnnouncement> getAllAnnouncements() {
 		List<AbstractAnnouncement> list = new ArrayList<>();
 		try {
-
 			PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(ALL);
-
-
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
-
-
 				AbstractAnnouncement announcement = new Announcement(
 						rs.getInt("id"),
 						rs.getString("title"),
@@ -166,7 +141,6 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
-
 				announcement = new Announcement(
 						rs.getInt("id"),
 						rs.getString("title"),
@@ -189,7 +163,6 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 			ps.setString(1, title);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
-
 				announcements.add(new Announcement(
 						rs.getInt("id"),
 						rs.getString("title"),
@@ -203,5 +176,4 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 		}
 		return announcements;
 	}
-
 }

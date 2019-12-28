@@ -2,16 +2,11 @@ package Controller.Announcement;
 
 import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Announcement.Announcement;
-
-
 import Facade.Announcement.AnnouncementFacade;
-
 import Main.App;
-
 import UI.Announcement.UIAddAnnouncement;
 import UI.Announcement.UIModifyAnnouncement;
 import UI.Announcement.UIReadAnnouncement;
-
 import UI.Task.UITaskManagement;
 import UI.UIError;
 import javafx.collections.FXCollections;
@@ -27,7 +22,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,21 +32,21 @@ public class AnnouncementController implements Initializable {
 
     @FXML
     private TextField inputSearch;
-    @FXML
-    private Button buttonSearch;
+
     @FXML
     private ListView<AbstractAnnouncement> announcementList;
-    @FXML
-    private Button addAnAnnouncement;
 
     private static AbstractAnnouncement toManage;
 
 
     //permet de garder la liste de base
     private static ObservableList<AbstractAnnouncement> listViewTemp;
+
+    public AnnouncementController(){
+    }
+
     @FXML
     public void testFct(KeyEvent keyEvent) {
-
         if(!(inputSearch.getText().length() == 0)) {
             ArrayList<AbstractAnnouncement> array = new ArrayList<>(listViewTemp);
             ArrayList<AbstractAnnouncement> toDelete = new ArrayList<>();
@@ -68,26 +62,18 @@ public class AnnouncementController implements Initializable {
                     toDelete.add(array.get(i));
                 }
             }
-
             for (AbstractAnnouncement i : toDelete) {
-
                 array.remove(i);
             }
-
-
             ObservableList<AbstractAnnouncement> listViewT = FXCollections.observableArrayList(array);
             announcementList.setItems(listViewT);
-
         }else{
             announcementList.setItems(listViewTemp);
         }
-
     }
-
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-
         //uniquement pour la page des taches manager
         if(announcementList != null){
             //si on peut récuperer les annonces
@@ -99,12 +85,10 @@ public class AnnouncementController implements Initializable {
                 announcementList.setCellFactory(param -> new Cell());
             }
         }
-
     }
 
     public void validation(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-
         if(!(AnnouncementFacade.getInstance().deleteAnnouncement(toManage))){
             UIError error = new UIError(new UITaskManagement());
             box.getChildren().add(error.loadScene().getRoot());
@@ -143,18 +127,15 @@ public class AnnouncementController implements Initializable {
             hbox.setSpacing(10);
             img.setFitHeight(20);
             img.setFitWidth(20);
-
             hbox.getChildren().addAll(img,label,pane,btnR,btnM,btnD);
             btnD.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-
                     toManage = announcement;
                     AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#manager");
                     toHide.setVisible(false);
                     AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#confirm");
                     toShow.setVisible(true);
-
                 }
             });
             btnM.setOnAction(new EventHandler<ActionEvent>() {
@@ -162,45 +143,31 @@ public class AnnouncementController implements Initializable {
                 public void handle(ActionEvent e) {
                     UIModifyAnnouncement modifyAnnouncement = new UIModifyAnnouncement(announcement.getId());
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-
                     box.getChildren().remove(1);
                     box.getChildren().add(modifyAnnouncement.loadScene().getRoot());
-
                 }
             });
             btnR.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-
                     UIReadAnnouncement read = new UIReadAnnouncement(announcement.getId(),true);
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-
                     box.getChildren().remove(1);
                     box.getChildren().add(read.loadScene().getRoot());
-
                 }
             });
-
-
         }
         @Override
         public void updateItem(AbstractAnnouncement name, boolean empty){
             super.updateItem(name,empty);
             setText(null);
             setGraphic(null);
-
             if(name != null && !empty){
                 announcement = name;
                 label.setText(name.getId()+" "+name.getTitle());
                 setGraphic(hbox);
             }
-
         }
-
-
-    }
-
-    public AnnouncementController(){
     }
 
     @FXML
@@ -212,10 +179,6 @@ public class AnnouncementController implements Initializable {
         box.getChildren().add(addAnnouncement.loadScene().getRoot());
     }
 
-    void search(String search){
-        List<AbstractAnnouncement> AnnouncementsSearched = AnnouncementFacade.getInstance().getAnnouncementByTitle(search);
-
-    }
 
 
 

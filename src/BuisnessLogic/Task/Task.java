@@ -10,9 +10,23 @@ import BuisnessLogic.User.User;
 public class Task extends AbstractTask {
 	int id;
 	TaskState state;
-	public void setState(TaskState state){
+	String name;
+	int priority;
+	LocalDate deadline;
+	User creator;
+	String description;
+
+	public Task(int id,String name,String description,int priority,LocalDate deadline,User creator,TaskState state) {
+		this.id=id;
+		this.description=description;
+		this.name=name;
+		this.priority=priority;
+		this.deadline=deadline;
+		this.creator=creator;
 		this.state=state;
 	}
+
+	public void setState(TaskState state){ this.state=state; }
 	public TaskState getState(){
 		return this.state;
 	}
@@ -46,34 +60,14 @@ public class Task extends AbstractTask {
 	public void setCreator(User creator) {
 		this.creator = creator;
 	}
-
-	@Override
 	public void setDescription(String description) {
 		this.description=description;
 	}
-
-	String name;
-	int priority;
-	LocalDate deadline;
-
-	public String getStateString(){
-		return state.getStatetoString();
-	}
+	public String getStateString(){ return state.getStatetoString(); }
 	public String getDescription() {
 		return description;
 	}
 
-	User creator;
-	String description;
-	public Task(int id,String name,String description,int priority,LocalDate deadline,User creator,TaskState state) {
-		this.id=id;
-		this.description=description;
-		this.name=name;
-		this.priority=priority;
-		this.deadline=deadline;
-		this.creator=creator;
-		this.state=state;
-	}
 
 
 }

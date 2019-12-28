@@ -1,37 +1,29 @@
 package Controller.Announcement;
 import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Announcement.Announcement;
-
 import Facade.Announcement.AnnouncementFacade;
 import Facade.SessionFacade;
-
 import Main.App;
 import UI.Announcement.UIAnnouncementManagement;
-
+import UI.UIError;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
-
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class AddAnnouncementController implements Initializable {
-
-
+public class AddAnnouncementController{
 
     @FXML
     private TextField title;
     @FXML
     private TextArea message;
 
-    @FXML
-    private Button backButton;
-
-
-
+    public AddAnnouncementController(){
+    }
 
     @FXML
     void addNewAnnouncement(ActionEvent actionEvent){
@@ -43,11 +35,13 @@ public class AddAnnouncementController implements Initializable {
                 box.getChildren().remove(1);
             box.getChildren().add(announcementP.loadScene().getRoot());
         }else{
-            //pas ok
+            UIError error = new UIError(new UIAnnouncementManagement());
+            HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+            box.getChildren().add(error.loadScene().getRoot());
+            if(box.getChildren().size() >1 )
+                box.getChildren().remove(1);
         }
     }
-
-
 
     @FXML
     void backToAnnouncementManagerPage(ActionEvent actionEvent){
@@ -58,19 +52,4 @@ public class AddAnnouncementController implements Initializable {
         box.getChildren().add(announcementManagement.loadScene().getRoot());
     }
 
-
-    public AddAnnouncementController(){
-    }
-
-
-
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
-
-    public void returnAction(ActionEvent actionEvent) {
-
-    }
 }

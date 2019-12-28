@@ -13,24 +13,19 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 public class UIModifyAnnouncement implements UIGlobal {
-
 	int id;
+
 	public UIModifyAnnouncement(int id){
 		this.id=id;
 	}
 
-
-
 	public Scene loadScene(){
 		Map<Class, Callable<?>> creators = new HashMap<>();
 		creators.put(ModifyAnnouncementController.class , new Callable<ModifyAnnouncementController>() {
-
 			@Override
 			public ModifyAnnouncementController call() throws Exception {
-
 				return new ModifyAnnouncementController(id);
 			}
-
 		});
 		Parent root = null;
 		try {
@@ -60,11 +55,6 @@ public class UIModifyAnnouncement implements UIGlobal {
 			e.printStackTrace();
 		}
 		Scene scene = new Scene(root, 1000, 600);
-
-
-
 		return scene;
 	}
-
-
 }
