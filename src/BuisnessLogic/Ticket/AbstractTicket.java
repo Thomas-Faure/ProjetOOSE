@@ -29,4 +29,6 @@ public abstract class AbstractTicket {
     public abstract String getAnswer();
 
     public abstract void setAnswer(String answer);
+
+    public abstract int getId();
 }
