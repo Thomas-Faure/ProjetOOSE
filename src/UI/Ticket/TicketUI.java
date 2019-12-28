@@ -7,7 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 public class TicketUI implements UIGlobal {
-    private TicketController tController;
 
     @Override
     public Scene loadScene() {
@@ -19,9 +18,6 @@ public class TicketUI implements UIGlobal {
             e.printStackTrace();
         }
         Scene scene = new Scene(root, 1000, 600);
-
-
-
         return scene;
     }
 }
