@@ -9,6 +9,8 @@ import DAO.Role.RoleDAO;
 import DAO.Role.RoleDAOMySQL;
 import DAO.Task.TaskDAO;
 import DAO.Task.TaskDAOMySQL;
+import DAO.Ticket.TicketDAO;
+import DAO.Ticket.TicketDAOMySQL;
 import DAO.User.UserDAO;
 import DAO.User.UserDAOMySQL;
 

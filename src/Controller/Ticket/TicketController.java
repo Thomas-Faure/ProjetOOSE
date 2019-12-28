@@ -1,15 +1,16 @@
 package Controller.Ticket;
 
-import BuisnessLogic.Announcement.Announcement;
+import BuisnessLogic.Ticket.AbstractTicket;
 import BuisnessLogic.Ticket.Ticket;
 
-import Facade.ITicketFacade;
-import Facade.TicketFacade;
+import Facade.Ticket.ITicketFacade;
+import Facade.Ticket.TicketFacade;
 import Main.App;
 
 import UI.Announcement.UIModifyAnnouncement;
 import UI.Announcement.UIReadAnnouncement;
-import UI.Confirm.UIConfirm;
+import UI.Task.UITaskManagement;
+import UI.UIError;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +21,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
@@ -38,21 +40,23 @@ public class TicketController implements Initializable {
     private Button addTicket ;
 
     @FXML
-    private ListView ticketsList ;
+    private ListView<AbstractTicket> ticketsList ;
 
     private ITicketFacade tFacade = TicketFacade.getInstance();
+
+    private static AbstractTicket toManage;
 
     public TicketController(){
     }
 
     //permet de garder la liste de base
-    private static ObservableList<Ticket> listViewTemp;
+    private static ObservableList<AbstractTicket> listViewTemp;
     @FXML
     public void searchBar(KeyEvent keyEvent) {
 
         if(!(inputSearch.getText().length() == 0)) {
-            ArrayList<Ticket> array = new ArrayList<>(listViewTemp);
-            ArrayList<Ticket> toDelete = new ArrayList<>();
+            ArrayList<AbstractTicket> array = new ArrayList<>(listViewTemp);
+            ArrayList<AbstractTicket> toDelete = new ArrayList<>();
             for (int i = 0; i < array.size(); ++i) {
                 String inputS =inputSearch.getText();
                 if(inputS.charAt(0) == '*'){
@@ -66,10 +70,10 @@ public class TicketController implements Initializable {
                 }
             }
 
-            for (Ticket i : toDelete) {
+            for (AbstractTicket i : toDelete) {
                 array.remove(i);
             }
-            ObservableList<Ticket> listViewT = FXCollections.observableArrayList(array);
+            ObservableList<AbstractTicket> listViewT = FXCollections.observableArrayList(array);
             ticketsList.setItems(listViewT);
 
         }else{
@@ -83,7 +87,7 @@ public class TicketController implements Initializable {
             //si on peut récuperer les tickets
             if(tFacade.getAllTickets()) {
                 ArrayList<Ticket> listeElement = ((ArrayList) TicketFacade.getInstance().getListTickets());
-                ObservableList<Ticket> listView = FXCollections.observableArrayList(listeElement);
+                ObservableList<AbstractTicket> listView = FXCollections.observableArrayList(listeElement);
                 listViewTemp = FXCollections.observableArrayList(listeElement);
 
                 ticketsList.setItems(listView);
@@ -93,8 +97,35 @@ public class TicketController implements Initializable {
 
     }
 
-    static class Cell extends ListCell<Ticket> {
-        Ticket ticket;
+    public void validation(ActionEvent actionEvent) {
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(!(tFacade.deleteTicket(toManage))){
+            UIError error = new UIError(new UITaskManagement());
+            box.getChildren().add(error.loadScene().getRoot());
+            if(box.getChildren().size() >1 )
+                box.getChildren().remove(2);
+        }else {
+            AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+            toHide.setVisible(false);
+            AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#manager");
+            toShow.setVisible(true);
+            ticketsList.getItems().remove(toManage);
+            listViewTemp.remove(toManage);
+            toManage = null;
+        }
+    }
+
+    public void refuse(ActionEvent actionEvent) {
+        AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+        toHide.setVisible(false);
+        AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#manager");
+        toShow.setVisible(true);
+    }
+
+
+
+    static class Cell extends ListCell<AbstractTicket> {
+        AbstractTicket ticket;
         HBox hbox = new HBox();
         Image image = new Image("megaphone.png");
         ImageView img = new ImageView(image);
@@ -114,15 +145,11 @@ public class TicketController implements Initializable {
             btnD.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    getListView().getItems().remove(getItem());
-                    listViewTemp.remove(getItem());
-                    HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-                    UIConfirm taskPage = new UIConfirm("Ticket", "Delete", ticket, box.getChildren().get(1));
-                    box.getChildren().add(taskPage.loadScene().getRoot());
-                    if (box.getChildren().size() > 1)
-                        box.getChildren().remove(1);
-
-
+                    toManage = ticket;
+                    AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#manager");
+                    toHide.setVisible(false);
+                    AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+                    toShow.setVisible(true);
                 }
             });
             btnM.setOnAction(new EventHandler<ActionEvent>() {
@@ -152,7 +179,7 @@ public class TicketController implements Initializable {
 
         }
         @Override
-        public void updateItem(Ticket name, boolean empty){
+        public void updateItem(AbstractTicket name, boolean empty){
             super.updateItem(name,empty);
             setText(null);
             setGraphic(null);
