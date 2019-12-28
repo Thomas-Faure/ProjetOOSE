@@ -3,7 +3,6 @@ package Controller.Resource;
 import BuisnessLogic.Announcement.Announcement;
 import Facade.IResourceFacade;
 import Main.App;
-import UI.Announcement.UIAddAnnouncement;
 import UI.Ressource.ResourceUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,8 +14,6 @@ import javafx.scene.layout.HBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.stage.FileChooser;
-import javafx.stage.Window;
-
 import java.io.File;
 
 public class ResourceController implements Initializable {
