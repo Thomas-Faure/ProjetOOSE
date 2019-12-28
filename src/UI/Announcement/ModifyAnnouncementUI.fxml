@@ -8,11 +8,22 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Announcement.ModifyAnnouncementController">
   <children>
-    <TextField fx:id="title" layoutX="227.0" layoutY="118.0" prefWidth="450.0" />
-    <TextArea fx:id="message" layoutX="227.0" layoutY="175.0" prefWidth="450.0" wrapText="true" />
-    <Text layoutX="165.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title:" />
-    <Text layoutX="129.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Message:" />
-    <Button fx:id="backButton" layoutX="19.0" layoutY="540.0" mnemonicParsing="false" onAction="#backtoAnnouncements" text="Back" />
-    <Button fx:id="modifyAnnouncementButton" layoutX="358.0" layoutY="450.0" mnemonicParsing="false" onAction="#modifyAnAnnouncement" text="Modify announcement" />
+      <AnchorPane fx:id="manager" prefHeight="600.0" prefWidth="768.0">
+         <children>
+          <Text layoutX="73.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Message:" wrappingWidth="71.876953125" />
+          <TextField fx:id="title" layoutX="158.0" layoutY="84.0" prefWidth="450.0" />
+          <TextArea fx:id="message" layoutX="158.0" layoutY="150.0" prefWidth="450.0" wrapText="true" />
+          <Text layoutX="73.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title:" wrappingWidth="84.79993896484376" />
+          <Button fx:id="backButton" layoutX="14.0" layoutY="522.0" mnemonicParsing="false" onAction="#backtoAnnouncements" text="Back" />
+          <Button fx:id="modifyAnnouncementButton" layoutX="280.0" layoutY="409.0" mnemonicParsing="false" onAction="#modifyAnAnnouncement" prefHeight="70.0" prefWidth="206.0" text="Modify announcement" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="confirm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" visible="false">
+         <children>
+            <Text layoutX="348.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Page" />
+            <Button fx:id="returnButton" layoutX="316.0" layoutY="300.0" mnemonicParsing="false" onAction="#validation" text="Ok" />
+            <Button fx:id="returnButton1" layoutX="420.0" layoutY="300.0" mnemonicParsing="false" onAction="#refuse" text="Return" />
+         </children>
+      </AnchorPane>
   </children>
 </AnchorPane>

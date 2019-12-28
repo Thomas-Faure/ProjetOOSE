@@ -2,18 +2,14 @@ package Controller;
 
 import BuisnessLogic.Announcement.Announcement;
 import BuisnessLogic.Task.Task;
-import Facade.AnnouncementFacade;
-import Facade.TaskFacade;
+import Facade.Announcement.AnnouncementFacade;
+import Facade.Task.TaskFacade;
 import Main.App;
 import UI.Announcement.UIAnnouncementManagement;
 import UI.Task.UITaskManagement;
 import UI.UIError;
-import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
-
-import java.awt.event.ActionEvent;
 
 public class ConfirmController {
     String object;

@@ -2,7 +2,7 @@ package BuisnessLogic.Member;
 
 import BuisnessLogic.Member.AbstractMember;
 import BuisnessLogic.User.User;
-import Facade.IRoleFacade;
+import Facade.Role.IRoleFacade;
 
 public class Member extends AbstractMember {
     private User user;

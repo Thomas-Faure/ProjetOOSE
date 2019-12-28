@@ -3,6 +3,7 @@ package DAO;
 import BuisnessLogic.Idea.AbstractIdea;
 import BuisnessLogic.Idea.Idea;
 import BuisnessLogic.User.User;
+import DAO.Idea.IdeaDAO;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

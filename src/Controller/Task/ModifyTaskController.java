@@ -5,31 +5,18 @@ import BuisnessLogic.Task.Task;
 
 import BuisnessLogic.Task.TaskState;
 import BuisnessLogic.User.User;
-import Facade.SessionFacade;
-import Facade.TaskFacade;
+import Facade.Task.TaskFacade;
 import Main.App;
-import UI.Confirm.UIConfirm;
-import UI.Task.TaskUI;
-import UI.Task.UIAddTask;
-import UI.Task.UIModifyTask;
 import UI.Task.UITaskManagement;
 import UI.UIError;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 
-import javax.xml.soap.Text;
 import java.net.URL;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ModifyTaskController implements Initializable {
@@ -57,7 +44,7 @@ public class ModifyTaskController implements Initializable {
 
     @FXML
     private ChoiceBox stateChoiceBox;
-
+    private static AbstractTask toModify;
 
 
     @FXML
@@ -73,25 +60,14 @@ public class ModifyTaskController implements Initializable {
     void modifyATask(ActionEvent actionEvent){
         Task task = new Task(id,modifySubject.getText(),modifyDescription.getText(),Integer.parseInt(modifyPriority.getText()),modifyDeadline.getValue(),new User(3,"thomas","faure","faure","faure"),TaskState.getStateByString((String)stateChoiceBox.getSelectionModel().getSelectedItem()));
 
-        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-        UIConfirm taskPage = new UIConfirm("Task","Modify",task,box.getChildren().get(1));
-        if(box.getChildren().size() >1 )
-            box.getChildren().remove(1);
-        box.getChildren().add(taskPage.loadScene().getRoot());
-        /**if(TaskFacade.getInstance().modifyTask(task)){
-            UITaskManagement taskPage = new UITaskManagement();
-            HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-            if(box.getChildren().size() >1 )
-                box.getChildren().remove(1);
-            box.getChildren().add(taskPage.loadScene().getRoot());
-        }else{
+        toModify = task;
 
-            UIError error = new UIError(new UITaskManagement());
-            HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-            box.getChildren().add(error.loadScene().getRoot());
-            if(box.getChildren().size() >1 )
-                box.getChildren().remove(1);
-        }**/
+
+        AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#manager");
+        toHide.setVisible(false);
+        AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+        toShow.setVisible(true);
+
 
     }
 
@@ -122,13 +98,29 @@ public class ModifyTaskController implements Initializable {
 
     }
 
-
     public ModifyTaskController(){
 
     }
+    public void validation(ActionEvent actionEvent) {
+        if(TaskFacade.getInstance().modifyTask((Task)toModify)){
+            HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+            UITaskManagement tm = new UITaskManagement();
+            if(box.getChildren().size() >1 )
+                box.getChildren().remove(1);
+            box.getChildren().add(tm.loadScene().getRoot());
+        }else{
+            UIError error = new UIError(new UITaskManagement());
+            HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+            box.getChildren().add(error.loadScene().getRoot());
+            if(box.getChildren().size() >1 )
+                box.getChildren().remove(1);
+        }
+    }
 
-
-
-
-
+    public void refuse(ActionEvent actionEvent) {
+        AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+        toHide.setVisible(false);
+        AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#manager");
+        toShow.setVisible(true);
+    }
 }

@@ -1,4 +1,4 @@
-package Facade;
+package Facade.Announcement;
 
 import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Announcement.Announcement;
@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface IAnnouncementFacade {
-    boolean addAnnouncement(Announcement announcement);
-    boolean modifyAnnouncement(Announcement announcement);
-    boolean deleteAnnouncement(Announcement announcement);
+    boolean addAnnouncement(AbstractAnnouncement announcement);
+    boolean modifyAnnouncement(AbstractAnnouncement announcement);
+    boolean deleteAnnouncement(AbstractAnnouncement announcement);
 
     boolean getAllAnnouncements();
 

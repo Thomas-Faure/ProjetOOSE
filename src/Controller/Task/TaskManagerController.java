@@ -2,11 +2,8 @@ package Controller.Task;
 
 import BuisnessLogic.Task.Task;
 
-import BuisnessLogic.User.User;
-import Facade.SessionFacade;
-import Facade.TaskFacade;
+import Facade.Task.TaskFacade;
 import Main.App;
-import UI.Confirm.UIConfirm;
 import UI.Task.*;
 import UI.UIError;
 import javafx.collections.FXCollections;
@@ -19,16 +16,13 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
-import javax.xml.soap.Text;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class TaskManagerController implements Initializable {
 
@@ -42,6 +36,8 @@ public class TaskManagerController implements Initializable {
     private ListView<Task> taskList;
     @FXML
     private Button addATask;
+
+    private static Task toManage;
 
     //permet de garder la liste de base
     private static ObservableList<Task> listViewTemp;
@@ -106,6 +102,31 @@ public class TaskManagerController implements Initializable {
 
     }
 
+    public void validation(ActionEvent actionEvent) {
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+
+        if(!(TaskFacade.getInstance().deleteTask(toManage))){
+            UIError error = new UIError(new UITaskManagement());
+            box.getChildren().add(error.loadScene().getRoot());
+            if(box.getChildren().size() >1 )
+                box.getChildren().remove(2);
+        }else {
+            AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+            toHide.setVisible(false);
+            AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#manager");
+            toShow.setVisible(true);
+            taskList.getItems().remove(toManage);
+            listViewTemp.remove(toManage);
+            toManage = null;
+        }
+    }
+    public void refuse(ActionEvent actionEvent) {
+        AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+        toHide.setVisible(false);
+        AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#manager");
+        toShow.setVisible(true);
+    }
+
 
     static class Cell extends ListCell<Task> {
         Task task;
@@ -129,21 +150,13 @@ public class TaskManagerController implements Initializable {
             btnD.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    getListView().getItems().remove(getItem());
-                    listViewTemp.remove(getItem());
-                    HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-                    UIConfirm taskPage = new UIConfirm("Task","Delete",task,box.getChildren().get(1));
-                    box.getChildren().add(taskPage.loadScene().getRoot());
-                    if(box.getChildren().size() >1 )
-                        box.getChildren().remove(1);
-
-                    /**if(!(TaskFacade.getInstance().deleteTask(task))){
-                        UIError error = new UIError(new UITaskManagement());
-                        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-                        box.getChildren().add(error.loadScene().getRoot());
-                        if(box.getChildren().size() >1 )
-                            box.getChildren().remove(2);
-                    }**/
+                 /*   getListView().getItems().remove(getItem());
+                    listViewTemp.remove(getItem());*/
+                    toManage = task;
+                    AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#manager");
+                    toHide.setVisible(false);
+                    AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+                    toShow.setVisible(true);
 
                 }
             });

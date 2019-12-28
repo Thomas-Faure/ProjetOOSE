@@ -1,12 +1,10 @@
-package Facade;
+package Facade.Task;
 
-import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.Task;
-import BuisnessLogic.User.AbstractUser;
-import DAO.AbstractDAOFactory;
 import DAO.MySQLDAOFactory;
-import DAO.TaskDAO;
+import DAO.Task.TaskDAO;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +37,7 @@ public class TaskFacade implements ITaskFacade {
     }
 
     @Override
-    public  boolean addTask(Task task) {
+    public  boolean addTask(AbstractTask task) {
         if(instance.getDao().save(task)){
             //on ajouter la nouvelle tache à la liste
             instance.tasks.add(task);
@@ -50,7 +48,7 @@ public class TaskFacade implements ITaskFacade {
     }
 
     @Override
-    public boolean modifyTask(Task task) {
+    public boolean modifyTask(AbstractTask task) {
         if(daoFactory.update(task)){
             int i = 0;
             while(this.tasks.get(i).getId() != task.getId()){
@@ -64,7 +62,7 @@ public class TaskFacade implements ITaskFacade {
     }
 
     @Override
-    public boolean deleteTask(Task task) {
+    public boolean deleteTask(AbstractTask task) {
         if(daoFactory.delete(task.getId())){
             return true;
         }else {

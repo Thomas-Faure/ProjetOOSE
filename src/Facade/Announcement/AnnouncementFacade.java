@@ -1,13 +1,11 @@
-package Facade;
+package Facade.Announcement;
 
 import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Announcement.Announcement;
-import BuisnessLogic.Task.AbstractTask;
-import BuisnessLogic.Task.Task;
-import DAO.AbstractDAOFactory;
-import DAO.AnnouncementDAO;
+
+
+import DAO.Announcement.AnnouncementDAO;
 import DAO.MySQLDAOFactory;
-import DAO.TaskDAO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +28,7 @@ public class AnnouncementFacade implements IAnnouncementFacade {
         return instance;
     }
     @Override
-    public boolean addAnnouncement(Announcement announcement) {
+    public boolean addAnnouncement(AbstractAnnouncement announcement) {
         if(dao.save(announcement)){
             //on ajouter la nouvelle tache à la liste
             this.announcements.add(announcement);
@@ -41,7 +39,7 @@ public class AnnouncementFacade implements IAnnouncementFacade {
     }
 
     @Override
-    public boolean modifyAnnouncement(Announcement announcement) {
+    public boolean modifyAnnouncement(AbstractAnnouncement announcement) {
         if(dao.update(announcement)){
             int i = 0;
             while(this.announcements.get(i).getId() != announcement.getId()){
@@ -55,7 +53,7 @@ public class AnnouncementFacade implements IAnnouncementFacade {
     }
 
     @Override
-    public boolean deleteAnnouncement(Announcement announcement) {
+    public boolean deleteAnnouncement(AbstractAnnouncement announcement) {
         if(dao.delete(announcement.getId())){
             return true;
         }else {

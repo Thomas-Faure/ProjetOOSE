@@ -1,20 +1,21 @@
-package DAO;
+package DAO.Task;
 
 
 import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.Task;
 import BuisnessLogic.Task.TaskState;
 import BuisnessLogic.User.User;
+import DAO.MySQLConnector;
+
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class TaskDAOMySQL implements TaskDAO{
+public class TaskDAOMySQL implements TaskDAO {
 
 	
     private static final String INSERT = "INSERT INTO task (name, priority, deadline, creator,description,state) VALUES (?, ?, ?, ?,?,?)";
@@ -56,7 +57,7 @@ public class TaskDAOMySQL implements TaskDAO{
 
 
 	@Override
-	public boolean save(Task task) {
+	public boolean save(AbstractTask task) {
 		try {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(INSERT);
             ps.setString(1, task.getName());
@@ -88,7 +89,7 @@ public class TaskDAOMySQL implements TaskDAO{
         sql.update((Task)tast);
     }
 	@Override
-	public boolean update(Task task) {
+	public boolean update(AbstractTask task) {
 		try {
 			 
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(UPDATE);

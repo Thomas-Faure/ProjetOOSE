@@ -1,7 +1,7 @@
 package Controller.Announcement;
 
 import BuisnessLogic.Announcement.AbstractAnnouncement;
-import Facade.AnnouncementFacade;
+import Facade.Announcement.AnnouncementFacade;
 import Main.App;
 import UI.Announcement.UIReadAnnouncement;
 import javafx.event.Event;

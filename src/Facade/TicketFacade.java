@@ -1,9 +1,6 @@
 package Facade;
 
-import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Ticket.AbstractTicket;
-import DAO.AbstractDAOFactory;
-import DAO.AnnouncementDAO;
 import DAO.MySQLDAOFactory;
 import DAO.TicketDAO;
 

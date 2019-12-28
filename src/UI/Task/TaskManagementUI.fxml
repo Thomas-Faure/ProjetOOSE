@@ -10,19 +10,30 @@
 
 <AnchorPane fx:id="paneBasic" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" style="-fx-background-color: #ecf0f5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Task.TaskManagerController">
   <children>
-    <Button fx:id="addATask" layoutX="64.0" layoutY="472.0" mnemonicParsing="false" onAction="#addTaskPage" prefHeight="33.0" prefWidth="189.0" text="Add a task" AnchorPane.bottomAnchor="95.0" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="515.0" AnchorPane.topAnchor="472.0" />
-      <TextField fx:id="inputSearch" layoutX="523.0" layoutY="100.0" onKeyReleased="#testFct" promptText="search" />
-      <Button fx:id="buttonSearch" layoutX="687.0" layoutY="100.0" mnemonicParsing="false" text="Ok" />
-      <ListView fx:id="taskList" layoutX="64.0" layoutY="143.0" prefHeight="319.0" prefWidth="655.0" />
-      <Pane prefHeight="49.0" prefWidth="768.0" style="-fx-background-color: #367fa9;">
+      <AnchorPane fx:id="manager" prefHeight="600.0" prefWidth="768.0">
          <children>
-            <Text fill="WHITE" layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/Tasks/" />
-            <Text layoutX="40.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tasks">
-               <font>
-                  <Font name="System Bold" size="37.0" />
-               </font>
-            </Text>
+            <ListView fx:id="taskList" layoutX="56.0" layoutY="140.0" prefHeight="319.0" prefWidth="655.0" />
+          <Button fx:id="addATask" mnemonicParsing="false" onAction="#addTaskPage" prefHeight="33.0" prefWidth="189.0" text="Add a task" AnchorPane.bottomAnchor="95.0" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="515.0" AnchorPane.topAnchor="472.0" />
+            <TextField fx:id="inputSearch" layoutX="525.0" layoutY="112.0" onKeyReleased="#testFct" promptText="search" />
+            <Button fx:id="buttonSearch" layoutX="682.0" layoutY="112.0" mnemonicParsing="false" text="Ok" />
+            <Pane prefHeight="49.0" prefWidth="768.0" style="-fx-background-color: #367fa9;">
+               <children>
+                  <Text fill="WHITE" layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/Tasks/" />
+                  <Text layoutX="40.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tasks">
+                     <font>
+                        <Font name="System Bold" size="37.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
          </children>
-      </Pane>
+      </AnchorPane>
+      <AnchorPane fx:id="confirm" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" visible="false">
+         <children>
+            <Text layoutX="348.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Page" />
+            <Button fx:id="returnButton" layoutX="316.0" layoutY="300.0" mnemonicParsing="false" onAction="#validation" text="Ok" />
+            <Button fx:id="returnButton1" layoutX="420.0" layoutY="300.0" mnemonicParsing="false" onAction="#refuse" text="Return" />
+         </children>
+      </AnchorPane>
   </children>
 </AnchorPane>

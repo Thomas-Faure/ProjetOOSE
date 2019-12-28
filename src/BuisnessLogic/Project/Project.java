@@ -3,7 +3,7 @@ package BuisnessLogic.Project;
 import Facade.IMeetingFacade;
 import Facade.IMemberFacade;
 import Facade.ISprintFacade;
-import Facade.ITaskFacade;
+import Facade.Task.ITaskFacade;
 
 import java.util.Date;
 

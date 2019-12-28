@@ -4,15 +4,16 @@ import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Announcement.Announcement;
 
 
-import Facade.AnnouncementFacade;
+import Facade.Announcement.AnnouncementFacade;
 
 import Main.App;
 
 import UI.Announcement.UIAddAnnouncement;
 import UI.Announcement.UIModifyAnnouncement;
 import UI.Announcement.UIReadAnnouncement;
-import UI.Confirm.UIConfirm;
 
+import UI.Task.UITaskManagement;
+import UI.UIError;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,12 +24,11 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
-import javax.xml.soap.Text;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -44,6 +44,8 @@ public class AnnouncementController implements Initializable {
     private ListView<Announcement> announcementList;
     @FXML
     private Button addAnAnnouncement;
+
+    private static AbstractAnnouncement toManage;
 
 
     //permet de garder la liste de base
@@ -100,6 +102,32 @@ public class AnnouncementController implements Initializable {
 
     }
 
+    public void validation(ActionEvent actionEvent) {
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+
+        if(!(AnnouncementFacade.getInstance().deleteAnnouncement(toManage))){
+            UIError error = new UIError(new UITaskManagement());
+            box.getChildren().add(error.loadScene().getRoot());
+            if(box.getChildren().size() >1 )
+                box.getChildren().remove(2);
+        }else {
+            AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+            toHide.setVisible(false);
+            AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#manager");
+            toShow.setVisible(true);
+            announcementList.getItems().remove(toManage);
+            listViewTemp.remove(toManage);
+            toManage = null;
+        }
+    }
+
+    public void refuse(ActionEvent actionEvent) {
+        AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+        toHide.setVisible(false);
+        AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#manager");
+        toShow.setVisible(true);
+    }
+
     static class Cell extends ListCell<Announcement> {
         Announcement announcement;
         HBox hbox = new HBox();
@@ -120,21 +148,12 @@ public class AnnouncementController implements Initializable {
             btnD.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    getListView().getItems().remove(getItem());
-                    listViewTemp.remove(getItem());
-                    HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-                    UIConfirm confirmPage = new UIConfirm("Announcement","Delete",announcement,box.getChildren().get(1));
-                    box.getChildren().add(confirmPage.loadScene().getRoot());
-                    if(box.getChildren().size() >1 )
-                        box.getChildren().remove(1);
-                    /*
-                    if(!(AnnouncementFacade.getInstance().deleteAnnouncement(announcement))){
-                        UIError error = new UIError(new AnnouncementUI());
-                        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-                        box.getChildren().add(error.loadScene().getRoot());
-                        if(box.getChildren().size() >1 )
-                            box.getChildren().remove(2);
-                    };*/
+
+                    toManage = announcement;
+                    AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#manager");
+                    toHide.setVisible(false);
+                    AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+                    toShow.setVisible(true);
 
                 }
             });

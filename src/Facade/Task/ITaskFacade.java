@@ -1,4 +1,4 @@
-package Facade;
+package Facade.Task;
 
 import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.Task;
@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface ITaskFacade {
 
-      boolean addTask(Task task);
+      boolean addTask(AbstractTask task);
 
-      boolean modifyTask(Task task);
+      boolean modifyTask(AbstractTask task);
 
-      boolean deleteTask(Task task);
+      boolean deleteTask(AbstractTask task);
 
       List<AbstractTask> getTaskByName(String name);
 

@@ -1,7 +1,6 @@
 package BuisnessLogic.Sprint;
 
-import BuisnessLogic.Sprint.AbstractSprint;
-import Facade.ITaskFacade;
+import Facade.Task.ITaskFacade;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package DAO;
+package DAO.Announcement;
 
 import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Announcement.Announcement;
@@ -9,8 +9,8 @@ import java.util.List;
 public interface AnnouncementDAO {
 	 Announcement createAnnouncementById(int id);
 
-	 boolean save(Announcement a);
-	 boolean update(Announcement a);
+	 boolean save(AbstractAnnouncement a);
+	 boolean update(AbstractAnnouncement a);
 	boolean delete(int id);
 
     List<AbstractAnnouncement> getAllAnnouncements();

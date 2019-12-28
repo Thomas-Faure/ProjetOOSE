@@ -2,9 +2,8 @@ package Controller.Task;
 
 import BuisnessLogic.Task.AbstractTask;
 
-import Facade.TaskFacade;
+import Facade.Task.TaskFacade;
 import Main.App;
-import UI.Task.TaskUI;
 
 import UI.Task.UITaskManagement;
 import UI.UIError;

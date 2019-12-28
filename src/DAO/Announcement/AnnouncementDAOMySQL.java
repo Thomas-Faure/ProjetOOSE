@@ -1,20 +1,19 @@
-package DAO;
+package DAO.Announcement;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Announcement.Announcement;
-import BuisnessLogic.Task.AbstractTask;
-import BuisnessLogic.Task.Task;
 import BuisnessLogic.User.User;
 
+import DAO.MySQLConnector;
 
-public class AnnouncementDAOMySQL implements AnnouncementDAO  {
+
+public class AnnouncementDAOMySQL implements AnnouncementDAO {
 
 
 
@@ -54,7 +53,7 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO  {
 	}
 
 	@Override
-	public boolean save(Announcement a) {
+	public boolean save(AbstractAnnouncement a) {
 		try {
 			 
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(INSERT);
@@ -74,7 +73,7 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO  {
 	}
 
 	@Override
-	public boolean update(Announcement a) {
+	public boolean update(AbstractAnnouncement a) {
 		try {
 			 
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(UPDATE);

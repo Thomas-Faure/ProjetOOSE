@@ -1,4 +1,4 @@
-package DAO;
+package DAO.Task;
 
 
 import BuisnessLogic.Task.AbstractTask;
@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface TaskDAO {
 	public Task createTaskById(int id);
-	public boolean save(Task task);
-	public boolean update(Task task);
+	public boolean save(AbstractTask task);
+	public boolean update(AbstractTask task);
 	boolean delete(int id);
 	List<AbstractTask> getAllTasks();
 	AbstractTask getTaskById(int id);
