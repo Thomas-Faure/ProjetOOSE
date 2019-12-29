@@ -1,7 +1,10 @@
 package Controller.Resource;
 
 import BuisnessLogic.Announcement.Announcement;
+import BuisnessLogic.Ressource.AbstractResource;
+import BuisnessLogic.Ressource.Resource;
 import Facade.IResourceFacade;
+import Facade.ResourceFacade;
 import Main.App;
 import UI.Ressource.ResourceUI;
 import javafx.event.ActionEvent;
@@ -54,13 +57,15 @@ public class ResourceController implements Initializable {
         System.out.println(filename);
 
         System.out.println("ID DU PROJET COURANT: "+projectID);
-        //DropBoxConnexion dropboxPPM = new DropBoxConnexion();
+        DropBoxConnexion dropboxPPM = new DropBoxConnexion();
 
         //Project p = ProjectFacade.getInstance().getProjectById();
         //
         //String dropboxpath_file = "/p.getName()/<filename>"
-        //dropboxPPM.uploadFile(path_file,dropboxpath_file);
+        String dropboxpath_file = "/test/"+filename;
+        dropboxPPM.uploadFile(path_file,dropboxpath_file);
 
-        //ResourceFacade.getInstance().addResource(<dropbox_path_file>,filename);
+        AbstractResource resource = new Resource(dropboxpath_file,filename);
+        ResourceFacade.getInstance().addResource(resource);
     }
 }
