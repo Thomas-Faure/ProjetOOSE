@@ -64,12 +64,10 @@ public class ResourceController implements Initializable {
         if(resourceList != null){
 
             List<AbstractResource> listeElement = ResourceFacade.getInstance().getListResourceByProject(1);
-            System.out.println("listeElement size :"+listeElement.size());
             ObservableList<AbstractResource> listView = FXCollections.observableArrayList(listeElement);
             listViewTemp = FXCollections.observableArrayList(listeElement);
             resourceList.setItems(listView);
             resourceList.setCellFactory(param -> new Cell());
-            System.out.println(resourceList.getItems());
         }
     }
 
@@ -86,9 +84,9 @@ public class ResourceController implements Initializable {
         System.out.println("ID DU PROJET COURANT: "+projectID);
 
 
-        //Project p = ProjectFacade.getInstance().getProjectById();
+        //Project p = ProjectFacade.getInstance().getProjectById(projectID);
         //
-        //String dropboxpath_file = "/p.getName()/<filename>"
+        //String dropboxpath_file = "/p.getName()/filename"
         String dropboxpath_file = "/test/"+filename;
         dropboxPPM.uploadFile(path_file,dropboxpath_file);
 
@@ -104,6 +102,7 @@ public class ResourceController implements Initializable {
         Button btnDownload = new Button("Download");
         Label label = new Label("");
         Pane pane = new Pane();
+
         public Cell(){
             super();
             hbox.setSpacing(10);
@@ -111,16 +110,22 @@ public class ResourceController implements Initializable {
             btnDelete.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-
-                    System.out.println("Supprimer le fichier !!");
+                    DropBoxConnexion dropboxPPM = new DropBoxConnexion();
+                    dropboxPPM.deleteFile(resource.getPath());
+                    ResourceFacade.getInstance().deleteResource(resource.getResourceID());
                 }
             });
 
             btnDownload.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
+                    DropBoxConnexion dropboxPPM = new DropBoxConnexion();
 
-                    System.out.println("Télécharger le fichier !!");
+                    FileChooser fileChooser = new FileChooser();
+                    File file = fileChooser.showSaveDialog(App.getInstanceStage());
+                    String downloadpath = file.getAbsolutePath();
+
+                    dropboxPPM.downloadFile(downloadpath,resource.getPath());
                 }
             });
 
