@@ -3,17 +3,18 @@ package Facade;
 import BuisnessLogic.Ressource.*;
 import DAO.AbstractDAOFactory;
 import DAO.MySQLDAOFactory;
+import DAO.RessourceDAO;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ResourceFacade implements IResourceFacade {
     private List<AbstractResource> resources;
-    private AbstractDAOFactory daoFactory;
+    private RessourceDAO dao;
 
     public static ResourceFacade FacadeInstance;
     private ResourceFacade(){
-        //daoFactory = MySQLDAOFactory.getResourceDAO();
+        this.dao = MySQLDAOFactory.getResourceDAO();
         this.resources = new ArrayList<>();
     }
 
@@ -24,22 +25,21 @@ public class ResourceFacade implements IResourceFacade {
         return FacadeInstance;
     }
 
-    public AbstractDAOFactory getDao(){
-        return this.daoFactory;
+    public RessourceDAO getDao(){
+        return this.dao;
     }
     public List<AbstractResource> getListResource(){
         return this.resources;
     }
 
     @Override
-    public boolean addResource(Resource resource) {
-        /*if(FacadeInstance.getDao().save(resource)){
+    public boolean addResource(AbstractResource resource) {
+        if(FacadeInstance.getDao().save(resource)){
             FacadeInstance.getListResource().add(resource);
             return true;
         }else {
             return false;
-        }*/
-        return false;
+        }
     }
 
     @Override
