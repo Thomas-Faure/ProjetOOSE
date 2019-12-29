@@ -46,6 +46,8 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
 		return getInstance().createTicketDAO();
 	}
 
+	public static RessourceDAO getResourceDAO(){ return getInstance().createRessourceDAO();};
+
 	protected UserDAO createUserDAO() {
 		return new UserDAOMySQL();
 	}
@@ -93,7 +95,7 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
 	@Override
 	protected RessourceDAO createRessourceDAO() {
 		// TODO Auto-generated method stub
-		return null;
+		return new RessourceDAOMySQL();
 	}
 
 
