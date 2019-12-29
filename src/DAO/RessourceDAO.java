@@ -1,7 +1,13 @@
 package DAO;
 
-import BuisnessLogic.Ressource.Resource;
+import BuisnessLogic.Ressource.AbstractResource;
+
+import java.util.List;
 
 public interface RessourceDAO {
-    public boolean save(Resource resource);
+    boolean save(AbstractResource resource);
+    boolean update(AbstractResource resource);
+    boolean delete(int resourceID);
+    AbstractResource getResourceById(int resourceID);
+    List<AbstractResource> getAllResourceByProject(int projectID);
 }
