@@ -3,6 +3,7 @@ package BuisnessLogic.Ticket;
 import BuisnessLogic.Ticket.AbstractTicket;
 import BuisnessLogic.User.User;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Ticket extends AbstractTicket {
@@ -10,7 +11,7 @@ public class Ticket extends AbstractTicket {
     private String subject;
     private String problem;
     private Boolean status;
-    private Date dateCreation;
+    private LocalDate dateCreation;
     private User creator;
     private String answer;
 
@@ -23,7 +24,7 @@ public class Ticket extends AbstractTicket {
         this.id = id;
     }
 
-    public Ticket(int id, String subject, Boolean status, Date date, String problem, User creator, String answer){
+    public Ticket(int id, String subject, Boolean status, LocalDate date, String problem, User creator, String answer){
         this.id = id;
         this.subject = subject;
         this.problem = problem;
@@ -57,11 +58,11 @@ public class Ticket extends AbstractTicket {
         this.status = status;
     }
 
-    public Date getDateCreation() {
+    public LocalDate getDateCreation() {
         return dateCreation;
     }
 
-    public void setDateCreation(Date dateCreation) {
+    public void setDateCreation(LocalDate dateCreation) {
         this.dateCreation = dateCreation;
     }
 
