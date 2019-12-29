@@ -3,8 +3,10 @@ package Facade;
 import BuisnessLogic.Ressource.AbstractResource;
 import BuisnessLogic.Ressource.Resource;
 
+import java.util.List;
+
 public interface IResourceFacade {
 
     boolean addResource(AbstractResource resource);
-    boolean getListResourceByProject(int projectID);
+    List<AbstractResource> getListResourceByProject(int projectID);
 }

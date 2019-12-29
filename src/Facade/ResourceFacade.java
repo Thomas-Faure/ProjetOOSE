@@ -43,7 +43,7 @@ public class ResourceFacade implements IResourceFacade {
     }
 
     @Override
-    public boolean getListResourceByProject(int projectID) {
-        return false;
+    public List<AbstractResource> getListResourceByProject(int projectID) {
+        return FacadeInstance.getDao().getAllResourceByProject(projectID);
     }
 }
