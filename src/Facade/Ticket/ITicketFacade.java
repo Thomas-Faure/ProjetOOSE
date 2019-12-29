@@ -9,5 +9,6 @@ public interface ITicketFacade {
 
      boolean getAllTickets();
     List<AbstractTicket> getListTickets();
+    boolean addTicket(AbstractTicket ticket);
     boolean deleteTicket(AbstractTicket ticket);
 }

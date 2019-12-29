@@ -8,4 +8,5 @@ public interface TicketDAO {
 
     List<AbstractTicket> getAllTickets();
     boolean delete(int id);
+    boolean save(AbstractTicket t);
 }

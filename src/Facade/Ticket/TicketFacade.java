@@ -25,9 +25,23 @@ public class TicketFacade implements ITicketFacade {
         return instance;
     }
 
+    @Override
     public boolean getAllTickets() {
         this.tickets = dao.getAllTickets();
         return true;
+    }
+
+
+
+    @Override
+    public boolean addTicket(AbstractTicket ticket){
+        if(dao.save(ticket)){
+            //on ajouter la nouvelle tache à la liste
+            this.tickets.add(ticket);
+            return true;
+        }else {
+            return false;
+        }
     }
 
     @Override

@@ -7,9 +7,11 @@ import Facade.Ticket.ITicketFacade;
 import Facade.Ticket.TicketFacade;
 import Main.App;
 
+import UI.Announcement.UIAddAnnouncement;
 import UI.Announcement.UIModifyAnnouncement;
 import UI.Announcement.UIReadAnnouncement;
 import UI.Task.UITaskManagement;
+import UI.Ticket.AddTicketUI;
 import UI.UIError;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -192,5 +194,14 @@ public class TicketController implements Initializable {
 
         }
 
+    }
+
+    @FXML
+    void addTicketPage(ActionEvent actionEvent) {
+        AddTicketUI addTicket = new AddTicketUI();
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+
+        box.getChildren().remove(1);
+        box.getChildren().add(addTicket.loadScene().getRoot());
     }
 }
