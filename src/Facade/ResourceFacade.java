@@ -43,6 +43,16 @@ public class ResourceFacade implements IResourceFacade {
     }
 
     @Override
+    public boolean deleteResource(int resourceID) {
+        return FacadeInstance.getDao().delete(resourceID);
+    }
+
+    @Override
+    public AbstractResource getResourceById(int resourceID) {
+        return FacadeInstance.getDao().getResourceById(resourceID);
+    }
+
+    @Override
     public List<AbstractResource> getListResourceByProject(int projectID) {
         return FacadeInstance.getDao().getAllResourceByProject(projectID);
     }
