@@ -6,11 +6,19 @@ public class Resource extends AbstractResource {
     String path;
     String filename;
 
+    public Resource(String path, String filename) {
+        this.path = path;
+        this.filename = filename;
+    }
+
+
     public Resource(int resourceID, String path, String filename) {
         this.resourceID = resourceID;
         this.path = path;
         this.filename = filename;
     }
+
+
 
     public int getResourceID() {
         return resourceID;
