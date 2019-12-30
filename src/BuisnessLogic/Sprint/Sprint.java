@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Sprint extends AbstractSprint {
+    int sprintID;
     String sprintName;
     LocalDate beginDate;
     LocalDate endDate;
@@ -17,6 +18,19 @@ public class Sprint extends AbstractSprint {
         this.beginDate = beginDate;
         this.endDate = endDate;
         this.taskList = new ArrayList<Task>();
+    }
+
+    public Sprint(int sprintID, String sprintName, LocalDate beginDate, LocalDate endDate) {
+        this.sprintID = sprintID;
+        this.sprintName = sprintName;
+        this.beginDate = beginDate;
+        this.endDate = endDate;
+        this.taskList = new ArrayList<Task>();
+    }
+
+    @Override
+    public int getSprintID() {
+        return this.sprintID;
     }
 
     @Override

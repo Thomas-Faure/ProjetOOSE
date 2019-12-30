@@ -7,10 +7,13 @@ import java.util.List;
 
 public abstract class AbstractSprint {
 
+    int sprintID;
     String sprintName;
     LocalDate beginDate;
     LocalDate endDate;
     List<Task> taskList;
+
+    public abstract int getSprintID();
 
     public abstract String getSprintName();
 
