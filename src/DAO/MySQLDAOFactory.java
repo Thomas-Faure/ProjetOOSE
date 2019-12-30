@@ -48,6 +48,8 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
 
 	public static RessourceDAO getResourceDAO(){ return getInstance().createRessourceDAO();};
 
+	public static SprintDAO getSprintDAO(){ return getInstance().createSprintDAO();};
+
 	protected UserDAO createUserDAO() {
 		return new UserDAOMySQL();
 	}
@@ -102,7 +104,7 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
 	@Override
 	protected SprintDAO createSprintDAO() {
 		// TODO Auto-generated method stub
-		return null;
+		return new SprintDAOMySQL();
 	}
 
 	public static TaskDAO getTaskDAO() {
