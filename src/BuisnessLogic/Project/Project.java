@@ -1,6 +1,6 @@
 package BuisnessLogic.Project;
 
-import Facade.IMeetingFacade;
+import Facade.Meeting.IMeetingFacade;
 import Facade.IMemberFacade;
 import Facade.ISprintFacade;
 import Facade.Task.ITaskFacade;

@@ -1,6 +1,6 @@
 package UI.Meeting;
 
-import Controller.MeetingController;
+import Controller.Meeting.MeetingController;
 import UI.UIGlobal;
 import javafx.scene.Scene;
 

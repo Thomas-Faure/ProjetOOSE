@@ -5,6 +5,7 @@ import DAO.Announcement.AnnouncementDAO;
 import DAO.Announcement.AnnouncementDAOMySQL;
 import DAO.Idea.IdeaDAO;
 import DAO.Idea.IdeaDAOMySQL;
+import DAO.Meeting.MeetingDAO;
 import DAO.Role.RoleDAO;
 import DAO.Role.RoleDAOMySQL;
 import DAO.Task.TaskDAO;

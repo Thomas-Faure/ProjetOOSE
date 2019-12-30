@@ -2,6 +2,7 @@ package DAO;
 
 import DAO.Announcement.AnnouncementDAO;
 import DAO.Idea.IdeaDAO;
+import DAO.Meeting.MeetingDAO;
 import DAO.Role.RoleDAO;
 import DAO.Task.TaskDAO;
 import DAO.Ticket.TicketDAO;

@@ -1,8 +1,6 @@
-package Controller;
+package Controller.Meeting;
 
-import Facade.IMeetingFacade;
-
-import javax.sound.midi.MetaEventListener;
+import Facade.Meeting.IMeetingFacade;
 
 public class MeetingController {
     public static MeetingController instance;

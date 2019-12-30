@@ -1,4 +1,4 @@
-package Facade;
+package Facade.Meeting;
 
 import BuisnessLogic.Meeting.AbstractMeeting;
 import DAO.AbstractDAOFactory;
