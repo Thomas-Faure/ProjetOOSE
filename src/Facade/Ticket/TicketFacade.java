@@ -1,6 +1,7 @@
 package Facade.Ticket;
 
 import BuisnessLogic.Ticket.AbstractTicket;
+import BuisnessLogic.User.AbstractUser;
 import DAO.MySQLDAOFactory;
 import DAO.Ticket.TicketDAO;
 
@@ -28,6 +29,12 @@ public class TicketFacade implements ITicketFacade {
     @Override
     public boolean getAllTickets() {
         this.tickets = dao.getAllTickets();
+        return true;
+    }
+
+    @Override
+    public boolean getMyTickets(AbstractUser user) {
+        this.tickets = dao.getMyTickets(user);
         return true;
     }
 

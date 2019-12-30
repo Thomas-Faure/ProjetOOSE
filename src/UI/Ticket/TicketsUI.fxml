@@ -12,7 +12,6 @@
   <children>
       <AnchorPane fx:id="manager" prefHeight="600.0" prefWidth="768.0">
           <children>
-            <Button fx:id="addTicket" layoutX="64.0" layoutY="472.0" mnemonicParsing="false" onAction="#addTicketPage" prefHeight="31.0" prefWidth="189.0" text="New ticket" AnchorPane.bottomAnchor="97.0" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="515.0" AnchorPane.topAnchor="472.0" />
             <TextField fx:id="inputSearch" layoutX="523.0" layoutY="100.0" onKeyReleased="#searchBar" promptText="search" />
             <ListView fx:id="ticketsList" layoutX="64.0" layoutY="143.0" prefHeight="319.0" prefWidth="655.0" />
             <Pane prefHeight="49.0" prefWidth="768.0" style="-fx-background-color: #367fa9;">
@@ -29,7 +28,7 @@
       </AnchorPane>
       <AnchorPane fx:id="confirm" layoutX="10.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" visible="false">
           <children>
-              <Text layoutX="348.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you really want to delete this ticket ?" />
+              <Text layoutX="250.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you really want to delete this ticket ?" />
               <Button fx:id="returnButton" layoutX="316.0" layoutY="300.0" mnemonicParsing="false" onAction="#validation" text="Ok" />
               <Button fx:id="returnButton1" layoutX="420.0" layoutY="300.0" mnemonicParsing="false" onAction="#refuse" text="Return" />
           </children>

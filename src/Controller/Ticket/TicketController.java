@@ -7,11 +7,9 @@ import Facade.Ticket.ITicketFacade;
 import Facade.Ticket.TicketFacade;
 import Main.App;
 
-import UI.Announcement.UIAddAnnouncement;
 import UI.Announcement.UIModifyAnnouncement;
 import UI.Announcement.UIReadAnnouncement;
 import UI.Task.UITaskManagement;
-import UI.Ticket.AddTicketUI;
 import UI.UIError;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -88,7 +86,7 @@ public class TicketController implements Initializable {
         if(ticketsList != null){
             //si on peut récuperer les tickets
             if(tFacade.getAllTickets()) {
-                ArrayList<Ticket> listeElement = ((ArrayList) TicketFacade.getInstance().getListTickets());
+                ArrayList<Ticket> listeElement = ((ArrayList) tFacade.getListTickets());
                 ObservableList<AbstractTicket> listView = FXCollections.observableArrayList(listeElement);
                 listViewTemp = FXCollections.observableArrayList(listeElement);
 
@@ -133,7 +131,7 @@ public class TicketController implements Initializable {
         ImageView img = new ImageView(image);
         Button btnR = new Button("Read");
         Button btnD = new Button("Delete");
-        Button btnM = new Button("Modify");
+        Button btnM = new Button("Answer");
         Label label = new Label("");
         Pane pane = new Pane();
 
@@ -188,7 +186,7 @@ public class TicketController implements Initializable {
 
             if(name != null && !empty){
                 ticket = name;
-                label.setText(name.getId()+" "+name.getProblem());
+                label.setText(name.getId()+" "+name.getSubject());
                 setGraphic(hbox);
             }
 
@@ -196,12 +194,4 @@ public class TicketController implements Initializable {
 
     }
 
-    @FXML
-    void addTicketPage(ActionEvent actionEvent) {
-        AddTicketUI addTicket = new AddTicketUI();
-        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-
-        box.getChildren().remove(1);
-        box.getChildren().add(addTicket.loadScene().getRoot());
-    }
 }

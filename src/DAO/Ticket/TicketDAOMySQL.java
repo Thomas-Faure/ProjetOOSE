@@ -3,6 +3,7 @@ package DAO.Ticket;
 import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Ticket.AbstractTicket;
 import BuisnessLogic.Ticket.Ticket;
+import BuisnessLogic.User.AbstractUser;
 import DAO.MySQLConnector;
 
 import java.sql.PreparedStatement;
@@ -18,6 +19,7 @@ public class TicketDAOMySQL implements TicketDAO {
     private static final String UPDATE = "UPDATE ticket SET subject=?, problem=?, status=?, creator=?, answer=? WHERE id=?";
     private static final String DELETE = "DELETE FROM ticket WHERE id=?";
     private static final String ALL = "SELECT * from ticket";
+    private static final String MYTICKET = "SELECT * from ticket where creator=?";
     private static final String TICKETBYID = "SELECT * from ticket where id=?";
 
     @Override
@@ -52,6 +54,37 @@ public class TicketDAOMySQL implements TicketDAO {
         return list;
     }
 
+
+    @Override
+    public List<AbstractTicket> getMyTickets(AbstractUser user) {
+        List<AbstractTicket> list = new ArrayList<>();
+        try {
+
+            PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(MYTICKET);
+            ps.setInt(1,user.getId());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+
+
+                Ticket ticket = new Ticket(
+                        rs.getInt("id"),
+                        rs.getString("subject"),
+                        rs.getBoolean("status"),
+                        rs.getDate("dateCreation").toLocalDate(),
+                        rs.getString("problem"),
+                        null,
+                        rs.getString("answer")
+                );
+
+                list.add(ticket);
+            }
+            ps.close();
+        } catch (SQLException e) {
+
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
 
     @Override
     public boolean save(AbstractTicket t) {

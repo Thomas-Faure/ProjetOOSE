@@ -11,6 +11,7 @@ import Facade.Ticket.ITicketFacade;
 import Facade.Ticket.TicketFacade;
 import Main.App;
 import UI.Announcement.UIAnnouncementManagement;
+import UI.Ticket.MyTicketUI;
 import UI.Ticket.TicketUI;
 import UI.UIError;
 import javafx.event.ActionEvent;
@@ -35,22 +36,22 @@ public class AddTicketController {
 
     @FXML
     void cancel(ActionEvent actionEvent){
-        TicketUI ticketsPage = new TicketUI();
+        MyTicketUI myTicketsPage = new MyTicketUI();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
-        box.getChildren().add(ticketsPage.loadScene().getRoot());
+        box.getChildren().add(myTicketsPage.loadScene().getRoot());
     }
 
     @FXML
     void addNewTicket(ActionEvent actionEvent){
         AbstractTicket ticket = new Ticket(1,subject.getText(),false,LocalDate.now(),problem.getText(),sessionFacade.getUser(),null);
         if(tFacade.addTicket(ticket)){
-            TicketUI ticketsPage = new TicketUI();
+            MyTicketUI myTicketsPage = new MyTicketUI();
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(1);
-            box.getChildren().add(ticketsPage.loadScene().getRoot());
+            box.getChildren().add(myTicketsPage.loadScene().getRoot());
         }else{
             UIError error = new UIError(new TicketUI());
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
