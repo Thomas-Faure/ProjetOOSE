@@ -1,6 +1,6 @@
 package Controller.Login;
 
-import Controller.UILoginController;
+import Facade.SessionFacade;
 import Main.App;
 import UI.Login.UIForgottenPassword;
 import javafx.event.ActionEvent;
@@ -11,7 +11,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-import java.awt.*;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 
 public class LoginController {
 
@@ -49,7 +52,22 @@ public class LoginController {
 
     public boolean login(String username, String password) {
 
-        if (UILoginController.getInstance().login(username, password)) {
+        //final password encrypted
+        String hashtext="";
+
+        //encrypt password to sha-1
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            byte[] messageDigest = md.digest(password.getBytes());
+            BigInteger no = new BigInteger(1, messageDigest);
+            hashtext = no.toString(16);
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        if (SessionFacade.getInstance().login(username, hashtext)) {
             return true;
         } else {
             return false;
