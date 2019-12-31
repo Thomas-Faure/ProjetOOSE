@@ -8,6 +8,8 @@ import Facade.ISprintFacade;
 import Facade.ResourceFacade;
 import Facade.SprintFacade;
 import Main.App;
+import UI.Sprint.AddSprintUI;
+import UI.Sprint.SprintUI;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -42,6 +44,15 @@ public class SprintController implements Initializable {
 
     public SprintController(int projectID){
         this.projectID = projectID;
+    }
+
+    @FXML
+    void createSprint(ActionEvent actionEvent){
+        AddSprintUI AddSprintUI = new AddSprintUI(1);
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(AddSprintUI.loadScene().getRoot());
     }
 
     @Override
