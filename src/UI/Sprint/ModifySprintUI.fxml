@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="paneBasic" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" style="-fx-background-color: #ecf0f5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Sprint.ModifySprintController">
+  <children>
+      <Pane prefHeight="49.0" prefWidth="768.0" style="-fx-background-color: #367fa9;">
+         <children>
+            <Text fill="WHITE" layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/Sprint/Update" />
+         </children>
+      </Pane>
+      <Text layoutX="188.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Begin Date :" wrappingWidth="110.7294921875" />
+      <Text layoutX="188.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Date :" wrappingWidth="74.72949028015137" />
+      <Text layoutX="188.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sprint Name :" />
+      <TextField fx:id="inputSprintName" layoutX="299.0" layoutY="161.0" />
+      <DatePicker fx:id="inputBeginDate" layoutX="299.0" layoutY="219.0" />
+      <DatePicker fx:id="inputEndDate" layoutX="299.0" layoutY="266.0" />
+      <Button fx:id="buttonSave" layoutX="299.0" layoutY="453.0" mnemonicParsing="false" onAction="#updateSprint" prefHeight="26.0" prefWidth="171.0" text="Save" />
+  </children>
+</AnchorPane>
