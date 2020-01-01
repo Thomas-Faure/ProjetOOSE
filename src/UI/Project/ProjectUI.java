@@ -1,14 +1,23 @@
 package UI.Project;
 
-import Controller.ProjectController;
+import Controller.Project.ProjectController;
 import UI.UIGlobal;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 public class ProjectUI implements UIGlobal {
-    private ProjectController pController;
 
     @Override
     public Scene loadScene() {
-        return null;
+        Parent root = null;
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            root = loader.load(getClass().getResourceAsStream("ProjectUI.fxml"));
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        Scene scene = new Scene(root, 1000, 600);
+        return scene;
     }
 }

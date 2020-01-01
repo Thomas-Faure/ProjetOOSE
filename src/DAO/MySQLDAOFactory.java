@@ -7,6 +7,8 @@ import DAO.Idea.IdeaDAO;
 import DAO.Idea.IdeaDAOMySQL;
 import DAO.Meeting.MeetingDAO;
 import DAO.Meeting.MeetingDAOMySQL;
+import DAO.Project.ProjectDAO;
+import DAO.Project.ProjectDAOMySQL;
 import DAO.Role.RoleDAO;
 import DAO.Role.RoleDAOMySQL;
 import DAO.Task.TaskDAO;
@@ -96,8 +98,11 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
 
 	@Override
 	protected ProjectDAO createProjectDAO() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ProjectDAOMySQL();
+	}
+
+	public static ProjectDAO getProjectDAO(){
+		return getInstance().createProjectDAO();
 	}
 
 	@Override

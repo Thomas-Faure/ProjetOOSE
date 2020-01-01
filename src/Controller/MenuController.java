@@ -3,6 +3,8 @@ package Controller;
 import Main.App;
 import UI.Announcement.AnnouncementUI;
 import UI.Announcement.UIAnnouncementManagement;
+import UI.Meeting.MeetingsUI;
+import UI.Project.ProjectUI;
 import UI.Task.TaskUI;
 import UI.Task.UITaskManagement;
 import UI.Ticket.MyTicketUI;
@@ -53,8 +55,13 @@ public class MenuController {
     }
     @FXML
     void goMenuProject(ActionEvent event){
-
+        ProjectUI project = new ProjectUI();
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(project.loadScene().getRoot());
     }
+
     @FXML
     void goMenuAnnouncementManager(ActionEvent event){
         UIAnnouncementManagement announcement = new UIAnnouncementManagement();
@@ -108,4 +115,11 @@ public class MenuController {
     }
 
 
+    public void goMenuMeeting(ActionEvent actionEvent) {
+        MeetingsUI meetings = new MeetingsUI();
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(meetings.loadScene().getRoot());
+    }
 }
