@@ -9,6 +9,7 @@ import Facade.ResourceFacade;
 import Facade.SprintFacade;
 import Main.App;
 import UI.Sprint.AddSprintUI;
+import UI.Sprint.ModifySprintUI;
 import UI.Sprint.SprintUI;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -71,17 +72,43 @@ public class SprintController implements Initializable {
         AbstractSprint sprint;
         HBox hbox = new HBox();
         Button btnRead = new Button("Read");
+        Button btnUpdate = new Button("Update");
+        Button btnDelete = new Button("Delete");
         Label label = new Label("");
         Pane pane = new Pane();
 
         public Cell(){
             super();
             hbox.setSpacing(10);
-            hbox.getChildren().addAll(label,pane,btnRead);
+            hbox.getChildren().addAll(label,pane,btnRead,btnUpdate,btnDelete);
             btnRead.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
                     System.out.println("See sprint !! OK");
+                }
+            });
+
+            btnUpdate.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    ModifySprintUI updateSprintUI = new ModifySprintUI(1,sprint.getSprintID());
+                    HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+                    if(box.getChildren().size() >1 )
+                        box.getChildren().remove(1);
+                    box.getChildren().add(updateSprintUI.loadScene().getRoot());
+                }
+            });
+
+            btnDelete.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    SprintFacade.getInstance().deleteSprint(sprint.getSprintID());
+
+                    SprintUI sprintUI = new SprintUI(1);
+                    HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+                    if(box.getChildren().size() >1 )
+                        box.getChildren().remove(1);
+                    box.getChildren().add(sprintUI.loadScene().getRoot());
                 }
             });
 

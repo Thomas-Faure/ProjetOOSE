@@ -36,13 +36,18 @@ public class SprintFacade implements ISprintFacade {
     }
 
     @Override
-    public boolean addSprint(AbstractSprint sprint) {
-        if(FacadeInstance.getDao().save(sprint)){
+    public boolean addSprint(AbstractSprint sprint, int projectID) {
+        if(FacadeInstance.getDao().save(sprint,projectID)){
             FacadeInstance.getListSprint().add(sprint);
             return true;
         }else {
             return false;
         }
+    }
+
+    @Override
+    public boolean updateSprint(AbstractSprint sprint) {
+        return FacadeInstance.getDao().update(sprint);
     }
 
     @Override

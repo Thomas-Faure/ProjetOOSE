@@ -6,7 +6,7 @@ import BuisnessLogic.Task.AbstractTask;
 import java.util.List;
 
 public interface SprintDAO {
-    boolean save(AbstractSprint sprint);
+    boolean save(AbstractSprint sprint, int projectID);
     boolean update(AbstractSprint sprint);
     boolean delete(int sprintID);
     AbstractSprint getSprintById(int sprintID);
