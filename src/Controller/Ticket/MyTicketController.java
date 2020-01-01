@@ -9,6 +9,7 @@ import Facade.Ticket.TicketFacade;
 import Main.App;
 import UI.Announcement.UIReadAnnouncement;
 import UI.Ticket.AddTicketUI;
+import UI.Ticket.ReadTicketUI;
 import UI.UIError;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -114,7 +115,7 @@ public class MyTicketController implements Initializable {
                 @Override
                 public void handle(ActionEvent e) {
 
-                    UIReadAnnouncement read = new UIReadAnnouncement(ticket.getId(), true);
+                    ReadTicketUI read = new ReadTicketUI(ticket.getId(),false);
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
 
                     box.getChildren().remove(1);

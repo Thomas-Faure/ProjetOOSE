@@ -1,9 +1,11 @@
 package DAO.Ticket;
 
 import BuisnessLogic.Announcement.AbstractAnnouncement;
+import BuisnessLogic.Announcement.Announcement;
 import BuisnessLogic.Ticket.AbstractTicket;
 import BuisnessLogic.Ticket.Ticket;
 import BuisnessLogic.User.AbstractUser;
+import BuisnessLogic.User.User;
 import DAO.MySQLConnector;
 
 import java.sql.PreparedStatement;
@@ -84,6 +86,31 @@ public class TicketDAOMySQL implements TicketDAO {
             throw new RuntimeException(e);
         }
         return list;
+    }
+
+    @Override
+    public AbstractTicket getTicketById(int id) {
+        Ticket ticket = null;
+        try {
+            PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(TICKETBYID);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                 ticket = new Ticket(
+                        rs.getInt("id"),
+                        rs.getString("subject"),
+                        rs.getBoolean("status"),
+                        rs.getDate("dateCreation").toLocalDate(),
+                        rs.getString("problem"),
+                        null,
+                        rs.getString("answer")
+                );
+            }
+            ps.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return ticket;
     }
 
     @Override

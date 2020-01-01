@@ -1,5 +1,6 @@
 package Facade.Ticket;
 
+import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Ticket.AbstractTicket;
 import BuisnessLogic.User.AbstractUser;
 import DAO.MySQLDAOFactory;
@@ -62,5 +63,12 @@ public class TicketFacade implements ITicketFacade {
 
     public List<AbstractTicket> getListTickets() {
         return this.tickets;
+    }
+
+    @Override
+    public AbstractTicket getTicketById(int id) {
+        AbstractTicket ticket;
+        ticket = dao.getTicketById(id);
+        return ticket;
     }
 }

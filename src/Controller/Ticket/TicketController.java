@@ -10,6 +10,7 @@ import Main.App;
 import UI.Announcement.UIModifyAnnouncement;
 import UI.Announcement.UIReadAnnouncement;
 import UI.Task.UITaskManagement;
+import UI.Ticket.ReadTicketUI;
 import UI.UIError;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -131,7 +132,7 @@ public class TicketController implements Initializable {
         ImageView img = new ImageView(image);
         Button btnR = new Button("Read");
         Button btnD = new Button("Delete");
-        Button btnM = new Button("Answer");
+        Button btnA = new Button("Answer");
         Label label = new Label("");
         Pane pane = new Pane();
 
@@ -141,7 +142,7 @@ public class TicketController implements Initializable {
             img.setFitHeight(20);
             img.setFitWidth(20);
 
-            hbox.getChildren().addAll(img, label, pane, btnR, btnM, btnD);
+            hbox.getChildren().addAll(img, label, pane, btnR, btnD, btnA);
             btnD.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
@@ -152,7 +153,7 @@ public class TicketController implements Initializable {
                     toShow.setVisible(true);
                 }
             });
-            btnM.setOnAction(new EventHandler<ActionEvent>() {
+            btnA.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
                     UIModifyAnnouncement modifyAnnouncement = new UIModifyAnnouncement(ticket.getId());
@@ -167,7 +168,7 @@ public class TicketController implements Initializable {
                 @Override
                 public void handle(ActionEvent e) {
 
-                    UIReadAnnouncement read = new UIReadAnnouncement(ticket.getId(), true);
+                    ReadTicketUI read = new ReadTicketUI(ticket.getId(), true);
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
 
                     box.getChildren().remove(1);
@@ -183,9 +184,12 @@ public class TicketController implements Initializable {
             super.updateItem(name,empty);
             setText(null);
             setGraphic(null);
-
             if(name != null && !empty){
                 ticket = name;
+
+                if (ticket.getStatus()){
+                    btnA.setVisible(false);
+                }
                 label.setText(name.getId()+" "+name.getSubject());
                 setGraphic(hbox);
             }
