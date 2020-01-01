@@ -1,9 +1,70 @@
 package Facade.Meeting;
 
 import BuisnessLogic.Meeting.AbstractMeeting;
+import BuisnessLogic.Ticket.AbstractTicket;
 import DAO.AbstractDAOFactory;
+import DAO.Meeting.MeetingDAO;
+import DAO.MySQLDAOFactory;
+import DAO.Ticket.TicketDAO;
+import Facade.Ticket.TicketFacade;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MeetingFacade implements IMeetingFacade {
-    private AbstractMeeting[] meetings;
-    private AbstractDAOFactory daoFactory;
+    private List<AbstractMeeting> meetings;
+    private MeetingDAO dao;
+    public static MeetingFacade instance;
+
+    private MeetingFacade(){
+        dao = MySQLDAOFactory.getMeetingDAO();
+        this.meetings = new ArrayList<>();
+    }
+
+    public static MeetingFacade getInstance(){
+        if(instance == null){
+            instance =new MeetingFacade();
+        }
+        return instance;
+    }
+
+    @Override
+    public List<AbstractMeeting> getMeetingByProject(int idProject) {
+        this.meetings = dao.getMeetingByProject(idProject);
+        return this.meetings;
+    }
+
+    @Override
+    public boolean deleteMeeting(AbstractMeeting meeting) {
+        if(dao.delete(meeting.getId())){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean addMeeting(AbstractMeeting meeting) {
+        if(dao.save(meeting)){
+            //on ajouter la nouvelle tache à la liste
+            this.meetings.add(meeting);
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean update(AbstractMeeting meeting) {
+        if(dao.update(meeting)){
+            int i = 0;
+            while(this.meetings.get(i).getId() != meeting.getId()){
+                i++;
+            }
+            this.meetings.set(i, meeting);
+            return true;
+        }else {
+            return false;
+        }
+    }
 }
