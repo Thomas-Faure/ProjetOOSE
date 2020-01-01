@@ -53,7 +53,7 @@ public class AddTicketController {
                 box.getChildren().remove(1);
             box.getChildren().add(myTicketsPage.loadScene().getRoot());
         }else{
-            UIError error = new UIError(new TicketUI());
+            UIError error = new UIError(new MyTicketUI());
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )
