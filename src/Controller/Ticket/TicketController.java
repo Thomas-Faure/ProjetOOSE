@@ -12,6 +12,7 @@ import UI.Announcement.UIReadAnnouncement;
 import UI.Task.UITaskManagement;
 import UI.Ticket.AnswerTicketUI;
 import UI.Ticket.ReadTicketUI;
+import UI.Ticket.TicketUI;
 import UI.UIError;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -102,7 +103,7 @@ public class TicketController implements Initializable {
     public void validation(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(!(tFacade.deleteTicket(toManage))){
-            UIError error = new UIError(new UITaskManagement());
+            UIError error = new UIError(new TicketUI());
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(2);
