@@ -14,4 +14,5 @@ public interface ITicketFacade {
     AbstractTicket getTicketById(int id);
     boolean addTicket(AbstractTicket ticket);
     boolean deleteTicket(AbstractTicket ticket);
+    boolean answer(AbstractTicket ticket,String answer);
 }

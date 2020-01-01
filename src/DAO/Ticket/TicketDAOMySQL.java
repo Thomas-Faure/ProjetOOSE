@@ -113,6 +113,30 @@ public class TicketDAOMySQL implements TicketDAO {
         return ticket;
     }
 
+
+    @Override
+    public boolean update(AbstractTicket ticket) {
+        try {
+            PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(UPDATE);
+            ps.setString(1, ticket.getSubject());
+            ps.setString(2, ticket.getProblem());
+            ps.setBoolean(3, true);
+            ps.setInt(4, 3); //ATTENTION C'EST JUSTE LE TEMPS QUE LE USER SOIT IMPLEMENTE
+            ps.setString(5, ticket.getAnswer());
+            ps.setInt(6, ticket.getId());
+            int i = ps.executeUpdate();
+            ps.close();
+            if (i > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     @Override
     public boolean save(AbstractTicket t) {
         try {

@@ -61,6 +61,21 @@ public class TicketFacade implements ITicketFacade {
         }
     }
 
+    @Override
+    public boolean answer(AbstractTicket ticket, String answer) {
+        ticket.setAnswer(answer);
+        if(dao.update(ticket)){
+            int i = 0;
+            while(this.tickets.get(i).getId() != ticket.getId()){
+                i++;
+            }
+            this.tickets.set(i, ticket);
+            return true;
+        }else {
+            return false;
+        }
+    }
+
     public List<AbstractTicket> getListTickets() {
         return this.tickets;
     }

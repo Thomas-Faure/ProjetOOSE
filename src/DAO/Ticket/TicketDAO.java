@@ -13,4 +13,5 @@ public interface TicketDAO {
     AbstractTicket getTicketById(int id);
     boolean delete(int id);
     boolean save(AbstractTicket t);
+    boolean update(AbstractTicket ticket);
 }

@@ -10,6 +10,7 @@ import Main.App;
 import UI.Announcement.UIModifyAnnouncement;
 import UI.Announcement.UIReadAnnouncement;
 import UI.Task.UITaskManagement;
+import UI.Ticket.AnswerTicketUI;
 import UI.Ticket.ReadTicketUI;
 import UI.UIError;
 import javafx.collections.FXCollections;
@@ -156,11 +157,11 @@ public class TicketController implements Initializable {
             btnA.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    UIModifyAnnouncement modifyAnnouncement = new UIModifyAnnouncement(ticket.getId());
+                    AnswerTicketUI answerPage = new AnswerTicketUI(ticket.getId());
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
 
                     box.getChildren().remove(1);
-                    box.getChildren().add(modifyAnnouncement.loadScene().getRoot());
+                    box.getChildren().add(answerPage.loadScene().getRoot());
 
                 }
             });
