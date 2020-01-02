@@ -1,5 +1,7 @@
 package UI.Sprint;
 
+import BuisnessLogic.Project.AbstractProject;
+import BuisnessLogic.Sprint.AbstractSprint;
 import Controller.Sprint.AddSprintController;
 import Controller.Sprint.ModifySprintController;
 import UI.UIGlobal;
@@ -13,12 +15,12 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 public class ModifySprintUI implements UIGlobal {
-    int projectID;
-    int sprintID;
+    AbstractProject project;
+    AbstractSprint sprint;
 
-    public ModifySprintUI(int projectID, int sprintID){
-        this.projectID = projectID;
-        this.sprintID = sprintID;
+    public ModifySprintUI(AbstractProject project, AbstractSprint sprint){
+        this.project = project;
+        this.sprint = sprint;
     }
 
     @Override
@@ -27,7 +29,7 @@ public class ModifySprintUI implements UIGlobal {
         creators.put(ModifySprintController.class , new Callable<ModifySprintController>() {
             @Override
             public ModifySprintController call() throws Exception {
-                return new ModifySprintController(projectID,sprintID);
+                return new ModifySprintController(project,sprint);
             }
         });
         Parent root = null;
