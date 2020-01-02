@@ -11,6 +11,7 @@ public abstract class AbstractUser {
     public abstract String getPhoneNumber();
     public abstract String getEmail();
     public abstract String getPosition();
+    public abstract boolean isAdmin();
 
     public abstract void setId(int newId);
     public abstract void setUsername(String newUsername);
@@ -21,4 +22,5 @@ public abstract class AbstractUser {
     public abstract void setPhoneNumber(String newPhoneNumber);
     public abstract void setEmail(String newEmail);
     public abstract void setPosition(String newPosition);
+    public abstract void setAdmin (boolean bool);
 }

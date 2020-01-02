@@ -1,4 +1,4 @@
 package Controller.Role;
 
-public class addRoleController {
+public class AddRoleController {
 }

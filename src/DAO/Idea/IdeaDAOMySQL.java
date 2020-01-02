@@ -14,7 +14,7 @@ import java.util.List;
 
 public class IdeaDAOMySQL implements IdeaDAO {
 
-	private static final String INSERT = "INSERT INTO idea (name, description, subject, creator, state) VALUES (?, ?, ?, ?,?,?)";
+	private static final String INSERT = "INSERT INTO idea (name, description, subject, creator, state) VALUES (?, ?, ?, ?,?)";
 	private static final String UPDATE = "UPDATE idea SET name=?, description=?, subject=?, creator=?, state=? WHERE id=?";
 	private static final String DELETE = "DELETE FROM idea WHERE id=?";
 	private static final String ALL = "SELECT * from idea";
@@ -57,7 +57,7 @@ public class IdeaDAOMySQL implements IdeaDAO {
 			ps.setString(2, idea.getDescription());
 			ps.setString(3, idea.getSubject());
 			ps.setInt(4, idea.getCreator().getId());
-			ps.setString(6, idea.getState());
+			ps.setString(5, idea.getState());
 			ps.executeUpdate();
 			ps.close();
 

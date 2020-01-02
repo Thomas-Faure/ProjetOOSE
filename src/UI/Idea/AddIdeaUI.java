@@ -1,6 +1,5 @@
 package UI.Idea;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,9 +19,4 @@ public class AddIdeaUI {
         return scene;
     }
 
-    public void backToIdeaPage(ActionEvent actionEvent) {
-    }
-
-    public void addNewIdea(ActionEvent actionEvent) {
-    }
 }

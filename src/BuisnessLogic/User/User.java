@@ -6,10 +6,11 @@ public class User extends AbstractUser {
     private String password;
     private String lastName;
     private String firstName;
-    private String city;
-    private String phoneNumber;
-    private String email;
-    private String position;
+    private String city = "Not entered yet";
+    private String phoneNumber = "Not entered yet";
+    private String email = "Not entered yet";
+    private String position = "Not entered yet";
+    private boolean isAdmin = false;
 
     public User(int newId, String newUsername, String newFirstname, String newLastname, String newPassword) {
         this.id = newId;
@@ -50,6 +51,7 @@ public class User extends AbstractUser {
     public String getPosition(){
         return position;
     }
+    public boolean isAdmin() { return isAdmin;}
 
     public void setId(int newId){
         this.id = newId;
@@ -78,4 +80,5 @@ public class User extends AbstractUser {
     public void setPosition(String newPosition){
         this.position = newPosition;
     }
+    public void setAdmin (boolean bool) { this.isAdmin = bool;}
 }
