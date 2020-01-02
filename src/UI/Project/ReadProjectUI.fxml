@@ -25,9 +25,10 @@
             <TextArea fx:id="description" editable="false" layoutX="63.0" layoutY="218.0" prefHeight="95.0" prefWidth="643.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
             <Text layoutX="63.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description :" />
-            <Button fx:id="btnChat" onAction="#goChat" layoutX="655.0" layoutY="155.0" mnemonicParsing="false" text="Chat" />
-            <Button fx:id="btnMembers" onAction="#goMembers" layoutX="554.0" layoutY="155.0" mnemonicParsing="false" text="Members" />
-            <Button fx:id="btnMeetings" onAction="#goMeetings" layoutX="455.0" layoutY="155.0" mnemonicParsing="false" text="Meetings" />
+            <Button fx:id="btnChat" layoutX="655.0" layoutY="155.0" mnemonicParsing="false" onAction="#goChat" text="Chat" />
+            <Button fx:id="btnMembers" layoutX="554.0" layoutY="155.0" mnemonicParsing="false" onAction="#goMembers" text="Members" />
+            <Button fx:id="btnMeetings" layoutX="455.0" layoutY="155.0" mnemonicParsing="false" onAction="#goMeetings" text="Meetings" />
+            <Button fx:id="btnResources" layoutX="351.0" layoutY="155.0" mnemonicParsing="false" onAction="#goResources" text="Resources" />
           </children>
       </AnchorPane>
   </children>

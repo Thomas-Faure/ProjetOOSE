@@ -61,6 +61,11 @@ public class ReadProjectController implements Initializable {
     void goMembers(ActionEvent actionEvent){
 
     }
+    @FXML
+    void goResources(ActionEvent actionEvent){
+
+    }
+
 
     @FXML
     void goMeetings(ActionEvent actionEvent){
