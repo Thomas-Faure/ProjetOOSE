@@ -1,5 +1,6 @@
 package Controller.Task;
 
+import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Task.AbstractTask;
 
 import Facade.Task.TaskFacade;
@@ -27,15 +28,16 @@ public class ReadTaskController implements Initializable {
     @FXML
     private TextField priority;
 
-    public ReadTaskController(){
-    }
-    public ReadTaskController(int id){
+    private AbstractProject project;
+    public ReadTaskController(int id, AbstractProject project){
         this.id=id;
+        this.project=project;
     }
+
 
     @FXML
     void backToTasks(ActionEvent actionEvent){
-        UITaskManagement task = new UITaskManagement();
+        UITaskManagement task = new UITaskManagement(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
@@ -52,7 +54,7 @@ public class ReadTaskController implements Initializable {
             priority.setText(taskToRead.getPriority() + "");
             state.setText(taskToRead.getStateString());
         }else{
-            UIError error = new UIError(new UITaskManagement());
+            UIError error = new UIError(new UITaskManagement(project));
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )

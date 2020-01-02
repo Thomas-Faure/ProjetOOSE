@@ -1,5 +1,6 @@
 package Controller.Task;
 
+import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Task.AbstractTask;
 import Facade.Task.TaskFacade;
 import Main.App;
@@ -32,7 +33,9 @@ public class TaskManagerController implements Initializable {
     //permet de garder la liste de base
     private static ObservableList<AbstractTask> listViewTemp;
 
-    public TaskManagerController(){
+    private static AbstractProject project;
+    public TaskManagerController(AbstractProject project){
+        this.project=project;
     }
 
     @Override
@@ -40,7 +43,7 @@ public class TaskManagerController implements Initializable {
         //uniquement pour la page des taches manager
         if(taskList != null){
             //si on peut récuperer les taches
-            if(TaskFacade.getInstance().getAllTasks()) {
+            if(TaskFacade.getInstance().getAllTasks(project)) {
                 ArrayList<AbstractTask> listeElement = ((ArrayList) TaskFacade.getInstance().getListTasks());
                 ObservableList<AbstractTask> listView = FXCollections.observableArrayList(listeElement);
                 listViewTemp= FXCollections.observableArrayList(listeElement);
@@ -79,7 +82,7 @@ public class TaskManagerController implements Initializable {
     public void validation(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(!(TaskFacade.getInstance().deleteTask(toManage))){
-            UIError error = new UIError(new UITaskManagement());
+            UIError error = new UIError(new UITaskManagement(project));
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(2);
@@ -130,7 +133,7 @@ public class TaskManagerController implements Initializable {
             btnM.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    UIModifyTask modifyTask = new UIModifyTask(task.getId());
+                    UIModifyTask modifyTask = new UIModifyTask(task.getId(),project);
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
                     box.getChildren().remove(1);
                        box.getChildren().add(modifyTask.loadScene().getRoot());
@@ -139,7 +142,7 @@ public class TaskManagerController implements Initializable {
             btnR.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    UIReadTask read = new UIReadTask(task.getId());
+                    UIReadTask read = new UIReadTask(task.getId(),project);
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
                     box.getChildren().remove(1);
                     box.getChildren().add(read.loadScene().getRoot());
@@ -161,7 +164,7 @@ public class TaskManagerController implements Initializable {
 
     @FXML
     void addTaskPage(ActionEvent actionEvent) {
-        UIAddTask addTask = new UIAddTask();
+        UIAddTask addTask = new UIAddTask(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
 
         box.getChildren().remove(1);

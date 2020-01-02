@@ -35,22 +35,22 @@ public class MenuController {
 
     @FXML
     void goMenuLogin(ActionEvent event){
-        UITaskManagement task = new UITaskManagement();
+       /* UITaskManagement task = new UITaskManagement();
 
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
-        box.getChildren().add(task.loadScene().getRoot());
+        box.getChildren().add(task.loadScene().getRoot());*/
 
     }
     @FXML
     void goMenuTask(ActionEvent event){
-        UITaskManagement task = new UITaskManagement();
+     /*   UITaskManagement task = new UITaskManagement();
 
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
-        box.getChildren().add(task.loadScene().getRoot());
+        box.getChildren().add(task.loadScene().getRoot());*/
 
     }
     @FXML

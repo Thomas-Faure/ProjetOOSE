@@ -1,6 +1,7 @@
 package Facade.Project;
 
 import BuisnessLogic.Project.AbstractProject;
+import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Ticket.AbstractTicket;
 import DAO.AbstractDAOFactory;
 import DAO.MySQLDAOFactory;
@@ -46,6 +47,13 @@ public class ProjectFacade implements IProjectFacade {
         }else {
             return false;
         }
+    }
+
+    @Override
+    public AbstractProject getProjectById(int id) {
+        AbstractProject project;
+        project = dao.getProjectById(id);
+        return project;
     }
 
     @Override

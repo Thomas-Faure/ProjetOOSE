@@ -7,9 +7,12 @@ import Main.App;
 import UI.Meeting.MeetingsUI;
 import UI.Project.ProjectUI;
 import UI.Ressource.ResourceUI;
+import UI.Sprint.AddSprintUI;
+import UI.Task.UITaskManagement;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -31,6 +34,8 @@ public class ReadProjectController implements Initializable {
 
     @FXML
     private TextArea description;
+    @FXML
+    private Button btnTasksSprints;
 
     public ReadProjectController(){}
     public ReadProjectController(AbstractProject project){
@@ -42,6 +47,11 @@ public class ReadProjectController implements Initializable {
         pathIndication.setText("/Projects/" + project.getName());
         projectTitle.setText(project.getName());
         description.setText(project.getDescription());
+        if(project.isAgile()){
+            btnTasksSprints.setText("Sprints");
+        }else{
+            btnTasksSprints.setText("Tasks");
+        }
     }
 
     @FXML
@@ -80,5 +90,24 @@ public class ReadProjectController implements Initializable {
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
         box.getChildren().add(meetingPage.loadScene().getRoot());
+    }
+    public void goAddSprint(ActionEvent actionEvent) {
+        AddSprintUI addSprintPage = new AddSprintUI(project);
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(addSprintPage.loadScene().getRoot());
+    }
+
+    public void goTasksSprints(ActionEvent actionEvent) {
+        //tasks
+        if(!project.isAgile()){
+            UITaskManagement taskManagement = new UITaskManagement(project);
+            HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+            if(box.getChildren().size() >1 )
+                box.getChildren().remove(1);
+            box.getChildren().add(taskManagement.loadScene().getRoot());
+        }
+        //sprint
     }
 }

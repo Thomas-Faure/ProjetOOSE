@@ -12,6 +12,8 @@ public interface IProjectFacade {
 
     boolean deleteProject(AbstractProject project);
 
+    AbstractProject getProjectById(int id);
+
     boolean addProject(AbstractProject project);
 
     boolean update(AbstractProject project);

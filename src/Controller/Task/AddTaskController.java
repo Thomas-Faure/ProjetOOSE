@@ -1,5 +1,6 @@
 package Controller.Task;
 
+import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.Task;
 import BuisnessLogic.Task.TaskState;
@@ -26,15 +27,17 @@ public class AddTaskController{
     @FXML
     private TextField priority;
 
+    private AbstractProject project;
 
-    public AddTaskController(){
+    public AddTaskController(AbstractProject project){
+        this.project=project;
     }
 
     @FXML
     void addNewTask(ActionEvent actionEvent){
-        AbstractTask task = new Task(0,subject.getText(),description.getText(),Integer.parseInt(priority.getText()),deadline.getValue(),SessionFacade.getInstance().getUser(), TaskState.todo);
+        AbstractTask task = new Task(0,subject.getText(),description.getText(),Integer.parseInt(priority.getText()),deadline.getValue(),SessionFacade.getInstance().getUser(), TaskState.todo,project);
         if(TaskFacade.getInstance().addTask(task)){
-            UITaskManagement taskP = new UITaskManagement();
+            UITaskManagement taskP = new UITaskManagement(project);
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(1);
@@ -49,7 +52,7 @@ public class AddTaskController{
     }
     @FXML
     void backToTaskPage(ActionEvent actionEvent){
-        UITaskManagement task = new UITaskManagement();
+        UITaskManagement task = new UITaskManagement(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
@@ -58,7 +61,7 @@ public class AddTaskController{
 
     @FXML
     void addTaskPage(ActionEvent actionEvent) {
-        UIAddTask addTask = new UIAddTask();
+        UIAddTask addTask = new UIAddTask(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
 
         box.getChildren().remove(1);

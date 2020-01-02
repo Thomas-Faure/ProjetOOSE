@@ -3,6 +3,7 @@ package Controller.Announcement;
 import BuisnessLogic.Announcement.AbstractAnnouncement;
 import Facade.Announcement.AnnouncementFacade;
 import Main.App;
+import UI.Announcement.AnnouncementUI;
 import UI.Announcement.UIAnnouncementManagement;
 import UI.Task.UITaskManagement;
 import UI.UIError;
@@ -75,7 +76,7 @@ public class ModifyAnnouncementController implements Initializable {
                 box.getChildren().remove(1);
             box.getChildren().add(am.loadScene().getRoot());
         }else{
-            UIError error = new UIError(new UITaskManagement());
+            UIError error = new UIError(new UIAnnouncementManagement());
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )

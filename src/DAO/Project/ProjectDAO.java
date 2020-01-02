@@ -13,4 +13,6 @@ public interface ProjectDAO {
     boolean save(AbstractProject project);
 
     boolean update(AbstractProject project);
+
+    AbstractProject getProjectById(int id);
 }

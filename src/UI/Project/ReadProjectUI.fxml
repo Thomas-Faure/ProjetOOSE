@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="paneBasic" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" style="-fx-background-color: #ecf0f5;" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Project.ReadProjectController">
+<AnchorPane fx:id="paneBasic" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" style="-fx-background-color: #ecf0f5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Project.ReadProjectController">
   <children>
       <AnchorPane fx:id="manager" prefHeight="600.0" prefWidth="768.0">
           <children>
@@ -29,6 +29,8 @@
             <Button fx:id="btnMembers" layoutX="554.0" layoutY="155.0" mnemonicParsing="false" onAction="#goMembers" text="Members" />
             <Button fx:id="btnMeetings" layoutX="455.0" layoutY="155.0" mnemonicParsing="false" onAction="#goMeetings" text="Meetings" />
             <Button fx:id="btnResources" layoutX="351.0" layoutY="155.0" mnemonicParsing="false" onAction="#goResources" text="Resources" />
+            <Button fx:id="addSprint" layoutX="63.0" layoutY="322.0" mnemonicParsing="false" onAction="#goAddSprint" text="Add sprint" />
+            <Button fx:id="btnTasksSprints" layoutX="263.0" layoutY="155.0" mnemonicParsing="false" onAction="#goTasksSprints" text="Tasks" />
           </children>
       </AnchorPane>
   </children>

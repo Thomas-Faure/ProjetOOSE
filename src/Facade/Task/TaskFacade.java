@@ -1,5 +1,6 @@
 package Facade.Task;
 
+import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.Task;
 import DAO.MySQLDAOFactory;
@@ -86,6 +87,11 @@ public class TaskFacade implements ITaskFacade {
     @Override
     public boolean getAllTasks() {
         this.tasks = daoFactory.getAllTasks();
+        return true;
+    }
+    @Override
+    public boolean getAllTasks(AbstractProject project) {
+        this.tasks = daoFactory.getAllTasks(project);
         return true;
     }
 
