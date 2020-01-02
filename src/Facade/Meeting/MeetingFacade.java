@@ -1,6 +1,7 @@
 package Facade.Meeting;
 
 import BuisnessLogic.Meeting.AbstractMeeting;
+import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Ticket.AbstractTicket;
 import DAO.AbstractDAOFactory;
 import DAO.Meeting.MeetingDAO;
@@ -29,8 +30,8 @@ public class MeetingFacade implements IMeetingFacade {
     }
 
     @Override
-    public List<AbstractMeeting> getMeetingByProject(int idProject) {
-        this.meetings = dao.getMeetingByProject(idProject);
+    public List<AbstractMeeting> getMeetingByProject(AbstractProject project) {
+        this.meetings = dao.getMeetingByProject(project);
         return this.meetings;
     }
 

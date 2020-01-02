@@ -1,9 +1,7 @@
-package UI.Meeting;
+package UI.Project;
 
-import BuisnessLogic.Meeting.AbstractMeeting;
 import BuisnessLogic.Project.AbstractProject;
-import Controller.Meeting.AddMeetingController;
-import Controller.Meeting.UpdateMeetingController;
+import Controller.Project.ReadProjectController;
 import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,28 +12,26 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-public class UpdateMeetingUI implements UIGlobal {
+public class ReadProjectUI implements UIGlobal {
 
-    private AbstractMeeting meeting;
     private AbstractProject project;
 
-    public UpdateMeetingUI(AbstractMeeting meeting, AbstractProject project){
-        this.meeting= meeting;
-        this.project = project;
+    public ReadProjectUI(AbstractProject project){
+        this.project= project;
     }
 
     @Override
     public Scene loadScene() {
         Map<Class, Callable<?>> creators = new HashMap<>();
-        creators.put(UpdateMeetingController.class , new Callable<UpdateMeetingController>() {
+        creators.put(ReadProjectController.class , new Callable<ReadProjectController>() {
             @Override
-            public UpdateMeetingController call() throws Exception {
-                return new UpdateMeetingController(meeting, project);
+            public ReadProjectController call() throws Exception {
+                return new ReadProjectController(project);
             }
         });
         Parent root = null;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("UpdateMeetingUI.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ReadProjectUI.fxml"));
             loader.setControllerFactory(new Callback<Class<?>, Object>() {
                 @Override
                 public Object call(Class<?> param) {

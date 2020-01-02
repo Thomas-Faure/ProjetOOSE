@@ -11,6 +11,7 @@ import Facade.Ticket.ITicketFacade;
 import Facade.Ticket.TicketFacade;
 import Main.App;
 import UI.Project.AddProjectUI;
+import UI.Project.ReadProjectUI;
 import UI.Project.UpdateProjectUI;
 import UI.Ticket.AddTicketUI;
 import UI.Ticket.AnswerTicketUI;
@@ -168,7 +169,7 @@ public class ProjectController implements Initializable {
                 @Override
                 public void handle(ActionEvent e) {
 
-                    ReadTicketUI read = new ReadTicketUI(project.getId(), true);
+                    ReadProjectUI read = new ReadProjectUI(project);
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
 
                     box.getChildren().remove(1);

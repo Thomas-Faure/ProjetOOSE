@@ -2,6 +2,7 @@ package DAO.Meeting;
 
 import BuisnessLogic.Meeting.AbstractMeeting;
 import BuisnessLogic.Meeting.Meeting;
+import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Ticket.AbstractTicket;
 import BuisnessLogic.Ticket.Ticket;
 import DAO.Meeting.MeetingDAO;
@@ -23,12 +24,12 @@ public class MeetingDAOMySQL implements MeetingDAO {
     private static final String MEETINGBYIDPROJECT = "SELECT * from meeting where idProject=?";
 
     @Override
-    public List<AbstractMeeting> getMeetingByProject(int idProject) {
+    public List<AbstractMeeting> getMeetingByProject(AbstractProject project) {
         List<AbstractMeeting> list = new ArrayList<>();
         try {
 
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(MEETINGBYIDPROJECT);
-            ps.setInt(1,idProject);
+            ps.setInt(1,project.getId());
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
 

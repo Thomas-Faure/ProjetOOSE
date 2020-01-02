@@ -1,6 +1,7 @@
 package Controller.Meeting;
 
 import BuisnessLogic.Meeting.AbstractMeeting;
+import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Ticket.AbstractTicket;
 import Facade.Meeting.IMeetingFacade;
 import Facade.Meeting.MeetingFacade;
@@ -22,6 +23,7 @@ import java.util.ResourceBundle;
 public class UpdateMeetingController implements Initializable {
 
     private AbstractMeeting meeting;
+    private AbstractProject project;
     private IMeetingFacade meetingFacade = MeetingFacade.getInstance();
 
 
@@ -35,8 +37,10 @@ public class UpdateMeetingController implements Initializable {
     private TextArea place;
 
     public UpdateMeetingController(){}
-    public UpdateMeetingController(AbstractMeeting meeting){
+    public UpdateMeetingController(AbstractMeeting meeting, AbstractProject project){
+
         this.meeting=meeting;
+        this.project = project;
     }
 
     @Override
@@ -48,7 +52,7 @@ public class UpdateMeetingController implements Initializable {
 
     @FXML
     void cancel(ActionEvent actionEvent){
-        MeetingsUI meetingsPage = new MeetingsUI();
+        MeetingsUI meetingsPage = new MeetingsUI(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
@@ -60,13 +64,13 @@ public class UpdateMeetingController implements Initializable {
         meeting.setDate(date.getValue());
         meeting.setPlace(place.getText());
         if(meetingFacade.update(meeting)){
-            MeetingsUI meetingsPage = new MeetingsUI();
+            MeetingsUI meetingsPage = new MeetingsUI(project);
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(1);
             box.getChildren().add(meetingsPage.loadScene().getRoot());
         }else{
-            UIError error = new UIError(new MeetingsUI());
+            UIError error = new UIError(new MeetingsUI(project));
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )

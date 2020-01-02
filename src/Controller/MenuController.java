@@ -114,12 +114,4 @@ public class MenuController {
 
     }
 
-
-    public void goMenuMeeting(ActionEvent actionEvent) {
-        MeetingsUI meetings = new MeetingsUI();
-        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-        if(box.getChildren().size() >1 )
-            box.getChildren().remove(1);
-        box.getChildren().add(meetings.loadScene().getRoot());
-    }
 }

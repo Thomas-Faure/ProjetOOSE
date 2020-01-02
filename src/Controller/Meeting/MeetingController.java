@@ -2,6 +2,7 @@ package Controller.Meeting;
 
 import BuisnessLogic.Meeting.AbstractMeeting;
 import BuisnessLogic.Meeting.Meeting;
+import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Ticket.AbstractTicket;
 import BuisnessLogic.Ticket.Ticket;
 import Controller.Ticket.TicketController;
@@ -9,7 +10,9 @@ import Facade.Meeting.IMeetingFacade;
 import Facade.Meeting.MeetingFacade;
 import Main.App;
 import UI.Meeting.AddMeetingUI;
+import UI.Meeting.MeetingsUI;
 import UI.Meeting.UpdateMeetingUI;
+import UI.Project.ProjectUI;
 import UI.Task.UITaskManagement;
 import UI.Ticket.AddTicketUI;
 import UI.Ticket.AnswerTicketUI;
@@ -28,6 +31,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
@@ -37,6 +41,8 @@ import java.util.ResourceBundle;
 
 public class MeetingController implements Initializable {
 
+    private static AbstractProject project;
+
     private IMeetingFacade meetingFacade = MeetingFacade.getInstance();
 
     @FXML
@@ -45,9 +51,15 @@ public class MeetingController implements Initializable {
     @FXML
     private ListView<AbstractMeeting> meetingsList ;
 
+    @FXML
+    private Text pathIndication;
+
     private static AbstractMeeting toManage;
 
     public MeetingController(){};
+    public MeetingController(AbstractProject project){
+        this.project=project;
+    }
 
     //permet de garder la liste de base
     private static ObservableList<AbstractMeeting> listViewTemp;
@@ -85,11 +97,12 @@ public class MeetingController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         if(meetingsList != null){
-            ArrayList<Meeting> listeElement = ((ArrayList) meetingFacade.getMeetingByProject(1)); //ATTENTION A CHANGER APRES PROJET IMPLEMENTATION
+            ArrayList<Meeting> listeElement = ((ArrayList) meetingFacade.getMeetingByProject(project));
             ObservableList<AbstractMeeting> listView = FXCollections.observableArrayList(listeElement);
             listViewTemp = FXCollections.observableArrayList(listeElement);
             meetingsList.setItems(listView);
             meetingsList.setCellFactory(param -> new MeetingController.Cell());
+            pathIndication.setText("/Projects/" + project.getName() + "/Meetings");
         }
 
     }
@@ -122,11 +135,20 @@ public class MeetingController implements Initializable {
 
     @FXML
     void newMeeting(ActionEvent actionEvent) {
-        AddMeetingUI addMeeting = new AddMeetingUI(1); //ATTENTION APRES PROJET
+        AddMeetingUI addMeeting = new AddMeetingUI(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
 
         box.getChildren().remove(1);
         box.getChildren().add(addMeeting.loadScene().getRoot());
+    }
+
+    @FXML
+    void back(ActionEvent actionEvent){
+        ProjectUI meetingsPage = new ProjectUI();
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(meetingsPage.loadScene().getRoot());
     }
 
 
@@ -160,7 +182,7 @@ public class MeetingController implements Initializable {
             btnU.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    UpdateMeetingUI updatePage = new UpdateMeetingUI(meeting);
+                    UpdateMeetingUI updatePage = new UpdateMeetingUI(meeting, project );
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
 
                     box.getChildren().remove(1);

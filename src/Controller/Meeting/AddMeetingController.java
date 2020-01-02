@@ -2,6 +2,7 @@ package Controller.Meeting;
 
 import BuisnessLogic.Meeting.AbstractMeeting;
 import BuisnessLogic.Meeting.Meeting;
+import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Ticket.AbstractTicket;
 import BuisnessLogic.Ticket.Ticket;
 import Facade.Meeting.IMeetingFacade;
@@ -28,7 +29,7 @@ import java.util.ResourceBundle;
 
 public class AddMeetingController implements Initializable {
 
-    private int id; //ATTENTION A REMPLACER PAR UN PROJET
+    private AbstractProject project;
     private IMeetingFacade meetingFacade = MeetingFacade.getInstance();
 
     @FXML
@@ -44,19 +45,19 @@ public class AddMeetingController implements Initializable {
     private TextArea place;
 
     public AddMeetingController(){}
-    public AddMeetingController(int id){
-        this.id=id;
+    public AddMeetingController(AbstractProject project){
+        this.project=project;
     }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        pathIndication.setText("/Projects/" + id + "/New meeting");
-        projectTitle.setText("project : " + id);
+        pathIndication.setText("/Projects/" + project.getName() + "/New meeting");
+        projectTitle.setText("project : " + project.getName());
     }
 
     @FXML
     void cancel(ActionEvent actionEvent){
-        MeetingsUI meetingsPage = new MeetingsUI();
+        MeetingsUI meetingsPage = new MeetingsUI(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
@@ -65,15 +66,15 @@ public class AddMeetingController implements Initializable {
 
     @FXML
     void addNewMeeting(ActionEvent actionEvent){
-        AbstractMeeting meeting = new Meeting(1,date.getValue(),place.getText(), this.id);
+        AbstractMeeting meeting = new Meeting(1,date.getValue(),place.getText(), project.getId());
         if(meetingFacade.addMeeting(meeting)){
-            MeetingsUI meetingsPage = new MeetingsUI();
+            MeetingsUI meetingsPage = new MeetingsUI(project);
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(1);
             box.getChildren().add(meetingsPage.loadScene().getRoot());
         }else{
-            UIError error = new UIError(new MeetingsUI());
+            UIError error = new UIError(new MeetingsUI(project));
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )

@@ -23,7 +23,6 @@
                   <Button fx:id="MyTicket" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMyTicket" prefHeight="64.0" prefWidth="262.0" style="-fx-background-color: #1e282c;" text="My Tickets" textFill="WHITE" />
                   <Button fx:id="menuTask" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMenuTask" prefHeight="64.0" prefWidth="262.0" style="-fx-background-color: #1e282c;" text="Tasks" textFill="WHITE" />
                   <Button fx:id="menuIdea" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMenuLogin" prefHeight="64.0" prefWidth="262.0" style="-fx-background-color: #1e282c;" text="Idea box" textFill="WHITE" />
-                  <Button fx:id="menuMeeting" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMenuMeeting" prefHeight="64.0" prefWidth="262.0" style="-fx-background-color: #1e282c;" text="Meeting BETA" textFill="WHITE" />
               </children>
             </VBox>
                   <Pane prefHeight="49.0" prefWidth="232.0" style="-fx-background-color: #367fa9;">

@@ -1,5 +1,6 @@
 package UI.Meeting;
 
+import BuisnessLogic.Project.AbstractProject;
 import Controller.Meeting.AddMeetingController;
 import Controller.Ticket.ReadTicketController;
 import UI.UIGlobal;
@@ -14,10 +15,10 @@ import java.util.concurrent.Callable;
 
 public class AddMeetingUI implements UIGlobal {
 
-    private int id; // AATNTION A REMPLACER PAR UN PROJET
+    private AbstractProject project;
 
-    public AddMeetingUI(int id){
-        this.id=id;
+    public AddMeetingUI(AbstractProject project){
+        this.project=project;
     }
 
     @Override
@@ -26,7 +27,7 @@ public class AddMeetingUI implements UIGlobal {
         creators.put(AddMeetingController.class , new Callable<AddMeetingController>() {
             @Override
             public AddMeetingController call() throws Exception {
-                return new AddMeetingController(id);
+                return new AddMeetingController(project);
             }
         });
         Parent root = null;
