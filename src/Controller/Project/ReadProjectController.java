@@ -65,7 +65,7 @@ public class ReadProjectController implements Initializable {
 
     @FXML
     void goResources(ActionEvent actionEvent){
-        ResourceUI resourceUI = new ResourceUI(project.getId());
+        ResourceUI resourceUI = new ResourceUI(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
