@@ -1,15 +1,14 @@
 package Facade.Idea;
 
 import BuisnessLogic.Idea.AbstractIdea;
-import BuisnessLogic.Idea.Idea;
 
 public interface IIdeaFacade {
 
-    boolean addIdea(Idea idea);
+    boolean addIdea(AbstractIdea idea);
 
-    boolean modifyIdea(Idea idea);
+    boolean modifyIdea(AbstractIdea idea);
 
-    boolean deleteIdea(Idea idea);
+    boolean deleteIdea(AbstractIdea idea);
 
     //List<AbstractIdea> getIdeaByName(String name);
 

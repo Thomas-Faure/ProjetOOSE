@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="paneBasic" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" style="-fx-background-color: #ecf0f5;" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Idea.AddIdeaController">
+<AnchorPane fx:id="paneBasic" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" style="-fx-background-color: #ecf0f5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Idea.AddIdeaController">
     <children>
         <Pane prefHeight="49.0" prefWidth="768.0" style="-fx-background-color: #367fa9;">
             <children>
@@ -26,7 +25,7 @@
         <Text layoutX="100" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name :" />
         <Text layoutX="100" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject :" />
         <Text layoutX="100" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description :" />
-        <Button fx:id="backButton" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#backToIdeaPage" text="Back" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="275.0" AnchorPane.rightAnchor="525.0" AnchorPane.topAnchor="500.0" />
-        <Button fx:id="addIdeaButton" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#addNewIdea" text="Add idea" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="625.0" AnchorPane.rightAnchor="175.0" AnchorPane.topAnchor="500.0" />
+        <Button fx:id="backButton" layoutX="245.0" layoutY="500.0" mnemonicParsing="false" onAction="#backToIdeaPage" prefHeight="50.0" prefWidth="157.0" text="Back" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="245.0" AnchorPane.rightAnchor="366.0" AnchorPane.topAnchor="500.0" />
+        <Button fx:id="addIdeaButton" layoutX="480.0" layoutY="500.0" mnemonicParsing="false" onAction="#addNewIdea" prefHeight="50.0" prefWidth="149.0" text="Add idea" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="480.0" AnchorPane.rightAnchor="139.0" AnchorPane.topAnchor="500.0" />
     </children>
 </AnchorPane>

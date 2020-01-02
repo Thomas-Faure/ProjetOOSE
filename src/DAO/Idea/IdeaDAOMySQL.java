@@ -50,7 +50,7 @@ public class IdeaDAOMySQL implements IdeaDAO {
 	}
 
 	@Override
-	public boolean save(Idea idea) {
+	public boolean save(AbstractIdea idea) {
 		try {
 			PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(INSERT);
 			ps.setString(1, idea.getName());
@@ -71,7 +71,7 @@ public class IdeaDAOMySQL implements IdeaDAO {
 	}
 
 	@Override
-	public boolean update(Idea idea) {
+	public boolean update(AbstractIdea idea) {
 
 		try {
 

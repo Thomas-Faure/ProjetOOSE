@@ -4,11 +4,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-public class AddUserUI {
+public class ReadAUserUI {
     public Scene loadScene(){
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("AddUserUI.fxml"));
+            root = FXMLLoader.load(getClass().getResource("ReadAUserUI.fxml"));
         }catch(Exception e){
             e.printStackTrace();
         }

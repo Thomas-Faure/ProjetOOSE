@@ -21,7 +21,8 @@ public class UserDAOMySQL implements UserDAO {
 	public User createUser(String username, String password) {
 	    User user=null;
 	    try {
-	    String query = "SELECT * FROM user WHERE username =\""+username+"\" and password=\""+password+"\";";
+	    String query = "SELECT * FROM user WHERE username = 'lauren' and password = 'lauren';";
+	    System.out.println(query);
 	      ResultSet result = MySQLConnector.getSQLConnection().createStatement(
 		      ResultSet.TYPE_SCROLL_INSENSITIVE,
 		      ResultSet.CONCUR_READ_ONLY).executeQuery(query);

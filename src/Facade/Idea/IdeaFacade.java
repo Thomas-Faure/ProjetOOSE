@@ -1,7 +1,6 @@
 package Facade.Idea;
 
 import BuisnessLogic.Idea.AbstractIdea;
-import BuisnessLogic.Idea.Idea;
 import DAO.Idea.IdeaDAO;
 import DAO.MySQLDAOFactory;
 
@@ -35,7 +34,7 @@ public class IdeaFacade implements IIdeaFacade {
     }
 
 
-    public boolean addIdea(Idea idea) {
+    public boolean addIdea(AbstractIdea idea) {
         if(instance.getDao().save(idea)){
             //on ajouter la nouvelle idee à la liste
             instance.ideas.add(idea);
@@ -45,7 +44,7 @@ public class IdeaFacade implements IIdeaFacade {
         }
     }
 
-    public boolean modifyIdea(Idea idea) {
+    public boolean modifyIdea(AbstractIdea idea) {
         if(daoFactory.update(idea)){
             this.ideas.set(idea.getId(), idea);
             return true;
@@ -54,7 +53,7 @@ public class IdeaFacade implements IIdeaFacade {
         }
     }
 
-    public boolean deleteIdea(Idea idea){
+    public boolean deleteIdea(AbstractIdea idea){
         if(daoFactory.delete(idea.getId())){
             return true;
         }

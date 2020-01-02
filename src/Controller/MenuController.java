@@ -3,12 +3,13 @@ package Controller;
 import Main.App;
 import UI.Announcement.AnnouncementUI;
 import UI.Announcement.UIAnnouncementManagement;
-import UI.Meeting.MeetingsUI;
+import UI.Idea.IdeaBoxUI;
 import UI.Project.ProjectUI;
-import UI.Task.TaskUI;
 import UI.Task.UITaskManagement;
 import UI.Ticket.MyTicketUI;
 import UI.Ticket.TicketUI;
+import UI.User.Global.AllUsersUI;
+import UI.User.Global.MyAccountUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -32,15 +33,19 @@ public class MenuController {
     private Button menuUser;
     @FXML
     private Button MyTicket;
+    @FXML
+    private Button menuAccount;
 
     @FXML
     void goMenuLogin(ActionEvent event){
+        /*
         UITaskManagement task = new UITaskManagement();
 
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
         box.getChildren().add(task.loadScene().getRoot());
+        */
 
     }
     @FXML
@@ -90,6 +95,11 @@ public class MenuController {
     }
     @FXML
     void goMenuIdea(ActionEvent event){
+        IdeaBoxUI ideabox = new IdeaBoxUI();
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(ideabox.loadScene().getRoot());
 
     }
     @FXML
@@ -98,6 +108,11 @@ public class MenuController {
     }
     @FXML
     void goMenuUser(ActionEvent event){
+        AllUsersUI users = new AllUsersUI();
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(users.loadScene().getRoot());
 
     }
     @FXML
@@ -114,4 +129,12 @@ public class MenuController {
 
     }
 
+    public void goMenuAccount(ActionEvent actionEvent) {
+        MyAccountUI users = new MyAccountUI();
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(users.loadScene().getRoot());
+
+    }
 }
