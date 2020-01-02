@@ -33,8 +33,8 @@ public class ResourceFacade implements IResourceFacade {
     }
 
     @Override
-    public boolean addResource(AbstractResource resource) {
-        if(FacadeInstance.getDao().save(resource)){
+    public boolean addResource(AbstractResource resource, int projectID) {
+        if(FacadeInstance.getDao().save(resource,projectID)){
             FacadeInstance.getListResource().add(resource);
             return true;
         }else {

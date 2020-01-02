@@ -1,5 +1,6 @@
 package UI.Ressource;
 
+import BuisnessLogic.Project.AbstractProject;
 import Controller.Resource.ResourceController;
 import Controller.Task.ModifyTaskController;
 import UI.UIGlobal;
@@ -13,10 +14,10 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 public class ResourceUI implements UIGlobal {
-    int projectID;
+    AbstractProject project;
 
-    public ResourceUI(int projectID){
-        this.projectID = projectID;
+    public ResourceUI(AbstractProject project){
+        this.project = project;
     };
 
     @Override
@@ -25,7 +26,7 @@ public class ResourceUI implements UIGlobal {
         creators.put(ResourceController.class , new Callable<ResourceController>() {
             @Override
             public ResourceController call() throws Exception {
-                return new ResourceController(projectID);
+                return new ResourceController(project);
             }
         });
         Parent root = null;
