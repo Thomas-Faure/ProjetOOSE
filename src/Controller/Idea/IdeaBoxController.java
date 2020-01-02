@@ -16,5 +16,4 @@ public class IdeaBoxController {
 
     public void backToIdeaPage(ActionEvent actionEvent) {
     }
-
 }

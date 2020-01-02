@@ -1,7 +1,7 @@
 package Controller.Announcement;
 
 import BuisnessLogic.Announcement.AbstractAnnouncement;
-import Facade.AnnouncementFacade;
+import Facade.Announcement.AnnouncementFacade;
 import Main.App;
 import UI.Announcement.UIReadAnnouncement;
 import javafx.event.Event;
@@ -20,7 +20,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +27,6 @@ import java.util.ResourceBundle;
 
 public class ShowAnnouncementsController implements Initializable {
     //classe pour permettre aux personens de visualiser les taches en cours
-
     @FXML
     private VBox vboxList;
     @FXML
@@ -37,29 +35,19 @@ public class ShowAnnouncementsController implements Initializable {
     private Button next;
     @FXML
     private TextField inputSearch;
-
     int currentPage = 1;
     int maxPage;
     private List<AbstractAnnouncement> announcementList;
-
 
     //quand on clique sur le bouton d'une annonce, l'affiche en gros
     void readAnnouncement(){
 
     }
 
-
-    //permet de chercher un annonce par son nom
-    void searchAnnouncement(String title){
-            List<AbstractAnnouncement> AnnouncementsSearched = AnnouncementFacade.getInstance().getAnnouncementByTitle(title);
-
-    }
     public void ActualiseAnnouncements(){
-
         //on remet à zero la liste
         vboxList.getChildren().clear();
         Parent root = null;
-
         for(int i = (currentPage*3)-3;i<(currentPage*3) && i<announcementList.size();++i){
             try {
                 FXMLLoader loader = new FXMLLoader();
@@ -69,8 +57,6 @@ public class ShowAnnouncementsController implements Initializable {
             }
             Scene scene = new Scene(root, 500, 150);
             AnchorPane format = (AnchorPane)scene.getRoot();
-
-
             Button more = (Button)format.lookup("#more");
             more.setId(announcementList.get(i).getId()+"");
             more.addEventHandler(MouseEvent.MOUSE_CLICKED, new clickMore());
@@ -80,10 +66,11 @@ public class ShowAnnouncementsController implements Initializable {
             username.setText("nom");
             Text announcementTitle = (Text)format.lookup("#AnnouncementTitle");
             announcementTitle.setText(announcementList.get(i).getTitle());
-
             vboxList.getChildren().add(format);
-
         }
+    }
+
+    public void testFct(KeyEvent keyEvent) {
     }
 
     private class clickMore implements EventHandler<Event> {
@@ -91,17 +78,10 @@ public class ShowAnnouncementsController implements Initializable {
         public void handle(Event evt) {
             UIReadAnnouncement read = new UIReadAnnouncement(Integer.parseInt(((Control)evt.getSource()).getId()),false);
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-
             box.getChildren().remove(1);
             box.getChildren().add(read.loadScene().getRoot());
-
         }
     }
-
-    public void testFct(KeyEvent keyEvent) {
-    }
-
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -117,9 +97,7 @@ public class ShowAnnouncementsController implements Initializable {
                next.setDisable(false);
            }
             ActualiseAnnouncements();
-
         }
-
     }
 
     @FXML
@@ -127,9 +105,7 @@ public class ShowAnnouncementsController implements Initializable {
         if(currentPage == 1){
             prev.setDisable(false);
         }
-
         if(currentPage <maxPage){
-
             currentPage +=1;
         }
         if(currentPage == maxPage){
@@ -144,7 +120,6 @@ public class ShowAnnouncementsController implements Initializable {
             next.setDisable(false);
         }
         if(currentPage > 1){
-
             currentPage -=1;
         }
         if(currentPage == 1){

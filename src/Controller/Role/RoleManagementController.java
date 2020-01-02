@@ -8,5 +8,5 @@ public class RoleManagementController {
 
     public void addRole(ActionEvent actionEvent) {
     }
-
 }
+

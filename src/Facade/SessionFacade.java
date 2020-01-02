@@ -2,7 +2,7 @@ package Facade;
 
 import BuisnessLogic.User.User;
 import DAO.MySQLDAOFactory;
-import DAO.TaskDAO;
+import DAO.Task.TaskDAO;
 import DAO.User.UserDAO;
 
 public class SessionFacade implements ISessionFacade {

@@ -17,28 +17,19 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 public class UIModifyTask implements UIGlobal {
-
-
-
-
-
 	int id;
 	public UIModifyTask(int id){
 		this.id=id;
 	}
 
-
-
 	public Scene loadScene(){
 		Map<Class, Callable<?>> creators = new HashMap<>();
 		creators.put(ModifyTaskController.class , new Callable<ModifyTaskController>() {
-
 			@Override
 			public ModifyTaskController call() throws Exception {
 				System.out.println(id+"");
 				return new ModifyTaskController(id);
 			}
-
 		});
 		Parent root = null;
 		try {
@@ -49,7 +40,6 @@ public class UIModifyTask implements UIGlobal {
 					Callable<?> callable = creators.get(param);
 					if (callable == null) {
 						try {
-							// default handling: use no-arg constructor
 							return param.newInstance();
 						} catch (InstantiationException | IllegalAccessException ex) {
 							throw new IllegalStateException(ex);
@@ -68,11 +58,6 @@ public class UIModifyTask implements UIGlobal {
 			e.printStackTrace();
 		}
 		Scene scene = new Scene(root, 1000, 600);
-
-
-
 		return scene;
 	}
-
-
 }

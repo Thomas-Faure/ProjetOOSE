@@ -13,30 +13,16 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 public class UIReadTask implements UIGlobal {
-
-
-
-
-
 	int id;
 	public UIReadTask(int id){
-
 		this.id=id;
-
 	}
 
-
-
 	public Scene loadScene(){
-
-
 		Map<Class, Callable<?>> creators = new HashMap<>();
 		creators.put(ReadTaskController.class , new Callable<ReadTaskController>() {
-
 			@Override
 			public ReadTaskController call() throws Exception {
-
-
 				return new ReadTaskController(id);
 			}
 		});
@@ -68,9 +54,6 @@ public class UIReadTask implements UIGlobal {
 			e.printStackTrace();
 		}
 		Scene scene = new Scene(root, 1000, 600);
-
 		return scene;
 	}
-
-
 }

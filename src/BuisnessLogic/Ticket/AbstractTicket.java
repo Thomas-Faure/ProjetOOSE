@@ -2,6 +2,7 @@ package BuisnessLogic.Ticket;
 
 import BuisnessLogic.User.User;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public abstract class AbstractTicket {
@@ -18,9 +19,9 @@ public abstract class AbstractTicket {
 
     public abstract void setStatus(Boolean status);
 
-    public abstract Date getDateCreation();
+    public abstract LocalDate getDateCreation();
 
-    public abstract void setDateCreation(Date dateCreation);
+    public abstract void setDateCreation(LocalDate dateCreation);
 
     public abstract User getCreator();
 
@@ -29,4 +30,6 @@ public abstract class AbstractTicket {
     public abstract String getAnswer();
 
     public abstract void setAnswer(String answer);
+
+    public abstract int getId();
 }

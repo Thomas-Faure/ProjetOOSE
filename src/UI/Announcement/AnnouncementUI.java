@@ -6,13 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 public class AnnouncementUI implements UIGlobal {
-
-
-
     public AnnouncementUI(){
 
     }
-
     public Scene loadScene(){
         Parent root = null;
         try {
@@ -22,9 +18,6 @@ public class AnnouncementUI implements UIGlobal {
             e.printStackTrace();
         }
         Scene scene = new Scene(root, 1000, 600);
-
-
-
         return scene;
     }
 

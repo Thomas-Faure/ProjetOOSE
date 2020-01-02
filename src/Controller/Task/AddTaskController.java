@@ -1,42 +1,22 @@
 package Controller.Task;
 
+import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.Task;
-
 import BuisnessLogic.Task.TaskState;
-import BuisnessLogic.User.User;
 import Facade.SessionFacade;
-import Facade.TaskFacade;
+import Facade.Task.TaskFacade;
 import Main.App;
-import UI.Task.TaskUI;
+import UI.Announcement.UIAnnouncementManagement;
 import UI.Task.UIAddTask;
-import UI.Task.UIModifyTask;
 import UI.Task.UITaskManagement;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import UI.UIError;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 
-import javax.xml.soap.Text;
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+public class AddTaskController{
 
-public class AddTaskController implements Initializable {
-
-
-
-    /**
-     *
-     * Page Add Task
-     */
     @FXML
     private TextField subject;
     @FXML
@@ -45,15 +25,14 @@ public class AddTaskController implements Initializable {
     private DatePicker deadline;
     @FXML
     private TextField priority;
-    @FXML
-    private Button backButton;
-    @FXML
-    private Button addTaskButton;
 
+
+    public AddTaskController(){
+    }
 
     @FXML
     void addNewTask(ActionEvent actionEvent){
-        Task task = new Task(0,subject.getText(),description.getText(),Integer.parseInt(priority.getText()),deadline.getValue(),SessionFacade.getInstance().getUser(), TaskState.todo);
+        AbstractTask task = new Task(0,subject.getText(),description.getText(),Integer.parseInt(priority.getText()),deadline.getValue(),SessionFacade.getInstance().getUser(), TaskState.todo);
         if(TaskFacade.getInstance().addTask(task)){
             UITaskManagement taskP = new UITaskManagement();
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
@@ -61,7 +40,11 @@ public class AddTaskController implements Initializable {
                 box.getChildren().remove(1);
             box.getChildren().add(taskP.loadScene().getRoot());
         }else{
-            //pas ok
+            UIError error = new UIError(new UIAnnouncementManagement());
+            HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+            box.getChildren().add(error.loadScene().getRoot());
+            if(box.getChildren().size() >1 )
+                box.getChildren().remove(1);
         }
     }
     @FXML
@@ -73,15 +56,6 @@ public class AddTaskController implements Initializable {
         box.getChildren().add(task.loadScene().getRoot());
     }
 
-
-
-
-
-
-
-    public AddTaskController(){
-    }
-
     @FXML
     void addTaskPage(ActionEvent actionEvent) {
         UIAddTask addTask = new UIAddTask();
@@ -89,11 +63,5 @@ public class AddTaskController implements Initializable {
 
         box.getChildren().remove(1);
         box.getChildren().add(addTask.loadScene().getRoot());
-    }
-
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
     }
 }

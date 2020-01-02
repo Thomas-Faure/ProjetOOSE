@@ -13,30 +13,18 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 public class UIReadAnnouncement implements UIGlobal {
-
 	boolean adminPanel = false;
-
-
-
-
 	int id;
 	public UIReadAnnouncement(int id,boolean adminPanel){
 		this.adminPanel=adminPanel;
 		this.id=id;
-
 	}
 
-
 	public Scene loadScene(){
-
-
 		Map<Class, Callable<?>> creators = new HashMap<>();
 		creators.put(ReadAnnouncementController.class , new Callable<ReadAnnouncementController>() {
-
 			@Override
 			public ReadAnnouncementController call() throws Exception {
-
-
 				return new ReadAnnouncementController(id,adminPanel);
 			}
 		});
@@ -68,9 +56,6 @@ public class UIReadAnnouncement implements UIGlobal {
 			e.printStackTrace();
 		}
 		Scene scene = new Scene(root, 1000, 600);
-
 		return scene;
 	}
-
-
 }

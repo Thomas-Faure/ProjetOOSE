@@ -1,7 +1,9 @@
 package Main;
 
 import UI.Menu;
+import UI.Project.ProjectUI;
 import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class App {
@@ -27,6 +29,11 @@ public class App {
             getInstance().menu=new Menu();
         }
         getInstance().setInstanceScene(getInstance().getMenuScene());
+        ProjectUI meetingsPage = new ProjectUI();
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(meetingsPage.loadScene().getRoot());
     }
     public Stage getStage(){
         return this.stage;

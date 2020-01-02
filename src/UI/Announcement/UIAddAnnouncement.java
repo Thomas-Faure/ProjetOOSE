@@ -13,19 +13,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
 public class UIAddAnnouncement implements UIGlobal {
-
-
-
 	public UIAddAnnouncement(){
-
 	}
-
 	public boolean addAnnouncement(String title,String description){
 		return false;
-
 	}
-
-
 	public Scene loadScene(){
 		Parent root = null;
 		try {
@@ -34,10 +26,6 @@ public class UIAddAnnouncement implements UIGlobal {
 			e.printStackTrace();
 		}
 		Scene scene = new Scene(root, 1000, 600);
-
-
 		return scene;
 	}
-
-
 }

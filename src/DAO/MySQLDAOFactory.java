@@ -1,9 +1,20 @@
 package DAO;
 
+
+import DAO.Announcement.AnnouncementDAO;
+import DAO.Announcement.AnnouncementDAOMySQL;
 import DAO.Idea.IdeaDAO;
 import DAO.Idea.IdeaDAOMySQL;
+import DAO.Meeting.MeetingDAO;
+import DAO.Meeting.MeetingDAOMySQL;
+import DAO.Project.ProjectDAO;
+import DAO.Project.ProjectDAOMySQL;
 import DAO.Role.RoleDAO;
 import DAO.Role.RoleDAOMySQL;
+import DAO.Task.TaskDAO;
+import DAO.Task.TaskDAOMySQL;
+import DAO.Ticket.TicketDAO;
+import DAO.Ticket.TicketDAOMySQL;
 import DAO.User.UserDAO;
 import DAO.User.UserDAOMySQL;
 
@@ -39,6 +50,10 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
 		return getInstance().createTicketDAO();
 	}
 
+	public static RessourceDAO getResourceDAO(){ return getInstance().createRessourceDAO();};
+
+	public static SprintDAO getSprintDAO(){ return getInstance().createSprintDAO();};
+
 	protected UserDAO createUserDAO() {
 		return new UserDAOMySQL();
 	}
@@ -68,7 +83,11 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
 	@Override
 	protected MeetingDAO createMeetingDAO() {
 		// TODO Auto-generated method stub
-		return null;
+		return new MeetingDAOMySQL();
+	}
+
+	public static MeetingDAO getMeetingDAO(){
+		return getInstance().createMeetingDAO();
 	}
 
 	@Override
@@ -79,21 +98,24 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
 
 	@Override
 	protected ProjectDAO createProjectDAO() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ProjectDAOMySQL();
+	}
+
+	public static ProjectDAO getProjectDAO(){
+		return getInstance().createProjectDAO();
 	}
 
 	@Override
 	protected RessourceDAO createRessourceDAO() {
 		// TODO Auto-generated method stub
-		return null;
+		return new RessourceDAOMySQL();
 	}
 
 
 	@Override
 	protected SprintDAO createSprintDAO() {
 		// TODO Auto-generated method stub
-		return null;
+		return new SprintDAOMySQL();
 	}
 
 	public static TaskDAO getTaskDAO() {

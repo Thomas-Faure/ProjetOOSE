@@ -1,12 +1,8 @@
 package Controller.Task;
 
-import BuisnessLogic.Task.Task;
-
-import BuisnessLogic.User.User;
-import Facade.SessionFacade;
-import Facade.TaskFacade;
+import BuisnessLogic.Task.AbstractTask;
+import Facade.Task.TaskFacade;
 import Main.App;
-import UI.Confirm.UIConfirm;
 import UI.Task.*;
 import UI.UIError;
 import javafx.collections.FXCollections;
@@ -19,96 +15,94 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-
-import javax.xml.soap.Text;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class TaskManagerController implements Initializable {
 
-
-    //Task Page
     @FXML
     private TextField inputSearch;
     @FXML
-    private Button buttonSearch;
-    @FXML
-    private ListView<Task> taskList;
-    @FXML
-    private Button addATask;
-
+    private ListView<AbstractTask> taskList;
+    private static AbstractTask toManage;
     //permet de garder la liste de base
-    private static ObservableList<Task> listViewTemp;
+    private static ObservableList<AbstractTask> listViewTemp;
+
+    public TaskManagerController(){
+    }
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-
         //uniquement pour la page des taches manager
         if(taskList != null){
             //si on peut récuperer les taches
             if(TaskFacade.getInstance().getAllTasks()) {
-                ArrayList<Task> listeElement = ((ArrayList) TaskFacade.getInstance().getListTasks());
-                ObservableList<Task> listView = FXCollections.observableArrayList(listeElement);
+                ArrayList<AbstractTask> listeElement = ((ArrayList) TaskFacade.getInstance().getListTasks());
+                ObservableList<AbstractTask> listView = FXCollections.observableArrayList(listeElement);
                 listViewTemp= FXCollections.observableArrayList(listeElement);
-
                 taskList.setItems(listView);
                 taskList.setCellFactory(param -> new Cell());
-
             }
         }
 
     }
-
-
-    public static void main(String[] args) {
-
-    }
     @FXML
     public void testFct(KeyEvent keyEvent) {
-
         if(!(inputSearch.getText().length() == 0)) {
-
-
-            ArrayList<Task> array = new ArrayList<>(listViewTemp);
-            ArrayList<Task> toDelete = new ArrayList<>();
+            ArrayList<AbstractTask> array = new ArrayList<>(listViewTemp);
+            ArrayList<AbstractTask> toDelete = new ArrayList<>();
             for (int i = 0; i < array.size(); ++i) {
-
                 String inputS =inputSearch.getText();
                 if(inputS.charAt(0) == '*'){
                     inputS= "\\"+inputS;
                 }
                 String regex = "(.*)" + inputS + "(.*)";
                 if (array.get(i).getName().matches(regex)) {
-
                 } else {
                     toDelete.add(array.get(i));
-
                 }
             }
-
-            for (Task i : toDelete) {
-
+            for (AbstractTask i : toDelete) {
                 array.remove(i);
             }
-
-
-            ObservableList<Task> listViewT = FXCollections.observableArrayList(array);
+            ObservableList<AbstractTask> listViewT = FXCollections.observableArrayList(array);
             taskList.setItems(listViewT);
-
         }else{
             taskList.setItems(listViewTemp);
         }
+    }
 
+    public void validation(ActionEvent actionEvent) {
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(!(TaskFacade.getInstance().deleteTask(toManage))){
+            UIError error = new UIError(new UITaskManagement());
+            box.getChildren().add(error.loadScene().getRoot());
+            if(box.getChildren().size() >1 )
+                box.getChildren().remove(2);
+        }else {
+            AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+            toHide.setVisible(false);
+            AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#manager");
+            toShow.setVisible(true);
+            taskList.getItems().remove(toManage);
+            listViewTemp.remove(toManage);
+            toManage = null;
+        }
+    }
+    public void refuse(ActionEvent actionEvent) {
+        AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+        toHide.setVisible(false);
+        AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#manager");
+        toShow.setVisible(true);
     }
 
 
-    static class Cell extends ListCell<Task> {
-        Task task;
+    static class Cell extends ListCell<AbstractTask> {
+        AbstractTask task;
         HBox hbox = new HBox();
         Image image = new Image("crayon.png");
         ImageView img = new ImageView(image);
@@ -117,34 +111,20 @@ public class TaskManagerController implements Initializable {
         Button btnM = new Button("Modify");
         Label label = new Label("");
         Pane pane = new Pane();
-
         public Cell(){
             super();
             hbox.setSpacing(10);
             img.setFitHeight(20);
             img.setFitWidth(20);
-
-
             hbox.getChildren().addAll(img,label,pane,btnR,btnM,btnD);
             btnD.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    getListView().getItems().remove(getItem());
-                    listViewTemp.remove(getItem());
-                    HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-                    UIConfirm taskPage = new UIConfirm("Task","Delete",task,box.getChildren().get(1));
-                    box.getChildren().add(taskPage.loadScene().getRoot());
-                    if(box.getChildren().size() >1 )
-                        box.getChildren().remove(1);
-
-                    /**if(!(TaskFacade.getInstance().deleteTask(task))){
-                        UIError error = new UIError(new UITaskManagement());
-                        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-                        box.getChildren().add(error.loadScene().getRoot());
-                        if(box.getChildren().size() >1 )
-                            box.getChildren().remove(2);
-                    }**/
-
+                    toManage = task;
+                    AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#manager");
+                    toHide.setVisible(false);
+                    AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+                    toShow.setVisible(true);
                 }
             });
             btnM.setOnAction(new EventHandler<ActionEvent>() {
@@ -152,44 +132,31 @@ public class TaskManagerController implements Initializable {
                 public void handle(ActionEvent e) {
                     UIModifyTask modifyTask = new UIModifyTask(task.getId());
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-
                     box.getChildren().remove(1);
                        box.getChildren().add(modifyTask.loadScene().getRoot());
-
                 }
             });
             btnR.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-
                     UIReadTask read = new UIReadTask(task.getId());
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
                     box.getChildren().remove(1);
                     box.getChildren().add(read.loadScene().getRoot());
-
                 }
             });
-
-
         }
         @Override
-        public void updateItem(Task name, boolean empty){
+        public void updateItem(AbstractTask name, boolean empty){
             super.updateItem(name,empty);
             setText(null);
             setGraphic(null);
-
             if(name != null && !empty){
                 task = name;
                 label.setText(name.getId()+" "+name.getName());
                 setGraphic(hbox);
             }
-
         }
-
-
-    }
-
-    public TaskManagerController(){
     }
 
     @FXML
@@ -200,14 +167,4 @@ public class TaskManagerController implements Initializable {
         box.getChildren().remove(1);
         box.getChildren().add(addTask.loadScene().getRoot());
     }
-
-
-
-    void search(String search){
-        //effectue un trie pour chercher les annonces
-    }
-
-
-
-
 }

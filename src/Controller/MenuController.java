@@ -3,8 +3,11 @@ package Controller;
 import Main.App;
 import UI.Announcement.AnnouncementUI;
 import UI.Announcement.UIAnnouncementManagement;
+import UI.Meeting.MeetingsUI;
+import UI.Project.ProjectUI;
 import UI.Task.TaskUI;
 import UI.Task.UITaskManagement;
+import UI.Ticket.MyTicketUI;
 import UI.Ticket.TicketUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,6 +30,8 @@ public class MenuController {
     private Button menuMyIdea;
     @FXML
     private Button menuUser;
+    @FXML
+    private Button MyTicket;
 
     @FXML
     void goMenuLogin(ActionEvent event){
@@ -50,8 +55,13 @@ public class MenuController {
     }
     @FXML
     void goMenuProject(ActionEvent event){
-
+        ProjectUI project = new ProjectUI();
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(project.loadScene().getRoot());
     }
+
     @FXML
     void goMenuAnnouncementManager(ActionEvent event){
         UIAnnouncementManagement announcement = new UIAnnouncementManagement();
@@ -68,6 +78,15 @@ public class MenuController {
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
         box.getChildren().add(ticket.loadScene().getRoot());
+    }
+
+    @FXML
+    void goMyTicket(ActionEvent event){
+        MyTicketUI myTicket = new MyTicketUI();
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(myTicket.loadScene().getRoot());
     }
     @FXML
     void goMenuIdea(ActionEvent event){
@@ -94,6 +113,5 @@ public class MenuController {
     public MenuController(){
 
     }
-
 
 }
