@@ -1,15 +1,12 @@
 package Controller.Sprint;
 
-import BuisnessLogic.Ressource.AbstractResource;
+import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Sprint.AbstractSprint;
-import Controller.Resource.DropBoxConnexion;
-import Controller.Resource.ResourceController;
-import Facade.ISprintFacade;
-import Facade.ResourceFacade;
 import Facade.SprintFacade;
 import Main.App;
 import UI.Sprint.AddSprintUI;
 import UI.Sprint.ModifySprintUI;
+import UI.Sprint.ReadSprintUI;
 import UI.Sprint.SprintUI;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,7 +17,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.net.URL;
@@ -37,19 +33,19 @@ public class SprintController implements Initializable {
 
     private static ObservableList<AbstractSprint> listViewTemp;
 
-    private int projectID;
+    private AbstractProject project;
 
 
     /*public static SprintController instance;
     private ISprintFacade sFacade;*/
 
-    public SprintController(int projectID){
-        this.projectID = projectID;
+    public SprintController(AbstractProject project){
+        this.project = project;
     }
 
     @FXML
     void createSprint(ActionEvent actionEvent){
-        AddSprintUI AddSprintUI = new AddSprintUI(1);
+        AddSprintUI AddSprintUI = new AddSprintUI(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
@@ -60,16 +56,17 @@ public class SprintController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         if(sprintList != null){
 
-            List<AbstractSprint> listeElement = SprintFacade.getInstance().getListSprintByProject(projectID);
+            List<AbstractSprint> listeElement = SprintFacade.getInstance().getListSprintByProject(project.getId());
             ObservableList<AbstractSprint> listView = FXCollections.observableArrayList(listeElement);
             listViewTemp = FXCollections.observableArrayList(listeElement);
             sprintList.setItems(listView);
-            sprintList.setCellFactory(param -> new SprintController.Cell());
+            sprintList.setCellFactory(param -> new SprintController.Cell(project));
         }
     }
 
     static class Cell extends ListCell<AbstractSprint> {
         AbstractSprint sprint;
+        AbstractProject project;
         HBox hbox = new HBox();
         Button btnRead = new Button("Read");
         Button btnUpdate = new Button("Update");
@@ -77,21 +74,26 @@ public class SprintController implements Initializable {
         Label label = new Label("");
         Pane pane = new Pane();
 
-        public Cell(){
+        public Cell(AbstractProject project){
             super();
+            this.project = project;
             hbox.setSpacing(10);
             hbox.getChildren().addAll(label,pane,btnRead,btnUpdate,btnDelete);
             btnRead.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    System.out.println("See sprint !! OK");
+                    ReadSprintUI readSprintUI = new ReadSprintUI(project,sprint);
+                    HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+                    if(box.getChildren().size() >1 )
+                        box.getChildren().remove(1);
+                    box.getChildren().add(readSprintUI.loadScene().getRoot());
                 }
             });
 
             btnUpdate.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    ModifySprintUI updateSprintUI = new ModifySprintUI(1,sprint.getSprintID());
+                    ModifySprintUI updateSprintUI = new ModifySprintUI(project,sprint);
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
                     if(box.getChildren().size() >1 )
                         box.getChildren().remove(1);
@@ -104,7 +106,7 @@ public class SprintController implements Initializable {
                 public void handle(ActionEvent e) {
                     SprintFacade.getInstance().deleteSprint(sprint.getSprintID());
 
-                    SprintUI sprintUI = new SprintUI(1);
+                    SprintUI sprintUI = new SprintUI(project);
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
                     if(box.getChildren().size() >1 )
                         box.getChildren().remove(1);
