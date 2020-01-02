@@ -6,6 +6,7 @@ import Facade.Project.ProjectFacade;
 import Main.App;
 import UI.Meeting.MeetingsUI;
 import UI.Project.ProjectUI;
+import UI.Ressource.ResourceUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -61,9 +62,14 @@ public class ReadProjectController implements Initializable {
     void goMembers(ActionEvent actionEvent){
 
     }
+
     @FXML
     void goResources(ActionEvent actionEvent){
-
+        ResourceUI resourceUI = new ResourceUI(project.getId());
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(resourceUI.loadScene().getRoot());
     }
 
 
