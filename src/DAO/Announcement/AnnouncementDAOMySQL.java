@@ -28,28 +28,7 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 	public AnnouncementDAOMySQL() {
 
 	}
-	@Override
-	public AbstractAnnouncement createAnnouncementById(int id) {
-		 AbstractAnnouncement announcement=null;
-		    try {
-		    String query = "SELECT * FROM announcement WHERE id="+id;
-		      ResultSet result = MySQLConnector.getSQLConnection().createStatement(
-			      ResultSet.TYPE_SCROLL_INSENSITIVE,
-			      ResultSet.CONCUR_READ_ONLY).executeQuery(query);
-		      if(result.first()) {
-		    		  announcement= new Announcement( 
-		    				  result.getInt("id"),
-		    		          result.getString("title"),
-		    		          result.getString("message"),
-		    		          result.getDate("date").toLocalDate(),
-		    		          new User());
-		      }
-		    } catch (SQLException e) {
-		      e.printStackTrace();
-		    }
-		    return announcement;
-	}
-
+	
 	@Override
 	public boolean save(AbstractAnnouncement a) {
 		try {

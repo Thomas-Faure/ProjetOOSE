@@ -33,8 +33,6 @@ public class ReadTaskController implements Initializable {
         this.id=id;
         this.project=project;
     }
-
-
     @FXML
     void backToTasks(ActionEvent actionEvent){
         UITaskManagement task = new UITaskManagement(project);
