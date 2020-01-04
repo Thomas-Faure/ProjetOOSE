@@ -111,7 +111,7 @@ public class MeetingController implements Initializable {
     public void validation(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(!(meetingFacade.deleteMeeting(toManage))){
-            UIError error = new UIError(new UITaskManagement());
+            UIError error = new UIError(new MeetingsUI(project));
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(2);

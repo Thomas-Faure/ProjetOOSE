@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="paneBasic" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" style="-fx-background-color: #ecf0f5;" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.User.MemberUser.AddMemberController">
+    <children>
+        <AnchorPane fx:id="manager" prefHeight="600.0" prefWidth="768.0">
+            <children>
+                <ListView fx:id="usersList" layoutX="64.0" layoutY="143.0" prefHeight="319.0" prefWidth="655.0" />
+                <Pane prefHeight="49.0" prefWidth="768.0" style="-fx-background-color: #367fa9;">
+                    <children>
+                        <Text fill="WHITE" layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add member /" />
+                    </children>
+                </Pane>
+                <Text layoutX="30.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="All users">
+                    <font>
+                        <Font name="System Bold" size="37.0" />
+                    </font>
+                </Text>
+                <Button fx:id="backButton" layoutX="245.0" layoutY="500.0" mnemonicParsing="false" onAction="#backToPage" prefHeight="50.0" prefWidth="157.0" text="Back" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="245.0" AnchorPane.rightAnchor="366.0" AnchorPane.topAnchor="500.0" />
+                <!-- <Button fx:id="addUserButton" layoutX="418.0" layoutY="500.0" mnemonicParsing="false" onAction="#addNewMember" text="Add user" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="418.0" AnchorPane.rightAnchor="161.0" AnchorPane.topAnchor="500.0" />
+            -->
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="confirm" layoutX="10.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" visible="false">
+            <children>
+                <Text layoutX="250.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you really want to add this user ?" />
+                <Button fx:id="returnButton" layoutX="316.0" layoutY="300.0" mnemonicParsing="false" onAction="#validation" text="Ok" />
+                <Button fx:id="returnButton1" layoutX="420.0" layoutY="300.0" mnemonicParsing="false" onAction="#refuse" text="Return" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

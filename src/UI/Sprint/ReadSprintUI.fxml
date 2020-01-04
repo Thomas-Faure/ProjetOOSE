@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="paneBasic" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" style="-fx-background-color: #ecf0f5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Sprint.ReadSprintController">
+  <children>
+      <Pane prefHeight="49.0" prefWidth="768.0" style="-fx-background-color: #367fa9;">
+         <children>
+            <Text fx:id="titlePath" fill="WHITE" layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/Sprint/Read" />
+         </children>
+      </Pane>
+      <Text fx:id="sprintNameText" layoutX="30.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SprintNAME">
+         <font>
+            <Font name="System Bold" size="37.0" />
+         </font>
+      </Text>
+      <ListView fx:id="todoSprintList" layoutX="71.0" layoutY="194.0" prefHeight="362.0" prefWidth="187.0" />
+      <Text fx:id="beginDateText" layoutX="316.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Begin Date" wrappingWidth="217.72948265075684" />
+      <Text fx:id="endDateText" layoutX="316.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Date" wrappingWidth="217.7294864654541" />
+      <ListView fx:id="doingSprintList" layoutX="281.0" layoutY="194.0" prefHeight="362.0" prefWidth="187.0" />
+      <ListView fx:id="doneSprintList" layoutX="496.0" layoutY="194.0" prefHeight="362.0" prefWidth="187.0" />
+      <Text layoutX="136.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TO DO" />
+      <Text layoutX="353.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DOING" />
+      <Text layoutX="575.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DONE" />
+      <Button layoutX="547.0" layoutY="92.0" mnemonicParsing="false" text="Add a task" textFill="#8ca626" />
+      <Button fx:id="deleteSprintButton" layoutX="650.0" layoutY="92.0" mnemonicParsing="false" onAction="#deleteSprint" text="Delete Sprint" textFill="#da1212" />
+  </children>
+</AnchorPane>

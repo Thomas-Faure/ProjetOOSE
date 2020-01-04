@@ -1,6 +1,7 @@
 package BuisnessLogic.Sprint;
 
-import BuisnessLogic.Task.Task;
+import BuisnessLogic.Task.AbstractTask;
+import BuisnessLogic.Task.TaskState;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,13 +12,13 @@ public class Sprint extends AbstractSprint {
     String sprintName;
     LocalDate beginDate;
     LocalDate endDate;
-    List<Task> taskList;
+    List<AbstractTask> taskList;
 
     public Sprint(String sprintName, LocalDate beginDate, LocalDate endDate) {
         this.sprintName = sprintName;
         this.beginDate = beginDate;
         this.endDate = endDate;
-        this.taskList = new ArrayList<Task>();
+        this.taskList = new ArrayList<AbstractTask>();
     }
 
     public Sprint(int sprintID, String sprintName, LocalDate beginDate, LocalDate endDate) {
@@ -25,7 +26,7 @@ public class Sprint extends AbstractSprint {
         this.sprintName = sprintName;
         this.beginDate = beginDate;
         this.endDate = endDate;
-        this.taskList = new ArrayList<Task>();
+        this.taskList = new ArrayList<AbstractTask>();
     }
 
     @Override
@@ -64,12 +65,23 @@ public class Sprint extends AbstractSprint {
     }
 
     @Override
-    public List<Task> getTaskList() {
+    public List<AbstractTask> getTaskList() {
         return this.taskList;
     }
 
     @Override
-    public void setTaskList(List<Task> taskList) {
+    public List<AbstractTask> getTaskListByState(TaskState taskS) {
+        List<AbstractTask> taskListSate = new ArrayList<AbstractTask>();
+        for(AbstractTask task: this.taskList){
+            if (task.getState()==taskS){
+                taskListSate.add(task);
+            }
+        }
+        return taskListSate;
+    }
+
+    @Override
+    public void setTaskList(List<AbstractTask> taskList) {
         this.taskList = taskList;
     }
 }

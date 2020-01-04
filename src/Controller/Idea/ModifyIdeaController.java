@@ -2,13 +2,12 @@ package Controller.Idea;
 
 import BuisnessLogic.Idea.AbstractIdea;
 import BuisnessLogic.Idea.Idea;
-import BuisnessLogic.User.AbstractUser;
-import BuisnessLogic.User.User;
+import Facade.Idea.IIdeaFacade;
 import Facade.Idea.IdeaFacade;
 import Main.App;
 import UI.Idea.IdeaBoxUI;
-import UI.Task.UITaskManagement;
 import UI.UIError;
+import UI.UIGlobal;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,7 +21,7 @@ import java.util.ResourceBundle;
 
 public class ModifyIdeaController implements Initializable {
 
-    int id;
+    private IIdeaFacade ideaFacade = IdeaFacade.getInstance();
     private static AbstractIdea toModify;
 
     @FXML
@@ -38,8 +37,9 @@ public class ModifyIdeaController implements Initializable {
 
     public ModifyIdeaController(){
     }
-    public ModifyIdeaController(int id){
-        this.id=id;
+
+    public ModifyIdeaController(AbstractIdea idea) {
+        toModify = idea;
     }
 
     @FXML
@@ -52,31 +52,29 @@ public class ModifyIdeaController implements Initializable {
     }
 
     @FXML
-    public void modifyIdea(ActionEvent actionEvent) {
-        AbstractUser test = new User(0, "lauren", "lauren", "unquera","");
-        //test = SessionFacade.getInstance().getUser();
-        Idea idea = new Idea(0, name.getText(), description.getText(), subject.getText(), test);
-        toModify = idea;
-        AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#manager");
-        toHide.setVisible(false);
-        AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#confirm");
-        toShow.setVisible(true);
-    }
-
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        AbstractIdea ideaToModify = IdeaFacade.getInstance().getIdeaById(id);
-        if(ideaToModify != null) {
-            name.setText(ideaToModify.getName());
-            subject.setText(ideaToModify.getSubject());
-            description.setText(ideaToModify.getDescription());
+    void modifyIdea(ActionEvent actionEvent){
+        toModify.setName(name.getText());
+        toModify.setDescription(description.getText());
+        toModify.setSubject(subject.getText());
+        if(ideaFacade.modifyIdea(toModify)){
+            IdeaBoxUI ideaPage = new IdeaBoxUI();
+            HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+            if(box.getChildren().size() >1 )
+                box.getChildren().remove(1);
+            box.getChildren().add(ideaPage.loadScene().getRoot());
         }else{
-            UIError error = new UIError(new UITaskManagement());
+            UIError error = new UIError((UIGlobal) new IdeaBoxUI());
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )
-                box.getChildren().remove(2);
+                box.getChildren().remove(1);
         }
+    }
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        name.setText(toModify.getName());
+        subject.setText(toModify.getSubject());
+        description.setText(toModify.getDescription());
     }
 
     public void validation(ActionEvent actionEvent) {
@@ -87,7 +85,7 @@ public class ModifyIdeaController implements Initializable {
                 box.getChildren().remove(1);
             box.getChildren().add(ideabox.loadScene().getRoot());
         }else{
-            UIError error = new UIError(new UITaskManagement());
+            UIError error = new UIError((UIGlobal) new IdeaBoxUI());
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )

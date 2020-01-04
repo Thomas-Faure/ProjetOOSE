@@ -1,5 +1,6 @@
 package Controller.Task;
 
+import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.Task;
 import BuisnessLogic.Task.TaskState;
@@ -31,16 +32,16 @@ public class ModifyTaskController implements Initializable {
     @FXML
     private ChoiceBox stateChoiceBox;
     private static AbstractTask toModify;
-
+    private AbstractProject project;
 
     public ModifyTaskController(){
     }
-    public ModifyTaskController(int id){
-        this.id=id;
+    public ModifyTaskController(int id, AbstractProject project){
+        this.id=id;this.project=project;
     }
     @FXML
     void backToTasks(ActionEvent actionEvent){
-        UITaskManagement task = new UITaskManagement();
+        UITaskManagement task = new UITaskManagement(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
@@ -48,7 +49,7 @@ public class ModifyTaskController implements Initializable {
     }
     @FXML
     void modifyATask(ActionEvent actionEvent){
-        AbstractTask task = new Task(id,modifySubject.getText(),modifyDescription.getText(),Integer.parseInt(modifyPriority.getText()),modifyDeadline.getValue(),new User(3,"thomas","faure","faure","faure"),TaskState.getStateByString((String)stateChoiceBox.getSelectionModel().getSelectedItem()));
+        AbstractTask task = new Task(id,modifySubject.getText(),modifyDescription.getText(),Integer.parseInt(modifyPriority.getText()),modifyDeadline.getValue(),new User(3,"thomas","faure","faure","faure"),TaskState.getStateByString((String)stateChoiceBox.getSelectionModel().getSelectedItem()),project);
         toModify = task;
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#manager");
         toHide.setVisible(false);
@@ -69,7 +70,7 @@ public class ModifyTaskController implements Initializable {
             modifyDeadline.setValue(taskToModify.getDeadline());
             modifyPriority.setText(taskToModify.getPriority() + "");
         }else{
-            UIError error = new UIError(new UITaskManagement());
+            UIError error = new UIError(new UITaskManagement(project));
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )
@@ -80,12 +81,12 @@ public class ModifyTaskController implements Initializable {
     public void validation(ActionEvent actionEvent) {
         if(TaskFacade.getInstance().modifyTask((Task)toModify)){
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-            UITaskManagement tm = new UITaskManagement();
+            UITaskManagement tm = new UITaskManagement(project);
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(1);
             box.getChildren().add(tm.loadScene().getRoot());
         }else{
-            UIError error = new UIError(new UITaskManagement());
+            UIError error = new UIError(new UITaskManagement(project));
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )

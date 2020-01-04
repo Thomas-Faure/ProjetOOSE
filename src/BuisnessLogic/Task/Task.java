@@ -3,6 +3,7 @@ package BuisnessLogic.Task;
 import java.time.LocalDate;
 
 
+import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.User.User;
 
@@ -15,8 +16,9 @@ public class Task extends AbstractTask {
 	LocalDate deadline;
 	User creator;
 	String description;
+	AbstractProject project;
 
-	public Task(int id,String name,String description,int priority,LocalDate deadline,User creator,TaskState state) {
+	public Task(int id,String name,String description,int priority,LocalDate deadline,User creator,TaskState state,AbstractProject project) {
 		this.id=id;
 		this.description=description;
 		this.name=name;
@@ -24,8 +26,15 @@ public class Task extends AbstractTask {
 		this.deadline=deadline;
 		this.creator=creator;
 		this.state=state;
+		this.project=project;
 	}
 
+	public void setProject(AbstractProject project){
+		this.project=project;
+	}
+	public AbstractProject getProject(){
+		return this.project;
+	}
 	public void setState(TaskState state){ this.state=state; }
 	public TaskState getState(){
 		return this.state;

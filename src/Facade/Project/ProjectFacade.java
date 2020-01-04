@@ -1,12 +1,8 @@
 package Facade.Project;
 
 import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Ticket.AbstractTicket;
-import DAO.AbstractDAOFactory;
 import DAO.MySQLDAOFactory;
 import DAO.Project.ProjectDAO;
-import DAO.Ticket.TicketDAO;
-import Facade.Ticket.TicketFacade;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +42,13 @@ public class ProjectFacade implements IProjectFacade {
         }else {
             return false;
         }
+    }
+
+    @Override
+    public AbstractProject getProjectById(int id) {
+        AbstractProject project;
+        project = dao.getProjectById(id);
+        return project;
     }
 
     @Override

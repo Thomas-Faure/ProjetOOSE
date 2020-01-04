@@ -10,7 +10,7 @@
       <TextField fx:id="inputSearch" layoutX="525.0" layoutY="25.0" onKeyReleased="#testFct" promptText="search" />
       <Button fx:id="buttonSearch" layoutX="687.0" layoutY="25.0" mnemonicParsing="false" text="Ok" />
       <VBox fx:id="vboxList" layoutX="12.0" layoutY="63.0" prefHeight="492.0" prefWidth="742.0" />
-      <Button fx:id="next" layoutX="390.0" layoutY="561.0" mnemonicParsing="false" onAction="#next" text="Next" />
-      <Button fx:id="prev" layoutX="350.0" layoutY="561.0" mnemonicParsing="false" onAction="#prev" text="Prev" />
+      <Button fx:id="next" layoutX="403.0" layoutY="573.0" mnemonicParsing="false" onAction="#next" text="Next" />
+      <Button fx:id="prev" layoutX="343.0" layoutY="573.0" mnemonicParsing="false" onAction="#prev" text="Prev" />
   </children>
 </AnchorPane>

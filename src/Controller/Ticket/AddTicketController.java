@@ -4,15 +4,14 @@ import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Announcement.Announcement;
 import BuisnessLogic.Ticket.AbstractTicket;
 import BuisnessLogic.Ticket.Ticket;
-import Facade.Announcement.AnnouncementFacade;
+
 import Facade.ISessionFacade;
 import Facade.SessionFacade;
 import Facade.Ticket.ITicketFacade;
 import Facade.Ticket.TicketFacade;
 import Main.App;
-import UI.Announcement.UIAnnouncementManagement;
 import UI.Ticket.MyTicketUI;
-import UI.Ticket.TicketUI;
+
 import UI.UIError;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

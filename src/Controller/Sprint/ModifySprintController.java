@@ -1,5 +1,6 @@
 package Controller.Sprint;
 
+import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Sprint.AbstractSprint;
 import BuisnessLogic.Sprint.Sprint;
 import Facade.SprintFacade;
@@ -21,8 +22,8 @@ import java.util.ResourceBundle;
 
 public class ModifySprintController implements Initializable {
 
-    private int projectID;
-    private int sprintID;
+    private AbstractProject project;
+    private AbstractSprint sprint;
 
     @FXML
     private TextField inputSprintName;
@@ -36,9 +37,9 @@ public class ModifySprintController implements Initializable {
     @FXML
     private Button buttonSave;
 
-    public ModifySprintController(int projectID, int sprintID){
-        this.sprintID = sprintID;
-        this.projectID = projectID;
+    public ModifySprintController(AbstractProject project, AbstractSprint sprint){
+        this.sprint = sprint;
+        this.project = project;
     }
 
     @FXML
@@ -46,13 +47,13 @@ public class ModifySprintController implements Initializable {
         LocalDate localDateBegin = inputBeginDate.getValue();
         LocalDate localDateEnd = inputEndDate.getValue();
 
-        AbstractSprint updateSprint = SprintFacade.getInstance().getSprintById(sprintID);
+        AbstractSprint updateSprint = SprintFacade.getInstance().getSprintById(sprint.getSprintID());
         updateSprint.setSprintName(inputSprintName.getText());
         updateSprint.setBeginDate(localDateBegin);
         updateSprint.setEndDate(localDateEnd);
         SprintFacade.getInstance().updateSprint(updateSprint);
 
-        SprintUI sprintUI = new SprintUI(1);
+        SprintUI sprintUI = new SprintUI(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
@@ -66,15 +67,15 @@ public class ModifySprintController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        AbstractSprint sprint = SprintFacade.getInstance().getSprintById(sprintID);
+        AbstractSprint currentSprint = SprintFacade.getInstance().getSprintById(sprint.getSprintID());
         if(sprint != null){
-            inputSprintName.setText(sprint.getSprintName());
-            inputBeginDate.setValue(sprint.getBeginDate());
-            inputEndDate.setValue(sprint.getEndDate());
+            inputSprintName.setText(currentSprint.getSprintName());
+            inputBeginDate.setValue(currentSprint.getBeginDate());
+            inputEndDate.setValue(currentSprint.getEndDate());
         }
 
         else{
-            UIError error = new UIError(new SprintUI(projectID));
+            UIError error = new UIError(new SprintUI(project));
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )

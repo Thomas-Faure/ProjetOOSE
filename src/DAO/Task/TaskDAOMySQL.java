@@ -1,11 +1,14 @@
 package DAO.Task;
 
 
+import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.Task;
 import BuisnessLogic.Task.TaskState;
 import BuisnessLogic.User.User;
 import DAO.MySQLConnector;
+import Facade.Project.ProjectFacade;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +21,7 @@ public class TaskDAOMySQL implements TaskDAO {
     private static final String UPDATE = "UPDATE task SET name=?, priority=?, deadline=?, creator=?, description=?, state=? WHERE id=?";
     private static final String DELETE = "DELETE FROM task WHERE id=?";
     private static final String ALL = "SELECT * from task";
+    private static final String ALLBYPROJ = "SELECT * from task where idProject=?";
     private static final String TASKBYID = "SELECT * from task where id=?";
     private static final String TASKBYNAME = "SELECT * from task where name=?";
 	
@@ -41,7 +45,8 @@ public class TaskDAOMySQL implements TaskDAO {
 		    		          result.getInt("test"),
 		    		          result.getDate("deadline").toLocalDate(),
 		    		          new User(),
-                              TaskState.getStateByString(result.getString("state")));
+                              TaskState.getStateByString(result.getString("state")),
+                              ProjectFacade.getInstance().getProjectById(result.getInt("idProject")));
 		      }
 		    } catch (SQLException e) {
 		      e.printStackTrace();
@@ -125,7 +130,8 @@ public class TaskDAOMySQL implements TaskDAO {
                         rs.getInt("priority"),
                         rs.getDate("deadline").toLocalDate(),
                         new User(3,"thomas","faure","faure","faure"),
-                        TaskState.getStateByString(rs.getString("state")));
+                        TaskState.getStateByString(rs.getString("state")),
+                        ProjectFacade.getInstance().getProjectById(rs.getInt("idProject")));
             }
             ps.close();
         } catch (SQLException e) {
@@ -149,7 +155,8 @@ public class TaskDAOMySQL implements TaskDAO {
                         rs.getInt("priority"),
                         rs.getDate("deadline").toLocalDate(),
                         new User(3,"thomas","faure","faure","faure"),
-                        TaskState.getStateByString(rs.getString("state"))));
+                        TaskState.getStateByString(rs.getString("state")),
+                        ProjectFacade.getInstance().getProjectById(rs.getInt("idProject"))));
             }
             ps.close();
         } catch (SQLException e) {
@@ -171,7 +178,33 @@ public class TaskDAOMySQL implements TaskDAO {
                         rs.getInt("priority"),
                         rs.getDate("deadline").toLocalDate(),
                         null,
-                        TaskState.getStateByString(rs.getString("state")));
+                        TaskState.getStateByString(rs.getString("state")),
+                        ProjectFacade.getInstance().getProjectById(rs.getInt("idProject")));
+                list.add(task);
+            }
+            ps.close();
+        } catch (SQLException e) {
+
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+    @Override
+    public List<AbstractTask> getAllTasks(AbstractProject project) {
+        List<AbstractTask> list = new ArrayList<>();
+        try {
+            PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(ALLBYPROJ);
+            ps.setInt(1, project.getId());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                AbstractTask task = new Task(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        rs.getInt("priority"),
+                        rs.getDate("deadline").toLocalDate(),
+                        null,
+                        TaskState.getStateByString(rs.getString("state")),ProjectFacade.getInstance().getListProjects().get(0));
                 list.add(task);
             }
             ps.close();

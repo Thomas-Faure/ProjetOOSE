@@ -2,8 +2,6 @@ package DAO.Project;
 
 import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Project.Project;
-import BuisnessLogic.Ticket.AbstractTicket;
-import BuisnessLogic.Ticket.Ticket;
 import DAO.MySQLConnector;
 
 import java.sql.PreparedStatement;
@@ -103,5 +101,29 @@ public class ProjectDAOMySQL implements ProjectDAO {
             e.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public AbstractProject getProjectById(int id) {
+        AbstractProject project = null;
+        try {
+            PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(PROJECTBYID);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                project = new Project(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        rs.getDate("dateCreation").toLocalDate(),
+                        rs.getBoolean("isAgile")
+                );
+
+            }
+            ps.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return project;
     }
 }

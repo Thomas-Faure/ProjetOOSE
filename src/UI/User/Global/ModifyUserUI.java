@@ -1,14 +1,57 @@
 package UI.User.Global;
 
+import BuisnessLogic.User.GlobalUser;
+import Controller.User.GlobalUser.ModifyUserController;
+import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.util.Callback;
 
-public class ModifyUserUI {
-    public Scene loadScene(){
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.Callable;
+
+public class ModifyUserUI implements UIGlobal {
+
+    private GlobalUser user;
+
+    public ModifyUserUI(GlobalUser user){
+        this.user= user;
+    }
+
+    @Override
+    public Scene loadScene() {
+        Map<Class, Callable<?>> creators = new HashMap<>();
+        creators.put(ModifyUserController.class , new Callable<ModifyUserController>() {
+            public ModifyUserController call() throws Exception {
+                return new ModifyUserController(user);
+            }
+        });
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("ModifyUserUI.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifyUserUI.fxml"));
+            loader.setControllerFactory(new Callback<Class<?>, Object>() {
+                @Override
+                public Object call(Class<?> param) {
+                    Callable<?> callable = creators.get(param);
+                    if (callable == null) {
+                        try {
+                            // default handling: use no-arg constructor
+                            return param.newInstance();
+                        } catch (InstantiationException | IllegalAccessException ex) {
+                            throw new IllegalStateException(ex);
+                        }
+                    } else {
+                        try {
+                            return callable.call();
+                        } catch (Exception ex) {
+                            throw new IllegalStateException(ex);
+                        }
+                    }
+                }
+            });
+            root = loader.load();
         }catch(Exception e){
             e.printStackTrace();
         }

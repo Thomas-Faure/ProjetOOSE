@@ -5,6 +5,7 @@ import BuisnessLogic.Announcement.Announcement;
 import Facade.Announcement.AnnouncementFacade;
 import Main.App;
 import UI.Announcement.UIAddAnnouncement;
+import UI.Announcement.UIAnnouncementManagement;
 import UI.Announcement.UIModifyAnnouncement;
 import UI.Announcement.UIReadAnnouncement;
 import UI.Task.UITaskManagement;
@@ -90,7 +91,7 @@ public class AnnouncementController implements Initializable {
     public void validation(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(!(AnnouncementFacade.getInstance().deleteAnnouncement(toManage))){
-            UIError error = new UIError(new UITaskManagement());
+            UIError error = new UIError(new UIAnnouncementManagement());
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(2);

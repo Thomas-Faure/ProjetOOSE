@@ -46,7 +46,11 @@ public class IdeaFacade implements IIdeaFacade {
 
     public boolean modifyIdea(AbstractIdea idea) {
         if(daoFactory.update(idea)){
-            this.ideas.set(idea.getId(), idea);
+            int i = 0;
+            while(this.ideas.get(i).getId() != idea.getId()){
+                i++;
+            }
+            this.ideas.set(i, idea);
             return true;
         }else {
             return false;
@@ -76,4 +80,5 @@ public class IdeaFacade implements IIdeaFacade {
         idea = daoFactory.getIdeaById(id);
         return idea;
     }
+
 }

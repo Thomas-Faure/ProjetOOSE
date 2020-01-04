@@ -1,15 +1,8 @@
 package DAO.User;
 
-import BuisnessLogic.User.User;
-import DAO.MySQLConnector;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 public class UserDAOMySQL implements UserDAO {
 
-	
+	/*
     private static final String INSERT = "INSERT INTO user (username, firstname, lastname, password) VALUES (?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE user SET username=?, firstName=?, lastName=?, password=? WHERE id=?";
     private static final String DELETE = "DELETE FROM user WHERE id=?";
@@ -89,7 +82,7 @@ public class UserDAOMySQL implements UserDAO {
 		
 	}
 	@Override
-    public void delete(int id) {
+    public boolean delete(int id) {
  
         try {
  
@@ -106,11 +99,22 @@ public class UserDAOMySQL implements UserDAO {
             //e.printStackTrace();
             throw new RuntimeException(e);
         }
- 
+
+        return false;
     }
 
-	
-	public static void main(String[] args) {
+    @Override
+    public List<AbstractUser> getAllUsers() {
+        return null;
+    }
+
+    @Override
+    public AbstractUser getUserById(int id) {
+        return null;
+    }
+
+
+    public static void main(String[] args) {
 		User user = new User(3,"toto2","first","last","password");
 		UserDAOMySQL sql = new UserDAOMySQL();
 		sql.update(user);
@@ -120,7 +124,7 @@ public class UserDAOMySQL implements UserDAO {
 	}
 	
 
-
+*/
 
 	
 }

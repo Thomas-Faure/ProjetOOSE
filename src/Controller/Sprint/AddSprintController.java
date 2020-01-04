@@ -1,5 +1,6 @@
 package Controller.Sprint;
 
+import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Sprint.AbstractSprint;
 import BuisnessLogic.Sprint.Sprint;
 import Facade.SprintFacade;
@@ -34,18 +35,18 @@ public class AddSprintController {
         LocalDate localDateBegin = inputBeginDate.getValue();
         LocalDate localDateEnd = inputEndDate.getValue();
         AbstractSprint newSprint = new Sprint(inputSprintName.getText(),localDateBegin,localDateEnd);
-        SprintFacade.getInstance().addSprint(newSprint,projectID);
+        SprintFacade.getInstance().addSprint(newSprint,project.getId());
 
-        SprintUI sprintUI = new SprintUI(1);
+        SprintUI sprintUI = new SprintUI(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
         box.getChildren().add(sprintUI.loadScene().getRoot());
     }
 
-    private int projectID;
+    private AbstractProject project;
 
-    public AddSprintController(int projectID){
-        this.projectID = projectID;
+    public AddSprintController(AbstractProject project){
+        this.project = project;
     }
 }

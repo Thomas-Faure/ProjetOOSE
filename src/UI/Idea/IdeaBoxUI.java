@@ -1,10 +1,11 @@
 package UI.Idea;
 
+import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-public class IdeaBoxUI {
+public class IdeaBoxUI implements UIGlobal {
     public Scene loadScene(){
         Parent root = null;
         try {

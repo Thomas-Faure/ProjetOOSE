@@ -3,10 +3,10 @@ package Facade;
 import BuisnessLogic.User.User;
 import DAO.MySQLDAOFactory;
 import DAO.Task.TaskDAO;
-import DAO.User.UserDAO;
+import DAO.User.GlobalUser.GlobalUserDAO;
 
 public class SessionFacade implements ISessionFacade {
-	UserDAO userDAO;
+	GlobalUserDAO userDAO;
 	TaskDAO taskDAO;
 	User user;
 
@@ -26,6 +26,10 @@ public class SessionFacade implements ISessionFacade {
 	public User getUser(){
 		return user;
 	}
+
+	public void setUser(User user){
+		this.user = user;
+	};
 
 	public boolean login(String username,String password) {
 		if(user == null) {

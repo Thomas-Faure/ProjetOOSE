@@ -15,8 +15,10 @@ import DAO.Task.TaskDAO;
 import DAO.Task.TaskDAOMySQL;
 import DAO.Ticket.TicketDAO;
 import DAO.Ticket.TicketDAOMySQL;
-import DAO.User.UserDAO;
-import DAO.User.UserDAOMySQL;
+import DAO.User.GlobalUser.GlobalUserDAO;
+import DAO.User.GlobalUser.GlobalUserDAOMySQL;
+import DAO.User.Member.MemberDAO;
+import DAO.User.Member.MemberDAOMySQL;
 
 public  class MySQLDAOFactory extends AbstractDAOFactory {
 
@@ -31,13 +33,14 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
 		return instance;
 	}
 	
-	public static UserDAO getUserDAO() {
+	public static GlobalUserDAO getUserDAO() {
 		return getInstance().createUserDAO();
 	}
 
     public static IdeaDAO getIdeaDAO() {
 		return getInstance().createIdeaDAO();
     }
+
 	public static RoleDAO getRoleDAO() {
 		return getInstance().createRoleDAO();
 	}
@@ -54,8 +57,15 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
 
 	public static SprintDAO getSprintDAO(){ return getInstance().createSprintDAO();};
 
-	protected UserDAO createUserDAO() {
-		return new UserDAOMySQL();
+    public static MemberDAO getMemberDAO() {
+    	return getInstance().createMemberDAO();
+    };
+
+    protected MemberDAO createMemberDAO() { return new MemberDAOMySQL(); };
+
+
+    protected GlobalUserDAO createUserDAO() {
+		return new GlobalUserDAOMySQL();
 	}
 
 	@Override
@@ -86,14 +96,9 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
 		return new MeetingDAOMySQL();
 	}
 
+
 	public static MeetingDAO getMeetingDAO(){
 		return getInstance().createMeetingDAO();
-	}
-
-	@Override
-	protected MemberDAO createMemberUDAO() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

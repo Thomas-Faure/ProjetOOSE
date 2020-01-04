@@ -1,6 +1,8 @@
 package BuisnessLogic.Sprint;
 
+import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.Task;
+import BuisnessLogic.Task.TaskState;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -11,7 +13,7 @@ public abstract class AbstractSprint {
     String sprintName;
     LocalDate beginDate;
     LocalDate endDate;
-    List<Task> taskList;
+    List<AbstractTask> taskList;
 
     public abstract int getSprintID();
 
@@ -27,7 +29,9 @@ public abstract class AbstractSprint {
 
     public abstract void setEndDate(LocalDate endDate);
 
-    public abstract List<Task> getTaskList();
+    public abstract List<AbstractTask> getTaskList();
 
-    public abstract void setTaskList(List<Task> taskList);
+    public abstract List<AbstractTask> getTaskListByState(TaskState taskS);
+
+    public abstract void setTaskList(List<AbstractTask> taskList);
 }

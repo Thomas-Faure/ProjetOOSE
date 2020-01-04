@@ -1,5 +1,6 @@
 package UI.Task;
 
+import BuisnessLogic.Project.AbstractProject;
 import Controller.Task.ModifyTaskController;
 import UI.UIGlobal;
 import javafx.event.ActionEvent;
@@ -18,8 +19,9 @@ import java.util.concurrent.Callable;
 
 public class UIModifyTask implements UIGlobal {
 	int id;
-	public UIModifyTask(int id){
-		this.id=id;
+	private AbstractProject project;
+	public UIModifyTask(int id, AbstractProject project){
+		this.id=id;this.project=project;
 	}
 
 	public Scene loadScene(){
@@ -28,7 +30,7 @@ public class UIModifyTask implements UIGlobal {
 			@Override
 			public ModifyTaskController call() throws Exception {
 				System.out.println(id+"");
-				return new ModifyTaskController(id);
+				return new ModifyTaskController(id,project);
 			}
 		});
 		Parent root = null;

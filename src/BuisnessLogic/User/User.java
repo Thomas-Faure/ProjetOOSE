@@ -20,6 +20,20 @@ public class User extends AbstractUser {
         this.password = newPassword;
     }
 
+    public User (int newId, String newUsername, String newPassword, String newFirstname, String newLastname, String newCity,
+                 String newphoneNumber, String newEmail, String newPosition, boolean newisAdmin){
+        this.id = newId;
+        this.username = newUsername;
+        this.password = newPassword;
+        this.firstName = newFirstname;
+        this.lastName = newLastname;
+        this.city = newCity;
+        this.phoneNumber = newphoneNumber;
+        this.email = newEmail;
+        this.position = newPosition;
+        this.isAdmin = newisAdmin;
+    }
+
     public User(){
 
     }

@@ -1,5 +1,6 @@
 package Facade.Task;
 
+import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.Task;
 
@@ -19,4 +20,5 @@ public interface ITaskFacade {
 
       AbstractTask getTaskById(int id);
 
+    boolean getAllTasks(AbstractProject project);
 }

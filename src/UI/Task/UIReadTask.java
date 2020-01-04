@@ -1,5 +1,6 @@
 package UI.Task;
 
+import BuisnessLogic.Project.AbstractProject;
 import Controller.Task.ModifyTaskController;
 import Controller.Task.ReadTaskController;
 import UI.UIGlobal;
@@ -14,8 +15,9 @@ import java.util.concurrent.Callable;
 
 public class UIReadTask implements UIGlobal {
 	int id;
-	public UIReadTask(int id){
-		this.id=id;
+	AbstractProject project;
+	public UIReadTask(int id, AbstractProject project){
+		this.id=id;this.project=project;
 	}
 
 	public Scene loadScene(){
@@ -23,7 +25,7 @@ public class UIReadTask implements UIGlobal {
 		creators.put(ReadTaskController.class , new Callable<ReadTaskController>() {
 			@Override
 			public ReadTaskController call() throws Exception {
-				return new ReadTaskController(id);
+				return new ReadTaskController(id,project);
 			}
 		});
 		Parent root = null;

@@ -5,7 +5,6 @@ import UI.Announcement.AnnouncementUI;
 import UI.Announcement.UIAnnouncementManagement;
 import UI.Idea.IdeaBoxUI;
 import UI.Project.ProjectUI;
-import UI.Task.UITaskManagement;
 import UI.Ticket.MyTicketUI;
 import UI.Ticket.TicketUI;
 import UI.User.Global.AllUsersUI;
@@ -38,9 +37,8 @@ public class MenuController {
 
     @FXML
     void goMenuLogin(ActionEvent event){
-        /*
-        UITaskManagement task = new UITaskManagement();
 
+       /* UITaskManagement task = new UITaskManagement();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
@@ -50,12 +48,12 @@ public class MenuController {
     }
     @FXML
     void goMenuTask(ActionEvent event){
-        UITaskManagement task = new UITaskManagement();
+     /*   UITaskManagement task = new UITaskManagement();
 
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
-        box.getChildren().add(task.loadScene().getRoot());
+        box.getChildren().add(task.loadScene().getRoot());*/
 
     }
     @FXML

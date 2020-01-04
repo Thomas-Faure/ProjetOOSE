@@ -2,6 +2,8 @@ package Facade.Idea;
 
 import BuisnessLogic.Idea.AbstractIdea;
 
+import java.util.List;
+
 public interface IIdeaFacade {
 
     boolean addIdea(AbstractIdea idea);
@@ -15,4 +17,6 @@ public interface IIdeaFacade {
     boolean getAllIdeas();
 
     AbstractIdea getIdeaById(int id);
+
+    List<AbstractIdea> getListIdeas();
 }

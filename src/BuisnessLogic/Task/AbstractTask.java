@@ -1,5 +1,6 @@
 package BuisnessLogic.Task;
 
+import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.User.User;
 
 import java.time.LocalDate;
@@ -20,6 +21,8 @@ public abstract class AbstractTask {
     public abstract void setDeadline(LocalDate deadline);
     public abstract void setCreator(User creator);
     public abstract void setDescription(String description);
+    public abstract void setProject(AbstractProject project);
+    public abstract AbstractProject getProject();
 
 
 }

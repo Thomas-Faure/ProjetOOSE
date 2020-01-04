@@ -1,10 +1,11 @@
 package UI.User.Global;
 
+import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-public class AllUsersUI {
+public class AllUsersUI implements UIGlobal {
     public Scene loadScene(){
         Parent root = null;
         try {
