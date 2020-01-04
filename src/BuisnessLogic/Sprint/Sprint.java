@@ -73,7 +73,7 @@ public class Sprint extends AbstractSprint {
     public List<AbstractTask> getTaskListByState(TaskState taskS) {
         List<AbstractTask> taskListSate = new ArrayList<AbstractTask>();
         for(AbstractTask task: this.taskList){
-            if (task.getState()==taskS){
+            if (task.getState().equals(taskS)){
                 taskListSate.add(task);
             }
         }

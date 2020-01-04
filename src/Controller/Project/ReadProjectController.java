@@ -8,6 +8,7 @@ import UI.Meeting.MeetingsUI;
 import UI.Project.ProjectUI;
 import UI.Ressource.ResourceUI;
 import UI.Sprint.AddSprintUI;
+import UI.Sprint.SprintUI;
 import UI.Task.UITaskManagement;
 import UI.User.Member.AllMembersUI;
 import javafx.event.ActionEvent;
@@ -112,6 +113,12 @@ public class ReadProjectController implements Initializable {
                 box.getChildren().remove(1);
             box.getChildren().add(taskManagement.loadScene().getRoot());
         }
-        //sprint
+        else{
+            SprintUI sprintUI = new SprintUI(project);
+            HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+            if(box.getChildren().size() >1 )
+                box.getChildren().remove(1);
+            box.getChildren().add(sprintUI.loadScene().getRoot());
+        }
     }
 }

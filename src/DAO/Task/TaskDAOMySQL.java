@@ -29,30 +29,7 @@ public class TaskDAOMySQL implements TaskDAO {
 		
 	}
 
-	@Override
-	public Task createTaskById(int id) {
-		 Task task=null;
-		    try {
-		    String query = "SELECT * FROM task WHERE id="+id;
-		      ResultSet result = MySQLConnector.getSQLConnection().createStatement(
-			      ResultSet.TYPE_SCROLL_INSENSITIVE,
-			      ResultSet.CONCUR_READ_ONLY).executeQuery(query);
-		      if(result.first()) {
-		    		  task= new Task(    
-		    				  result.getInt("id"),
-		    		          result.getString("name"),
-                              result.getString("description"),
-		    		          result.getInt("test"),
-		    		          result.getDate("deadline").toLocalDate(),
-		    		          new User(),
-                              TaskState.getStateByString(result.getString("state")),
-                              ProjectFacade.getInstance().getProjectById(result.getInt("idProject")));
-		      }
-		    } catch (SQLException e) {
-		      e.printStackTrace();
-		    }
-		    return task;
-	}
+
 
 	@Override
 	public boolean save(AbstractTask task) {
