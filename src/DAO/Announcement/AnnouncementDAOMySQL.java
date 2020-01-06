@@ -28,7 +28,7 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 	public AnnouncementDAOMySQL() {
 
 	}
-	
+
 	@Override
 	public boolean save(AbstractAnnouncement a) {
 		try {
