@@ -15,5 +15,6 @@ public interface TaskDAO {
 	List<AbstractTask> getAllTasks(AbstractProject project);
 	AbstractTask getTaskById(int id);
 	List<AbstractTask> getTaskByName(String name);
+	List<AbstractTask> getTasksFromSprintId(int id);
 
 }
