@@ -16,13 +16,13 @@ import java.util.List;
 
 public class RessourceDAOMySQL implements RessourceDAO {
 
-    private static final String INSERT = "INSERT INTO resource (path, filename) VALUES (?, ?)";
-    private static final String INSERT_INTERMEDIATE_TABLE = "INSERT INTO resource_project (resourceID,projectID) VALUES(?,?)";
+    private static final String INSERT = "INSERT INTO resource (path, filename, projectid) VALUES (?, ?, ?)";
+    //private static final String INSERT_INTERMEDIATE_TABLE = "INSERT INTO resource_project (resourceID,projectID) VALUES(?,?)";
     private static final String UPDATE = "UPDATE resource SET path=?, filename=? WHERE resourceID=?";
     private static final String DELETE = "DELETE FROM resource WHERE resourceID=?";
     private static final String RESOURCEBYID = "SELECT * FROM resource where resourceID=?";
-    private static final String RESOURCEBYPROJECT = "SELECT resourceID FROM resource_project WHERE projectID=?";
-    private static final String LASTID = "SELECT MAX(resourceID) AS \"maxresourceID\" FROM resource";
+    private static final String RESOURCEBYPROJECT = "SELECT resourceID FROM resource WHERE projectid=?";
+    //private static final String LASTID = "SELECT MAX(resourceID) AS \"maxresourceID\" FROM resource";
 
     public RessourceDAOMySQL(){
     }
@@ -34,6 +34,7 @@ public class RessourceDAOMySQL implements RessourceDAO {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(INSERT);
             ps.setString(1, resource.getPath());
             ps.setString(2, resource.getFilename());
+            ps.setInt(3, projectID);
             int i = ps.executeUpdate();
             ps.close();
             if (i > 0) {
@@ -42,13 +43,13 @@ public class RessourceDAOMySQL implements RessourceDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        AbstractResource newResource = getLastResourceAdded();
-        success = saveIntermediateTable(newResource.getResourceID(),projectID);
+        //AbstractResource newResource = getLastResourceAdded();
+        //success = saveIntermediateTable(newResource.getResourceID(),projectID);
 
         return success;
     }
 
-    public AbstractResource getLastResourceAdded(){
+    /*public AbstractResource getLastResourceAdded(){
         int lastResourceID = 0;
         try {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(LASTID);
@@ -62,9 +63,9 @@ public class RessourceDAOMySQL implements RessourceDAO {
             e.printStackTrace();
         }
         return getResourceById(lastResourceID);
-    }
+    }*/
 
-    public boolean saveIntermediateTable(int resourceID,int projectID){
+    /*public boolean saveIntermediateTable(int resourceID,int projectID){
 
         boolean success = false;
         try {
@@ -80,7 +81,7 @@ public class RessourceDAOMySQL implements RessourceDAO {
             e.printStackTrace();
         }
         return success;
-    }
+    }*/
 
     @Override
     public boolean update(AbstractResource resource) {
