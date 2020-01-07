@@ -4,6 +4,7 @@ import BuisnessLogic.Project.AbstractProject;
 import Controller.Sprint.SprintController;
 import Controller.Task.TaskManagerController;
 import UI.UIGlobal;
+import UI.UIGlobalWithController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,9 +14,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-public class UITaskManagement implements UIGlobal {
+public class UITaskManagement implements UIGlobal, UIGlobalWithController {
 
 	AbstractProject project;
+	public static Object controller;
 
 	public UITaskManagement(AbstractProject project){
 		this.project = project;
@@ -32,6 +34,7 @@ public class UITaskManagement implements UIGlobal {
 		Parent root = null;
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("TaskManagementUI.fxml"));
+
 			loader.setControllerFactory(new Callback<Class<?>, Object>() {
 
 				@Override
@@ -53,10 +56,16 @@ public class UITaskManagement implements UIGlobal {
 				}
 			});
 			root = loader.load();
+			controller=loader.getController();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		Scene scene = new Scene(root, 1000, 600);
 		return scene;
+	}
+
+	@Override
+	public Object getController() {
+		return controller;
 	}
 }

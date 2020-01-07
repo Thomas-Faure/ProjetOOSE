@@ -1,27 +1,25 @@
 package UI.Task;
 
 import BuisnessLogic.Project.AbstractProject;
+import BuisnessLogic.Task.AbstractTask;
 import Controller.Task.ModifyTaskController;
 import UI.UIGlobal;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.util.Callback;
 
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-public class UIModifyTask implements UIGlobal {
-	int id;
+public class UIModifyTask implements UIGlobal{
+	AbstractTask task;
 	private AbstractProject project;
-	public UIModifyTask(int id, AbstractProject project){
-		this.id=id;this.project=project;
+
+	public UIModifyTask(AbstractTask task, AbstractProject project){
+		this.task=task;this.project=project;
+
 	}
 
 	public Scene loadScene(){
@@ -29,8 +27,8 @@ public class UIModifyTask implements UIGlobal {
 		creators.put(ModifyTaskController.class , new Callable<ModifyTaskController>() {
 			@Override
 			public ModifyTaskController call() throws Exception {
-				System.out.println(id+"");
-				return new ModifyTaskController(id,project);
+
+				return new ModifyTaskController(task,project);
 			}
 		});
 		Parent root = null;
@@ -62,4 +60,6 @@ public class UIModifyTask implements UIGlobal {
 		Scene scene = new Scene(root, 1000, 600);
 		return scene;
 	}
+
+
 }
