@@ -19,7 +19,8 @@ import com.dropbox.core.v2.files.UploadErrorException;
 
 public class DropBoxConnexion {
 
-    private static final String ACCESS_TOKEN = "token";
+    private static final String ACCESS_TOKEN = "-fzGF5VgtXAAAAAAAAAAJjlaSlBCxnxHMLWTSKJIJgBwEK3694qy4U4lRd1UAbfL";
+
     private DbxRequestConfig config;
     private DbxClientV2 client;
 

@@ -17,8 +17,8 @@ import java.util.List;
 
 public class TaskDAOMySQL implements TaskDAO {
 
-    private static final String INSERT = "INSERT INTO task (name, priority, deadline, creator,description,state) VALUES (?, ?, ?, ?,?,?)";
-    private static final String UPDATE = "UPDATE task SET name=?, priority=?, deadline=?, creator=?, description=?, state=? WHERE id=?";
+    private static final String INSERT = "INSERT INTO task (name, priority, deadline, creator,description,state,idProjet,idSprint) VALUES (?, ?, ?, ?,?,?,?,?)";
+    private static final String UPDATE = "UPDATE task SET name=?, priority=?, deadline=?, creator=?, description=?, state=?, idSprint=? WHERE id=?";
     private static final String DELETE = "DELETE FROM task WHERE id=?";
     private static final String ALL = "SELECT * from task";
     private static final String ALLBYPROJ = "SELECT * from task where idProject=?";
@@ -31,9 +31,7 @@ public class TaskDAOMySQL implements TaskDAO {
 	public TaskDAOMySQL() {
 		
 	}
-
-
-
+	
 	@Override
 	public boolean save(AbstractTask task) {
 		try {
@@ -44,6 +42,8 @@ public class TaskDAOMySQL implements TaskDAO {
             ps.setInt(4, task.getCreator().getId());
             ps.setString(5, task.getDescription());
             ps.setString(6, task.getState().getStatetoString());
+            ps.setInt(7, task.getProject().getId());
+            ps.setInt(8, task.getIdSprint());
             ps.executeUpdate();
             ps.close();
             return true;
@@ -64,7 +64,8 @@ public class TaskDAOMySQL implements TaskDAO {
             ps.setInt(4, task.getCreator().getId());
             ps.setString(5, task.getDescription());
             ps.setString(6, task.getStateString());
-            ps.setInt(7, task.getId());
+            ps.setInt(7, task.getIdSprint());
+            ps.setInt(8, task.getId());
             int i = ps.executeUpdate();
             ps.close();
             if (i > 0) {

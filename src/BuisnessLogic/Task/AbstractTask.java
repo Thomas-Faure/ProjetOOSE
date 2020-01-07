@@ -23,6 +23,8 @@ public abstract class AbstractTask {
     public abstract void setDescription(String description);
     public abstract void setProject(AbstractProject project);
     public abstract AbstractProject getProject();
+    public abstract Integer getIdSprint();
+    public abstract void setIdSprint(int id);
 
 
 }
