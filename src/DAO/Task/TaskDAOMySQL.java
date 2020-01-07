@@ -50,7 +50,7 @@ public class TaskDAOMySQL implements TaskDAO {
             ps.setInt(4, task.getCreator().getId());
             ps.setString(5, task.getDescription());
             ps.setString(6, task.getState().getStatetoString());
-            System.out.println(task.getProject());
+
             ps.setInt(7, task.getProject().getId());
             if(task.getIdSprint() != null) {
                 ps.setInt(8, task.getIdSprint());
@@ -177,8 +177,9 @@ public class TaskDAOMySQL implements TaskDAO {
                         rs.getString("description"),
                         rs.getInt("priority"),
                         rs.getDate("deadline").toLocalDate(),
-                        null,
-                        TaskState.getStateByString(rs.getString("state")),ProjectFacade.getInstance().getListProjects().get(0));
+                        new User(3,"thomas","faure","faure","faure"),
+                        TaskState.getStateByString(rs.getString("state")),ProjectFacade.getInstance().getListProjects().get(0),
+                        rs.getInt("idSprint"));
                 list.add(task);
             }
             ps.close();
@@ -203,7 +204,7 @@ public class TaskDAOMySQL implements TaskDAO {
                         rs.getString("description"),
                         rs.getInt("priority"),
                         rs.getDate("deadline").toLocalDate(),
-                        null,
+                        new User(3,"thomas","faure","faure","faure"),
                         TaskState.getStateByString(rs.getString("state")),
                         ProjectFacade.getInstance().getProjectById(rs.getInt("idProject")));
                 list.add(task);
@@ -229,7 +230,7 @@ public class TaskDAOMySQL implements TaskDAO {
                         rs.getString("description"),
                         rs.getInt("priority"),
                         rs.getDate("deadline").toLocalDate(),
-                        null,
+                        new User(3,"thomas","faure","faure","faure"),
                         TaskState.getStateByString(rs.getString("state")),ProjectFacade.getInstance().getListProjects().get(0));
                 list.add(task);
             }
@@ -254,7 +255,7 @@ public class TaskDAOMySQL implements TaskDAO {
                         rs.getString("description"),
                         rs.getInt("priority"),
                         rs.getDate("deadline").toLocalDate(),
-                        null,
+                        new User(3,"thomas","faure","faure","faure"),
                         TaskState.getStateByString(rs.getString("state")),ProjectFacade.getInstance().getListProjects().get(0));
                 list.add(task);
             }
