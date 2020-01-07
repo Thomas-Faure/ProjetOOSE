@@ -2,10 +2,13 @@ package Controller.Task;
 
 import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Task.AbstractTask;
+import Controller.IController;
 import Facade.Task.TaskFacade;
 import Main.App;
 import UI.Task.*;
 import UI.UIError;
+import UI.UIGlobal;
+import UI.UIGlobalWithController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,7 +27,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class TaskManagerController implements Initializable {
+public class TaskManagerController implements Initializable, IController {
 
     @FXML
     private TextField inputSearch;
@@ -33,10 +36,11 @@ public class TaskManagerController implements Initializable {
     private static AbstractTask toManage;
     //permet de garder la liste de base
     private static ObservableList<AbstractTask> listViewTemp;
-
+    UIGlobalWithController ui;
     private static AbstractProject project;
-    public TaskManagerController(AbstractProject project){
+    public TaskManagerController(AbstractProject project, UIGlobalWithController ui){
         this.project=project;
+        this.ui=ui;
     }
 
     @Override
@@ -78,7 +82,7 @@ public class TaskManagerController implements Initializable {
                 ObservableList<AbstractTask> listView = FXCollections.observableArrayList(listeElement);
                 listViewTemp= FXCollections.observableArrayList(listeElement);
                 taskList.setItems(listView);
-                taskList.setCellFactory(param -> new Cell());
+                taskList.setCellFactory(param -> new Cell(ui));
             }
         }
     }
@@ -120,10 +124,11 @@ public class TaskManagerController implements Initializable {
         Button btnM = new Button("Modify");
         Label label = new Label("");
         Pane pane = new Pane();
+        UIGlobalWithController ui;
 
-        public Cell(){
+        public Cell(UIGlobalWithController ui){
             super();
-
+            this.ui=ui;
             hbox.setSpacing(10);
             img.setFitHeight(20);
             img.setFitWidth(20);
@@ -142,7 +147,7 @@ public class TaskManagerController implements Initializable {
                 @Override
                 public void handle(ActionEvent e) {
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-                    UIModifyTask modifyTask = new UIModifyTask(task,project);
+                    UIModifyTask modifyTask = new UIModifyTask(task,project,ui);
 
 
                     box.getChildren().remove(1);

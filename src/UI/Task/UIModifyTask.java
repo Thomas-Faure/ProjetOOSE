@@ -4,6 +4,7 @@ import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Task.AbstractTask;
 import Controller.Task.ModifyTaskController;
 import UI.UIGlobal;
+import UI.UIGlobalWithController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,8 +17,9 @@ import java.util.concurrent.Callable;
 public class UIModifyTask implements UIGlobal{
 	AbstractTask task;
 	private AbstractProject project;
-
-	public UIModifyTask(AbstractTask task, AbstractProject project){
+	UIGlobalWithController ui;
+	public UIModifyTask(AbstractTask task, AbstractProject project, UIGlobalWithController ui){
+		this.ui=ui;
 		this.task=task;this.project=project;
 
 	}
@@ -28,7 +30,7 @@ public class UIModifyTask implements UIGlobal{
 			@Override
 			public ModifyTaskController call() throws Exception {
 
-				return new ModifyTaskController(task,project);
+				return new ModifyTaskController(task,project,ui);
 			}
 		});
 		Parent root = null;

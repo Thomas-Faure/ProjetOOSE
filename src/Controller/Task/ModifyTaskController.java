@@ -9,6 +9,7 @@ import Facade.Task.TaskFacade;
 import Main.App;
 import UI.Task.UITaskManagement;
 import UI.UIError;
+import UI.UIGlobalWithController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -34,10 +35,12 @@ public class ModifyTaskController implements Initializable {
     private static AbstractTask toModify;
     private AbstractProject project;
 
+    private UIGlobalWithController ui;
     public ModifyTaskController(){
     }
-    public ModifyTaskController(AbstractTask task, AbstractProject project){
+    public ModifyTaskController(AbstractTask task, AbstractProject project, UIGlobalWithController ui){
         this.task=task;this.project=project;
+        this.ui=ui;
 
     }
 
@@ -95,10 +98,14 @@ public class ModifyTaskController implements Initializable {
         if(TaskFacade.getInstance().modifyTask((Task)toModify)){
 
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-            UITaskManagement tm = new UITaskManagement(project);
+            box.getChildren().add(ui.loadScene().getRoot());
+            System.out.println(ui);
+            ui.getController().update();
+
             if(box.getChildren().size() >1 ){
                 box.getChildren().remove(1);
             }
+
 
         }else{
             UIError error = new UIError(new UITaskManagement(project));

@@ -4,11 +4,13 @@ import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Sprint.AbstractSprint;
 import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.TaskState;
+import Controller.IController;
 import Facade.Task.TaskFacade;
 import Main.App;
 import UI.Sprint.AddTaskSprintUI;
 import UI.Sprint.ReadSprintUI;
 import UI.Task.UIModifyTask;
+import UI.UIGlobalWithController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,7 +32,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ReadSprintController implements Initializable {
+public class ReadSprintController implements Initializable, IController {
 
 
     @FXML
@@ -83,10 +85,11 @@ public class ReadSprintController implements Initializable {
     }
     private AbstractProject project;
     private AbstractSprint sprint;
-
-    public ReadSprintController(AbstractProject project, AbstractSprint sprint){
+    UIGlobalWithController ui;
+    public ReadSprintController(AbstractProject project, AbstractSprint sprint, UIGlobalWithController ui){
         this.project = project;
         this.sprint = sprint;
+        this.ui=ui;
     }
 
 
@@ -122,19 +125,50 @@ public class ReadSprintController implements Initializable {
         ObservableList<AbstractTask> listViewTodo = FXCollections.observableArrayList(taskListTodo);
         listViewTemp = FXCollections.observableArrayList(taskListTodo);
         todoSprintList.setItems(listViewTodo);
-        todoSprintList.setCellFactory(param -> new ReadSprintController.Cell(project));
+        todoSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,ui));
 
         //DOING
         ObservableList<AbstractTask> listViewDoing = FXCollections.observableArrayList(taskListDoing);
         listViewTemp = FXCollections.observableArrayList(taskListDoing);
         doingSprintList.setItems(listViewDoing);
-        doingSprintList.setCellFactory(param -> new ReadSprintController.Cell(project));
+        doingSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,ui));
 
         //DONE
         ObservableList<AbstractTask> listViewDone = FXCollections.observableArrayList(taskListDone);
         listViewTemp = FXCollections.observableArrayList(taskListDone);
         doneSprintList.setItems(listViewDone);
-        doneSprintList.setCellFactory(param -> new ReadSprintController.Cell(project));
+        doneSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,ui));
+    }
+
+    @Override
+    public void update() {
+        //Recuperer les tasks du sprint et les ajouter au Sprint
+        TaskFacade.getInstance().getTasksFromSprintId(sprint.getSprintID());
+        List<AbstractTask> taskList = TaskFacade.getInstance().getListTasks();
+        sprint.setTaskList(taskList);
+
+        List<AbstractTask> taskListTodo  = sprint.getTaskListByState(TaskState.todo);
+        List<AbstractTask> taskListDoing  = sprint.getTaskListByState(TaskState.doing);
+        List<AbstractTask> taskListDone  = sprint.getTaskListByState(TaskState.done);
+
+        //TO DO
+        ObservableList<AbstractTask> listViewTodo = FXCollections.observableArrayList(taskListTodo);
+        listViewTemp = FXCollections.observableArrayList(taskListTodo);
+        todoSprintList.setItems(listViewTodo);
+        todoSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,ui));
+
+        //DOING
+        ObservableList<AbstractTask> listViewDoing = FXCollections.observableArrayList(taskListDoing);
+        listViewTemp = FXCollections.observableArrayList(taskListDoing);
+        doingSprintList.setItems(listViewDoing);
+        doingSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,ui));
+
+        //DONE
+        ObservableList<AbstractTask> listViewDone = FXCollections.observableArrayList(taskListDone);
+        listViewTemp = FXCollections.observableArrayList(taskListDone);
+        doneSprintList.setItems(listViewDone);
+        doneSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,ui));
+
     }
 
     static class Cell extends ListCell<AbstractTask> {
@@ -147,9 +181,11 @@ public class ReadSprintController implements Initializable {
         Button btnDelete = new Button("Delete");
         Label label = new Label("");
         Pane pane = new Pane();
+        UIGlobalWithController ui;
 
-        public Cell(AbstractProject project){
+        public Cell(AbstractProject project,UIGlobalWithController ui){
             super();
+            this.ui=ui;
             this.project = project;
             hbox.setSpacing(10);
             hbox.getChildren().addAll(label,pane,btnUpdate,btnDelete);
@@ -159,7 +195,7 @@ public class ReadSprintController implements Initializable {
                     HBox boxCurrent = (HBox) App.getInstanceScene().lookup("#HBOX");
                     Node currentUI = boxCurrent.getChildren().get(1);
 
-                    UIModifyTask updateTaskUI = new UIModifyTask(task,project);
+                    UIModifyTask updateTaskUI = new UIModifyTask(task,project,ui);
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
                     if(box.getChildren().size() >1 )
                         box.getChildren().remove(1);

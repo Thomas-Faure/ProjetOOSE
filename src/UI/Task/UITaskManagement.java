@@ -1,7 +1,7 @@
 package UI.Task;
 
 import BuisnessLogic.Project.AbstractProject;
-import Controller.Sprint.SprintController;
+import Controller.IController;
 import Controller.Task.TaskManagerController;
 import UI.UIGlobal;
 import UI.UIGlobalWithController;
@@ -14,13 +14,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-public class UITaskManagement implements UIGlobal, UIGlobalWithController {
+public class UITaskManagement implements UIGlobalWithController {
 
 	AbstractProject project;
-	public static Object controller;
 
+
+	public static UIGlobalWithController ui;
+	public static IController controller;
 	public UITaskManagement(AbstractProject project){
-		this.project = project;
+		this.project = project;ui=this;
 	};
 
 	public Scene loadScene(){
@@ -28,7 +30,7 @@ public class UITaskManagement implements UIGlobal, UIGlobalWithController {
 		creators.put(TaskManagerController.class , new Callable<TaskManagerController>() {
 			@Override
 			public TaskManagerController call() throws Exception {
-				return new TaskManagerController(project);
+				return new TaskManagerController(project,ui);
 			}
 		});
 		Parent root = null;
@@ -65,7 +67,7 @@ public class UITaskManagement implements UIGlobal, UIGlobalWithController {
 	}
 
 	@Override
-	public Object getController() {
+	public IController getController() {
 		return controller;
 	}
 }
