@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -155,7 +156,9 @@ public class ReadSprintController implements Initializable {
             btnUpdate.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    UIModifyTask updateTaskUI = new UIModifyTask(task.getId(),project);
+                    HBox boxCurrent = (HBox) App.getInstanceScene().lookup("#HBOX");
+                    Node currentUI = boxCurrent.getChildren().get(1);
+                    UIModifyTask updateTaskUI = new UIModifyTask(task.getId(),project,currentUI);
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
                     if(box.getChildren().size() >1 )
                         box.getChildren().remove(1);
