@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 
 public class ModifyTaskController implements Initializable {
 
-    int id;
+    AbstractTask task;
     @FXML
     private TextField modifySubject;
     @FXML
@@ -36,25 +36,37 @@ public class ModifyTaskController implements Initializable {
 
     public ModifyTaskController(){
     }
-    public ModifyTaskController(int id, AbstractProject project){
-        this.id=id;this.project=project;
+    public ModifyTaskController(AbstractTask task, AbstractProject project){
+        this.task=task;this.project=project;
+
     }
+
     @FXML
     void backToTasks(ActionEvent actionEvent){
         UITaskManagement task = new UITaskManagement(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
-        box.getChildren().add(task.loadScene().getRoot());
+
+
     }
     @FXML
     void modifyATask(ActionEvent actionEvent){
-        AbstractTask task = new Task(id,modifySubject.getText(),modifyDescription.getText(),Integer.parseInt(modifyPriority.getText()),modifyDeadline.getValue(),new User(3,"thomas","faure","faure","faure"),TaskState.getStateByString((String)stateChoiceBox.getSelectionModel().getSelectedItem()),project);
-        toModify = task;
-        AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#manager");
-        toHide.setVisible(false);
-        AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#confirm");
-        toShow.setVisible(true);
+        if(task != null) {
+            task.setName(modifySubject.getText());
+            task.setDescription(modifyDescription.getText());
+            task.setPriority(Integer.parseInt(modifyPriority.getText()));
+            task.setDeadline(modifyDeadline.getValue());
+            task.setProject(project);
+            task.setState(TaskState.getStateByString((String) stateChoiceBox.getSelectionModel().getSelectedItem()));
+            task.setCreator(new User(3, "thomas", "faure", "faure", "faure"));
+            toModify = task;
+            AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#manager");
+            toHide.setVisible(false);
+            AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+            toShow.setVisible(true);
+
+        }
     }
 
     @Override
@@ -62,13 +74,13 @@ public class ModifyTaskController implements Initializable {
         for(TaskState st : TaskState.values()){
             stateChoiceBox.getItems().add(st.getStatetoString());
         }
-        AbstractTask taskToModify = TaskFacade.getInstance().getTaskById(id);
-        if(taskToModify != null) {
-            stateChoiceBox.getSelectionModel().select(taskToModify.getStateString());
-            modifySubject.setText(taskToModify.getName());
-            modifyDescription.setText(taskToModify.getDescription());
-            modifyDeadline.setValue(taskToModify.getDeadline());
-            modifyPriority.setText(taskToModify.getPriority() + "");
+
+        if(task != null) {
+            stateChoiceBox.getSelectionModel().select(task.getStateString());
+            modifySubject.setText(task.getName());
+            modifyDescription.setText(task.getDescription());
+            modifyDeadline.setValue(task.getDeadline());
+            modifyPriority.setText(task.getPriority() + "");
         }else{
             UIError error = new UIError(new UITaskManagement(project));
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
@@ -78,13 +90,16 @@ public class ModifyTaskController implements Initializable {
         }
     }
 
+
     public void validation(ActionEvent actionEvent) {
         if(TaskFacade.getInstance().modifyTask((Task)toModify)){
+
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             UITaskManagement tm = new UITaskManagement(project);
-            if(box.getChildren().size() >1 )
+            if(box.getChildren().size() >1 ){
                 box.getChildren().remove(1);
-            box.getChildren().add(tm.loadScene().getRoot());
+            }
+
         }else{
             UIError error = new UIError(new UITaskManagement(project));
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
