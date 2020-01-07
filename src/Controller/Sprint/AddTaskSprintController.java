@@ -5,7 +5,9 @@ import BuisnessLogic.Sprint.AbstractSprint;
 import BuisnessLogic.Task.AbstractTask;
 import Facade.Task.TaskFacade;
 import Main.App;
+import UI.Sprint.AddTaskSprintUI;
 import UI.Sprint.ReadSprintUI;
+import UI.Task.UIAddTask;
 import UI.Task.UIModifyTask;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,6 +40,31 @@ public class AddTaskSprintController implements Initializable {
     private Button backButton;
 
     @FXML
+    void backToSprint(ActionEvent event){
+
+        ReadSprintUI readSprintUI = new ReadSprintUI(project,sprint);
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(readSprintUI.loadScene().getRoot());
+    }
+
+    @FXML
+    private Button createTaskButton;
+
+    @FXML
+    void createTaskBacklog(ActionEvent event){
+
+
+        UIAddTask createTaskUI = new UIAddTask(project);
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(createTaskUI.loadScene().getRoot());
+
+    }
+
+    @FXML
     private ListView taskList;
 
     private static ObservableList<AbstractTask> listViewTemp;
@@ -54,24 +81,15 @@ public class AddTaskSprintController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         titlePath.setText("/Sprint/" + project.getName()+"/Backlog");
 
-        TaskFacade.getInstance().getAllTasks(project);
+        TaskFacade.getInstance().getAllBacklogTasks(project);
         List<AbstractTask> taskListBacklog = TaskFacade.getInstance().getListTasks();
-        List<AbstractTask> taskToRemove = new ArrayList<AbstractTask>();
 
-        for(AbstractTask task: taskListBacklog){
-            for(AbstractTask taskSprint: sprint.getTaskList()){
-                if (task.getId()==taskSprint.getId()){
-                    taskToRemove.add(task);
-                }
-            }
-        }
 
-        taskListBacklog.removeAll(taskToRemove);
 
         ObservableList<AbstractTask> listView = FXCollections.observableArrayList(taskListBacklog);
         listViewTemp = FXCollections.observableArrayList(taskListBacklog);
         taskList.setItems(listView);
-        taskList.setCellFactory(param -> new AddTaskSprintController.Cell(project));
+        taskList.setCellFactory(param -> new AddTaskSprintController.Cell(project,sprint));
     }
 
 
@@ -84,11 +102,25 @@ public class AddTaskSprintController implements Initializable {
         Label label = new Label("");
         Pane pane = new Pane();
 
-        public Cell(AbstractProject project) {
+        public Cell(AbstractProject project,AbstractSprint sprint) {
             super();
             this.project = project;
+            this.sprint = sprint;
             hbox.setSpacing(10);
             hbox.getChildren().addAll(label, pane, btnAdd);
+            btnAdd.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    task.setIdSprint(sprint.getSprintID());
+                    TaskFacade.getInstance().modifyTask(task);
+
+                    AddTaskSprintUI addTaskSprintUI = new AddTaskSprintUI(project,sprint);
+                    HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+                    if(box.getChildren().size() >1 )
+                        box.getChildren().remove(1);
+                    box.getChildren().add(addTaskSprintUI.loadScene().getRoot());
+                }
+            });
         }
 
         @Override

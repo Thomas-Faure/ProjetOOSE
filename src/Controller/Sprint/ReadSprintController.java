@@ -158,11 +158,16 @@ public class ReadSprintController implements Initializable {
                 public void handle(ActionEvent e) {
                     HBox boxCurrent = (HBox) App.getInstanceScene().lookup("#HBOX");
                     Node currentUI = boxCurrent.getChildren().get(1);
-                    UIModifyTask updateTaskUI = new UIModifyTask(task.getId(),project,currentUI);
+
+                    UIModifyTask updateTaskUI = new UIModifyTask(task,project);
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
                     if(box.getChildren().size() >1 )
                         box.getChildren().remove(1);
                     box.getChildren().add(updateTaskUI.loadScene().getRoot());
+
+                    //this.initialize();
+
+
                 }
             });
 
