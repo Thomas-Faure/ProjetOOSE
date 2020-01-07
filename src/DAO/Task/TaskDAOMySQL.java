@@ -8,16 +8,18 @@ import BuisnessLogic.Task.TaskState;
 import BuisnessLogic.User.User;
 import DAO.MySQLConnector;
 import Facade.Project.ProjectFacade;
+import Facade.SessionFacade;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TaskDAOMySQL implements TaskDAO {
 
-    private static final String INSERT = "INSERT INTO task (name, priority, deadline, creator,description,state,idProjet,idSprint) VALUES (?, ?, ?, ?,?,?,?,?)";
+    private static final String INSERT = "INSERT INTO task (name, priority, deadline, creator,description,state,idProject,idSprint) VALUES (?, ?, ?, ?,?,?,?,?)";
     private static final String UPDATE = "UPDATE task SET name=?, priority=?, deadline=?, creator=?, description=?, state=?, idSprint=? WHERE id=?";
     private static final String DELETE = "DELETE FROM task WHERE id=?";
     private static final String ALL = "SELECT * from task";
@@ -31,7 +33,13 @@ public class TaskDAOMySQL implements TaskDAO {
 	public TaskDAOMySQL() {
 		
 	}
-	
+
+    public static void main(String[] args) {
+        TaskDAOMySQL sql = new TaskDAOMySQL();
+        sql.update( new Task(9,"test","test",11, LocalDate.now(), new User(3,"thomas","faure","faure","faure"), TaskState.todo,ProjectFacade.getInstance().getProjectById(2),1));
+
+    }
+
 	@Override
 	public boolean save(AbstractTask task) {
 		try {
@@ -42,8 +50,13 @@ public class TaskDAOMySQL implements TaskDAO {
             ps.setInt(4, task.getCreator().getId());
             ps.setString(5, task.getDescription());
             ps.setString(6, task.getState().getStatetoString());
+            System.out.println(task.getProject());
             ps.setInt(7, task.getProject().getId());
-            ps.setInt(8, task.getIdSprint());
+            if(task.getIdSprint() != null) {
+                ps.setInt(8, task.getIdSprint());
+            }else{
+                ps.setNull(8, java.sql.Types.INTEGER);
+            }
             ps.executeUpdate();
             ps.close();
             return true;
@@ -64,7 +77,11 @@ public class TaskDAOMySQL implements TaskDAO {
             ps.setInt(4, task.getCreator().getId());
             ps.setString(5, task.getDescription());
             ps.setString(6, task.getStateString());
-            ps.setInt(7, task.getIdSprint());
+            if(task.getIdSprint() != null) {
+                ps.setInt(7, task.getIdSprint());
+            }else{
+                ps.setNull(7, java.sql.Types.INTEGER);
+            }
             ps.setInt(8, task.getId());
             int i = ps.executeUpdate();
             ps.close();
