@@ -23,4 +23,6 @@ public interface ITaskFacade {
       boolean getAllTasks(AbstractProject project);
 
       boolean getTasksFromSprintId(int sprintID);
+
+      boolean getAllBacklogTasks(AbstractProject project);
 }

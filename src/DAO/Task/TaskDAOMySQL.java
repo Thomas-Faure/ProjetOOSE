@@ -22,7 +22,7 @@ public class TaskDAOMySQL implements TaskDAO {
     private static final String DELETE = "DELETE FROM task WHERE id=?";
     private static final String ALL = "SELECT * from task";
     private static final String ALLBYPROJ = "SELECT * from task where idProject=?";
-    private static final String ALLBYPROJBACKLOG = "SELECT * from task where idProject=? where idSprint is null";
+    private static final String ALLBYPROJBACKLOG = "SELECT * from task where idProject=? and idSprint is null";
 
     private static final String ALLBYSPRINT = "SELECT * from task where idSprint=?";
     private static final String TASKBYID = "SELECT * from task where id=?";

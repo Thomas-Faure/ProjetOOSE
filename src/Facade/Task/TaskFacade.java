@@ -101,4 +101,10 @@ public class TaskFacade implements ITaskFacade {
         return true;
     }
 
+    @Override
+    public boolean getAllBacklogTasks(AbstractProject project){
+        this.tasks = daoFactory.getAllBacklogTasks(project);
+        return true;
+    }
+
 }
