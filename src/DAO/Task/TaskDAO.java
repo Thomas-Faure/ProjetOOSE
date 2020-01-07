@@ -12,7 +12,10 @@ public interface TaskDAO {
 	public boolean update(AbstractTask task);
 	boolean delete(int id);
 	List<AbstractTask> getAllTasks();
-	List<AbstractTask> getAllTasks(AbstractProject project);
+
+    List<AbstractTask> getAllBacklogTasks(AbstractProject project);
+
+    List<AbstractTask> getAllTasks(AbstractProject project);
 	AbstractTask getTaskById(int id);
 	List<AbstractTask> getTaskByName(String name);
 	List<AbstractTask> getTasksFromSprintId(int id);

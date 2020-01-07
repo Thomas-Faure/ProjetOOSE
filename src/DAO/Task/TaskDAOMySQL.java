@@ -22,6 +22,8 @@ public class TaskDAOMySQL implements TaskDAO {
     private static final String DELETE = "DELETE FROM task WHERE id=?";
     private static final String ALL = "SELECT * from task";
     private static final String ALLBYPROJ = "SELECT * from task where idProject=?";
+    private static final String ALLBYPROJBACKLOG = "SELECT * from task where idProject=? where idSprint is null";
+
     private static final String ALLBYSPRINT = "SELECT * from task where idSprint=?";
     private static final String TASKBYID = "SELECT * from task where id=?";
     private static final String TASKBYNAME = "SELECT * from task where name=?";
@@ -196,6 +198,31 @@ public class TaskDAOMySQL implements TaskDAO {
         return list;
     }
     @Override
+    public List<AbstractTask> getAllBacklogTasks(AbstractProject project) {
+        List<AbstractTask> list = new ArrayList<>();
+        try {
+            PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(ALLBYPROJBACKLOG);
+            ps.setInt(1, project.getId());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                AbstractTask task = new Task(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        rs.getInt("priority"),
+                        rs.getDate("deadline").toLocalDate(),
+                        null,
+                        TaskState.getStateByString(rs.getString("state")),ProjectFacade.getInstance().getListProjects().get(0));
+                list.add(task);
+            }
+            ps.close();
+        } catch (SQLException e) {
+
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+    @Override
     public List<AbstractTask> getAllTasks(AbstractProject project) {
         List<AbstractTask> list = new ArrayList<>();
         try {
@@ -215,7 +242,6 @@ public class TaskDAOMySQL implements TaskDAO {
             }
             ps.close();
         } catch (SQLException e) {
-
             throw new RuntimeException(e);
         }
         return list;
