@@ -31,7 +31,7 @@ public class Task extends AbstractTask {
 		this.project=project;
 		this.idSprint=null;
 	}
-	public Task(int id,String name,String description,int priority,LocalDate deadline,User creator,TaskState state,AbstractProject project,Integer idSprint) {
+	public Task(int id,String name,String description,int priority,LocalDate deadline,AbstractUser creator,TaskState state,AbstractProject project,Integer idSprint) {
 		this.id=id;
 		this.description=description;
 		this.name=name;
