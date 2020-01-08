@@ -18,8 +18,8 @@ import java.util.List;
 public class MeetingDAOMySQL implements MeetingDAO {
 
     private static final String INSERT = "INSERT INTO meeting (date, place, idProject) VALUES (?, ?, ?)";
-    private static final String UPDATE = "UPDATE meeting SET date=?, place=? WHERE id=?";
-    private static final String DELETE = "DELETE FROM meeting WHERE id=?";
+    private static final String UPDATE = "UPDATE meeting SET date=?, place=? WHERE idMeeting=?";
+    private static final String DELETE = "DELETE FROM meeting WHERE idMeeting=?";
     private static final String ALL = "SELECT * from meeting";
     private static final String MEETINGBYIDPROJECT = "SELECT * from meeting where idProject=?";
 
@@ -35,7 +35,7 @@ public class MeetingDAOMySQL implements MeetingDAO {
 
 
                 Meeting meeting = new Meeting(
-                        rs.getInt("id"),
+                        rs.getInt("idMeeting"),
                         rs.getDate("date").toLocalDate(),
                         rs.getString("place"),
                         rs.getInt("idProject")

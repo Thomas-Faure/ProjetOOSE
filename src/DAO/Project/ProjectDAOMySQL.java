@@ -12,11 +12,11 @@ import java.util.List;
 
 public class ProjectDAOMySQL implements ProjectDAO {
 
-    private static final String INSERT = "INSERT INTO project (name, description, dateCreation, isAgile) VALUES (?, ?, ?, ?)";
-    private static final String UPDATE = "UPDATE project SET name=?, description=? WHERE id=?";
-    private static final String DELETE = "DELETE FROM project WHERE id=?";
+    private static final String INSERT = "INSERT INTO project (title, description, dateCreation, isAgile) VALUES (?, ?, ?, ?)";
+    private static final String UPDATE = "UPDATE project SET title=?, description=? WHERE idProject=?";
+    private static final String DELETE = "DELETE FROM project WHERE idProject=?";
     private static final String ALL = "SELECT * from project";
-    private static final String PROJECTBYID = "SELECT * from project where id=?";
+    private static final String PROJECTBYID = "SELECT * from project where idProject=?";
 
     @Override
     public List<AbstractProject> getAllProjects() {
@@ -31,8 +31,8 @@ public class ProjectDAOMySQL implements ProjectDAO {
 
 
                 Project project = new Project(
-                        rs.getInt("id"),
-                        rs.getString("name"),
+                        rs.getInt("idProject"),
+                        rs.getString("title"),
                         rs.getString("description"),
                         rs.getDate("dateCreation").toLocalDate(),
                         rs.getBoolean("isAgile")
@@ -112,8 +112,8 @@ public class ProjectDAOMySQL implements ProjectDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 project = new Project(
-                        rs.getInt("id"),
-                        rs.getString("name"),
+                        rs.getInt("idProject"),
+                        rs.getString("title"),
                         rs.getString("description"),
                         rs.getDate("dateCreation").toLocalDate(),
                         rs.getBoolean("isAgile")

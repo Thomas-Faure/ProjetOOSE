@@ -135,7 +135,7 @@ public class MyTicketController implements Initializable {
             if(t != null && !empty){
                 ticket = t;
                 String status ="";
-                if (t.getStatus()){
+                if (t.isAnswered()){
                     status = "Répondu";
                 }else{
                     status = "En attente"

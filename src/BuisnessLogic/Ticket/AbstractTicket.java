@@ -15,10 +15,6 @@ public abstract class AbstractTicket {
 
     public abstract void setProblem(String problem);
 
-    public abstract Boolean getStatus();
-
-    public abstract void setStatus(Boolean status);
-
     public abstract LocalDate getDateCreation();
 
     public abstract void setDateCreation(LocalDate dateCreation);
@@ -30,6 +26,8 @@ public abstract class AbstractTicket {
     public abstract String getAnswer();
 
     public abstract void setAnswer(String answer);
+
+    public abstract Boolean isAnswered();
 
     public abstract int getId();
 }
