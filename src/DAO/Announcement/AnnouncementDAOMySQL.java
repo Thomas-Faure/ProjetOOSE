@@ -12,6 +12,8 @@ import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.User.User;
 
 import DAO.MySQLConnector;
+import Facade.User.GlobalUser.GlobalUserFacade;
+import Facade.User.UserFacade;
 
 
 public class AnnouncementDAOMySQL implements AnnouncementDAO {
@@ -23,7 +25,7 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
     private static final String DELETE = "DELETE FROM announcement WHERE id=?";
 	private static final String ALL = "SELECT * from announcement";
 	private static final String ANNOUNCEMENTBYID = "SELECT * from announcement where id=?";
-	private static final String ANNOUNCEMENTBYTITLE = "SELECT * from task where title=?";
+	private static final String ANNOUNCEMENTBYTITLE = "SELECT * from announcement where title=?";
 	
 	public AnnouncementDAOMySQL() {
 
@@ -99,7 +101,7 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 						rs.getString("title"),
 						rs.getString("message"),
 						rs.getDate("date").toLocalDate(),
-						null
+						GlobalUserFacade.getInstance().getUserById(rs.getInt("user"))
 				);
 
 				list.add(announcement);
@@ -135,7 +137,7 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 	}
 
 	@Override
-	public List<AbstractAnnouncement> getAnnouncementByTitle(String title) {
+	public List<AbstractAnnouncement> getAnnouncementsByTitle(String title) {
 		List<AbstractAnnouncement> announcements = null;
 		try {
 			PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(ANNOUNCEMENTBYTITLE);
