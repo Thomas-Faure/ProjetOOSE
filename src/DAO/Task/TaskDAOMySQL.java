@@ -5,10 +5,12 @@ import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.Task;
 import BuisnessLogic.Task.TaskState;
+import BuisnessLogic.User.AbstractUser;
 import BuisnessLogic.User.User;
 import DAO.MySQLConnector;
 import Facade.Project.ProjectFacade;
 import Facade.SessionFacade;
+import Facade.User.GlobalUser.GlobalUserFacade;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,11 +36,6 @@ public class TaskDAOMySQL implements TaskDAO {
 		
 	}
 
-    public static void main(String[] args) {
-        TaskDAOMySQL sql = new TaskDAOMySQL();
-        sql.update( new Task(9,"test","test",11, LocalDate.now(), new User(3,"thomas","faure","faure","faure"), TaskState.todo,ProjectFacade.getInstance().getProjectById(2),1));
-
-    }
 
 	@Override
 	public boolean save(AbstractTask task) {
@@ -127,7 +124,7 @@ public class TaskDAOMySQL implements TaskDAO {
                         rs.getString("description"),
                         rs.getInt("priority"),
                         rs.getDate("deadline").toLocalDate(),
-                        new User(3,"thomas","faure","faure","faure"),
+                        GlobalUserFacade.getInstance().getUserById(rs.getInt("creator")),
                         TaskState.getStateByString(rs.getString("state")),
                         ProjectFacade.getInstance().getProjectById(rs.getInt("idProject")));
             }
@@ -152,7 +149,7 @@ public class TaskDAOMySQL implements TaskDAO {
                         rs.getString("description"),
                         rs.getInt("priority"),
                         rs.getDate("deadline").toLocalDate(),
-                        new User(3,"thomas","faure","faure","faure"),
+                        GlobalUserFacade.getInstance().getUserById(rs.getInt("creator")),
                         TaskState.getStateByString(rs.getString("state")),
                         ProjectFacade.getInstance().getProjectById(rs.getInt("idProject"))));
             }
@@ -177,7 +174,7 @@ public class TaskDAOMySQL implements TaskDAO {
                         rs.getString("description"),
                         rs.getInt("priority"),
                         rs.getDate("deadline").toLocalDate(),
-                        new User(3,"thomas","faure","faure","faure"),
+                        GlobalUserFacade.getInstance().getUserById(rs.getInt("creator")),
                         TaskState.getStateByString(rs.getString("state")),ProjectFacade.getInstance().getListProjects().get(0),
                         rs.getInt("idSprint"));
                 list.add(task);
@@ -204,7 +201,7 @@ public class TaskDAOMySQL implements TaskDAO {
                         rs.getString("description"),
                         rs.getInt("priority"),
                         rs.getDate("deadline").toLocalDate(),
-                        new User(3,"thomas","faure","faure","faure"),
+                        GlobalUserFacade.getInstance().getUserById(rs.getInt("creator")),
                         TaskState.getStateByString(rs.getString("state")),
                         ProjectFacade.getInstance().getProjectById(rs.getInt("idProject")));
                 list.add(task);
@@ -230,7 +227,7 @@ public class TaskDAOMySQL implements TaskDAO {
                         rs.getString("description"),
                         rs.getInt("priority"),
                         rs.getDate("deadline").toLocalDate(),
-                        new User(3,"thomas","faure","faure","faure"),
+                        GlobalUserFacade.getInstance().getUserById(rs.getInt("creator")),
                         TaskState.getStateByString(rs.getString("state")),ProjectFacade.getInstance().getListProjects().get(0));
                 list.add(task);
             }
@@ -255,7 +252,7 @@ public class TaskDAOMySQL implements TaskDAO {
                         rs.getString("description"),
                         rs.getInt("priority"),
                         rs.getDate("deadline").toLocalDate(),
-                        new User(3,"thomas","faure","faure","faure"),
+                        GlobalUserFacade.getInstance().getUserById(rs.getInt("creator")),
                         TaskState.getStateByString(rs.getString("state")),ProjectFacade.getInstance().getListProjects().get(0));
                 list.add(task);
             }

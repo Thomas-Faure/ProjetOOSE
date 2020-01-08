@@ -127,7 +127,7 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 						rs.getString("title"),
 						rs.getString("message"),
 						rs.getDate("date").toLocalDate(),
-						new User(3,"thomas","faure","faure","faure"));
+						GlobalUserFacade.getInstance().getUserById(rs.getInt("user")));
 			}
 			ps.close();
 		} catch (SQLException e) {
@@ -149,7 +149,7 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 						rs.getString("title"),
 						rs.getString("message"),
 						rs.getDate("date").toLocalDate(),
-						new User(3,"thomas","faure","faure","faure")));
+						GlobalUserFacade.getInstance().getUserById(rs.getInt("user"))));
 			}
 			ps.close();
 		} catch (SQLException e) {
