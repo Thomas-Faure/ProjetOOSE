@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Task.AbstractTask;
+import BuisnessLogic.User.AbstractUser;
 import BuisnessLogic.User.User;
 
 
@@ -15,11 +16,11 @@ public class Task extends AbstractTask {
 	String name;
 	int priority;
 	LocalDate deadline;
-	User creator;
+	AbstractUser creator;
 	String description;
 	AbstractProject project;
 
-	public Task(int id,String name,String description,int priority,LocalDate deadline,User creator,TaskState state,AbstractProject project) {
+	public Task(int id,String name,String description,int priority,LocalDate deadline,AbstractUser creator,TaskState state,AbstractProject project) {
 		this.id=id;
 		this.description=description;
 		this.name=name;
@@ -30,7 +31,7 @@ public class Task extends AbstractTask {
 		this.project=project;
 		this.idSprint=null;
 	}
-	public Task(int id,String name,String description,int priority,LocalDate deadline,User creator,TaskState state,AbstractProject project,Integer idSprint) {
+	public Task(int id,String name,String description,int priority,LocalDate deadline,AbstractUser creator,TaskState state,AbstractProject project,Integer idSprint) {
 		this.id=id;
 		this.description=description;
 		this.name=name;
@@ -87,7 +88,7 @@ public class Task extends AbstractTask {
 	public void setDeadline(LocalDate deadline) {
 		this.deadline = deadline;
 	}
-	public User getCreator() {
+	public AbstractUser getCreator() {
 		return creator;
 	}
 	public void setCreator(User creator) {

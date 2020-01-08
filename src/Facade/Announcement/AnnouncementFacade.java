@@ -81,7 +81,7 @@ public class AnnouncementFacade implements IAnnouncementFacade {
 
     @Override
     public List<AbstractAnnouncement> getAnnouncementByTitle(String title){
-        List<AbstractAnnouncement> announcement=dao.getAnnouncementByTitle(title);
+        List<AbstractAnnouncement> announcement=dao.getAnnouncementsByTitle(title);
 
         return announcement;
     }

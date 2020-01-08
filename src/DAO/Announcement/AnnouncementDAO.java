@@ -12,5 +12,5 @@ public interface AnnouncementDAO {
 	 boolean delete(int id);
 	 List<AbstractAnnouncement> getAllAnnouncements();
 	 AbstractAnnouncement getAnnouncementById(int id);
-	 List<AbstractAnnouncement> getAnnouncementByTitle(String title);
+	 List<AbstractAnnouncement> getAnnouncementsByTitle(String title);
 }
