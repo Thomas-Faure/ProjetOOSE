@@ -84,7 +84,7 @@ public class RessourceDAOMySQL implements RessourceDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 newResource = new Resource(
-                        rs.getInt("resourceID"),
+                        rs.getInt("idResource"),
                         rs.getString("path"),
                         rs.getString("filename"));
             }
@@ -103,7 +103,7 @@ public class RessourceDAOMySQL implements RessourceDAO {
             ps.setInt(1, projectID);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                int newResourceID = rs.getInt("resourceID");
+                int newResourceID = rs.getInt("idResource");
                 AbstractResource newResource = getResourceById(newResourceID);
                 resourceList.add(newResource);
             }

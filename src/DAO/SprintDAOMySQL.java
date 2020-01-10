@@ -88,7 +88,7 @@ public class SprintDAOMySQL implements SprintDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 newSprint = new Sprint(
-                        rs.getInt("sprintID"),
+                        rs.getInt("idSprint"),
                         rs.getString("sprintName"),
                         rs.getDate("beginDate").toLocalDate(),
                         rs.getDate("endDate").toLocalDate());
@@ -108,7 +108,7 @@ public class SprintDAOMySQL implements SprintDAO {
             ps.setInt(1, projectID);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                int newSprintID = rs.getInt("sprintID");
+                int newSprintID = rs.getInt("idSprint");
                 AbstractSprint newSprint = getSprintById(newSprintID);
                 sprintList.add(newSprint);
             }
