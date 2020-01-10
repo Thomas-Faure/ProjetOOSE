@@ -14,7 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -44,7 +44,7 @@ public class AccountController implements Initializable {
     @FXML
     private TextField phoneNumber;
     @FXML
-    private RadioButton isAdmin;
+    private CheckBox isAdmin;
     @FXML
     private Button modifyUserButton;
     @FXML
@@ -101,7 +101,7 @@ public class AccountController implements Initializable {
         toModify.setPhoneNumber(phoneNumber.getText());
         toModify.setEmail(email.getText());
         toModify.setPosition(position.getText());
-        toModify.setAdmin(isAdmin.isArmed());
+        toModify.setAdmin(isAdmin.isSelected());
         SessionFacade.getInstance().setUser(toModify);
         if(userFacade.modifyUser(toModify)){
             MyAccountUI user = new MyAccountUI();
@@ -128,7 +128,7 @@ public class AccountController implements Initializable {
         email.setText(toModify.getEmail());
         position.setText(toModify.getPosition());
         if(toModify.isAdmin()){
-            isAdmin.arm();
+            isAdmin.setSelected(true);
         }
     }
 

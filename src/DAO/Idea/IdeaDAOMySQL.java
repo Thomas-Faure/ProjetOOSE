@@ -15,10 +15,10 @@ import java.util.List;
 public class IdeaDAOMySQL implements IdeaDAO {
 
 	private static final String INSERT = "INSERT INTO idea (name, description, subject, creator, state) VALUES (?, ?, ?, ?,?)";
-	private static final String UPDATE = "UPDATE idea SET name=?, description=?, subject=?,  state=? WHERE id=?";
-	private static final String DELETE = "DELETE FROM idea WHERE id=?";
+	private static final String UPDATE = "UPDATE idea SET name=?, description=?, subject=?,  state=? WHERE idIdea=?";
+	private static final String DELETE = "DELETE FROM idea WHERE idIdea=?";
 	private static final String ALL = "SELECT * from idea";
-	private static final String IDEABYID = "SELECT * from idea where id=?";
+	private static final String IDEABYID = "SELECT * from idea where idIdea=?";
 
 	public IdeaDAOMySQL() {
 	
@@ -36,7 +36,7 @@ public class IdeaDAOMySQL implements IdeaDAO {
 		    		  System.out.println("correct");
 		    		  //� changer
 		    		  idea= new Idea(
-				 			  result.getInt("id"),
+				 			  result.getInt("idIdea"),
 						      result.getString("name"),
 		    		          result.getString("description"),
 		    		          result.getString("subject"),
@@ -120,7 +120,7 @@ public class IdeaDAOMySQL implements IdeaDAO {
 
 			while(rs.next()){
 				Idea idea = new Idea(
-						rs.getInt("id"),
+						rs.getInt("idIdea"),
 						rs.getString("name"),
 						rs.getString("description"),
 						rs.getString("subject"),
@@ -146,7 +146,7 @@ public class IdeaDAOMySQL implements IdeaDAO {
 			while(rs.next()){
 
 				idea = new Idea(
-						rs.getInt("id"),
+						rs.getInt("idIdea"),
 						rs.getString("name"),
 						rs.getString("description"),
 						rs.getString("subject"),

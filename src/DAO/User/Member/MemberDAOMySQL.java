@@ -12,12 +12,12 @@ import java.util.List;
 
 public class MemberDAOMySQL implements MemberDAO {
 
-    private static final String INSERT = "INSERT INTO memberuser (projectid, userid) VALUES (?, ?)";
-    private static final String UPDATE = "UPDATE memberuser SET projectId=?, userId=?, roleId=? WHERE id=?";
-    private static final String DELETE = "DELETE FROM memberuser WHERE userId=?";
-    private static final String ALL = "SELECT user.* from user,memberuser WHERE user.id = memberuser.userId";
-    private static final String ALLPROJECT = "SELECT user.* from user,memberuser WHERE user.id = memberuser.userId AND memberuser.projectId = ?";
-    private static final String MEMBERBYID = "SELECT * from memberuser where id=?";
+    private static final String INSERT = "INSERT INTO member (idProject, idUser) VALUES (?, ?)";
+    private static final String UPDATE = "UPDATE member SET idProject=?, idUser=?, idRole=? WHERE id=?";
+    private static final String DELETE = "DELETE FROM member WHERE idUser=?";
+    private static final String ALL = "SELECT user.* from user,member WHERE user.idUser = member.idUser";
+    private static final String ALLPROJECT = "SELECT user.* from user,member WHERE user.id = member.idUser AND member.idProject = ?";
+    private static final String MEMBERBYID = "SELECT * from member where idUser=?";
 
     public MemberDAOMySQL() {
 
@@ -103,7 +103,7 @@ public class MemberDAOMySQL implements MemberDAO {
 
             while(rs.next()){
                 Member member = new Member(
-                        rs.getInt("id"),
+                        rs.getInt("idUser"),
                         rs.getString("username"),
                         rs.getString("firstName"),
                         rs.getString("lastName"),
@@ -130,7 +130,7 @@ public class MemberDAOMySQL implements MemberDAO {
 
             while(rs.next()){
                 Member member = new Member(
-                        rs.getInt("id"),
+                        rs.getInt("idUser"),
                         rs.getString("username"),
                         rs.getString("firstName"),
                         rs.getString("lastName"),
@@ -157,7 +157,7 @@ public class MemberDAOMySQL implements MemberDAO {
             while(rs.next()){
 
                  member = new Member(
-                        rs.getInt("id"),
+                        rs.getInt("idUser"),
                         rs.getString("username"),
                         rs.getString("firstName"),
                         rs.getString("lastName"),

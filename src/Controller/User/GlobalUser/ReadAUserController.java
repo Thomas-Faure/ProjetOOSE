@@ -9,7 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
@@ -35,7 +35,7 @@ public class ReadAUserController implements Initializable {
     @FXML
     private TextField phoneNumber;
     @FXML
-    private RadioButton isAdmin;
+    private CheckBox isAdmin;
     @FXML
     private Button addUserButton;
     @FXML
@@ -69,7 +69,7 @@ public class ReadAUserController implements Initializable {
         position.setText(toRead.getPosition());
         phoneNumber.setText(toRead.getPhoneNumber());
         if (toRead.isAdmin()){
-            isAdmin.arm();
+            isAdmin.setSelected(true);
         }
 
     }

@@ -9,8 +9,6 @@ public class AddUserUI {
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("AddUserUI.fxml"));
-            System.out.println("ICIIII");
-            System.out.println(getClass());
         }catch(Exception e){
             e.printStackTrace();
         }

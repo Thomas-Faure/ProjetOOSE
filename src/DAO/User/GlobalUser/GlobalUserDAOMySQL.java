@@ -15,10 +15,10 @@ import java.util.List;
 public class GlobalUserDAOMySQL implements GlobalUserDAO {
 
     private static final String INSERT = "INSERT INTO user (username, password, firstName, lastName, city, phoneNumber, email, position, isAdmin ) VALUES (?, ?, ?, ?,?,?,?,?,?)";
-    private static final String UPDATE = "UPDATE user SET username=?, password=?, firstName=?, lastName=?, city=?, phoneNumber=?, email=?, position=?, isAdmin=? WHERE id=?";
-    private static final String DELETE = "DELETE FROM user WHERE id=?";
+    private static final String UPDATE = "UPDATE user SET username=?, password=?, firstName=?, lastName=?, city=?, phoneNumber=?, email=?, position=?, isAdmin=? WHERE idUser=?";
+    private static final String DELETE = "DELETE FROM user WHERE idUser=?";
     private static final String ALL = "SELECT * from user";
-    private static final String USERBYID = "SELECT * from user where id=?";
+    private static final String USERBYID = "SELECT * from user where idUser=?";
 
     public GlobalUserDAOMySQL() {
 
@@ -35,7 +35,7 @@ public class GlobalUserDAOMySQL implements GlobalUserDAO {
                     ResultSet.CONCUR_READ_ONLY).executeQuery(query);
             if(result.first()) {
                 System.out.println("correct");
-                user= new User( result.getInt("id"),
+                user= new User( result.getInt("idUser"),
                         result.getString("username"),
                         result.getString("password"),
                         result.getString("firstName"),
@@ -143,7 +143,7 @@ public class GlobalUserDAOMySQL implements GlobalUserDAO {
 
             while(rs.next()){
                 User user = new GlobalUser(
-                        rs.getInt("id"),
+                        rs.getInt("idUser"),
                         rs.getString("username"),
                         rs.getString("password"),
                         rs.getString("firstName"),
@@ -174,7 +174,7 @@ public class GlobalUserDAOMySQL implements GlobalUserDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 user = new GlobalUser(
-                        rs.getInt("id"),
+                        rs.getInt("idUser"),
                         rs.getString("username"),
                         rs.getString("password"),
                         rs.getString("firstName"),

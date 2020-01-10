@@ -1,23 +1,26 @@
-package Controller.User.MemberUser;
+package Controller.Role;
 
-import BuisnessLogic.Project.AbstractProject;
+import BuisnessLogic.Role.AbstractRole;
 import BuisnessLogic.Role.Role;
 import BuisnessLogic.User.Member;
 import Facade.Role.IRoleFacade;
 import Facade.Role.RoleFacade;
-import Facade.User.MemberUser.IMemberFacade;
-import Facade.User.MemberUser.MemberFacade;
 import Main.App;
+import UI.Role.AddRoleUI;
 import UI.Role.AllRolesUI;
 import UI.UIError;
-import UI.User.Member.AllMembersUI;
+import UI.UIGlobal;
+import UI.User.Member.ReadAMemberUI;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -28,43 +31,23 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ReadAMemberController implements Initializable {
-
-    @FXML
-    private TextField username;
-    @FXML
-    private TextField firstName;
-    @FXML
-    private TextField lastName;
+public class AllRolesController implements Initializable {
 
     private Member member;
+
     /*
-        private static ObservableList<User> listViewTemp;
-        private ListView<User> membersList ;
-        private IMemberFacade memberFacade = MemberFacade.getInstance();
-        private static Member toManage;
-    */
-    public ReadAMemberController (Member newmember){
+    public AllRolesController(){
+    }*/
+    public AllRolesController(Member newmember){
         this.member = newmember;
     }
 
-    public void addNewRole(ActionEvent actionEvent) {
-        /*
-        AddRoleUI member = new AddMemberUI(this.project);
-        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-        if(box.getChildren().size() >1 )
-            box.getChildren().remove(1);
-        box.getChildren().add(member.loadScene().getRoot());
-
-         */
-    }
 
     @FXML
     private ListView<Role> rolesList ;
-    private IRoleFacade roleFacade = RoleFacade.getInstance();
 
-    //private IGlobalUserFacade userFacade = GlobalUserFacade.getInstance();
-    private IMemberFacade memberFacade = MemberFacade.getInstance();
+    private IRoleFacade roleFacade = RoleFacade.getInstance();
+    //private IMemberFacade memberFacade = MemberFacade.getInstance();
 
     private static Role toManage;
 
@@ -101,42 +84,41 @@ public class ReadAMemberController implements Initializable {
         }
 
     }
+*/
 
-     */
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        username.setText(member.getUsername());
-        firstName.setText(member.getFirstName());
-        lastName.setText(member.getLastName());
         if(rolesList != null){
             //si on peut récuperer les tickets
             if(roleFacade.getAllRoles()) {
                 ArrayList<Role> listeElement = ((ArrayList) roleFacade.getListRoles());
+                System.out.println(listeElement);
                 ObservableList<Role> listView = FXCollections.observableArrayList(listeElement);
                 listViewTemp = FXCollections.observableArrayList(listeElement);
+
                 rolesList.setItems(listView);
-                rolesList.setCellFactory(param -> new ReadAMemberController.Cell());
+                rolesList.setCellFactory(param -> new AllRolesController.Cell());
             }
         }
-
 
     }
 
     public void validation(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-        AbstractProject project = this.member.getProject();
-        if(!(memberFacade.deleteMember(this.member))){
-            UIError error = new UIError( new AllMembersUI(project));
+        if(!(roleFacade.addRole(toManage))){
+            UIError error = new UIError((UIGlobal) new AllRolesUI(this.member));
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(2);
         }else {
-            AllMembersUI allm = new AllMembersUI(this.member.getProject());
-            if(box.getChildren().size() >1 )
-                box.getChildren().remove(1);
-            box.getChildren().add(allm.loadScene().getRoot());
-            member = null;
+            AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+            toHide.setVisible(false);
+            AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#manager");
+            toShow.setVisible(true);
+            rolesList.getItems().remove(toManage);
+            listViewTemp.remove(toManage);
+            toManage = null;
         }
     }
 
@@ -148,29 +130,11 @@ public class ReadAMemberController implements Initializable {
     }
 
     public void backToPage(ActionEvent actionEvent) {
-        AllMembersUI allm = new AllMembersUI(this.member.getProject());
+        ReadAMemberUI user = new ReadAMemberUI(this.member);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
-        box.getChildren().add(allm.loadScene().getRoot());
-
-
-    }
-
-    public void deleteMember(ActionEvent actionEvent) {
-        AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#manager");
-        toHide.setVisible(false);
-        AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#confirm");
-        toShow.setVisible(true);
-
-    }
-
-    public void addRole(ActionEvent actionEvent) {
-        AllRolesUI allm = new AllRolesUI(this.member);
-        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-        if(box.getChildren().size() >1 )
-            box.getChildren().remove(1);
-        box.getChildren().add(allm.loadScene().getRoot());
+        box.getChildren().add(user.loadScene().getRoot());
     }
 
 
@@ -179,8 +143,7 @@ public class ReadAMemberController implements Initializable {
         HBox hbox = new HBox();
         Image image = new Image("megaphone.png");
         ImageView img = new ImageView(image);
-        Button btnR = new Button("Read");
-        Button btnD = new Button("Delete");
+        Button btnA = new Button("Add");
         Label label = new Label("");
         Pane pane = new Pane();
 
@@ -190,46 +153,42 @@ public class ReadAMemberController implements Initializable {
             img.setFitHeight(20);
             img.setFitWidth(20);
 
-            hbox.getChildren().addAll(img, label, pane, btnR, btnD);
+            hbox.getChildren().addAll(img, label, pane, btnA);
 
-            btnD.setOnAction(new EventHandler<ActionEvent>() {
+            btnA.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    toManage = role;
-                    AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#managerRole");
+                    cellAddRole (role);
+                    AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#manager");
                     toHide.setVisible(false);
-                    AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#confirmRole");
+                    AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#confirm");
                     toShow.setVisible(true);
                 }
             });
-            btnR.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent e) {
-/*
-                    RMARoleUI read = new RMARoleUI(role);
-                    HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-
-                    box.getChildren().remove(1);
-                    box.getChildren().add(read.loadScene().getRoot());
-
-
- */
-                }
-            });
-
-
+        }
+        public void cellAddRole (AbstractRole role){
+            Role newRole = new Role(role.getId(), role.getName());
+            toManage = newRole;
         }
         public void updateItem(Role name, boolean empty){
             super.updateItem(name,empty);
             setText(null);
             setGraphic(null);
             if(name != null && !empty){
-                role = name;
+                this.role = name;
                 label.setText(name.getId()+" "+name.getName());
                 setGraphic(hbox);
             }
 
         }
 
+    }
+
+    public void CreateRole(ActionEvent actionEvent) {
+        AddRoleUI role = new AddRoleUI();
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(role.loadScene().getRoot());
     }
 }

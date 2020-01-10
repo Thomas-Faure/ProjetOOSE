@@ -138,7 +138,7 @@ public class AddMemberController implements Initializable {
     }
 
 
-    static class Cell extends ListCell<User> {
+    public static class Cell extends ListCell<User> {
         AbstractProject cellProject;
         User user;
         HBox hbox = new HBox();

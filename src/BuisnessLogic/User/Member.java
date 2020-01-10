@@ -17,7 +17,7 @@ public class Member extends User {
         super(newId, newUsername, newPassword, newFirstname, newLastname, newCity, newphoneNumber, newEmail, newPosition, newisAdmin );
     }
 
-    public Member(){
+    public Member () {
 
     }
 

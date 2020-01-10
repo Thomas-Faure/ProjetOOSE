@@ -10,7 +10,7 @@ import UI.User.Global.AllUsersUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
@@ -33,7 +33,7 @@ public class AddUserController {
     @FXML
     private TextField phoneNumber;
     @FXML
-    private RadioButton isAdmin;
+    private CheckBox isAdmin;
     @FXML
     private Button addUserButton;
     @FXML
@@ -50,7 +50,7 @@ public class AddUserController {
 
     public void addNewUser(ActionEvent actionEvent) {
         AbstractUser user = new GlobalUser(0, username.getText(), password.getText(), firstName.getText(), lastName.getText(),
-                city.getText(), phoneNumber.getText(), email.getText(), position.getText(), isAdmin.isArmed());
+                city.getText(), phoneNumber.getText(), email.getText(), position.getText(), isAdmin.isSelected());
         if(GlobalUserFacade.getInstance().addUser(user)){
             AllUsersUI userU = new AllUsersUI();
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");

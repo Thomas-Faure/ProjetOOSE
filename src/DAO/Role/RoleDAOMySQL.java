@@ -13,10 +13,10 @@ import java.util.List;
 public class RoleDAOMySQL implements RoleDAO {
 
     private static final String INSERT = "INSERT INTO role (name) VALUES (?)";
-    private static final String UPDATE = "UPDATE role SET name=? WHERE id=?";
-    private static final String DELETE = "DELETE FROM role WHERE id=?";
+    private static final String UPDATE = "UPDATE role SET name=? WHERE idRole=?";
+    private static final String DELETE = "DELETE FROM role WHERE idRole=?";
     private static final String ALL = "SELECT * from role";
-    private static final String ROLEBYID = "SELECT * from role where id=?";
+    private static final String ROLEBYID = "SELECT * from role where idRole=?";
 
     public RoleDAOMySQL() {
 
@@ -33,7 +33,7 @@ public class RoleDAOMySQL implements RoleDAO {
                 System.out.println("correct");
                 //� changer
                 role = new Role (
-                        result.getInt("id"),
+                        result.getInt("idRole"),
                         result.getString("name")
                 );
             }
@@ -100,7 +100,7 @@ public class RoleDAOMySQL implements RoleDAO {
 
             while(rs.next()){
                 AbstractRole role = new Role(
-                        rs.getInt("id"),
+                        rs.getInt("idRole"),
                         rs.getString("name")
                 );
                 list.add(role);
@@ -122,7 +122,7 @@ public class RoleDAOMySQL implements RoleDAO {
             while(rs.next()){
 
                 role = new Role(
-                        rs.getInt("id"),
+                        rs.getInt("idRole"),
                         rs.getString("name"));
             }
             ps.close();

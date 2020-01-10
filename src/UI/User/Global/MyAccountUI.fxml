@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <AnchorPane fx:id="paneBasic" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" style="-fx-background-color: #ecf0f5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.User.GlobalUser.AccountController">
     <children>
         <Pane prefHeight="49.0" prefWidth="768.0" style="-fx-background-color: #367fa9;">
@@ -28,7 +23,7 @@
         <TextField fx:id="city" layoutX="217.0" layoutY="332.0" prefHeight="24.0" prefWidth="400.0" />
         <TextField fx:id="position" layoutX="217.0" layoutY="362.0" prefHeight="24.0" prefWidth="400.0" />
         <TextField fx:id="phoneNumber" layoutX="217.0" layoutY="399.0" prefHeight="24.0" prefWidth="400.0" />
-        <RadioButton fx:id="isAdmin" layoutX="336.0" layoutY="458.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="84.0" text="Is Admin" />
+        <CheckBox fx:id="isAdmin" layoutX="336.0" layoutY="458.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="84.0" text="Is Admin" />
         <Text layoutX="117.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username :" />
         <Text layoutX="119.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password :" />
         <Text layoutX="117.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name :" />
