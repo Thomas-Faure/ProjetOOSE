@@ -39,6 +39,9 @@ public class ResourceController implements Initializable {
     private Button buttonSearch;
 
     @FXML
+    private Button backButton;
+
+    @FXML
     private ListView<AbstractResource> resourceList;
 
     private static ObservableList<AbstractResource> listViewTemp;
@@ -54,7 +57,7 @@ public class ResourceController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        titlePath.setText("/Resources/" + project.getName());
+        titlePath.setText("Project/"+project.getName()+"/Resources/");
         if(resourceList != null){
             List<AbstractResource> listeElement = ResourceFacade.getInstance().getListResourceByProject(project.getId());
             ObservableList<AbstractResource> listView = FXCollections.observableArrayList(listeElement);
