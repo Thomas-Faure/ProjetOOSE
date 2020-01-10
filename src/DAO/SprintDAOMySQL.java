@@ -26,8 +26,8 @@ public class SprintDAOMySQL implements SprintDAO {
         try {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(INSERT);
             ps.setString(1, sprint.getSprintName());
-            ps.setDate(2, java.sql.Date.valueOf(sprint.getBeginDate()));
-            ps.setDate(3, java.sql.Date.valueOf(sprint.getEndDate()));
+            ps.setDate(2, java.sql.Date.valueOf(sprint.getBeginDate().plusDays(1)));
+            ps.setDate(3, java.sql.Date.valueOf(sprint.getEndDate().plusDays(1)));
             ps.setInt(4,projectID);
             int i = ps.executeUpdate();
             ps.close();
@@ -48,8 +48,8 @@ public class SprintDAOMySQL implements SprintDAO {
         try {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(UPDATE);
             ps.setString(1, sprint.getSprintName());
-            ps.setDate(2, java.sql.Date.valueOf(sprint.getBeginDate()));
-            ps.setDate(3, java.sql.Date.valueOf(sprint.getEndDate()));
+            ps.setDate(2, java.sql.Date.valueOf(sprint.getBeginDate().plusDays(1)));
+            ps.setDate(3, java.sql.Date.valueOf(sprint.getEndDate().plusDays(1)));
             ps.setInt(4, sprint.getSprintID());
             int i = ps.executeUpdate();
             ps.close();
