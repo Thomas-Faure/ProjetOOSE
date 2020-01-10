@@ -47,7 +47,7 @@ public class AnnouncementController implements Initializable {
     }
 
     @FXML
-    public void testFct(KeyEvent keyEvent) {
+    public void searchBar(KeyEvent keyEvent) {
         if(!(inputSearch.getText().length() == 0)) {
             ArrayList<AbstractAnnouncement> array = new ArrayList<>(listViewTemp);
             ArrayList<AbstractAnnouncement> toDelete = new ArrayList<>();

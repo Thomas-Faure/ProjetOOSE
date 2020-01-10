@@ -49,7 +49,7 @@ public class TaskManagerController implements Initializable, IController {
 
     }
     @FXML
-    public void testFct(KeyEvent keyEvent) {
+    public void searchBar(KeyEvent keyEvent) {
         if(!(inputSearch.getText().length() == 0)) {
             ArrayList<AbstractTask> array = new ArrayList<>(listViewTemp);
             ArrayList<AbstractTask> toDelete = new ArrayList<>();
