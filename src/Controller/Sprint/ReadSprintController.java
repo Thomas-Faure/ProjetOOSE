@@ -125,19 +125,19 @@ public class ReadSprintController implements Initializable, IController {
         ObservableList<AbstractTask> listViewTodo = FXCollections.observableArrayList(taskListTodo);
         listViewTemp = FXCollections.observableArrayList(taskListTodo);
         todoSprintList.setItems(listViewTodo);
-        todoSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,ui));
+        todoSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,sprint,ui));
 
         //DOING
         ObservableList<AbstractTask> listViewDoing = FXCollections.observableArrayList(taskListDoing);
         listViewTemp = FXCollections.observableArrayList(taskListDoing);
         doingSprintList.setItems(listViewDoing);
-        doingSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,ui));
+        doingSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,sprint,ui));
 
         //DONE
         ObservableList<AbstractTask> listViewDone = FXCollections.observableArrayList(taskListDone);
         listViewTemp = FXCollections.observableArrayList(taskListDone);
         doneSprintList.setItems(listViewDone);
-        doneSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,ui));
+        doneSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,sprint,ui));
     }
 
     @Override
@@ -155,19 +155,19 @@ public class ReadSprintController implements Initializable, IController {
         ObservableList<AbstractTask> listViewTodo = FXCollections.observableArrayList(taskListTodo);
         listViewTemp = FXCollections.observableArrayList(taskListTodo);
         todoSprintList.setItems(listViewTodo);
-        todoSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,ui));
+        todoSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,sprint,ui));
 
         //DOING
         ObservableList<AbstractTask> listViewDoing = FXCollections.observableArrayList(taskListDoing);
         listViewTemp = FXCollections.observableArrayList(taskListDoing);
         doingSprintList.setItems(listViewDoing);
-        doingSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,ui));
+        doingSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,sprint,ui));
 
         //DONE
         ObservableList<AbstractTask> listViewDone = FXCollections.observableArrayList(taskListDone);
         listViewTemp = FXCollections.observableArrayList(taskListDone);
         doneSprintList.setItems(listViewDone);
-        doneSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,ui));
+        doneSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,sprint,ui));
 
     }
 
@@ -176,17 +176,17 @@ public class ReadSprintController implements Initializable, IController {
         AbstractProject project;
         AbstractTask task;
         HBox hbox = new HBox();
-        Button btnRead = new Button("Read");
         Button btnUpdate = new Button("Update");
         Button btnDelete = new Button("Delete");
         Label label = new Label("");
         Pane pane = new Pane();
         UIGlobalWithController ui;
 
-        public Cell(AbstractProject project,UIGlobalWithController ui){
+        public Cell(AbstractProject project,AbstractSprint sprint,UIGlobalWithController ui){
             super();
             this.ui=ui;
             this.project = project;
+            this.sprint = sprint;
             hbox.setSpacing(10);
             hbox.getChildren().addAll(label,pane,btnUpdate,btnDelete);
             btnUpdate.setOnAction(new EventHandler<ActionEvent>() {

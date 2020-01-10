@@ -9,6 +9,7 @@ import UI.Sprint.AddTaskSprintUI;
 import UI.Sprint.ReadSprintUI;
 import UI.Task.UIAddTask;
 import UI.Task.UIModifyTask;
+import UI.UIGlobalWithController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -71,6 +72,7 @@ public class AddTaskSprintController implements Initializable {
 
     private AbstractProject project;
     private AbstractSprint sprint;
+    private  UIGlobalWithController ui;
 
     public AddTaskSprintController(AbstractProject project, AbstractSprint sprint){
         this.project=project;

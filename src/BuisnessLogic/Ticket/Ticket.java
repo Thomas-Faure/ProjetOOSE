@@ -10,7 +10,6 @@ public class Ticket extends AbstractTicket {
     private int id;
     private String subject;
     private String problem;
-    private Boolean status;
     private LocalDate dateCreation;
     private User creator;
     private String answer;
@@ -24,11 +23,10 @@ public class Ticket extends AbstractTicket {
         this.id = id;
     }
 
-    public Ticket(int id, String subject, Boolean status, LocalDate date, String problem, User creator, String answer){
+    public Ticket(int id, String subject, LocalDate date, String problem, User creator, String answer){
         this.id = id;
         this.subject = subject;
         this.problem = problem;
-        this.status = status;
         this.dateCreation = date;
         this.creator = creator;
         this.answer = answer;
@@ -48,14 +46,6 @@ public class Ticket extends AbstractTicket {
 
     public void setProblem(String problem) {
         this.problem = problem;
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
     }
 
     public LocalDate getDateCreation() {
@@ -80,5 +70,10 @@ public class Ticket extends AbstractTicket {
 
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+
+    @Override
+    public Boolean isAnswered() {
+        return this.answer != null;
     }
 }
