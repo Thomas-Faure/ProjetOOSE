@@ -14,7 +14,6 @@ import java.util.List;
 
 public class GlobalUserDAOMySQL implements GlobalUserDAO {
 
-    
     private static final String INSERT = "INSERT INTO user (username, password, firstName, lastName, city, phoneNumber, email, position, isAdmin ) VALUES (?, ?, ?, ?,?,?,?,?,?)";
     private static final String UPDATE = "UPDATE user SET username=?, password=?, firstName=?, lastName=?, city=?, phoneNumber=?, email=?, position=?, isAdmin=? WHERE idUser=?";
     private static final String DELETE = "DELETE FROM user WHERE idUser=?";
@@ -25,18 +24,13 @@ public class GlobalUserDAOMySQL implements GlobalUserDAO {
 
     }
 
-    public static void main(String[] args) {
-        GlobalUserDAO sql = new GlobalUserDAOMySQL();
-        User use =sql.createUser("toto2","5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8");
-        System.out.println(use.getId());
-    }
     @Override
     public User createUser(String username, String password) {
         User user=null;
         try {
             //String query = "SELECT * FROM user WHERE username = 'lauren' and password = 'lauren';";
             String query = "SELECT * FROM user WHERE username = '" +  username + "' and password = '" + password + "';";
-            System.out.println(query);
+            //System.out.println(query);
             ResultSet result = MySQLConnector.getSQLConnection().createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY).executeQuery(query);
@@ -79,7 +73,7 @@ public class GlobalUserDAOMySQL implements GlobalUserDAO {
             ps.executeUpdate();
             ps.close();
 
-            System.out.println("Nouvel utilisateur dans la base: " + user.toString());
+            //System.out.println("Nouvel utilisateur dans la base: " + user.toString());
             return true;
         } catch (SQLException e) {
 
@@ -107,7 +101,7 @@ public class GlobalUserDAOMySQL implements GlobalUserDAO {
 
             int i = ps.executeUpdate();
             ps.close();
-            System.out.println("L'utilisateur " + user.getId() + " contient maintenant: " + user.toString());
+            //System.out.println("L'utilisateur " + user.getId() + " contient maintenant: " + user.toString());
             return i > 0;
 
             //return true;

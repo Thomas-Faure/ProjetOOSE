@@ -96,18 +96,30 @@ public class AllMembersController implements Initializable {
     }
 
      */
+    public boolean estMembreProjet (Member membre){
+        if (membre.getProject().getId() == this.project.getId()){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         if(usersList != null){
             //si on peut récuperer les tickets
-            if(memberFacade.getAllMembersProject(this.project)) {
-                ArrayList<Member> listeElement = ((ArrayList) memberFacade.getListMembers());
+            if(memberFacade.getAllMembers()) {
+                ArrayList<Member> listeElement = new ArrayList<>();
+                for (int i = 0; i < memberFacade.getListMembers().size(); i++){
+                    if (this.estMembreProjet(memberFacade.getListMembers().get(i))){
+                        listeElement.add(memberFacade.getListMembers().get(i));
+                    }
+                }
                 ObservableList<Member> listView = FXCollections.observableArrayList(listeElement);
                 listViewTemp = FXCollections.observableArrayList(listeElement);
                 usersList.setItems(listView);
                 usersList.setCellFactory(param -> new AllMembersController.Cell(this.project));
-                System.out.println(listView);
             }
         }
 
@@ -128,6 +140,10 @@ public class AllMembersController implements Initializable {
             usersList.getItems().remove(mtoManage);
             listViewTemp.remove(mtoManage);
             mtoManage = null;
+            AllMembersUI user = new AllMembersUI(this.project);
+            if(box.getChildren().size() >1 )
+                box.getChildren().remove(1);
+            box.getChildren().add(user.loadScene().getRoot());
         }
     }
 

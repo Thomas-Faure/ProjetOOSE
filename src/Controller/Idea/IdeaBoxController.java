@@ -5,6 +5,7 @@ import BuisnessLogic.Idea.AbstractIdea;
 import BuisnessLogic.Idea.Idea;
 import Facade.Idea.IIdeaFacade;
 import Facade.Idea.IdeaFacade;
+import Facade.SessionFacade;
 import Main.App;
 import UI.Idea.AddIdeaUI;
 import UI.Idea.IdeaBoxUI;
@@ -18,7 +19,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -159,8 +163,12 @@ public class IdeaBoxController implements Initializable {
             img.setFitHeight(20);
             img.setFitWidth(20);
 
-            hbox.getChildren().addAll(img, label, pane, btnR, btnD, btnU);
-
+            if (SessionFacade.getInstance().getUser().isAdmin()) {
+                hbox.getChildren().addAll(img, label, pane, btnR, btnD, btnU);
+            }
+            else {
+                hbox.getChildren().addAll(img, label, pane, btnR);
+            }
             btnD.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {

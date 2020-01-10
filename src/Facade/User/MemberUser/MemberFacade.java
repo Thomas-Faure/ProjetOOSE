@@ -32,6 +32,17 @@ public class MemberFacade implements IMemberFacade{
         return this.members;
     }
 
+    public List<Member> getListMembers(AbstractProject project){
+        List<Member> newlist = new ArrayList<>();
+        for (int i= 0; i < members.size(); i ++){
+            if (this.members.get(i).getProject() == project){
+                newlist.add(members.get(i));
+            }
+        }
+        return newlist;
+
+    }
+
     public MemberDAO getDao(){
         return this.daoFactory;
     }
@@ -49,7 +60,11 @@ public class MemberFacade implements IMemberFacade{
 
     public boolean modifyMember(Member member) {
         if(daoFactory.update(member)){
-            this.members.set(member.getId(), member);
+            int i = 0;
+            while(this.members.get(i).getId() != member.getId()){
+                i++;
+            }
+            this.members.set(i, member);
             return true;
         }else {
             return false;
@@ -71,11 +86,6 @@ public class MemberFacade implements IMemberFacade{
 
     public boolean getAllMembers() {
         this.members = daoFactory.getAllMembers();
-        return true;
-    }
-
-    public boolean getAllMembersProject(AbstractProject project) {
-        this.members = daoFactory.getAllMembersProject(project);
         return true;
     }
 

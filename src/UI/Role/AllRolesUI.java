@@ -2,6 +2,7 @@ package UI.Role;
 
 import BuisnessLogic.User.Member;
 import Controller.Role.AllRolesController;
+import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-public class AllRolesUI {
+public class AllRolesUI implements UIGlobal {
 
     private Member member;
 

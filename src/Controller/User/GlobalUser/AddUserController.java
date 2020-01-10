@@ -11,15 +11,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class AddUserController {
 
     @FXML
     private TextField username;
     @FXML
-    private TextField password;
+    private PasswordField password;
     @FXML
     private TextField firstName;
     @FXML
@@ -49,7 +54,19 @@ public class AddUserController {
     }
 
     public void addNewUser(ActionEvent actionEvent) {
-        AbstractUser user = new GlobalUser(0, username.getText(), password.getText(), firstName.getText(), lastName.getText(),
+        String hashtext="";
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            byte[] messageDigest = md.digest(password.getText().getBytes());
+            BigInteger no = new BigInteger(1, messageDigest);
+            hashtext = no.toString(16);
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        AbstractUser user = new GlobalUser(0, username.getText(), hashtext, firstName.getText(), lastName.getText(),
                 city.getText(), phoneNumber.getText(), email.getText(), position.getText(), isAdmin.isSelected());
         if(GlobalUserFacade.getInstance().addUser(user)){
             AllUsersUI userU = new AllUsersUI();

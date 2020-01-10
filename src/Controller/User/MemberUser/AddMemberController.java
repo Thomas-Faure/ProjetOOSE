@@ -1,6 +1,7 @@
 package Controller.User.MemberUser;
 
 import BuisnessLogic.Project.AbstractProject;
+import BuisnessLogic.User.AbstractUser;
 import BuisnessLogic.User.Member;
 import BuisnessLogic.User.User;
 import Facade.User.GlobalUser.GlobalUserFacade;
@@ -9,8 +10,8 @@ import Facade.User.MemberUser.IMemberFacade;
 import Facade.User.MemberUser.MemberFacade;
 import Main.App;
 import UI.UIError;
-import UI.User.Global.AddUserUI;
 import UI.User.Global.AllUsersUI;
+import UI.User.Member.AddMemberUI;
 import UI.User.Member.AllMembersUI;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,10 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -86,13 +84,28 @@ public class AddMemberController implements Initializable {
     }
 
      */
+    public boolean estMembre(AbstractUser user){
+
+        for (int i = 0; i < memberFacade.getListMembers().size(); i++){
+            if ( memberFacade.getListMembers().get(i).getId() == user.getId()){
+                return true;
+            }
+        }
+        return false;
+
+    }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         if(usersList != null){
-            //si on peut récuperer les tickets
             if(userFacade.getAllUsers()) {
-                ArrayList<User> listeElement = ((ArrayList) userFacade.getListUsers());
+                ArrayList<User> listeElement = new ArrayList<>();
+                for (int i = 0; i < userFacade.getListUsers().size(); i++){
+                    if (! estMembre(userFacade.getListUsers().get(i))){
+                        listeElement.add((User) userFacade.getListUsers().get(i));
+                    }
+                }
+
                 ObservableList<User> listView = FXCollections.observableArrayList(listeElement);
                 listViewTemp = FXCollections.observableArrayList(listeElement);
 
@@ -105,7 +118,6 @@ public class AddMemberController implements Initializable {
 
     public void validation(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-        System.out.println(toManage.getProject());
         if(!(memberFacade.addMember(toManage))){
             UIError error = new UIError( new AllUsersUI());
             box.getChildren().add(error.loadScene().getRoot());
@@ -119,6 +131,10 @@ public class AddMemberController implements Initializable {
             usersList.getItems().remove(toManage);
             listViewTemp.remove(toManage);
             toManage = null;
+            AddMemberUI user = new AddMemberUI(this.project);
+            if(box.getChildren().size() >1 )
+                box.getChildren().remove(1);
+            box.getChildren().add(user.loadScene().getRoot());
         }
     }
 
@@ -186,13 +202,5 @@ public class AddMemberController implements Initializable {
 
         }
 
-    }
-
-    public void addNewMember(ActionEvent actionEvent) {
-        AddUserUI user = new AddUserUI();
-        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-        if(box.getChildren().size() >1 )
-            box.getChildren().remove(1);
-        box.getChildren().add(user.loadScene().getRoot());
     }
 }
