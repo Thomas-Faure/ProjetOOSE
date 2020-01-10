@@ -1,28 +1,25 @@
 package DAO.Task;
-
-
+/**
+ *
+ * @author Thomas Faure
+ */
 import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.Task;
 import BuisnessLogic.Task.TaskState;
-import BuisnessLogic.User.AbstractUser;
-import BuisnessLogic.User.User;
 import DAO.MySQLConnector;
 import Facade.Project.ProjectFacade;
-import Facade.SessionFacade;
 import Facade.User.GlobalUser.GlobalUserFacade;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TaskDAOMySQL implements TaskDAO {
 
     private static final String INSERT = "INSERT INTO task (name, priority, deadline, creator,description,state,idProject,idSprint) VALUES (?, ?, ?, ?,?,?,?,?)";
-    private static final String UPDATE = "UPDATE task SET name=?, priority=?, deadline=?, creator=?, description=?, state=?, idSprint=? WHERE id=?";
+    private static final String UPDATE = "UPDATE task SET name=?, priority=?, deadline=?, creator=?, description=?, state=?, idSprint=? WHERE idTask=?";
     private static final String DELETE = "DELETE FROM task WHERE idTask=?";
     private static final String ALL = "SELECT * from task";
     private static final String ALLBYPROJ = "SELECT * from task where idProject=?";

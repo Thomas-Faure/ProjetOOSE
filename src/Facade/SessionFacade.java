@@ -17,11 +17,15 @@ public class SessionFacade implements ISessionFacade {
 		taskDAO = MySQLDAOFactory.getTaskDAO();
 		
 	}
+
 	public static SessionFacade getInstance(){
 		if(instance==null){
 			instance = new SessionFacade();
 		}
 		return (SessionFacade)instance;
+	}
+	public void removeUser(){
+		this.user=null;
 	}
 	public User getUser(){
 		return user;

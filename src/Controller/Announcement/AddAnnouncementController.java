@@ -14,7 +14,10 @@ import javafx.scene.layout.HBox;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
-
+/**
+ *
+ * @author Thomas Faure
+ */
 public class AddAnnouncementController{
 
     @FXML

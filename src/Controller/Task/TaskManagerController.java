@@ -1,5 +1,8 @@
 package Controller.Task;
-
+/**
+ *
+ * @author Thomas Faure
+ */
 import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Task.AbstractTask;
 import Controller.IController;
@@ -181,7 +184,7 @@ public class TaskManagerController implements Initializable, IController {
 
     @FXML
     void addTaskPage(ActionEvent actionEvent) {
-        UIAddTask addTask = new UIAddTask(project);
+        UIAddTask addTask = new UIAddTask(project,ui);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
 
         box.getChildren().remove(1);

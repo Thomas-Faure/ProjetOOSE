@@ -1,5 +1,8 @@
 package DAO;
-
+/**
+ *
+ * @author Thomas Faure
+ */
 import DAO.Announcement.AnnouncementDAO;
 import DAO.Idea.IdeaDAO;
 import DAO.Meeting.MeetingDAO;
@@ -10,7 +13,6 @@ import DAO.Ticket.TicketDAO;
 import DAO.User.Member.MemberDAO;
 
 public abstract class AbstractDAOFactory {
-	//protected abstract GlobalUserDAO createUserDAO();
 	protected abstract AnnouncementDAO createAnnouncementDAO();
 	protected abstract ChatDAO createChatDAO();
 	protected abstract IdeaDAO createIdeaDAO();

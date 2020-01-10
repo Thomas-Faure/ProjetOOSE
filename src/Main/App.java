@@ -1,5 +1,8 @@
 package Main;
-
+/**
+ *
+ * @author Thomas Faure
+ */
 import UI.Menu;
 import UI.Project.ProjectUI;
 import javafx.scene.Scene;
@@ -10,7 +13,6 @@ public class App {
     private App(){
 
     }
-
     public static App instance;
     private Stage stage;
     private Scene scene;

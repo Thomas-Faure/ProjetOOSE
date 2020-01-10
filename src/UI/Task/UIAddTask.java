@@ -1,9 +1,13 @@
 package UI.Task;
-
+/**
+ *
+ * @author Thomas Faure
+ */
 import BuisnessLogic.Project.AbstractProject;
-import Controller.Sprint.AddSprintController;
+import Controller.IController;
 import Controller.Task.AddTaskController;
 import UI.UIGlobal;
+import UI.UIGlobalWithController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,17 +17,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-public class UIAddTask implements UIGlobal {
+public class UIAddTask implements UIGlobalWithController {
 	AbstractProject project;
-	public UIAddTask(AbstractProject project){
+	public static UIGlobalWithController ui;
+	public static IController controller;
+	public UIAddTask(AbstractProject project, UIGlobalWithController ui){
 		this.project = project;
+		this.ui=ui;
 	};
 	public Scene loadScene(){
 		Map<Class, Callable<?>> creators = new HashMap<>();
 		creators.put(AddTaskController.class , new Callable<AddTaskController>() {
 			@Override
 			public AddTaskController call() throws Exception {
-				return new AddTaskController(project);
+				return new AddTaskController(project,ui);
 			}
 		});
 		Parent root = null;
@@ -50,10 +57,16 @@ public class UIAddTask implements UIGlobal {
 				}
 			});
 			root = loader.load();
+			controller=loader.getController();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		Scene scene = new Scene(root, 1000, 600);
 		return scene;
+	}
+
+	@Override
+	public IController getController() {
+		return controller;
 	}
 }

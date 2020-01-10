@@ -14,7 +14,7 @@
       <children>
         <AnchorPane maxWidth="232.0" minWidth="219.0" prefHeight="600.0" prefWidth="219.0" style="-fx-background-color: #c4bfbe;&#10;" HBox.hgrow="ALWAYS">
           <children>
-            <VBox alignment="CENTER" layoutX="12.0" layoutY="145.0" prefHeight="600.0" prefWidth="219.0" style="-fx-background-color: #222d32;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox alignment="CENTER" layoutY="49.0" prefHeight="551.0" prefWidth="219.0" style="-fx-background-color: #222d32;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="49.0">
               <children>
                   <Button fx:id="menuProject" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMenuProject" prefHeight="64.0" prefWidth="262.0" style="-fx-background-color: #1e282c;" text="Projects" textFill="WHITE" />
                   <Button fx:id="menuAnnouncementManager" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMenuAnnouncementManager" prefHeight="64.0" prefWidth="262.0" style="-fx-background-color: #1e282c;" text="Announcements Manager" textFill="WHITE" />
@@ -24,16 +24,25 @@
                   <Button fx:id="menuUser" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMenuUser" prefHeight="64.0" prefWidth="262.0" style="-fx-background-color: #1e282c;" text="User" textFill="WHITE" />
                   <Button fx:id="menuIdea" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMenuIdea" prefHeight="64.0" prefWidth="262.0" style="-fx-background-color: #1e282c;" text="Idea box" textFill="WHITE" />
                   <Button fx:id="menuAccount" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMenuAccount" prefHeight="64.0" prefWidth="262.0" style="-fx-background-color: #1e282c;" text="My Account" textFill="WHITE" />
+                        <Button fx:id="menuAccount1" accessibleRole="PARENT" mnemonicParsing="false" onAction="#logOff" prefHeight="64.0" prefWidth="262.0" style="-fx-background-color: #494949;" text="&gt;LogOff&lt;" textFill="WHITE">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Button>
 
               </children>
             </VBox>
                   <Pane prefHeight="49.0" prefWidth="232.0" style="-fx-background-color: #367fa9;">
                      <children>
-                        <Text fill="WHITE" layoutX="80.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PPM">
-                           <font>
-                              <Font name="Dream MMA" size="32.0" />
-                           </font>
-                        </Text>
+                        <Button fx:id="welcomePageButton" mnemonicParsing="false" onAction="#goWelcomePage" prefHeight="50.0" prefWidth="232.0" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="PPM">
+                                 <font>
+                                    <Font name="Dream MMA" size="32.0" />
+                                 </font>
+                              </Text>
+                           </graphic>
+                        </Button>
                      </children>
                   </Pane>
           </children>

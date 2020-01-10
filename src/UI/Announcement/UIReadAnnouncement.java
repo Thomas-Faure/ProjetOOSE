@@ -1,5 +1,8 @@
 package UI.Announcement;
-
+/**
+ *
+ * @author Thomas Faure
+ */
 import Controller.Announcement.ReadAnnouncementController;
 
 import UI.UIGlobal;

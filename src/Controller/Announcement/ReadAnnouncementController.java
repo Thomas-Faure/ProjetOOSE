@@ -1,5 +1,8 @@
 package Controller.Announcement;
-
+/**
+ *
+ * @author Thomas Faure
+ */
 import BuisnessLogic.Announcement.AbstractAnnouncement;
 import Facade.Announcement.AnnouncementFacade;
 import Main.App;

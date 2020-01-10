@@ -1,21 +1,26 @@
 package Controller.Login;
-
+/**
+ *
+ * @author Thomas Faure
+ */
 import Facade.SessionFacade;
 import Main.App;
 import UI.Login.UIForgottenPassword;
 import UI.User.Global.CreateAccountUI;
+import UI.Role.AllRolesUI;
+import UI.WelcomeUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
 
 public class LoginController {
 
@@ -32,11 +37,16 @@ public class LoginController {
 
     @FXML
     public void signIn(ActionEvent actionEvent) {
-
         if (login(inputUsername.getText(), inputPassword.getText())) {
             info.setFill(javafx.scene.paint.Color.CHARTREUSE);
             info.setText("Connected");
             App.setMenuScene();
+            WelcomeUI welcomePage = new WelcomeUI();
+            HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+            if(box.getChildren().size() >1 ) {
+                box.getChildren().remove(1);
+            }
+            box.getChildren().add(welcomePage.loadScene().getRoot());
 
         } else {
             info.setFill(Color.FIREBRICK);
@@ -53,7 +63,7 @@ public class LoginController {
 
     public boolean login(String username, String password) {
 
-        //final password encrypted
+
         String hashtext="";
 
         //encrypt password to sha-1

@@ -1,5 +1,8 @@
 package DAO.Announcement;
-
+/**
+ *
+ * @author Thomas Faure
+ */
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +16,7 @@ import BuisnessLogic.User.User;
 
 import DAO.MySQLConnector;
 import Facade.User.GlobalUser.GlobalUserFacade;
-import Facade.User.UserFacade;
+
 
 
 public class AnnouncementDAOMySQL implements AnnouncementDAO {
@@ -21,7 +24,7 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 
 
 	private static final String INSERT = "INSERT INTO announcement (title, message, dateCreation, creator) VALUES (?, ?, ?, ?)";
-    private static final String UPDATE = "UPDATE announcement SET title=?, message=?, date=?, user=? WHERE idAnnouncement=?";
+    private static final String UPDATE = "UPDATE announcement SET title=?, message=?, dateCreation=?, creator=? WHERE idAnnouncement=?";
     private static final String DELETE = "DELETE FROM announcement WHERE idAnnouncement=?";
 	private static final String ALL = "SELECT * from announcement";
 	private static final String ANNOUNCEMENTBYID = "SELECT * from announcement where idAnnouncement=?";
@@ -37,7 +40,7 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(INSERT);
             ps.setString(1, a.getTitle());
             ps.setString(2, a.getMessage());
-            ps.setDate(3, java.sql.Date.valueOf( a.getDate() ));
+            ps.setDate(3, java.sql.Date.valueOf( a.getDate().plusDays(1) ));
             ps.setInt(4, a.getUser().getId());
             ps.executeUpdate();
             ps.close();
@@ -54,7 +57,7 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(UPDATE);
             ps.setString(1, a.getTitle());
             ps.setString(2, a.getMessage());
-            ps.setDate(3, java.sql.Date.valueOf( a.getDate() ));
+            ps.setDate(3, java.sql.Date.valueOf( a.getDate().plusDays(1) ));
             ps.setInt(4, a.getUser().getId());
             ps.setInt(5, a.getId());
             int i = ps.executeUpdate();

@@ -1,14 +1,17 @@
 package Controller;
 
+import Facade.SessionFacade;
 import Main.App;
 import UI.Announcement.AnnouncementUI;
 import UI.Announcement.UIAnnouncementManagement;
 import UI.Idea.IdeaBoxUI;
+import UI.Login.UILogin;
 import UI.Project.ProjectUI;
 import UI.Ticket.MyTicketUI;
 import UI.Ticket.TicketUI;
 import UI.User.Global.AllUsersUI;
 import UI.User.Global.MyAccountUI;
+import UI.WelcomeUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -35,6 +38,21 @@ public class MenuController {
     @FXML
     private Button menuAccount;
 
+    @FXML
+    void logOff(ActionEvent event){
+        SessionFacade.getInstance().removeUser();
+        UILogin login = new UILogin();
+        App.setInstanceScene(login.loadScene());
+        App.getInstanceStage().show();
+    }
+    @FXML
+    void goWelcomePage(ActionEvent event){
+        WelcomeUI ui = new WelcomeUI();
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(ui.loadScene().getRoot());
+    }
     @FXML
     void goMenuLogin(ActionEvent event){
 

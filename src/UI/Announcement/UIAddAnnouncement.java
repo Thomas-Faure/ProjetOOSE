@@ -1,16 +1,14 @@
 package UI.Announcement;
-
-import Main.App;
+/**
+ *
+ * @author Thomas Faure
+ */
 import UI.UIGlobal;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
+
 
 public class UIAddAnnouncement implements UIGlobal {
 	public UIAddAnnouncement(){

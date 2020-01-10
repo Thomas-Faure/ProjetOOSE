@@ -1,9 +1,11 @@
 package UI.Task;
-
+/**
+ *
+ * @author Thomas Faure
+ */
 import BuisnessLogic.Project.AbstractProject;
 import Controller.IController;
 import Controller.Task.TaskManagerController;
-import UI.UIGlobal;
 import UI.UIGlobalWithController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

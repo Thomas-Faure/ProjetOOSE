@@ -1,7 +1,9 @@
 package Test.DAO;
-
+/**
+ *
+ * @author Thomas Faure
+ */
 import Facade.SessionFacade;
-import Facade.User.GlobalUser.GlobalUserFacade;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

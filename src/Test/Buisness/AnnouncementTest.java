@@ -1,5 +1,8 @@
 package Test.Buisness;
-
+/**
+ *
+ * @author Thomas Faure
+ */
 import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Announcement.Announcement;
 import BuisnessLogic.User.AbstractUser;
