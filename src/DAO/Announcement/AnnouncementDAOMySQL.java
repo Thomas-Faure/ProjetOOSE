@@ -13,7 +13,7 @@ import BuisnessLogic.User.User;
 
 import DAO.MySQLConnector;
 import Facade.User.GlobalUser.GlobalUserFacade;
-import Facade.User.UserFacade;
+
 
 
 public class AnnouncementDAOMySQL implements AnnouncementDAO {
@@ -21,7 +21,7 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 
 
 	private static final String INSERT = "INSERT INTO announcement (title, message, dateCreation, creator) VALUES (?, ?, ?, ?)";
-    private static final String UPDATE = "UPDATE announcement SET title=?, message=?, date=?, user=? WHERE idAnnouncement=?";
+    private static final String UPDATE = "UPDATE announcement SET title=?, message=?, dateCreation=?, creator=? WHERE idAnnouncement=?";
     private static final String DELETE = "DELETE FROM announcement WHERE idAnnouncement=?";
 	private static final String ALL = "SELECT * from announcement";
 	private static final String ANNOUNCEMENTBYID = "SELECT * from announcement where idAnnouncement=?";

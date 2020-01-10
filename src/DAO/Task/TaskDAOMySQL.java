@@ -22,7 +22,7 @@ import java.util.List;
 public class TaskDAOMySQL implements TaskDAO {
 
     private static final String INSERT = "INSERT INTO task (name, priority, deadline, creator,description,state,idProject,idSprint) VALUES (?, ?, ?, ?,?,?,?,?)";
-    private static final String UPDATE = "UPDATE task SET name=?, priority=?, deadline=?, creator=?, description=?, state=?, idSprint=? WHERE id=?";
+    private static final String UPDATE = "UPDATE task SET name=?, priority=?, deadline=?, creator=?, description=?, state=?, idSprint=? WHERE idTask=?";
     private static final String DELETE = "DELETE FROM task WHERE idTask=?";
     private static final String ALL = "SELECT * from task";
     private static final String ALLBYPROJ = "SELECT * from task where idProject=?";

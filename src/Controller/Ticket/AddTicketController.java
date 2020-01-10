@@ -23,15 +23,12 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class AddTicketController {
-
     private ITicketFacade tFacade = TicketFacade.getInstance();
     private ISessionFacade sessionFacade = SessionFacade.getInstance();
-
     @FXML
     private TextField subject;
     @FXML
     private TextArea problem;
-
 
     @FXML
     void cancel(ActionEvent actionEvent){
