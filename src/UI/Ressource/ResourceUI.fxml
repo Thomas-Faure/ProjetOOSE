@@ -21,7 +21,7 @@
             <Font name="System Bold" size="26.0" />
          </font>
       </Text>
-      <Button fx:id="importFIle" layoutX="353.0" layoutY="108.0" mnemonicParsing="false" onAction="#uploadFile" text="Import" />
+      <Button fx:id="importFIle" layoutX="353.0" layoutY="108.0" mnemonicParsing="false" onAction="#uploadFile" text="Upload File" />
       <TextField fx:id="inputSearch" layoutX="514.0" layoutY="108.0" promptText="search" />
       <Button fx:id="buttonSearch" layoutX="685.0" layoutY="108.0" mnemonicParsing="false" text="Ok" />
   </children>
