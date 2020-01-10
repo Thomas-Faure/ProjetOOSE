@@ -7,9 +7,6 @@ import Facade.Ticket.ITicketFacade;
 import Facade.Ticket.TicketFacade;
 import Main.App;
 
-import UI.Announcement.UIModifyAnnouncement;
-import UI.Announcement.UIReadAnnouncement;
-import UI.Task.UITaskManagement;
 import UI.Ticket.AnswerTicketUI;
 import UI.Ticket.ReadTicketUI;
 import UI.Ticket.TicketUI;
@@ -172,7 +169,6 @@ public class TicketController implements Initializable {
 
                     ReadTicketUI read = new ReadTicketUI(ticket.getId(), true);
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-
                     box.getChildren().remove(1);
                     box.getChildren().add(read.loadScene().getRoot());
 
