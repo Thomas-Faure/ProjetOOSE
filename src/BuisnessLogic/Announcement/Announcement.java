@@ -1,5 +1,6 @@
 package BuisnessLogic.Announcement;
 
+import BuisnessLogic.User.AbstractUser;
 import BuisnessLogic.User.User;
 
 import java.time.LocalDate;
@@ -11,8 +12,8 @@ public class Announcement extends AbstractAnnouncement {
 	String title;
 	String message;
 	LocalDate date;
-	User user;
-	public Announcement(int id,String title,String message,LocalDate date,User user) {
+	AbstractUser user;
+	public Announcement(int id,String title,String message,LocalDate date,AbstractUser user) {
 		this.id=id;
 		this.title=title;
 		this.message=message;
@@ -43,7 +44,7 @@ public class Announcement extends AbstractAnnouncement {
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
-	public User getUser() {
+	public AbstractUser getUser() {
 		return user;
 	}
 	public void setUser(User user) {

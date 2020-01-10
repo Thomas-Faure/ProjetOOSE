@@ -44,7 +44,7 @@ public class AddTicketController {
 
     @FXML
     void addNewTicket(ActionEvent actionEvent){
-        AbstractTicket ticket = new Ticket(1,subject.getText(),false,LocalDate.now(),problem.getText(),sessionFacade.getUser(),null);
+        AbstractTicket ticket = new Ticket(1,subject.getText(),LocalDate.now(),problem.getText(),sessionFacade.getUser(),null);
         if(tFacade.addTicket(ticket)){
             MyTicketUI myTicketsPage = new MyTicketUI();
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");

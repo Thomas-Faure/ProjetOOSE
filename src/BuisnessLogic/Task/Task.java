@@ -5,20 +5,22 @@ import java.time.LocalDate;
 
 import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Task.AbstractTask;
+import BuisnessLogic.User.AbstractUser;
 import BuisnessLogic.User.User;
 
 
 public class Task extends AbstractTask {
 	int id;
+	Integer idSprint;
 	TaskState state;
 	String name;
 	int priority;
 	LocalDate deadline;
-	User creator;
+	AbstractUser creator;
 	String description;
 	AbstractProject project;
 
-	public Task(int id,String name,String description,int priority,LocalDate deadline,User creator,TaskState state,AbstractProject project) {
+	public Task(int id,String name,String description,int priority,LocalDate deadline,AbstractUser creator,TaskState state,AbstractProject project) {
 		this.id=id;
 		this.description=description;
 		this.name=name;
@@ -27,6 +29,18 @@ public class Task extends AbstractTask {
 		this.creator=creator;
 		this.state=state;
 		this.project=project;
+		this.idSprint=null;
+	}
+	public Task(int id,String name,String description,int priority,LocalDate deadline,AbstractUser creator,TaskState state,AbstractProject project,Integer idSprint) {
+		this.id=id;
+		this.description=description;
+		this.name=name;
+		this.priority=priority;
+		this.deadline=deadline;
+		this.creator=creator;
+		this.state=state;
+		this.project=project;
+		this.idSprint=idSprint;
 	}
 
 	public void setProject(AbstractProject project){
@@ -35,6 +49,17 @@ public class Task extends AbstractTask {
 	public AbstractProject getProject(){
 		return this.project;
 	}
+
+	@Override
+	public Integer getIdSprint() {
+		return this.idSprint;
+	}
+
+	@Override
+	public void setIdSprint(int id) {
+		this.idSprint = id;
+	}
+
 	public void setState(TaskState state){ this.state=state; }
 	public TaskState getState(){
 		return this.state;
@@ -63,7 +88,7 @@ public class Task extends AbstractTask {
 	public void setDeadline(LocalDate deadline) {
 		this.deadline = deadline;
 	}
-	public User getCreator() {
+	public AbstractUser getCreator() {
 		return creator;
 	}
 	public void setCreator(User creator) {

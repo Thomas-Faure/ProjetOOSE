@@ -17,12 +17,12 @@ import java.util.List;
 
 public class TicketDAOMySQL implements TicketDAO {
 
-    private static final String INSERT = "INSERT INTO ticket (subject, problem, status, dateCreation, creator) VALUES (?, ?, ?, ?, ?)";
-    private static final String UPDATE = "UPDATE ticket SET subject=?, problem=?, status=?, creator=?, answer=? WHERE id=?";
-    private static final String DELETE = "DELETE FROM ticket WHERE id=?";
+    private static final String INSERT = "INSERT INTO ticket (subject, problem, dateCreation, creator) VALUES (?, ?, ?, ?)";
+    private static final String UPDATE = "UPDATE ticket SET subject=?, problem=?, creator=?, answer=? WHERE idTicket=?";
+    private static final String DELETE = "DELETE FROM ticket WHERE idTicket=?";
     private static final String ALL = "SELECT * from ticket";
     private static final String MYTICKET = "SELECT * from ticket where creator=?";
-    private static final String TICKETBYID = "SELECT * from ticket where id=?";
+    private static final String TICKETBYID = "SELECT * from ticket where idTicket=?";
 
     @Override
     public List<AbstractTicket> getAllTickets() {
@@ -37,9 +37,8 @@ public class TicketDAOMySQL implements TicketDAO {
 
 
                 Ticket ticket = new Ticket(
-                        rs.getInt("id"),
+                        rs.getInt("idTicket"),
                         rs.getString("subject"),
-                        rs.getBoolean("status"),
                         rs.getDate("dateCreation").toLocalDate(),
                         rs.getString("problem"),
                         null,
@@ -69,9 +68,8 @@ public class TicketDAOMySQL implements TicketDAO {
 
 
                 Ticket ticket = new Ticket(
-                        rs.getInt("id"),
+                        rs.getInt("idTicket"),
                         rs.getString("subject"),
-                        rs.getBoolean("status"),
                         rs.getDate("dateCreation").toLocalDate(),
                         rs.getString("problem"),
                         null,
@@ -97,9 +95,8 @@ public class TicketDAOMySQL implements TicketDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                  ticket = new Ticket(
-                        rs.getInt("id"),
+                        rs.getInt("idTicket"),
                         rs.getString("subject"),
-                        rs.getBoolean("status"),
                         rs.getDate("dateCreation").toLocalDate(),
                         rs.getString("problem"),
                         null,
@@ -120,7 +117,6 @@ public class TicketDAOMySQL implements TicketDAO {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(UPDATE);
             ps.setString(1, ticket.getSubject());
             ps.setString(2, ticket.getProblem());
-            ps.setBoolean(3, true);
             ps.setInt(4, 3); //ATTENTION C'EST JUSTE LE TEMPS QUE LE USER SOIT IMPLEMENTE
             ps.setString(5, ticket.getAnswer());
             ps.setInt(6, ticket.getId());
@@ -143,7 +139,6 @@ public class TicketDAOMySQL implements TicketDAO {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(INSERT);
             ps.setString(1, t.getSubject());
             ps.setString(2, t.getProblem());
-            ps.setBoolean(3, t.getStatus());
             ps.setDate(4, java.sql.Date.valueOf(t.getDateCreation()));
             ps.setInt(5, t.getCreator().getId());
             ps.executeUpdate();

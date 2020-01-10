@@ -12,23 +12,25 @@ import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.User.User;
 
 import DAO.MySQLConnector;
+import Facade.User.GlobalUser.GlobalUserFacade;
+import Facade.User.UserFacade;
 
 
 public class AnnouncementDAOMySQL implements AnnouncementDAO {
 
 
 
-	private static final String INSERT = "INSERT INTO announcement (title, message, date, user) VALUES (?, ?, ?, ?)";
-    private static final String UPDATE = "UPDATE announcement SET title=?, message=?, date=?, user=? WHERE id=?";
-    private static final String DELETE = "DELETE FROM announcement WHERE id=?";
+	private static final String INSERT = "INSERT INTO announcement (title, message, dateCreation, creator) VALUES (?, ?, ?, ?)";
+    private static final String UPDATE = "UPDATE announcement SET title=?, message=?, date=?, user=? WHERE idAnnouncement=?";
+    private static final String DELETE = "DELETE FROM announcement WHERE idAnnouncement=?";
 	private static final String ALL = "SELECT * from announcement";
-	private static final String ANNOUNCEMENTBYID = "SELECT * from announcement where id=?";
-	private static final String ANNOUNCEMENTBYTITLE = "SELECT * from task where title=?";
+	private static final String ANNOUNCEMENTBYID = "SELECT * from announcement where idAnnouncement=?";
+	private static final String ANNOUNCEMENTBYTITLE = "SELECT * from announcement where title=?";
 	
 	public AnnouncementDAOMySQL() {
 
 	}
-	
+
 	@Override
 	public boolean save(AbstractAnnouncement a) {
 		try {
@@ -95,11 +97,11 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				AbstractAnnouncement announcement = new Announcement(
-						rs.getInt("id"),
+						rs.getInt("idAnnouncement"),
 						rs.getString("title"),
 						rs.getString("message"),
-						rs.getDate("date").toLocalDate(),
-						null
+						rs.getDate("dateCreation").toLocalDate(),
+						GlobalUserFacade.getInstance().getUserById(rs.getInt("creator"))
 				);
 
 				list.add(announcement);
@@ -121,11 +123,11 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				announcement = new Announcement(
-						rs.getInt("id"),
+						rs.getInt("idAnnouncement"),
 						rs.getString("title"),
 						rs.getString("message"),
-						rs.getDate("date").toLocalDate(),
-						new User(3,"thomas","faure","faure","faure"));
+						rs.getDate("dateCreation").toLocalDate(),
+						GlobalUserFacade.getInstance().getUserById(rs.getInt("creator")));
 			}
 			ps.close();
 		} catch (SQLException e) {
@@ -135,7 +137,7 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 	}
 
 	@Override
-	public List<AbstractAnnouncement> getAnnouncementByTitle(String title) {
+	public List<AbstractAnnouncement> getAnnouncementsByTitle(String title) {
 		List<AbstractAnnouncement> announcements = null;
 		try {
 			PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(ANNOUNCEMENTBYTITLE);
@@ -143,11 +145,11 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				announcements.add(new Announcement(
-						rs.getInt("id"),
+						rs.getInt("idAnnouncement"),
 						rs.getString("title"),
 						rs.getString("message"),
-						rs.getDate("date").toLocalDate(),
-						new User(3,"thomas","faure","faure","faure")));
+						rs.getDate("dateCreation").toLocalDate(),
+						GlobalUserFacade.getInstance().getUserById(rs.getInt("creator"))));
 			}
 			ps.close();
 		} catch (SQLException e) {

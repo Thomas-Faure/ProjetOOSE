@@ -5,17 +5,15 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MySQLConnector {
-    //JDBC driver name and database URL
     private String JDBC_DRIVER;  
     private String DB_URL;
-    //Database credentials
     private String USER;
     private String PASS;
     private Connection conn;
     private static MySQLConnector instance= null;
     private MySQLConnector(){
         JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-        DB_URL = "jdbc:mysql://localhost:3306/test?useUnicode=yes&characterEncoding=UTF-8&useTimezone=true&serverTimezone=UTC";
+        DB_URL = "jdbc:mysql://localhost:3308/ppm?useUnicode=yes&characterEncoding=UTF-8&useTimezone=true&serverTimezone=UTC";
         USER = "root";
         PASS = "";
         conn = null;
@@ -32,14 +30,9 @@ public class MySQLConnector {
     }
     private void openConnection(){
         try{
-            //Register JDBC driver
-            Class.forName(JDBC_DRIVER);         
-            //Open a connection
-            System.out.print("Connecting to a selected database... ");
+            Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            System.out.println("Success!");     
         }catch(Exception e){
-            //Handle errors for JDBC
             e.printStackTrace();
         }
     }
@@ -50,7 +43,6 @@ public class MySQLConnector {
         }catch(SQLException se){
             se.printStackTrace();
         }
-        System.out.println("Connection closed");
     }
     private Connection getConnection(){
         return conn;

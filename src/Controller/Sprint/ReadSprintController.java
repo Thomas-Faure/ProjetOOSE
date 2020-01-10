@@ -3,20 +3,20 @@ package Controller.Sprint;
 import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Sprint.AbstractSprint;
 import BuisnessLogic.Task.AbstractTask;
-import BuisnessLogic.Task.Task;
 import BuisnessLogic.Task.TaskState;
-import BuisnessLogic.User.User;
-import Facade.SprintFacade;
+import Controller.IController;
+import Facade.Task.TaskFacade;
 import Main.App;
-import UI.Sprint.ModifySprintUI;
+import UI.Sprint.AddTaskSprintUI;
 import UI.Sprint.ReadSprintUI;
-import UI.Sprint.SprintUI;
-import UI.Task.UIReadTask;
+import UI.Task.UIModifyTask;
+import UI.UIGlobalWithController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -26,13 +26,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 import javafx.fxml.FXML;
+
+import javax.swing.*;
 import java.net.URL;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ReadSprintController implements Initializable {
+public class ReadSprintController implements Initializable, IController {
 
 
     @FXML
@@ -62,40 +62,60 @@ public class ReadSprintController implements Initializable {
     private Button deleteSprintButton;
 
     @FXML
+    private Button addTaskButton;
+
+    @FXML
+    void addTaskSprint(ActionEvent actionEvent){
+        AddTaskSprintUI addTaskSprintUI = new AddTaskSprintUI(project,sprint);
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(addTaskSprintUI.loadScene().getRoot());
+    }
+
+    @FXML
     void deleteSprint(ActionEvent actionEvent) {
-        System.out.println("SPRINT TO DELETE !!");
+        /*SprintFacade.getInstance().deleteSprint(sprint.getSprintID());
+
+        ReadSprintUI readSprintUI = new ReadSprintUI(project,sprint);
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(readSprintUI.loadScene().getRoot());*/
     }
     private AbstractProject project;
     private AbstractSprint sprint;
-
-    public ReadSprintController(AbstractProject project, AbstractSprint sprint){
+    UIGlobalWithController ui;
+    public ReadSprintController(AbstractProject project, AbstractSprint sprint, UIGlobalWithController ui){
         this.project = project;
         this.sprint = sprint;
+        this.ui=ui;
     }
 
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        titlePath.setText("/Sprint/" + project.getName());
+        titlePath.setText("/Sprint/" + project.getName()+"/Read");
         sprintNameText.setText(sprint.getSprintName());
         beginDateText.setText("Begin Date : "+sprint.getBeginDate());
         endDateText.setText("End Date : "+sprint.getEndDate());
 
         //Recuperer les tasks du sprint et les ajouter au Sprint
-        //List<AbstractTask> taskList
-        //sprint.setTaskList(taskList);
+        TaskFacade.getInstance().getTasksFromSprintId(sprint.getSprintID());
+        List<AbstractTask> taskList = TaskFacade.getInstance().getListTasks();
 
-        AbstractTask t1 = new Task(1,"test1","bla",5, LocalDate.now(),new User(),TaskState.todo,project);
+
+        /*AbstractTask t1 = new Task(1,"test1","bla",5, LocalDate.now(),new User(),TaskState.todo,project);
         AbstractTask t2 = new Task(2,"test2","bla",5, LocalDate.now(),new User(),TaskState.doing,project);
         AbstractTask t3 = new Task(3,"test3","bla",5, LocalDate.now(),new User(),TaskState.done,project);
 
         List<AbstractTask> testList = new ArrayList<AbstractTask>();
         testList.add(t1);
         testList.add(t2);
-        testList.add(t3);
+        testList.add(t3);*/
 
-        sprint.setTaskList(testList);
+        sprint.setTaskList(taskList);
 
         List<AbstractTask> taskListTodo  = sprint.getTaskListByState(TaskState.todo);
         List<AbstractTask> taskListDoing  = sprint.getTaskListByState(TaskState.doing);
@@ -105,19 +125,50 @@ public class ReadSprintController implements Initializable {
         ObservableList<AbstractTask> listViewTodo = FXCollections.observableArrayList(taskListTodo);
         listViewTemp = FXCollections.observableArrayList(taskListTodo);
         todoSprintList.setItems(listViewTodo);
-        todoSprintList.setCellFactory(param -> new ReadSprintController.Cell(project));
+        todoSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,sprint,ui));
 
         //DOING
         ObservableList<AbstractTask> listViewDoing = FXCollections.observableArrayList(taskListDoing);
         listViewTemp = FXCollections.observableArrayList(taskListDoing);
         doingSprintList.setItems(listViewDoing);
-        doingSprintList.setCellFactory(param -> new ReadSprintController.Cell(project));
+        doingSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,sprint,ui));
 
         //DONE
         ObservableList<AbstractTask> listViewDone = FXCollections.observableArrayList(taskListDone);
         listViewTemp = FXCollections.observableArrayList(taskListDone);
         doneSprintList.setItems(listViewDone);
-        doneSprintList.setCellFactory(param -> new ReadSprintController.Cell(project));
+        doneSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,sprint,ui));
+    }
+
+    @Override
+    public void update() {
+        //Recuperer les tasks du sprint et les ajouter au Sprint
+        TaskFacade.getInstance().getTasksFromSprintId(sprint.getSprintID());
+        List<AbstractTask> taskList = TaskFacade.getInstance().getListTasks();
+        sprint.setTaskList(taskList);
+
+        List<AbstractTask> taskListTodo  = sprint.getTaskListByState(TaskState.todo);
+        List<AbstractTask> taskListDoing  = sprint.getTaskListByState(TaskState.doing);
+        List<AbstractTask> taskListDone  = sprint.getTaskListByState(TaskState.done);
+
+        //TO DO
+        ObservableList<AbstractTask> listViewTodo = FXCollections.observableArrayList(taskListTodo);
+        listViewTemp = FXCollections.observableArrayList(taskListTodo);
+        todoSprintList.setItems(listViewTodo);
+        todoSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,sprint,ui));
+
+        //DOING
+        ObservableList<AbstractTask> listViewDoing = FXCollections.observableArrayList(taskListDoing);
+        listViewTemp = FXCollections.observableArrayList(taskListDoing);
+        doingSprintList.setItems(listViewDoing);
+        doingSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,sprint,ui));
+
+        //DONE
+        ObservableList<AbstractTask> listViewDone = FXCollections.observableArrayList(taskListDone);
+        listViewTemp = FXCollections.observableArrayList(taskListDone);
+        doneSprintList.setItems(listViewDone);
+        doneSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,sprint,ui));
+
     }
 
     static class Cell extends ListCell<AbstractTask> {
@@ -125,25 +176,48 @@ public class ReadSprintController implements Initializable {
         AbstractProject project;
         AbstractTask task;
         HBox hbox = new HBox();
-        Button btnRead = new Button("Read");
-        /*Button btnUpdate = new Button("Update");
-        Button btnDelete = new Button("Delete");*/
+        Button btnUpdate = new Button("Update");
+        Button btnDelete = new Button("Delete");
         Label label = new Label("");
         Pane pane = new Pane();
+        UIGlobalWithController ui;
 
-        public Cell(AbstractProject project){
+        public Cell(AbstractProject project,AbstractSprint sprint,UIGlobalWithController ui){
             super();
+            this.ui=ui;
             this.project = project;
+            this.sprint = sprint;
             hbox.setSpacing(10);
-            hbox.getChildren().addAll(label,pane,btnRead);
-            btnRead.setOnAction(new EventHandler<ActionEvent>() {
+            hbox.getChildren().addAll(label,pane,btnUpdate,btnDelete);
+            btnUpdate.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    UIReadTask readTaskUI = new UIReadTask(task.getId(),project);
+                    HBox boxCurrent = (HBox) App.getInstanceScene().lookup("#HBOX");
+                    Node currentUI = boxCurrent.getChildren().get(1);
+
+                    UIModifyTask updateTaskUI = new UIModifyTask(task,project,ui);
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
                     if(box.getChildren().size() >1 )
                         box.getChildren().remove(1);
-                    box.getChildren().add(readTaskUI.loadScene().getRoot());
+                    box.getChildren().add(updateTaskUI.loadScene().getRoot());
+
+                    //this.initialize();
+
+
+                }
+            });
+
+            btnDelete.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+
+                    TaskFacade.getInstance().deleteTask(task);
+
+                    ReadSprintUI readSprintUI = new ReadSprintUI(project,sprint);
+                    HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+                    if(box.getChildren().size() >1 )
+                        box.getChildren().remove(1);
+                    box.getChildren().add(readSprintUI.loadScene().getRoot());
                 }
             });
 

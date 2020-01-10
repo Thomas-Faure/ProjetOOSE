@@ -13,7 +13,7 @@
       <AnchorPane fx:id="manager" prefHeight="600.0" prefWidth="768.0">
          <children>
           <Button fx:id="addAnAnnouncement" mnemonicParsing="false" onAction="#addAnnouncementPage" prefHeight="31.0" prefWidth="189.0" text="Add an announcement" AnchorPane.bottomAnchor="97.0" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="515.0" AnchorPane.topAnchor="472.0" />
-            <TextField fx:id="inputSearch" layoutX="530.0" layoutY="100.0" onKeyReleased="#testFct" promptText="search" />
+            <TextField fx:id="inputSearch" layoutX="530.0" layoutY="100.0" onKeyReleased="#searchBar" promptText="search" />
             <Button fx:id="buttonSearch" layoutX="689.0" layoutY="100.0" mnemonicParsing="false" text="Ok" />
             <ListView fx:id="announcementList" layoutX="64.0" layoutY="132.0" prefHeight="319.0" prefWidth="655.0" />
             <Pane prefHeight="49.0" prefWidth="768.0" style="-fx-background-color: #367fa9;">
