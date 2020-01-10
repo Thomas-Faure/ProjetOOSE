@@ -15,11 +15,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
+import java.math.BigInteger;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
 public class AccountController implements Initializable {
@@ -30,7 +34,7 @@ public class AccountController implements Initializable {
     @FXML
     private TextField username;
     @FXML
-    private TextField password;
+    private PasswordField password;
     @FXML
     private TextField firstName;
     @FXML
@@ -93,8 +97,20 @@ public class AccountController implements Initializable {
 
     @FXML
     void modifyUser(ActionEvent actionEvent){
+        String hashtext="";
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            byte[] messageDigest = md.digest(password.getText().getBytes());
+            BigInteger no = new BigInteger(1, messageDigest);
+            hashtext = no.toString(16);
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
         toModify.setUsername(username.getText());
-        toModify.setPassword(password.getText());
+        toModify.setPassword(hashtext);
         toModify.setFirstName(firstName.getText());
         toModify.setLastName(lastName.getText());
         toModify.setCity(city.getText());
@@ -110,7 +126,7 @@ public class AccountController implements Initializable {
                 box.getChildren().remove(1);
             box.getChildren().add(user.loadScene().getRoot());
         }else{
-            UIError error = new UIError((UIGlobal) new MyAccountUI());
+            UIError error = new UIError( new MyAccountUI());
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )

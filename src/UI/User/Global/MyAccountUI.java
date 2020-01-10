@@ -4,6 +4,7 @@ import BuisnessLogic.User.GlobalUser;
 import BuisnessLogic.User.User;
 import Controller.User.GlobalUser.AccountController;
 import Facade.SessionFacade;
+import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-public class MyAccountUI {
+public class MyAccountUI implements UIGlobal {
     private GlobalUser user = new GlobalUser();
 
     public MyAccountUI(){

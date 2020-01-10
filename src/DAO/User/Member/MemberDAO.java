@@ -1,6 +1,5 @@
 package DAO.User.Member;
 
-import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.User.Member;
 
 import java.util.List;
@@ -14,6 +13,4 @@ public interface MemberDAO {
     List<Member> getAllMembers();
     Member getMemberById(int id);
     List<Member> getMemberByName(String name);
-
-    public List<Member> getAllMembersProject(AbstractProject project);
 }

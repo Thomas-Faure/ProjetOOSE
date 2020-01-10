@@ -2,8 +2,11 @@ package DAO.Idea;
 
 import BuisnessLogic.Idea.AbstractIdea;
 import BuisnessLogic.Idea.Idea;
-import BuisnessLogic.User.User;
+import BuisnessLogic.User.AbstractUser;
 import DAO.MySQLConnector;
+import Facade.SessionFacade;
+import Facade.User.GlobalUser.GlobalUserFacade;
+import Facade.User.GlobalUser.IGlobalUserFacade;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +18,7 @@ import java.util.List;
 public class IdeaDAOMySQL implements IdeaDAO {
 
 	private static final String INSERT = "INSERT INTO idea (name, description, subject, creator, state) VALUES (?, ?, ?, ?,?)";
-	private static final String UPDATE = "UPDATE idea SET name=?, description=?, subject=?,  state=? WHERE idIdea=?";
+	private static final String UPDATE = "UPDATE idea SET name=?, description=?, subject=?, creator = ?, state=? WHERE idIdea=?";
 	private static final String DELETE = "DELETE FROM idea WHERE idIdea=?";
 	private static final String ALL = "SELECT * from idea";
 	private static final String IDEABYID = "SELECT * from idea where idIdea=?";
@@ -40,7 +43,7 @@ public class IdeaDAOMySQL implements IdeaDAO {
 						      result.getString("name"),
 		    		          result.getString("description"),
 		    		          result.getString("subject"),
-							  new User()
+							  SessionFacade.getInstance().getUser()
 							  );
 		      }
 		    } catch (SQLException e) {
@@ -79,10 +82,9 @@ public class IdeaDAOMySQL implements IdeaDAO {
 			ps.setString(1, idea.getName());
 			ps.setString(2, idea.getDescription());
 			ps.setString(3, idea.getSubject());
-			//System.out.println(idea.getCreator());
-			//ps.setInt(4, idea.getCreator().getId());
-			ps.setString(4, idea.getState());
-			ps.setInt(5, idea.getId());
+			ps.setInt(4, idea.getCreator().getId());
+			ps.setString(5, idea.getState());
+			ps.setInt(6, idea.getId());
 
 			int i = ps.executeUpdate();
 			ps.close();
@@ -118,13 +120,23 @@ public class IdeaDAOMySQL implements IdeaDAO {
 			PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(ALL);
 			ResultSet rs = ps.executeQuery();
 
+			IGlobalUserFacade userFacade = GlobalUserFacade.getInstance();
+
+
 			while(rs.next()){
+				AbstractUser user = SessionFacade.getInstance().getUser();
+				for (int i = 0; i < userFacade.getListUsers().size(); i++){
+					if (userFacade.getListUsers().get(i).getId() == rs.getInt("creator")){
+						user = userFacade.getListUsers().get(i);
+					}
+				}
 				Idea idea = new Idea(
 						rs.getInt("idIdea"),
 						rs.getString("name"),
 						rs.getString("description"),
 						rs.getString("subject"),
-						null
+						user
+
 				);
 				list.add(idea);
 			}
@@ -139,18 +151,24 @@ public class IdeaDAOMySQL implements IdeaDAO {
 	@Override
 	public AbstractIdea getIdeaById(int id) {
 		Idea idea = null;
+		IGlobalUserFacade userFacade = GlobalUserFacade.getInstance();
 		try {
 			PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(IDEABYID);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
-
+				AbstractUser user = SessionFacade.getInstance().getUser();
+				for (int i = 0; i < userFacade.getListUsers().size(); i++){
+					if (userFacade.getListUsers().get(i).getId() == rs.getInt("creator")){
+						user = userFacade.getListUsers().get(i);
+					}
+				}
 				idea = new Idea(
 						rs.getInt("idIdea"),
 						rs.getString("name"),
 						rs.getString("description"),
 						rs.getString("subject"),
-						new User(3,"lauren","unq","unq","unq"));
+						user);
 			}
 			ps.close();
 		} catch (SQLException e) {

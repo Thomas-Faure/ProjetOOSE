@@ -16,7 +16,7 @@ public interface IMemberFacade {
 
     Member getMemberById(int id);
 
-    List<Member> getListMembers();
+    public List<Member> getListMembers(AbstractProject project);
 
-    public boolean getAllMembersProject(AbstractProject project);
+    List<Member> getListMembers();
 }

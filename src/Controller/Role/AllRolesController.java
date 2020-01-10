@@ -5,6 +5,8 @@ import BuisnessLogic.Role.Role;
 import BuisnessLogic.User.Member;
 import Facade.Role.IRoleFacade;
 import Facade.Role.RoleFacade;
+import Facade.User.MemberUser.IMemberFacade;
+import Facade.User.MemberUser.MemberFacade;
 import Main.App;
 import UI.Role.AddRoleUI;
 import UI.Role.AllRolesUI;
@@ -47,6 +49,7 @@ public class AllRolesController implements Initializable {
     private ListView<Role> rolesList ;
 
     private IRoleFacade roleFacade = RoleFacade.getInstance();
+    private IMemberFacade memberFacade = MemberFacade.getInstance();
     //private IMemberFacade memberFacade = MemberFacade.getInstance();
 
     private static Role toManage;
@@ -93,7 +96,6 @@ public class AllRolesController implements Initializable {
             //si on peut récuperer les tickets
             if(roleFacade.getAllRoles()) {
                 ArrayList<Role> listeElement = ((ArrayList) roleFacade.getListRoles());
-                System.out.println(listeElement);
                 ObservableList<Role> listView = FXCollections.observableArrayList(listeElement);
                 listViewTemp = FXCollections.observableArrayList(listeElement);
 
@@ -105,9 +107,10 @@ public class AllRolesController implements Initializable {
     }
 
     public void validation(ActionEvent actionEvent) {
+        member.setRole(toManage);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-        if(!(roleFacade.addRole(toManage))){
-            UIError error = new UIError((UIGlobal) new AllRolesUI(this.member));
+        if(!(memberFacade.modifyMember(member))){
+            UIError error = new UIError( new AllRolesUI(this.member));
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(2);
@@ -137,13 +140,39 @@ public class AllRolesController implements Initializable {
         box.getChildren().add(user.loadScene().getRoot());
     }
 
+    public void validationD(ActionEvent actionEvent) {
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(!(roleFacade.deleteRole(toManage))){
+            UIError error = new UIError((UIGlobal) new AllRolesUI(this.member));
+            box.getChildren().add(error.loadScene().getRoot());
+            if(box.getChildren().size() >1 )
+                box.getChildren().remove(2);
+        }else {
+            AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm2");
+            toHide.setVisible(false);
+            AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#manager");
+            toShow.setVisible(true);
+            rolesList.getItems().remove(toManage);
+            listViewTemp.remove(toManage);
+            toManage = null;
+        }
+    }
+
+    public void refuseD(ActionEvent actionEvent) {
+        AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm2");
+        toHide.setVisible(false);
+        AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#manager");
+        toShow.setVisible(true);
+    }
+
 
     static class Cell extends ListCell<Role> {
         Role role;
         HBox hbox = new HBox();
         Image image = new Image("megaphone.png");
         ImageView img = new ImageView(image);
-        Button btnA = new Button("Add");
+        Button btnA = new Button("Chose");
+        Button btnD = new Button("Delete");
         Label label = new Label("");
         Pane pane = new Pane();
 
@@ -153,7 +182,7 @@ public class AllRolesController implements Initializable {
             img.setFitHeight(20);
             img.setFitWidth(20);
 
-            hbox.getChildren().addAll(img, label, pane, btnA);
+            hbox.getChildren().addAll(img, label, pane, btnA, btnD);
 
             btnA.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -162,6 +191,16 @@ public class AllRolesController implements Initializable {
                     AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#manager");
                     toHide.setVisible(false);
                     AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+                    toShow.setVisible(true);
+                }
+            });
+            btnD.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    toManage = role;
+                    AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#manager");
+                    toHide.setVisible(false);
+                    AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#confirm2");
                     toShow.setVisible(true);
                 }
             });
@@ -185,7 +224,7 @@ public class AllRolesController implements Initializable {
     }
 
     public void CreateRole(ActionEvent actionEvent) {
-        AddRoleUI role = new AddRoleUI();
+        AddRoleUI role = new AddRoleUI(this.member);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);

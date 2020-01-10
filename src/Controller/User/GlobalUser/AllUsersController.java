@@ -3,6 +3,7 @@ package Controller.User.GlobalUser;
 
 import BuisnessLogic.User.GlobalUser;
 import BuisnessLogic.User.User;
+import Facade.SessionFacade;
 import Facade.User.GlobalUser.GlobalUserFacade;
 import Facade.User.GlobalUser.IGlobalUserFacade;
 import Main.App;
@@ -145,7 +146,12 @@ public class AllUsersController implements Initializable {
             img.setFitHeight(20);
             img.setFitWidth(20);
 
-            hbox.getChildren().addAll(img, label, pane, btnR, btnD, btnU);
+            if (SessionFacade.getInstance().getUser().isAdmin()) {
+                hbox.getChildren().addAll(img, label, pane, btnR, btnD, btnU);
+            }
+            else {
+                hbox.getChildren().addAll(img, label, pane, btnR);
+            }
 
             btnD.setOnAction(new EventHandler<ActionEvent>() {
                 @Override

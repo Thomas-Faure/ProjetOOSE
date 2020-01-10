@@ -10,7 +10,9 @@ import Facade.User.MemberUser.MemberFacade;
 import Main.App;
 import UI.Role.AllRolesUI;
 import UI.UIError;
+import UI.UIGlobal;
 import UI.User.Member.AllMembersUI;
+import UI.User.Member.ReadAMemberUI;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,7 +47,9 @@ public class ReadAMemberController implements Initializable {
         private static Member toManage;
     */
     public ReadAMemberController (Member newmember){
+
         this.member = newmember;
+
     }
 
     public void addNewRole(ActionEvent actionEvent) {
@@ -110,9 +114,16 @@ public class ReadAMemberController implements Initializable {
         firstName.setText(member.getFirstName());
         lastName.setText(member.getLastName());
         if(rolesList != null){
-            //si on peut récuperer les tickets
             if(roleFacade.getAllRoles()) {
-                ArrayList<Role> listeElement = ((ArrayList) roleFacade.getListRoles());
+                ArrayList<Role> listeElement = new ArrayList<>();
+                if (member.getRole() != null){
+                    for (int i = 0; i < roleFacade.getListRoles().size(); i++){
+                        if (member.getRole().getId() == roleFacade.getListRoles().get(i).getId()){
+                            listeElement.add( (Role) roleFacade.getListRoles().get(i));
+                        }
+                    }
+                }
+
                 ObservableList<Role> listView = FXCollections.observableArrayList(listeElement);
                 listViewTemp = FXCollections.observableArrayList(listeElement);
                 rolesList.setItems(listView);
@@ -142,6 +153,29 @@ public class ReadAMemberController implements Initializable {
 
     public void refuse(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+        toHide.setVisible(false);
+        AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#manager");
+        toShow.setVisible(true);
+    }
+
+    public void validationDelRole(ActionEvent actionEvent) {
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        this.member.setRole(null);
+        if(!(memberFacade.modifyMember(this.member))){
+            UIError error = new UIError((UIGlobal) new ReadAMemberController(this.member));
+            box.getChildren().add(error.loadScene().getRoot());
+            if(box.getChildren().size() >1 )
+                box.getChildren().remove(2);
+        }else {
+            ReadAMemberUI allm = new ReadAMemberUI(this.member);
+            if(box.getChildren().size() >1 )
+                box.getChildren().remove(1);
+            box.getChildren().add(allm.loadScene().getRoot());
+        }
+    }
+
+    public void refuseDelRole(ActionEvent actionEvent) {
+        AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm2");
         toHide.setVisible(false);
         AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#manager");
         toShow.setVisible(true);
@@ -179,7 +213,6 @@ public class ReadAMemberController implements Initializable {
         HBox hbox = new HBox();
         Image image = new Image("megaphone.png");
         ImageView img = new ImageView(image);
-        Button btnR = new Button("Read");
         Button btnD = new Button("Delete");
         Label label = new Label("");
         Pane pane = new Pane();
@@ -190,34 +223,18 @@ public class ReadAMemberController implements Initializable {
             img.setFitHeight(20);
             img.setFitWidth(20);
 
-            hbox.getChildren().addAll(img, label, pane, btnR, btnD);
+            hbox.getChildren().addAll(img, label, pane, btnD);
 
             btnD.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
                     toManage = role;
-                    AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#managerRole");
+                    AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#manager");
                     toHide.setVisible(false);
-                    AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#confirmRole");
+                    AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#confirm2");
                     toShow.setVisible(true);
                 }
             });
-            btnR.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent e) {
-/*
-                    RMARoleUI read = new RMARoleUI(role);
-                    HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-
-                    box.getChildren().remove(1);
-                    box.getChildren().add(read.loadScene().getRoot());
-
-
- */
-                }
-            });
-
-
         }
         public void updateItem(Role name, boolean empty){
             super.updateItem(name,empty);

@@ -29,7 +29,6 @@ public class AddIdeaController  {
 
     @FXML
     void addNewIdea(ActionEvent actionEvent){
-        //AbstractUser test = new User (0, "lauren", "lauren", "unquera","");
         AbstractUser test = SessionFacade.getInstance().getUser();
         Idea idea = new Idea(0, name.getText(), description.getText(), subject.getText(), test);
         if(IdeaFacade.getInstance().addIdea(idea)){

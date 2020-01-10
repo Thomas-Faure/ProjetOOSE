@@ -3,6 +3,7 @@ package Controller.Login;
 import Facade.SessionFacade;
 import Main.App;
 import UI.Login.UIForgottenPassword;
+import UI.User.Global.CreateAccountUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -72,5 +73,11 @@ public class LoginController {
         } else {
             return false;
         }
+    }
+
+    public void addUser(ActionEvent actionEvent) {
+        CreateAccountUI user = new CreateAccountUI();
+        App.setInstanceScene(user.loadScene());
+
     }
 }

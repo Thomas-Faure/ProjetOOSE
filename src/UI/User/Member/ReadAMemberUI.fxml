@@ -48,5 +48,12 @@
             <Button fx:id="returnButton1" layoutX="420.0" layoutY="300.0" mnemonicParsing="false" onAction="#refuse" text="Return" />
         </children>
     </AnchorPane>
+    <AnchorPane fx:id="confirm2" layoutX="10.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" visible="false">
+        <children>
+            <Text layoutX="250.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you really want to delete this role ?" />
+            <Button fx:id="returnButton2" layoutX="316.0" layoutY="300.0" mnemonicParsing="false" onAction="#validationDelRole" text="Ok" />
+            <Button fx:id="returnButton3" layoutX="420.0" layoutY="300.0" mnemonicParsing="false" onAction="#refuseDelRole" text="Return" />
+        </children>
+    </AnchorPane>
 </children>
 </AnchorPane>

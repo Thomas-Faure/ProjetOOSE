@@ -1,21 +1,11 @@
 package Controller.Resource;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
 import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxRequestConfig;
 import com.dropbox.core.v2.DbxClientV2;
-import com.dropbox.core.v2.files.DeleteErrorException;
-import com.dropbox.core.v2.files.FileMetadata;
-import com.dropbox.core.v2.files.ListFolderErrorException;
-import com.dropbox.core.v2.files.ListFolderResult;
-import com.dropbox.core.v2.files.Metadata;
-import com.dropbox.core.v2.files.UploadErrorException;
+import com.dropbox.core.v2.files.*;
+
+import java.io.*;
 
 public class DropBoxConnexion {
 

@@ -47,13 +47,15 @@ public class GlobalUserFacade implements IGlobalUserFacade {
 
     public boolean modifyUser(AbstractUser user) {
         if(daoFactory.update(user)){
+            //System.out.println(users.size());
             if(users.size() == 0){
                 //this.users.add(user);
-                return false;
+                return true;
             }
+
             else {
                 int i = 0;
-                System.out.println(users + " " + users.size());
+                //System.out.println(users + " " + users.size());
                 while(this.users.get(i).getId() != user.getId()){
                     i++;
                 }
@@ -61,7 +63,8 @@ public class GlobalUserFacade implements IGlobalUserFacade {
                 return true;
             }
 
-        }else {
+        }
+        else {
             return false;
         }
     }
