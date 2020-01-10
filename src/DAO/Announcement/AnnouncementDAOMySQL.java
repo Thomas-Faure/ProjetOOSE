@@ -20,11 +20,11 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 
 
 
-	private static final String INSERT = "INSERT INTO announcement (title, message, date, user) VALUES (?, ?, ?, ?)";
-    private static final String UPDATE = "UPDATE announcement SET title=?, message=?, date=?, user=? WHERE id=?";
-    private static final String DELETE = "DELETE FROM announcement WHERE id=?";
+	private static final String INSERT = "INSERT INTO announcement (title, message, dateCreation, creator) VALUES (?, ?, ?, ?)";
+    private static final String UPDATE = "UPDATE announcement SET title=?, message=?, date=?, user=? WHERE idAnnouncement=?";
+    private static final String DELETE = "DELETE FROM announcement WHERE idAnnouncement=?";
 	private static final String ALL = "SELECT * from announcement";
-	private static final String ANNOUNCEMENTBYID = "SELECT * from announcement where id=?";
+	private static final String ANNOUNCEMENTBYID = "SELECT * from announcement where idAnnouncement=?";
 	private static final String ANNOUNCEMENTBYTITLE = "SELECT * from announcement where title=?";
 	
 	public AnnouncementDAOMySQL() {
@@ -97,11 +97,11 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				AbstractAnnouncement announcement = new Announcement(
-						rs.getInt("id"),
+						rs.getInt("idAnnouncement"),
 						rs.getString("title"),
 						rs.getString("message"),
-						rs.getDate("date").toLocalDate(),
-						GlobalUserFacade.getInstance().getUserById(rs.getInt("user"))
+						rs.getDate("dateCreation").toLocalDate(),
+						GlobalUserFacade.getInstance().getUserById(rs.getInt("creator"))
 				);
 
 				list.add(announcement);
@@ -123,11 +123,11 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				announcement = new Announcement(
-						rs.getInt("id"),
+						rs.getInt("idAnnouncement"),
 						rs.getString("title"),
 						rs.getString("message"),
-						rs.getDate("date").toLocalDate(),
-						GlobalUserFacade.getInstance().getUserById(rs.getInt("user")));
+						rs.getDate("dateCreation").toLocalDate(),
+						GlobalUserFacade.getInstance().getUserById(rs.getInt("creator")));
 			}
 			ps.close();
 		} catch (SQLException e) {
@@ -145,11 +145,11 @@ public class AnnouncementDAOMySQL implements AnnouncementDAO {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				announcements.add(new Announcement(
-						rs.getInt("id"),
+						rs.getInt("idAnnouncement"),
 						rs.getString("title"),
 						rs.getString("message"),
-						rs.getDate("date").toLocalDate(),
-						GlobalUserFacade.getInstance().getUserById(rs.getInt("user"))));
+						rs.getDate("dateCreation").toLocalDate(),
+						GlobalUserFacade.getInstance().getUserById(rs.getInt("creator"))));
 			}
 			ps.close();
 		} catch (SQLException e) {
