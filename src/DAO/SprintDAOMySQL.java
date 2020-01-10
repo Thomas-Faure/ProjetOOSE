@@ -12,13 +12,11 @@ import java.util.List;
 
 public class SprintDAOMySQL implements SprintDAO {
 
-    private static final String INSERT = "INSERT INTO sprint (sprintName, beginDate, endDate, projectid) VALUES (?, ?, ?, ?)";
-    //private static final String INSERT_INTERMEDIATE_TABLE = "INSERT INTO sprint_project (sprintID,projectID) VALUES(?,?)";
-    private static final String UPDATE = "UPDATE sprint SET sprintName=?, beginDate=?, endDate=? WHERE sprintID=?";
-    private static final String DELETE = "DELETE FROM sprint WHERE sprintID=?";
-    private static final String SPRINTBYID = "SELECT * FROM sprint WHERE sprintID=?";
-    private static final String SPRINTSBYPROJECT = "SELECT sprintID FROM sprint WHERE projectid=?";
-    //private static final String LASTID = "SELECT MAX(sprintID) AS \"maxsprintID\" FROM sprint";
+    private static final String INSERT = "INSERT INTO sprint (sprintName, beginDate, endDate, idProject) VALUES (?, ?, ?, ?)";
+    private static final String UPDATE = "UPDATE sprint SET sprintName=?, beginDate=?, endDate=? WHERE idSprint=?";
+    private static final String DELETE = "DELETE FROM sprint WHERE idSprint=?";
+    private static final String SPRINTBYID = "SELECT * FROM sprint WHERE idSprint=?";
+    private static final String SPRINTSBYPROJECT = "SELECT idSprint FROM sprint WHERE idProject=?";
     public SprintDAOMySQL(){
     }
 
@@ -43,40 +41,6 @@ public class SprintDAOMySQL implements SprintDAO {
         }
         return success;
     }
-
-    /*public AbstractSprint getLastSprintAdded(){
-        int lastSprintID = 0;
-        try {
-            PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(LASTID);
-
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()) {
-                lastSprintID = rs.getInt("maxsprintID");
-            }
-            ps.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return getSprintById(lastSprintID);
-    }*/
-
-    /*public boolean saveIntermediateTable(int sprintID,int projectID){
-
-        boolean success = false;
-        try {
-            PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(INSERT_INTERMEDIATE_TABLE);
-            ps.setInt(1, sprintID);
-            ps.setInt(2, projectID);
-            int i = ps.executeUpdate();
-            ps.close();
-            if (i > 0) {
-                success = true;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return success;
-    }*/
 
     @Override
     public boolean update(AbstractSprint sprint) {
