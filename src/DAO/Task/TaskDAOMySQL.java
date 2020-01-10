@@ -1,21 +1,18 @@
 package DAO.Task;
-
-
+/**
+ *
+ * @author Thomas Faure
+ */
 import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.Task;
 import BuisnessLogic.Task.TaskState;
-import BuisnessLogic.User.AbstractUser;
-import BuisnessLogic.User.User;
 import DAO.MySQLConnector;
 import Facade.Project.ProjectFacade;
-import Facade.SessionFacade;
 import Facade.User.GlobalUser.GlobalUserFacade;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

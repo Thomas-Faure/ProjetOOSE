@@ -1,5 +1,8 @@
 package Facade.Announcement;
-
+/**
+ *
+ * @author Thomas Faure
+ */
 import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Announcement.Announcement;
 

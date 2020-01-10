@@ -1,5 +1,8 @@
 package Main;
-
+/**
+ *
+ * @author Thomas Faure
+ */
 import UI.Login.UILogin;
 import javafx.application.Application;
 import javafx.stage.Stage;

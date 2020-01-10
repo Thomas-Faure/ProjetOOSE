@@ -1,8 +1,9 @@
 package UI;
-
-import Controller.Announcement.ModifyAnnouncementController;
+/**
+ *
+ * @author Thomas Faure
+ */
 import Controller.ErrorController;
-import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

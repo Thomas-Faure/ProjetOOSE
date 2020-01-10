@@ -1,5 +1,8 @@
 package Controller.Announcement;
-
+/**
+ *
+ * @author Thomas Faure
+ */
 import BuisnessLogic.Announcement.AbstractAnnouncement;
 import Facade.Announcement.AnnouncementFacade;
 import Main.App;
@@ -62,8 +65,9 @@ public class ShowAnnouncementsController implements Initializable {
             more.addEventHandler(MouseEvent.MOUSE_CLICKED, new clickMore());
             Text date = (Text)format.lookup("#date");
             date.setText(announcementList.get(i).getDate().toString());
+            date.setText(announcementList.get(i).getDate().toString());
             Text username = (Text)format.lookup("#username");
-            username.setText("nom");
+            username.setText(announcementList.get(i).getUser().getFirstName());
             Text announcementTitle = (Text)format.lookup("#AnnouncementTitle");
             announcementTitle.setText(announcementList.get(i).getTitle());
             vboxList.getChildren().add(format);

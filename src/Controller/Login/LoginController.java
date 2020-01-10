@@ -1,5 +1,8 @@
 package Controller.Login;
-
+/**
+ *
+ * @author Thomas Faure
+ */
 import Facade.SessionFacade;
 import Main.App;
 import UI.Login.UIForgottenPassword;
@@ -14,7 +17,6 @@ import javafx.scene.text.Text;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
 
 public class LoginController {
 

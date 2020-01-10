@@ -1,5 +1,8 @@
 package Controller.Announcement;
-
+/**
+ *
+ * @author Thomas Faure
+ */
 import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Announcement.Announcement;
 import Facade.Announcement.AnnouncementFacade;
@@ -27,7 +30,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
 public class AnnouncementController implements Initializable {
 
 

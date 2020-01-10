@@ -1,7 +1,9 @@
 package UI.Task;
-
+/**
+ *
+ * @author Thomas Faure
+ */
 import BuisnessLogic.Project.AbstractProject;
-import Controller.Sprint.AddSprintController;
 import Controller.Task.AddTaskController;
 import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;

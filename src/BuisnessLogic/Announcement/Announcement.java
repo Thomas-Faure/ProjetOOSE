@@ -1,5 +1,8 @@
 package BuisnessLogic.Announcement;
-
+/**
+ *
+ * @author Thomas Faure
+ */
 import BuisnessLogic.User.AbstractUser;
 import BuisnessLogic.User.User;
 

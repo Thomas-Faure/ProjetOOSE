@@ -1,5 +1,8 @@
 package BuisnessLogic.Task;
-
+/**
+ *
+ * @author Thomas Faure
+ */
 public enum TaskState {
     todo("todo"),
     doing("doing"),

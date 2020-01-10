@@ -1,5 +1,8 @@
 package UI.Task;
-
+/**
+ *
+ * @author Thomas Faure
+ */
 import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

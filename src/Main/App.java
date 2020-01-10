@@ -1,5 +1,8 @@
 package Main;
-
+/**
+ *
+ * @author Thomas Faure
+ */
 import UI.Menu;
 import UI.Project.ProjectUI;
 import javafx.scene.Scene;

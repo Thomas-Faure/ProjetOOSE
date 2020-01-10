@@ -1,5 +1,8 @@
 package BuisnessLogic.Task;
-
+/**
+ *
+ * @author Thomas Faure
+ */
 import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.User.AbstractUser;
 import BuisnessLogic.User.User;
