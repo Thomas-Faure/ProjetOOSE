@@ -23,13 +23,13 @@ public class TaskDAOMySQL implements TaskDAO {
 
     private static final String INSERT = "INSERT INTO task (name, priority, deadline, creator,description,state,idProject,idSprint) VALUES (?, ?, ?, ?,?,?,?,?)";
     private static final String UPDATE = "UPDATE task SET name=?, priority=?, deadline=?, creator=?, description=?, state=?, idSprint=? WHERE id=?";
-    private static final String DELETE = "DELETE FROM task WHERE id=?";
+    private static final String DELETE = "DELETE FROM task WHERE idTask=?";
     private static final String ALL = "SELECT * from task";
     private static final String ALLBYPROJ = "SELECT * from task where idProject=?";
     private static final String ALLBYPROJBACKLOG = "SELECT * from task where idProject=? and idSprint is null";
 
     private static final String ALLBYSPRINT = "SELECT * from task where idSprint=?";
-    private static final String TASKBYID = "SELECT * from task where id=?";
+    private static final String TASKBYID = "SELECT * from task where idTask=?";
     private static final String TASKBYNAME = "SELECT * from task where name=?";
 	
 	public TaskDAOMySQL() {
@@ -119,7 +119,7 @@ public class TaskDAOMySQL implements TaskDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 task = new Task(
-                        rs.getInt("id"),
+                        rs.getInt("idTask"),
                         rs.getString("name"),
                         rs.getString("description"),
                         rs.getInt("priority"),
@@ -144,7 +144,7 @@ public class TaskDAOMySQL implements TaskDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 tasks.add(new Task(
-                        rs.getInt("id"),
+                        rs.getInt("idTask"),
                         rs.getString("name"),
                         rs.getString("description"),
                         rs.getInt("priority"),
@@ -169,7 +169,7 @@ public class TaskDAOMySQL implements TaskDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 AbstractTask task = new Task(
-                        rs.getInt("id"),
+                        rs.getInt("idTask"),
                         rs.getString("name"),
                         rs.getString("description"),
                         rs.getInt("priority"),
@@ -196,7 +196,7 @@ public class TaskDAOMySQL implements TaskDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 AbstractTask task = new Task(
-                        rs.getInt("id"),
+                        rs.getInt("idTask"),
                         rs.getString("name"),
                         rs.getString("description"),
                         rs.getInt("priority"),
@@ -222,7 +222,7 @@ public class TaskDAOMySQL implements TaskDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 AbstractTask task = new Task(
-                        rs.getInt("id"),
+                        rs.getInt("idTask"),
                         rs.getString("name"),
                         rs.getString("description"),
                         rs.getInt("priority"),
@@ -247,7 +247,7 @@ public class TaskDAOMySQL implements TaskDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 AbstractTask task = new Task(
-                        rs.getInt("id"),
+                        rs.getInt("idTask"),
                         rs.getString("name"),
                         rs.getString("description"),
                         rs.getInt("priority"),
