@@ -14,6 +14,7 @@ import java.util.List;
 
 public class GlobalUserDAOMySQL implements GlobalUserDAO {
 
+    
     private static final String INSERT = "INSERT INTO user (username, password, firstName, lastName, city, phoneNumber, email, position, isAdmin ) VALUES (?, ?, ?, ?,?,?,?,?,?)";
     private static final String UPDATE = "UPDATE user SET username=?, password=?, firstName=?, lastName=?, city=?, phoneNumber=?, email=?, position=?, isAdmin=? WHERE idUser=?";
     private static final String DELETE = "DELETE FROM user WHERE idUser=?";
