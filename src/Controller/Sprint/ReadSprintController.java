@@ -5,10 +5,12 @@ import BuisnessLogic.Sprint.AbstractSprint;
 import BuisnessLogic.Task.AbstractTask;
 import BuisnessLogic.Task.TaskState;
 import Controller.IController;
+import Facade.SprintFacade;
 import Facade.Task.TaskFacade;
 import Main.App;
 import UI.Sprint.AddTaskSprintUI;
 import UI.Sprint.ReadSprintUI;
+import UI.Sprint.SprintUI;
 import UI.Task.UIModifyTask;
 import UI.UIGlobalWithController;
 import javafx.collections.FXCollections;
@@ -75,13 +77,14 @@ public class ReadSprintController implements Initializable, IController {
 
     @FXML
     void deleteSprint(ActionEvent actionEvent) {
-        /*SprintFacade.getInstance().deleteSprint(sprint.getSprintID());
+        SprintFacade.getInstance().deleteSprint(sprint.getSprintID());
 
-        ReadSprintUI readSprintUI = new ReadSprintUI(project,sprint);
+
+        SprintUI sprintUI = new SprintUI(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
-        box.getChildren().add(readSprintUI.loadScene().getRoot());*/
+        box.getChildren().add(sprintUI.loadScene().getRoot());
     }
     private AbstractProject project;
     private AbstractSprint sprint;
@@ -104,16 +107,6 @@ public class ReadSprintController implements Initializable, IController {
         //Recuperer les tasks du sprint et les ajouter au Sprint
         TaskFacade.getInstance().getTasksFromSprintId(sprint.getSprintID());
         List<AbstractTask> taskList = TaskFacade.getInstance().getListTasks();
-
-
-        /*AbstractTask t1 = new Task(1,"test1","bla",5, LocalDate.now(),new User(),TaskState.todo,project);
-        AbstractTask t2 = new Task(2,"test2","bla",5, LocalDate.now(),new User(),TaskState.doing,project);
-        AbstractTask t3 = new Task(3,"test3","bla",5, LocalDate.now(),new User(),TaskState.done,project);
-
-        List<AbstractTask> testList = new ArrayList<AbstractTask>();
-        testList.add(t1);
-        testList.add(t2);
-        testList.add(t3);*/
 
         sprint.setTaskList(taskList);
 
