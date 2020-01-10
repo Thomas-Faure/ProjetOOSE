@@ -189,7 +189,7 @@ public class TicketController implements Initializable {
             if(name != null && !empty){
                 ticket = name;
 
-                if (ticket.getStatus()){
+                if (ticket.isAnswered()){
                     btnA.setVisible(false);
                 }
                 label.setText(name.getId()+" "+name.getSubject());
