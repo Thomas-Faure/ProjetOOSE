@@ -3,8 +3,10 @@ package UI.Sprint;
 
 import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Sprint.AbstractSprint;
+import Controller.IController;
 import Controller.Sprint.AddTaskSprintController;
 import UI.UIGlobal;
+import UI.UIGlobalWithController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,13 +16,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-public class AddTaskSprintUI implements UIGlobal {
+public class AddTaskSprintUI implements UIGlobalWithController {
     AbstractProject project;
     AbstractSprint sprint;
+    public static UIGlobalWithController ui;
+    public static IController controller;
 
     public AddTaskSprintUI(AbstractProject project, AbstractSprint sprint){
         this.project = project;
         this.sprint = sprint;
+        this.ui=this;
     }
 
     @Override
@@ -29,7 +34,7 @@ public class AddTaskSprintUI implements UIGlobal {
         creators.put(AddTaskSprintController.class , new Callable<AddTaskSprintController>() {
             @Override
             public AddTaskSprintController call() throws Exception {
-                return new AddTaskSprintController(project,sprint);
+                return new AddTaskSprintController(project,sprint,ui);
             }
         });
         Parent root = null;
@@ -56,10 +61,16 @@ public class AddTaskSprintUI implements UIGlobal {
                 }
             });
             root = loader.load();
+            controller=loader.getController();
         }catch(Exception e){
             e.printStackTrace();
         }
         Scene scene = new Scene(root, 1000, 600);
         return scene;
+    }
+
+    @Override
+    public IController getController() {
+        return controller;
     }
 }

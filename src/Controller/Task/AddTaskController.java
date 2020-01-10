@@ -14,6 +14,7 @@ import UI.Announcement.UIAnnouncementManagement;
 import UI.Task.UIAddTask;
 import UI.Task.UITaskManagement;
 import UI.UIError;
+import UI.UIGlobalWithController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -31,20 +32,25 @@ public class AddTaskController{
     private TextField priority;
 
     private AbstractProject project;
+    private UIGlobalWithController ui;
 
-    public AddTaskController(AbstractProject project){
+    public AddTaskController(AbstractProject project, UIGlobalWithController ui){
         this.project=project;
+        this.ui=ui;
     }
 
     @FXML
     void addNewTask(ActionEvent actionEvent){
         AbstractTask task = new Task(0,subject.getText(),description.getText(),Integer.parseInt(priority.getText()),deadline.getValue(),SessionFacade.getInstance().getUser(), TaskState.todo,project);
         if(TaskFacade.getInstance().addTask(task)){
-            UITaskManagement taskP = new UITaskManagement(project);
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-            if(box.getChildren().size() >1 )
+            box.getChildren().add(ui.loadScene().getRoot());
+            System.out.println(ui);
+            ui.getController().update();
+
+            if(box.getChildren().size() >1 ){
                 box.getChildren().remove(1);
-            box.getChildren().add(taskP.loadScene().getRoot());
+            }
         }else{
             UIError error = new UIError(new UIAnnouncementManagement());
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
@@ -64,7 +70,7 @@ public class AddTaskController{
 
     @FXML
     void addTaskPage(ActionEvent actionEvent) {
-        UIAddTask addTask = new UIAddTask(project);
+        UIAddTask addTask = new UIAddTask(project,ui);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
 
         box.getChildren().remove(1);

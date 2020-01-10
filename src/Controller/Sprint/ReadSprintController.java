@@ -89,6 +89,8 @@ public class ReadSprintController implements Initializable, IController {
     private AbstractProject project;
     private AbstractSprint sprint;
     UIGlobalWithController ui;
+
+
     public ReadSprintController(AbstractProject project, AbstractSprint sprint, UIGlobalWithController ui){
         this.project = project;
         this.sprint = sprint;
@@ -99,38 +101,11 @@ public class ReadSprintController implements Initializable, IController {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        titlePath.setText("/Sprint/" + project.getName()+"/Read");
+        titlePath.setText("Project/"+ project.getName()+"/Sprint");
         sprintNameText.setText(sprint.getSprintName());
         beginDateText.setText("Begin Date : "+sprint.getBeginDate());
-        endDateText.setText("End Date : "+sprint.getEndDate());
-
-        //Recuperer les tasks du sprint et les ajouter au Sprint
-        TaskFacade.getInstance().getTasksFromSprintId(sprint.getSprintID());
-        List<AbstractTask> taskList = TaskFacade.getInstance().getListTasks();
-
-        sprint.setTaskList(taskList);
-
-        List<AbstractTask> taskListTodo  = sprint.getTaskListByState(TaskState.todo);
-        List<AbstractTask> taskListDoing  = sprint.getTaskListByState(TaskState.doing);
-        List<AbstractTask> taskListDone  = sprint.getTaskListByState(TaskState.done);
-
-        //TO DO
-        ObservableList<AbstractTask> listViewTodo = FXCollections.observableArrayList(taskListTodo);
-        listViewTemp = FXCollections.observableArrayList(taskListTodo);
-        todoSprintList.setItems(listViewTodo);
-        todoSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,sprint,ui));
-
-        //DOING
-        ObservableList<AbstractTask> listViewDoing = FXCollections.observableArrayList(taskListDoing);
-        listViewTemp = FXCollections.observableArrayList(taskListDoing);
-        doingSprintList.setItems(listViewDoing);
-        doingSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,sprint,ui));
-
-        //DONE
-        ObservableList<AbstractTask> listViewDone = FXCollections.observableArrayList(taskListDone);
-        listViewTemp = FXCollections.observableArrayList(taskListDone);
-        doneSprintList.setItems(listViewDone);
-        doneSprintList.setCellFactory(param -> new ReadSprintController.Cell(project,sprint,ui));
+        endDateText.setText("Begin End : "+sprint.getEndDate());
+       update();
     }
 
     @Override

@@ -3,6 +3,7 @@ package Controller.Sprint;
 import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Sprint.AbstractSprint;
 import BuisnessLogic.Task.AbstractTask;
+import Controller.IController;
 import Facade.Task.TaskFacade;
 import Main.App;
 import UI.Sprint.AddTaskSprintUI;
@@ -29,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class AddTaskSprintController implements Initializable {
+public class AddTaskSprintController implements Initializable, IController {
 
     @FXML
     private Text titlePath;
@@ -57,7 +58,7 @@ public class AddTaskSprintController implements Initializable {
     void createTaskBacklog(ActionEvent event){
 
 
-        UIAddTask createTaskUI = new UIAddTask(project);
+        UIAddTask createTaskUI = new UIAddTask(project,ui);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
@@ -74,19 +75,24 @@ public class AddTaskSprintController implements Initializable {
     private AbstractSprint sprint;
     private  UIGlobalWithController ui;
 
-    public AddTaskSprintController(AbstractProject project, AbstractSprint sprint){
+    public AddTaskSprintController(AbstractProject project, AbstractSprint sprint, UIGlobalWithController ui){
         this.project=project;
         this.sprint=sprint;
+        this.ui=ui;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        titlePath.setText("/Sprint/" + project.getName()+"/Backlog");
+        titlePath.setText("Project/"+ project.getName()+"/Sprint/Backlog");
+        sprintNameText.setText(sprint.getSprintName());
+        update();
 
+    }
+
+    @Override
+    public void update() {
         TaskFacade.getInstance().getAllBacklogTasks(project);
         List<AbstractTask> taskListBacklog = TaskFacade.getInstance().getListTasks();
-
-
 
         ObservableList<AbstractTask> listView = FXCollections.observableArrayList(taskListBacklog);
         listViewTemp = FXCollections.observableArrayList(taskListBacklog);

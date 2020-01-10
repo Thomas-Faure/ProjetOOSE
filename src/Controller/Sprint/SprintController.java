@@ -4,6 +4,7 @@ import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Sprint.AbstractSprint;
 import Facade.SprintFacade;
 import Main.App;
+import UI.Project.ReadProjectUI;
 import UI.Sprint.AddSprintUI;
 import UI.Sprint.ModifySprintUI;
 import UI.Sprint.ReadSprintUI;
@@ -50,6 +51,15 @@ public class SprintController implements Initializable {
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
         box.getChildren().add(AddSprintUI.loadScene().getRoot());
+    }
+
+    @FXML
+    void backToProjectView(ActionEvent actionEvent){
+        ReadProjectUI readProject = new ReadProjectUI(project);
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(readProject.loadScene().getRoot());
     }
 
     @Override
