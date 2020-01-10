@@ -13,7 +13,6 @@ public class App {
     private App(){
 
     }
-
     public static App instance;
     private Stage stage;
     private Scene scene;

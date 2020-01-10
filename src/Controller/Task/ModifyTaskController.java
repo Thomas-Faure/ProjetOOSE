@@ -49,10 +49,13 @@ public class ModifyTaskController implements Initializable {
 
     @FXML
     void backToTasks(ActionEvent actionEvent){
-        UITaskManagement task = new UITaskManagement(project);
-        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-        if(box.getChildren().size() >1 )
-            box.getChildren().remove(1);
+            HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+            box.getChildren().add(ui.loadScene().getRoot());
+            System.out.println(ui);
+            ui.getController().update();
+            if(box.getChildren().size() >1 ){
+                box.getChildren().remove(1);
+            }
 
 
     }
@@ -65,13 +68,11 @@ public class ModifyTaskController implements Initializable {
             task.setDeadline(modifyDeadline.getValue());
             task.setProject(project);
             task.setState(TaskState.getStateByString((String) stateChoiceBox.getSelectionModel().getSelectedItem()));
-            task.setCreator(new User(3, "thomas", "faure", "faure", "faure"));
             toModify = task;
             AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#manager");
             toHide.setVisible(false);
             AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#confirm");
             toShow.setVisible(true);
-
         }
     }
 
