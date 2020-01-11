@@ -2,30 +2,44 @@ package Controller.Chat;
 
 
 import BuisnessLogic.Chat.AbstractChat;
+import BuisnessLogic.Message.AbstractMessage;
+import BuisnessLogic.Message.Message;
 import BuisnessLogic.Project.AbstractProject;
+import BuisnessLogic.Ressource.AbstractResource;
+import BuisnessLogic.User.AbstractUser;
 import Controller.IController;
+import Controller.Resource.DropBoxConnexion;
+import Controller.Resource.ResourceController;
 import Facade.ChatFacade;
 import Facade.IChatFacade;
+import Facade.Message.MessageFacade;
+import Facade.ResourceFacade;
+import Facade.SessionFacade;
 import Main.App;
 import UI.Project.ProjectUI;
 import UI.Project.ReadProjectUI;
+import UI.Ressource.ResourceUI;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.scene.control.ListView;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
 public class ChatController implements Initializable, IController {
 
     AbstractProject project;
-    private IChatFacade cFacade;
 
     @FXML
     private Text titlepath;
@@ -34,10 +48,10 @@ public class ChatController implements Initializable, IController {
     private TextArea messageTextArea;
 
     @FXML
-    private ListView peopleView;
+    private ListView<AbstractUser> peopleView;
 
     @FXML
-    private ListView messagesView;
+    private ListView<AbstractMessage> messagesView;
 
     @FXML
     private Button backButton;
@@ -45,6 +59,9 @@ public class ChatController implements Initializable, IController {
     @FXML
     private Button sendButton;
 
+    private List<AbstractMessage> historiqueMessage;
+
+    private static ObservableList<AbstractMessage> listViewTemp;
 
     public ChatController(AbstractProject project){
         this.project = project;
@@ -53,7 +70,12 @@ public class ChatController implements Initializable, IController {
 
     @FXML
     void sendMessage(ActionEvent actionEvent){
-        System.out.println("MESSAGE: "+messageTextArea.getText());
+        ChatFacade.getInstance().getChatByProjectId(project.getId());
+        AbstractChat currentChat = ChatFacade.getInstance().getCurrentChat();
+        AbstractMessage newMessage = new Message(messageTextArea.getText(),currentChat.getIdChat(), SessionFacade.getInstance().getUser());
+        MessageFacade.getInstance().addMessage(newMessage);
+        messageTextArea.setText("");
+        update();
     }
 
     @FXML
@@ -69,13 +91,47 @@ public class ChatController implements Initializable, IController {
 
     @Override
     public void update() {
-        AbstractChat chat = ChatFacade.getInstance().getChatByProjectId(project.getId());
-        System.out.println("Name Chat: "+chat.getChatName());
+        ChatFacade.getInstance().getChatByProjectId(project.getId());
+        AbstractChat chat = ChatFacade.getInstance().getCurrentChat();
+
+
+        List<AbstractMessage> listeElement = chat.getHistoriqueMessage();
+        ObservableList<AbstractMessage> listView = FXCollections.observableArrayList(listeElement);
+        listViewTemp = FXCollections.observableArrayList(listeElement);
+        messagesView.setItems(listView);
+        messagesView.setCellFactory(param -> new ChatController.CellMessage());
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        titlepath.setText("/Project"+project.getName()+"/Chat");
+        titlepath.setText("/Project/"+project.getName()+"/Chat");
         update();
+    }
+
+
+    static class CellMessage extends ListCell<AbstractMessage> {
+        AbstractMessage message;
+        HBox hbox = new HBox();
+        Label label = new Label("");
+        Pane pane = new Pane();
+
+        public CellMessage(){
+            super();
+            hbox.setSpacing(10);
+            hbox.getChildren().addAll(label,pane);
+        }
+
+        @Override
+        public void updateItem(AbstractMessage name, boolean empty){
+            super.updateItem(name,empty);
+            setText(null);
+            setGraphic(null);
+            if(name != null && !empty){
+                message = name;
+                label.setText(message.getCreateur().getFirstName()+" dit: "+message.getContenu());
+                setGraphic(hbox);
+            }
+        }
+
     }
 }

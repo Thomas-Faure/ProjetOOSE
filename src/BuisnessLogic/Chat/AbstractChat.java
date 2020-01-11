@@ -1,5 +1,7 @@
 package BuisnessLogic.Chat;
 
+import BuisnessLogic.Message.AbstractMessage;
+
 import java.util.List;
 
 public abstract class AbstractChat {
@@ -18,7 +20,7 @@ public abstract class AbstractChat {
 
     public abstract void setIdProject();
 
-    public abstract List<Message> getHistoriqueMessage();
+    public abstract List<AbstractMessage> getHistoriqueMessage();
 
-    public abstract void setHistoriqueMessage(List<Message> historiqueMessage);
+    public abstract void setHistoriqueMessage(List<AbstractMessage> historiqueMessage);
 }

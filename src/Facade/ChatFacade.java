@@ -1,17 +1,18 @@
 package Facade;
 
 import BuisnessLogic.Chat.AbstractChat;
-import BuisnessLogic.Chat.Message;
-import DAO.AbstractDAOFactory;
+import BuisnessLogic.Message.AbstractMessage;
 import DAO.ChatDAO;
 import DAO.MySQLDAOFactory;
-
-import java.util.ArrayList;
+import Facade.Message.MessageFacade;
 import java.util.List;
 
 public class ChatFacade implements IChatFacade {
     private ChatDAO dao;
-    private AbstractChat[] chats;
+
+
+
+    private AbstractChat currentChat;
     public static ChatFacade FacadeInstance;
 
     private ChatFacade(){
@@ -23,6 +24,10 @@ public class ChatFacade implements IChatFacade {
             FacadeInstance = new ChatFacade();
         }
         return FacadeInstance;
+    }
+
+    public AbstractChat getCurrentChat() {
+        return currentChat;
     }
 
     @Override
@@ -41,13 +46,21 @@ public class ChatFacade implements IChatFacade {
     }
 
     @Override
-    public AbstractChat getChatByProjectId(int idProject) {
+    public boolean getChatByProjectId(int idProject) {
+        boolean result = false;
         AbstractChat chat = dao.getChatByProjectId(idProject);
 
-        //FacadeMessage.getMessageByChat(idChat)
-        //List<Message> messageStored = new ArrayList<Message>();
-        //chat.setHistoriqueMessage(messageStored);
+        if(chat!=null) {
+            MessageFacade messageFacade = MessageFacade.getInstance();
+            messageFacade.getAllMessageByChat(chat.getIdChat());
+            List<AbstractMessage> messageStored = messageFacade.getMessageList();
+            chat.setHistoriqueMessage(messageStored);
+            this.currentChat = chat;
+            result=true;
+        }
 
-        return chat;
+
+        return result;
     }
+
 }

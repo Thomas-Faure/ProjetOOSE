@@ -1,14 +1,12 @@
 package BuisnessLogic.Chat;
 
-import BuisnessLogic.User.User;
-
-import java.util.Date;
+import BuisnessLogic.Message.AbstractMessage;
 import java.util.List;
 
 public class Chat extends AbstractChat {
     private int idChat;
     private String chatName;
-    private List<Message> historiqueMessage;
+    private List<AbstractMessage> historiqueMessage;
     private int idProject;
 
     public Chat(String chatName, int idProject) {
@@ -16,10 +14,9 @@ public class Chat extends AbstractChat {
         this.idProject = idProject;
     }
 
-    public Chat(int idChat, String chatName, List<Message> historiqueMessage, int idProject) {
+    public Chat(int idChat, String chatName, int idProject) {
         this.idChat = idChat;
         this.chatName = chatName;
-        this.historiqueMessage = historiqueMessage;
         this.idProject = idProject;
     }
 
@@ -49,12 +46,12 @@ public class Chat extends AbstractChat {
     }
 
     @Override
-    public List<Message> getHistoriqueMessage() {
+    public List<AbstractMessage> getHistoriqueMessage() {
         return this.historiqueMessage;
     }
 
     @Override
-    public void setHistoriqueMessage(List<Message> historiqueMessage) {
+    public void setHistoriqueMessage(List<AbstractMessage> historiqueMessage) {
         this.historiqueMessage = historiqueMessage;
     }
 }
