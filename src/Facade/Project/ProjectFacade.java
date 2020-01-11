@@ -13,7 +13,7 @@ public class ProjectFacade implements IProjectFacade {
     public static ProjectFacade instance;
 
     private ProjectFacade(){
-        dao = MySQLDAOFactory.getProjectDAO();
+        dao = MySQLDAOFactory.getInstance().getProjectDAO();
         this.projects = new ArrayList<>();
     }
 

@@ -13,8 +13,8 @@ public class SessionFacade implements ISessionFacade {
 	public static ISessionFacade instance;
 
 	private SessionFacade() {
-		userDAO = MySQLDAOFactory.getUserDAO();
-		taskDAO = MySQLDAOFactory.getTaskDAO();
+		userDAO = MySQLDAOFactory.getInstance().getUserDAO();
+		taskDAO = MySQLDAOFactory.getInstance().getTaskDAO();
 		
 	}
 

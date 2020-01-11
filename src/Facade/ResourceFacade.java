@@ -14,7 +14,7 @@ public class ResourceFacade implements IResourceFacade {
 
     public static ResourceFacade FacadeInstance;
     private ResourceFacade(){
-        this.dao = MySQLDAOFactory.getResourceDAO();
+        this.dao = MySQLDAOFactory.getInstance().getResourceDAO();
         this.resources = new ArrayList<>();
     }
 

@@ -17,7 +17,7 @@ public class MemberFacade implements IMemberFacade{
     public static MemberFacade instance;
 
     private MemberFacade(){
-        daoFactory = MySQLDAOFactory.getMemberDAO();
+        daoFactory = MySQLDAOFactory.getInstance().getMemberDAO();
         this.members = new ArrayList<>();
     }
 

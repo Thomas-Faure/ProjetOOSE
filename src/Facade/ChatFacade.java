@@ -15,7 +15,7 @@ public class ChatFacade implements IChatFacade {
     public static ChatFacade FacadeInstance;
 
     private ChatFacade(){
-        this.dao = MySQLDAOFactory.getChatDAO();
+        this.dao = MySQLDAOFactory.getInstance().getChatDAO();
     }
 
     public static ChatFacade getInstance(){

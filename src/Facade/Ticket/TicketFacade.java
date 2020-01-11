@@ -16,7 +16,7 @@ public class TicketFacade implements ITicketFacade {
 
 
     private TicketFacade(){
-        dao = MySQLDAOFactory.getTicketDAO();
+        dao = MySQLDAOFactory.getInstance().getTicketDAO();
         this.tickets = new ArrayList<>();
     }
 

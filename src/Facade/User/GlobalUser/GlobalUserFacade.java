@@ -15,7 +15,7 @@ public class GlobalUserFacade implements IGlobalUserFacade {
     public static GlobalUserFacade instance;
 
     private GlobalUserFacade(){
-        daoFactory = MySQLDAOFactory.getUserDAO();
+        daoFactory = MySQLDAOFactory.getInstance().getUserDAO();
         this.users = new ArrayList<>();
     }
 

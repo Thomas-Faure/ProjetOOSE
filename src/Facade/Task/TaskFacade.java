@@ -20,7 +20,7 @@ public class TaskFacade implements ITaskFacade {
 
     public static TaskFacade instance;
     private TaskFacade(){
-        daoFactory = MySQLDAOFactory.getTaskDAO();
+        daoFactory = MySQLDAOFactory.getInstance().getTaskDAO();
         this.tasks = new ArrayList<>();
     }
 

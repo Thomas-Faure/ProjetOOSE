@@ -16,7 +16,7 @@ public class SprintFacade implements ISprintFacade {
 
     public static SprintFacade FacadeInstance;
     private SprintFacade(){
-        this.dao = MySQLDAOFactory.getSprintDAO();
+        this.dao = MySQLDAOFactory.getInstance().getSprintDAO();
         this.sprints = new ArrayList<AbstractSprint>();
     }
 

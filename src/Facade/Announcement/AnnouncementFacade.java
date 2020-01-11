@@ -20,7 +20,7 @@ public class AnnouncementFacade implements IAnnouncementFacade {
 
 
     private AnnouncementFacade(){
-        dao = MySQLDAOFactory.getAnnouncementDAO();
+        dao = MySQLDAOFactory.getInstance().getAnnouncementDAO();
         this.announcements = new ArrayList<>();
     }
 
