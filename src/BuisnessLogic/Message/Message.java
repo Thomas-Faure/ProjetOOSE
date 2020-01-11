@@ -1,21 +1,21 @@
-package BuisnessLogic.Chat;
+package BuisnessLogic.Message;
 
-import BuisnessLogic.User.GlobalUser;
+import BuisnessLogic.User.AbstractUser;
 
 public class Message extends AbstractMessage {
 
     int idMessage;
     String contenu;
     int idChat;
-    GlobalUser createur;
+    AbstractUser createur;
 
-    public Message(String contenu, int idChat, GlobalUser createur) {
+    public Message(String contenu, int idChat, AbstractUser createur) {
         this.contenu = contenu;
         this.idChat = idChat;
         this.createur = createur;
     }
 
-    public Message(int idMessage, String contenu, int idChat, GlobalUser createur) {
+    public Message(int idMessage, String contenu, int idChat, AbstractUser createur) {
         this.idMessage = idMessage;
         this.contenu = contenu;
         this.idChat = idChat;
@@ -43,7 +43,7 @@ public class Message extends AbstractMessage {
     }
 
     @Override
-    public GlobalUser getCreateur() {
+    public AbstractUser getCreateur() {
         return this.createur;
     }
 }

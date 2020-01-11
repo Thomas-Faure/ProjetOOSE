@@ -7,5 +7,5 @@ public interface IChatFacade {
     boolean addChat(AbstractChat chat);
     boolean deleteChat(AbstractChat chat);
     boolean updateChat(AbstractChat chat);
-    AbstractChat getChatByProjectId(int idProject);
+    boolean getChatByProjectId(int idProject);
 }

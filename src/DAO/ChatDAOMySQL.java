@@ -78,6 +78,7 @@ public class ChatDAOMySQL implements ChatDAO {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				newChat = new Chat(
+						rs.getInt("idChat"),
 						rs.getString("chatName"),
 						rs.getInt("idProject"));
 			}
