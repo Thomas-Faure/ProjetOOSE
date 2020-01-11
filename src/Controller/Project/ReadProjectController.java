@@ -71,7 +71,7 @@ public class ReadProjectController implements Initializable {
     @FXML
     void goChat(ActionEvent actionEvent){
 
-        if(ChatFacade.getInstance().getChatByProjectId(project.getId())==null) {
+        if(!ChatFacade.getInstance().getChatByProjectId(project.getId())) {
             AbstractChat chat = new Chat("Chat_"+project.getName(),project.getId());
             ChatFacade.getInstance().addChat(chat);
         }
