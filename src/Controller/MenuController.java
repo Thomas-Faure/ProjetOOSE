@@ -1,5 +1,6 @@
 package Controller;
 
+import BuisnessLogic.User.AbstractUser;
 import Facade.SessionFacade;
 import Main.App;
 import UI.Announcement.AnnouncementUI;
@@ -14,19 +15,27 @@ import UI.User.Global.MyAccountUI;
 import UI.WelcomeUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import sun.plugin.javascript.navig.Anchor;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
 /**
  * Controller of the Menu
  * @author Thomas Faure
  */
-public class MenuController {
+public class MenuController implements Initializable {
     @FXML
     private Button menuLogin;
     @FXML
     private Button menuProject;
+    @FXML
+    private Button menuAnnouncementManager;
     @FXML
     private Button menuAnnouncement;
     @FXML
@@ -175,5 +184,14 @@ public class MenuController {
             box.getChildren().remove(1);
         box.getChildren().add(users.loadScene().getRoot());
 
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        AbstractUser user = SessionFacade.getInstance().getUser();
+        if(!user.isAdmin()){
+            //to disable
+            menuAnnouncementManager.setDisable(true);
+        }
     }
 }

@@ -50,6 +50,9 @@ public class ShowAnnouncementsController implements Initializable {
 
     }
 
+    /**
+     * When a user click on the "next" or "prev" button ,these functions call ActualiseAnnouncements , the goal of that method is to load the announcement according to the actual page number
+     */
     public void ActualiseAnnouncements(){
         //on remet à zero la liste
         vboxList.getChildren().clear();
@@ -70,9 +73,9 @@ public class ShowAnnouncementsController implements Initializable {
             date.setText(announcementList.get(i).getDate().toString());
             date.setText(announcementList.get(i).getDate().toString());
             Text username = (Text)format.lookup("#username");
-            username.setText(announcementList.get(i).getUser().getFirstName());
+            username.setText("User: "+announcementList.get(i).getUser().getFirstName());
             Text announcementTitle = (Text)format.lookup("#AnnouncementTitle");
-            announcementTitle.setText(announcementList.get(i).getTitle());
+            announcementTitle.setText("Title: "+announcementList.get(i).getTitle());
             vboxList.getChildren().add(format);
         }
     }
@@ -80,6 +83,9 @@ public class ShowAnnouncementsController implements Initializable {
     public void testFct(KeyEvent keyEvent) {
     }
 
+    /**
+     * Method called when the user click on the "see more" button, call the read announcement page
+     */
     private class clickMore implements EventHandler<Event> {
         @Override
         public void handle(Event evt) {
@@ -91,7 +97,7 @@ public class ShowAnnouncementsController implements Initializable {
     }
 
     /**
-     * Method call when the controller is created
+     * Method call when the controller is created, this method initialise the table of announcement and se the variable of number of pages
      * @param location
      * @param resources
      */
