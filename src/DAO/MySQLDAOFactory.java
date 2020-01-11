@@ -4,12 +4,15 @@ package DAO;
  * @author Thomas Faure
  */
 import BuisnessLogic.Chat.Chat;
+import BuisnessLogic.Message.Message;
 import DAO.Announcement.AnnouncementDAO;
 import DAO.Announcement.AnnouncementDAOMySQL;
 import DAO.Idea.IdeaDAO;
 import DAO.Idea.IdeaDAOMySQL;
 import DAO.Meeting.MeetingDAO;
 import DAO.Meeting.MeetingDAOMySQL;
+import DAO.Message.MessageDAO;
+import DAO.Message.MessageDAOMySQL;
 import DAO.Project.ProjectDAO;
 import DAO.Project.ProjectDAOMySQL;
 import DAO.Role.RoleDAO;
@@ -25,127 +28,129 @@ import DAO.User.Member.MemberDAOMySQL;
 
 public  class MySQLDAOFactory extends AbstractDAOFactory {
 
-	private static MySQLDAOFactory instance;
-	private MySQLDAOFactory() {
-		
-	}
-	public static MySQLDAOFactory getInstance() {
-		if(instance == null) {
-			instance = new MySQLDAOFactory();
-		}
-		return instance;
-	}
-	
-	public static GlobalUserDAO getUserDAO() {
-		return getInstance().createUserDAO();
-	}
+    private static MySQLDAOFactory instance;
+    private MySQLDAOFactory() {
 
-    public static IdeaDAO getIdeaDAO() {
-		return getInstance().createIdeaDAO();
+    }
+    public static MySQLDAOFactory getInstance() {
+        if(instance == null) {
+            instance = new MySQLDAOFactory();
+        }
+        return instance;
     }
 
-	public static RoleDAO getRoleDAO() {
-		return getInstance().createRoleDAO();
-	}
-	
-	public static AnnouncementDAO getAnnouncementDAO() {
-		return getInstance().createAnnouncementDAO();
-	}
+    public static GlobalUserDAO getUserDAO() {
+        return getInstance().createUserDAO();
+    }
 
-	public static TicketDAO getTicketDAO() {
-		return getInstance().createTicketDAO();
-	}
+    public static IdeaDAO getIdeaDAO() {
+        return getInstance().createIdeaDAO();
+    }
 
-	public static RessourceDAO getResourceDAO(){ return getInstance().createRessourceDAO();};
+    public static RoleDAO getRoleDAO() {
+        return getInstance().createRoleDAO();
+    }
 
-	public static ChatDAO getChatDAO(){ return getInstance().createChatDAO();}
+    public static AnnouncementDAO getAnnouncementDAO() {
+        return getInstance().createAnnouncementDAO();
+    }
 
-	public static SprintDAO getSprintDAO(){ return getInstance().createSprintDAO();};
+    public static TicketDAO getTicketDAO() {
+        return getInstance().createTicketDAO();
+    }
+
+    public static RessourceDAO getResourceDAO(){ return getInstance().createRessourceDAO();};
+
+    public static MessageDAO getMessageDAO(){ return getInstance().createMessageDAO();};
+
+    public static ChatDAO getChatDAO(){ return getInstance().createChatDAO();}
+
+    public static SprintDAO getSprintDAO(){ return getInstance().createSprintDAO();};
 
     public static MemberDAO getMemberDAO() {
-    	return getInstance().createMemberDAO();
+        return getInstance().createMemberDAO();
     };
 
     protected MemberDAO createMemberDAO() { return new MemberDAOMySQL(); };
 
 
     protected GlobalUserDAO createUserDAO() {
-		return new GlobalUserDAOMySQL();
-	}
+        return new GlobalUserDAOMySQL();
+    }
 
-	@Override
-	protected IdeaDAO createIdeaDAO() {
-		return new IdeaDAOMySQL();
-	}
+    @Override
+    protected IdeaDAO createIdeaDAO() {
+        return new IdeaDAOMySQL();
+    }
 
-	@Override
-	protected RoleDAO createRoleDAO() {
-		return new RoleDAOMySQL();
-	}
+    @Override
+    protected RoleDAO createRoleDAO() {
+        return new RoleDAOMySQL();
+    }
 
-	@Override
-	protected AnnouncementDAO createAnnouncementDAO() {
-		// TODO Auto-generated method stub
-		return new AnnouncementDAOMySQL();
-	}
+    @Override
+    protected AnnouncementDAO createAnnouncementDAO() {
+        // TODO Auto-generated method stub
+        return new AnnouncementDAOMySQL();
+    }
 
-	@Override
-	protected ChatDAO createChatDAO() {
-		// TODO Auto-generated method stub
-		return new ChatDAOMySQL();
-	}
+    @Override
+    protected ChatDAO createChatDAO() {
+        // TODO Auto-generated method stub
+        return new ChatDAOMySQL();
+    }
 
-	@Override
-	protected MeetingDAO createMeetingDAO() {
-		// TODO Auto-generated method stub
-		return new MeetingDAOMySQL();
-	}
-
-
-	public static MeetingDAO getMeetingDAO(){
-		return getInstance().createMeetingDAO();
-	}
-
-	@Override
-	protected ProjectDAO createProjectDAO() {
-		return new ProjectDAOMySQL();
-	}
-
-	public static ProjectDAO getProjectDAO(){
-		return getInstance().createProjectDAO();
-	}
-
-	@Override
-	protected RessourceDAO createRessourceDAO() {
-		// TODO Auto-generated method stub
-		return new RessourceDAOMySQL();
-	}
+    @Override
+    protected MeetingDAO createMeetingDAO() {
+        // TODO Auto-generated method stub
+        return new MeetingDAOMySQL();
+    }
 
 
-	@Override
-	protected SprintDAO createSprintDAO() {
-		// TODO Auto-generated method stub
-		return new SprintDAOMySQL();
-	}
+    public static MeetingDAO getMeetingDAO(){
+        return getInstance().createMeetingDAO();
+    }
 
-	public static TaskDAO getTaskDAO() {
-		return getInstance().createTaskDAO();
-	}
-	@Override
-	protected TaskDAO createTaskDAO() {
-		// TODO Auto-generated method stub
-		return new TaskDAOMySQL();
-	}
+    @Override
+    protected ProjectDAO createProjectDAO() {
+        return new ProjectDAOMySQL();
+    }
 
-	@Override
-	protected TicketDAO createTicketDAO() {
-		return new TicketDAOMySQL();
-	}
+    public static ProjectDAO getProjectDAO(){
+        return getInstance().createProjectDAO();
+    }
 
+    @Override
+    protected RessourceDAO createRessourceDAO() {
+        // TODO Auto-generated method stub
+        return new RessourceDAOMySQL();
+    }
 
 
-	
-	
-	
+    @Override
+    protected SprintDAO createSprintDAO() {
+        // TODO Auto-generated method stub
+        return new SprintDAOMySQL();
+    }
+
+    public static TaskDAO getTaskDAO() {
+        return getInstance().createTaskDAO();
+    }
+    @Override
+    protected TaskDAO createTaskDAO() {
+        // TODO Auto-generated method stub
+        return new TaskDAOMySQL();
+    }
+
+    @Override
+    protected TicketDAO createTicketDAO() {
+        return new TicketDAOMySQL();
+    }
+
+    @Override
+    protected MessageDAO createMessageDAO() {
+        return new MessageDAOMySQL();
+    }
+
 
 }
