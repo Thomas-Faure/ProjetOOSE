@@ -9,7 +9,10 @@ import javafx.scene.layout.HBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ErrorController implements Initializable {
+/**
+ * Controller of the error page
+ */
+public class ErrorController{
     UIGlobal returnPage;
 
     public ErrorController(UIGlobal returnPage){
@@ -17,13 +20,9 @@ public class ErrorController implements Initializable {
     }
 
 
-
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
-
+    /**Method called when the user click on the "back" button on the error page , and display a specific page (defined on the controller constructor)
+     * @param actionEvent
+     */
     public void returnAction(ActionEvent actionEvent) {
         System.out.println(returnPage.getClass().toString());
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");

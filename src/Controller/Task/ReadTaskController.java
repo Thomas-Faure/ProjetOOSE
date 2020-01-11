@@ -18,6 +18,9 @@ import javafx.scene.layout.HBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller of the read task page
+ */
 public class ReadTaskController implements Initializable {
     int id;
     @FXML
@@ -36,6 +39,10 @@ public class ReadTaskController implements Initializable {
         this.id=id;
         this.project=project;
     }
+
+    /**Method called when the user click on the back button, show the task management page
+     * @param actionEvent
+     */
     @FXML
     void backToTasks(ActionEvent actionEvent){
         UITaskManagement task = new UITaskManagement(project);
@@ -45,6 +52,10 @@ public class ReadTaskController implements Initializable {
         box.getChildren().add(task.loadScene().getRoot());
     }
 
+    /**Method called when the controller is created, show task's elements in input fields
+     * @param arg0
+     * @param arg1
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         AbstractTask taskToRead = TaskFacade.getInstance().getTaskById(id);

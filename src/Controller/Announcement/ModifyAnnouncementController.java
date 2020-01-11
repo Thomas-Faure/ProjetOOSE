@@ -20,6 +20,9 @@ import javafx.scene.layout.HBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller of the modify announcement page
+ */
 public class ModifyAnnouncementController implements Initializable {
 
     int id;
@@ -35,6 +38,10 @@ public class ModifyAnnouncementController implements Initializable {
         this.id=id;
 
     }
+
+    /**This method is call when a user click on modify button , the confirm panel is displayed
+     * @param actionEvent
+     */
     @FXML
     void modifyAnAnnouncement(ActionEvent actionEvent){
         AbstractAnnouncement announcement = AnnouncementFacade.getInstance().getAnnouncementById(id);
@@ -47,6 +54,11 @@ public class ModifyAnnouncementController implements Initializable {
         toShow.setVisible(true);
     }
 
+    /**
+     * Method call when the controller is created
+     * @param arg0
+     * @param arg1
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         AbstractAnnouncement announcementToModify = AnnouncementFacade.getInstance().getAnnouncementById(id);
@@ -62,7 +74,11 @@ public class ModifyAnnouncementController implements Initializable {
                 box.getChildren().remove(2);
         }
     }
-    
+
+
+    /**Method call when the user click on the BackButton, this method generate the announcement management page and display it
+     * @param actionEvent
+     */
     public void backtoAnnouncements(ActionEvent actionEvent) {
         UIGlobal announcementUI = new UIAnnouncementManagement();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
@@ -71,6 +87,9 @@ public class ModifyAnnouncementController implements Initializable {
         box.getChildren().add(announcementUI.loadScene().getRoot());
     }
 
+    /**Method call when the user click on the validation button on the confirmation panel, this method apply the modifidication on an announcement, if a error occured the error page is called
+     * @param actionEvent
+     */
     public void validation(ActionEvent actionEvent) {
         if(AnnouncementFacade.getInstance().modifyAnnouncement(toModify)){
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
@@ -87,6 +106,9 @@ public class ModifyAnnouncementController implements Initializable {
         }
     }
 
+    /**Method call when the user click on the refuse button on the confirmation page, the confirmation panel become hidden and the modification announcement page is displayed
+     * @param actionEvent
+     */
     public void refuse(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
         toHide.setVisible(false);
