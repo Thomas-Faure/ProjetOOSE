@@ -1,8 +1,10 @@
 package Controller.Chat;
 
 
+import BuisnessLogic.Chat.AbstractChat;
 import BuisnessLogic.Project.AbstractProject;
 import Controller.IController;
+import Facade.ChatFacade;
 import Facade.IChatFacade;
 import Main.App;
 import UI.Project.ProjectUI;
@@ -67,7 +69,8 @@ public class ChatController implements Initializable, IController {
 
     @Override
     public void update() {
-
+        AbstractChat chat = ChatFacade.getInstance().getChatByProjectId(project.getId());
+        System.out.println("Name Chat: "+chat.getChatName());
     }
 
     @Override
