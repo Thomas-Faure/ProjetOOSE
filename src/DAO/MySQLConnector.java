@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * This class is to create the connection with the database
+ */
 public class MySQLConnector {
     private String JDBC_DRIVER;  
     private String DB_URL;
@@ -21,6 +24,10 @@ public class MySQLConnector {
         PASS = "";
         conn = null;
     }
+
+    /**Method to get the connection of the database
+     * @return the connection
+     */
     public static Connection getSQLConnection() {
     	return getInstance().getConnection();
     }
@@ -31,6 +38,10 @@ public class MySQLConnector {
     	}
     	return instance;
     }
+
+    /**
+     * Method to open the connection with the database
+     */
     private void openConnection(){
         try{
             Class.forName(JDBC_DRIVER);
@@ -39,6 +50,10 @@ public class MySQLConnector {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Method to close the connection with the database
+     */
     public void closeConnection(){
         try{
             if(conn!=null)
@@ -47,12 +62,12 @@ public class MySQLConnector {
             se.printStackTrace();
         }
     }
+
+    /**Method wich return the connection of the databse
+     * @return a connection
+     */
     private Connection getConnection(){
         return conn;
     }
-    public static void main(String[] args) {
-    	MySQLConnector sql = new MySQLConnector();
-    	sql.openConnection();
-    	sql.getConnection();
-    }
+
 }

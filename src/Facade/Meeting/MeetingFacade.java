@@ -18,7 +18,7 @@ public class MeetingFacade implements IMeetingFacade {
     public static MeetingFacade instance;
 
     private MeetingFacade(){
-        dao = MySQLDAOFactory.getMeetingDAO();
+        dao = MySQLDAOFactory.getInstance().getMeetingDAO();
         this.meetings = new ArrayList<>();
     }
 

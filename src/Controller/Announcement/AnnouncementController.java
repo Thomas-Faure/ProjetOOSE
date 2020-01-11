@@ -30,6 +30,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+/**
+ *  Controller of the announcement Management page
+ */
 public class AnnouncementController implements Initializable {
 
 
@@ -48,6 +52,9 @@ public class AnnouncementController implements Initializable {
     public AnnouncementController(){
     }
 
+    /** Method call after typing a caracter on the UI's input search bar, the goal of that method is to manage the ListView to show only announcements wich correspond to the input caracters
+     * @param keyEvent
+     */
     @FXML
     public void searchBar(KeyEvent keyEvent) {
         if(!(inputSearch.getText().length() == 0)) {
@@ -75,6 +82,11 @@ public class AnnouncementController implements Initializable {
         }
     }
 
+    /**
+     * Method call on the controller creation to get announcements and put them on the listview
+     * @param arg0
+     * @param arg1
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         //uniquement pour la page des taches manager

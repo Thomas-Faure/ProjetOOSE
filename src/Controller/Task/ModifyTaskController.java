@@ -22,6 +22,9 @@ import javafx.scene.layout.HBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller of the modify task page
+ */
 public class ModifyTaskController implements Initializable {
 
     AbstractTask task;
@@ -47,6 +50,9 @@ public class ModifyTaskController implements Initializable {
 
     }
 
+    /**Method called when the user click on the "back" button, display the page from the "ui" attribute
+     * @param actionEvent
+     */
     @FXML
     void backToTasks(ActionEvent actionEvent){
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
@@ -59,6 +65,10 @@ public class ModifyTaskController implements Initializable {
 
 
     }
+
+    /**Method called when the user click on the modify button, this method show the confirmation panel
+     * @param actionEvent
+     */
     @FXML
     void modifyATask(ActionEvent actionEvent){
         if(task != null) {
@@ -76,6 +86,10 @@ public class ModifyTaskController implements Initializable {
         }
     }
 
+    /**Method called when the controller is created, show task's element on the different inputs
+     * @param arg0
+     * @param arg1
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         for(TaskState st : TaskState.values()){
@@ -98,6 +112,9 @@ public class ModifyTaskController implements Initializable {
     }
 
 
+    /**Method called when the user click on confim button on the confirmation page, this method try to modify the database, if an error occured the error page is displayed
+     * @param actionEvent
+     */
     public void validation(ActionEvent actionEvent) {
         if(TaskFacade.getInstance().modifyTask((Task)toModify)){
 
@@ -120,6 +137,9 @@ public class ModifyTaskController implements Initializable {
         }
     }
 
+    /**Method called when the user click on cancel button on the confirmation panel, hide the confirmation panel and show the modify task panel
+     * @param actionEvent
+     */
     public void refuse(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
         toHide.setVisible(false);
