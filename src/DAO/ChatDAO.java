@@ -1,9 +1,13 @@
 package DAO;
 
+
+import BuisnessLogic.Chat.AbstractChat;
+
 public interface ChatDAO {
 
-	public void createAnnouncement(String identifiant,String username);
-	public boolean save();
-	public boolean update();
+	boolean save(AbstractChat chat);
+	boolean update(AbstractChat chat);
+	boolean delete(int idChat);
+	AbstractChat getChatByProjectId(int idProject);
 
 }

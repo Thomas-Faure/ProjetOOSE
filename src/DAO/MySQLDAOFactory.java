@@ -3,6 +3,7 @@ package DAO;
  *
  * @author Thomas Faure
  */
+import BuisnessLogic.Chat.Chat;
 import DAO.Announcement.AnnouncementDAO;
 import DAO.Announcement.AnnouncementDAOMySQL;
 import DAO.Idea.IdeaDAO;
@@ -57,6 +58,8 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
 
 	public static RessourceDAO getResourceDAO(){ return getInstance().createRessourceDAO();};
 
+	public static ChatDAO getChatDAO(){ return getInstance().createChatDAO();}
+
 	public static SprintDAO getSprintDAO(){ return getInstance().createSprintDAO();};
 
     public static MemberDAO getMemberDAO() {
@@ -89,7 +92,7 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
 	@Override
 	protected ChatDAO createChatDAO() {
 		// TODO Auto-generated method stub
-		return null;
+		return new ChatDAOMySQL();
 	}
 
 	@Override
