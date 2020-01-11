@@ -1,6 +1,6 @@
-package BuisnessLogic.Chat;
+package BuisnessLogic.Message;
 
-import BuisnessLogic.User.GlobalUser;
+import BuisnessLogic.User.AbstractUser;
 
 public abstract class AbstractMessage {
 
@@ -12,5 +12,5 @@ public abstract class AbstractMessage {
 
     public abstract int getIdChat();
 
-    public abstract GlobalUser getCreateur();
+    public abstract AbstractUser getCreateur();
 }
