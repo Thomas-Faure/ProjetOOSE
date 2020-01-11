@@ -7,7 +7,9 @@ import Facade.SessionFacade;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+/**
+ * Test Class to test login
+ */
 public class UserLoginDAO {
 
     @Test
