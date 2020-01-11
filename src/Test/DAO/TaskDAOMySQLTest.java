@@ -18,8 +18,14 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test Class to test TaskDAO
+ */
 class TaskDAOMySQLTest {
 
+    /**
+     * Method to test the creation of a database row
+     */
     @Test
     void save() {
         TaskDAO dao = new TaskDAOMySQL();
