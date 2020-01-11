@@ -14,7 +14,7 @@ public class MessageFacade implements IMessageFacade {
     public static MessageFacade FacadeInstance;
 
     private MessageFacade(){
-        this.dao = MySQLDAOFactory.getMessageDAO();
+        this.dao = MySQLDAOFactory.getInstance().getMessageDAO();
         this.messageList = new ArrayList<>();
     }
 

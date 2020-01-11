@@ -10,6 +10,8 @@ import DAO.Idea.IdeaDAO;
 import DAO.Idea.IdeaDAOMySQL;
 import DAO.Meeting.MeetingDAO;
 import DAO.Meeting.MeetingDAOMySQL;
+import DAO.Message.MessageDAO;
+import DAO.Message.MessageDAOMySQL;
 import DAO.Project.ProjectDAO;
 import DAO.Project.ProjectDAOMySQL;
 import DAO.Role.RoleDAO;
@@ -93,6 +95,10 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
     @Override
     public ProjectDAO getProjectDAO() {
         return new ProjectDAOMySQL();
+    }
+    @Override
+    public MessageDAO getMessageDAO() {
+        return new MessageDAOMySQL();
     }
 
     ;
