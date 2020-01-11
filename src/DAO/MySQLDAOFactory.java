@@ -10,6 +10,8 @@ import DAO.Idea.IdeaDAO;
 import DAO.Idea.IdeaDAOMySQL;
 import DAO.Meeting.MeetingDAO;
 import DAO.Meeting.MeetingDAOMySQL;
+import DAO.Message.MessageDAO;
+import DAO.Message.MessageDAOMySQL;
 import DAO.Project.ProjectDAO;
 import DAO.Project.ProjectDAOMySQL;
 import DAO.Role.RoleDAO;
@@ -59,6 +61,8 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
 	public static RessourceDAO getResourceDAO(){ return getInstance().createRessourceDAO();};
 
 	public static ChatDAO getChatDAO(){ return getInstance().createChatDAO();}
+
+	public static MessageDAO getMessageDAO(){ return getInstance().createMessageDAO();}
 
 	public static SprintDAO getSprintDAO(){ return getInstance().createSprintDAO();};
 
@@ -142,10 +146,10 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
 		return new TicketDAOMySQL();
 	}
 
+	@Override
+	protected MessageDAO createMessageDAO() {
+		return new MessageDAOMySQL();
+	}
 
-
-	
-	
-	
 
 }
