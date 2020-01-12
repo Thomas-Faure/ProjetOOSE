@@ -7,7 +7,7 @@ public enum TaskState {
     todo("todo"),
     doing("doing"),
     done("done");
-    String state;
+    private String state;
     TaskState(String state){
         this.state=state;
     }

@@ -5,7 +5,10 @@ package Controller.Task;
  */
 import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Task.AbstractTask;
+import BuisnessLogic.User.AbstractUser;
+import BuisnessLogic.User.User;
 import Controller.IController;
+import Facade.SessionFacade;
 import Facade.Task.TaskFacade;
 import Main.App;
 import UI.Task.*;
@@ -30,6 +33,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * Controller of the task maanger page
+ */
 public class TaskManagerController implements Initializable, IController {
 
     @FXML
@@ -46,11 +52,19 @@ public class TaskManagerController implements Initializable, IController {
         this.ui=ui;
     }
 
+    /**Method called when the controller is created, this method cal the update() function
+     * @param arg0
+     * @param arg1
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         update();
 
     }
+
+    /**Method called when the search input receive a new caracter, and show tasks which have the same caracters on it name
+     * @param keyEvent
+     */
     @FXML
     public void searchBar(KeyEvent keyEvent) {
         if(!(inputSearch.getText().length() == 0)) {
@@ -76,6 +90,10 @@ public class TaskManagerController implements Initializable, IController {
             taskList.setItems(listViewTemp);
         }
     }
+
+    /**
+     * Method wich update the listview's items
+     */
     public void update(){
         if(taskList != null){
             //si on peut récuperer les taches
@@ -90,6 +108,9 @@ public class TaskManagerController implements Initializable, IController {
         }
     }
 
+    /**Method called when the user validate the modification on the modification panel, this method try to delete the task "toManage"
+     * @param actionEvent
+     */
     public void validation(ActionEvent actionEvent) {
 
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
@@ -109,6 +130,10 @@ public class TaskManagerController implements Initializable, IController {
 
         }
     }
+
+    /**Method called when the user click on the cancel button on the confirmation page (to delete a task), hide the confirmation panel and show the task management page
+     * @param actionEvent
+     */
     public void refuse(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
         toHide.setVisible(false);
@@ -132,9 +157,14 @@ public class TaskManagerController implements Initializable, IController {
         public Cell(UIGlobalWithController ui){
             super();
             this.ui=ui;
+            AbstractUser user = SessionFacade.getInstance().getUser();
+            if(!user.isAdmin()){
+                btnD.setDisable(true);
+            }
             hbox.setSpacing(10);
             img.setFitHeight(20);
             img.setFitWidth(20);
+
             hbox.getChildren().addAll(img,label,pane,btnR,btnM,btnD);
             btnD.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -182,6 +212,9 @@ public class TaskManagerController implements Initializable, IController {
 
     }
 
+    /**Method called to generate the add task page
+     * @param actionEvent
+     */
     @FXML
     void addTaskPage(ActionEvent actionEvent) {
         UIAddTask addTask = new UIAddTask(project,ui);

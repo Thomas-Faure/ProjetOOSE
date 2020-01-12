@@ -39,6 +39,9 @@ public class ResourceController implements Initializable {
     private Button buttonSearch;
 
     @FXML
+    private Button backButton;
+
+    @FXML
     private ListView<AbstractResource> resourceList;
 
     private static ObservableList<AbstractResource> listViewTemp;
@@ -54,7 +57,7 @@ public class ResourceController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        titlePath.setText("/Resources/" + project.getName());
+        titlePath.setText("Project/"+project.getName()+"/Resources/");
         if(resourceList != null){
             List<AbstractResource> listeElement = ResourceFacade.getInstance().getListResourceByProject(project.getId());
             ObservableList<AbstractResource> listView = FXCollections.observableArrayList(listeElement);
@@ -78,8 +81,8 @@ public class ResourceController implements Initializable {
 
         dropboxPPM.uploadFile(path_file,dropboxpath_file);
 
-        AbstractResource resource = new Resource(dropboxpath_file,filename);
-        ResourceFacade.getInstance().addResource(resource,project.getId());
+        AbstractResource resource = new Resource(dropboxpath_file,filename,project.getId());
+        ResourceFacade.getInstance().addResource(resource);
 
         ResourceUI resourceUI = new ResourceUI(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");

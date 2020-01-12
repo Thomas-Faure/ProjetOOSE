@@ -16,6 +16,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * It's a class to manage Tasks on the database
+ */
 public class TaskDAOMySQL implements TaskDAO {
 
     private static final String INSERT = "INSERT INTO task (name, priority, deadline, creator,description,state,idProject,idSprint) VALUES (?, ?, ?, ?,?,?,?,?)";

@@ -20,6 +20,10 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+/**
+ *
+ * @author Guillaume Tessier
+ */
 public class ModifySprintController implements Initializable {
 
     private AbstractProject project;

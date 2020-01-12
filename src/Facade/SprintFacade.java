@@ -10,13 +10,17 @@ import DAO.SprintDAO;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author Guillaume Tessier
+ */
 public class SprintFacade implements ISprintFacade {
     private List<AbstractSprint> sprints;
     private SprintDAO dao;
 
     public static SprintFacade FacadeInstance;
     private SprintFacade(){
-        this.dao = MySQLDAOFactory.getSprintDAO();
+        this.dao = MySQLDAOFactory.getInstance().getSprintDAO();
         this.sprints = new ArrayList<AbstractSprint>();
     }
 
@@ -36,8 +40,8 @@ public class SprintFacade implements ISprintFacade {
     }
 
     @Override
-    public boolean addSprint(AbstractSprint sprint, int projectID) {
-        if(FacadeInstance.getDao().save(sprint,projectID)){
+    public boolean addSprint(AbstractSprint sprint) {
+        if(FacadeInstance.getDao().save(sprint)){
             FacadeInstance.getListSprint().add(sprint);
             return true;
         }else {

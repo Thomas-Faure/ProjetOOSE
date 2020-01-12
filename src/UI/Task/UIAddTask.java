@@ -17,10 +17,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-public class UIAddTask implements UIGlobalWithController {
+public class UIAddTask {
 	AbstractProject project;
 	public static UIGlobalWithController ui;
-	public static IController controller;
+
 	public UIAddTask(AbstractProject project, UIGlobalWithController ui){
 		this.project = project;
 		this.ui=ui;
@@ -57,16 +57,11 @@ public class UIAddTask implements UIGlobalWithController {
 				}
 			});
 			root = loader.load();
-			controller=loader.getController();
+
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		Scene scene = new Scene(root, 1000, 600);
 		return scene;
-	}
-
-	@Override
-	public IController getController() {
-		return controller;
 	}
 }

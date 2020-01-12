@@ -16,8 +16,14 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test Class to test AnnouncementDAO
+ */
 class AnnouncementDAOMySQLTest {
 
+    /**
+     * Method to test the creation of a database row
+     */
     @Test
     void save() {
         AnnouncementDAO dao = new AnnouncementDAOMySQL();
@@ -26,6 +32,9 @@ class AnnouncementDAOMySQLTest {
         boolean valid = dao.save(announcement);
         assertEquals(true, valid, "to save a new announcement");
     }
+    /**
+     * Method to test the update of a database row
+     */
     @Test
     void update() {
         AnnouncementDAO dao = new AnnouncementDAOMySQL();

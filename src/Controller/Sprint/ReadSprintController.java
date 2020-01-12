@@ -34,6 +34,10 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ *
+ * @auhtor Guillaume Tessier
+ */
 public class ReadSprintController implements Initializable, IController {
 
 
@@ -86,6 +90,18 @@ public class ReadSprintController implements Initializable, IController {
             box.getChildren().remove(1);
         box.getChildren().add(sprintUI.loadScene().getRoot());
     }
+
+    @FXML
+    void backToSprintList(ActionEvent actionEvent){
+
+        SprintUI sprintUI = new SprintUI(project);
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(sprintUI.loadScene().getRoot());
+
+    }
+
     private AbstractProject project;
     private AbstractSprint sprint;
     UIGlobalWithController ui;

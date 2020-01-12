@@ -20,6 +20,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 
+/**
+ * Controller of the add task page
+ */
 public class AddTaskController{
 
     @FXML
@@ -28,8 +31,12 @@ public class AddTaskController{
     private TextArea description;
     @FXML
     private DatePicker deadline;
+
+
     @FXML
-    private TextField priority;
+    private ToggleGroup group;
+
+
 
     private AbstractProject project;
     private UIGlobalWithController ui;
@@ -39,9 +46,15 @@ public class AddTaskController{
         this.ui=ui;
     }
 
+    /**Method called when the user click on the "add task" button, this method try to add a new task on the database, if an error occured, the error page is played
+     * @param actionEvent
+     */
     @FXML
     void addNewTask(ActionEvent actionEvent){
-        AbstractTask task = new Task(0,subject.getText(),description.getText(),Integer.parseInt(priority.getText()),deadline.getValue(),SessionFacade.getInstance().getUser(), TaskState.todo,project);
+        RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
+        String toogleGroupValue = selectedRadioButton.getText();
+
+        AbstractTask task = new Task(0,subject.getText(),description.getText(),Integer.parseInt(toogleGroupValue),deadline.getValue(),SessionFacade.getInstance().getUser(), TaskState.todo,project);
         if(TaskFacade.getInstance().addTask(task)){
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(ui.loadScene().getRoot());
@@ -59,13 +72,19 @@ public class AddTaskController{
                 box.getChildren().remove(1);
         }
     }
+
+    /**Method called when the use click on the "back" button , generate task management page and display it
+     * @param actionEvent
+     */
     @FXML
     void backToTaskPage(ActionEvent actionEvent){
-        UITaskManagement task = new UITaskManagement(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-        if(box.getChildren().size() >1 )
+        box.getChildren().add(ui.loadScene().getRoot());
+        ui.getController().update();
+
+        if(box.getChildren().size() >1 ){
             box.getChildren().remove(1);
-        box.getChildren().add(task.loadScene().getRoot());
+        }
     }
 
     @FXML

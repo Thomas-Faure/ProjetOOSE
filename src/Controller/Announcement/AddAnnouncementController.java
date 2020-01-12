@@ -1,6 +1,7 @@
 package Controller.Announcement;
 import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Announcement.Announcement;
+import Controller.IController;
 import Facade.Announcement.AnnouncementFacade;
 import Facade.SessionFacade;
 import Main.App;
@@ -15,10 +16,10 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 /**
- *
+ * Controller of the add announcement page
  * @author Thomas Faure
  */
-public class AddAnnouncementController{
+public class AddAnnouncementController {
 
     @FXML
     private TextField title;
@@ -28,6 +29,9 @@ public class AddAnnouncementController{
     public AddAnnouncementController(){
     }
 
+    /**This method get the different inputs values and try to add a new announcement to the database, if a error occured, the error page is called
+     * @param actionEvent
+     */
     @FXML
     void addNewAnnouncement(ActionEvent actionEvent){
         AbstractAnnouncement announcement = new Announcement(0,title.getText(),message.getText(),LocalDate.now(),SessionFacade.getInstance().getUser());
@@ -46,6 +50,10 @@ public class AddAnnouncementController{
         }
     }
 
+    /**
+     * Method call by the back button from the UI, to generate the "announcement management" page
+     * @param actionEvent
+     */
     @FXML
     void backToAnnouncementManagerPage(ActionEvent actionEvent){
         UIAnnouncementManagement announcementManagement = new UIAnnouncementManagement();

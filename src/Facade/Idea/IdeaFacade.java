@@ -21,7 +21,7 @@ public class IdeaFacade implements IIdeaFacade {
     public static IdeaFacade instance;
 
     private IdeaFacade(){
-        daoFactory = MySQLDAOFactory.getIdeaDAO();
+        daoFactory = MySQLDAOFactory.getInstance().getIdeaDAO();
         this.ideas = new ArrayList<>();
     }
 

@@ -21,7 +21,7 @@ public class RoleFacade implements IRoleFacade {
     public static RoleFacade instance;
 
     private RoleFacade(){
-        daoFactory = MySQLDAOFactory.getRoleDAO();
+        daoFactory = MySQLDAOFactory.getInstance().getRoleDAO();
         this.roles = new ArrayList<>();
     }
 

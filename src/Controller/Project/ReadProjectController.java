@@ -1,9 +1,13 @@
 package Controller.Project;
 
+import BuisnessLogic.Chat.AbstractChat;
+import BuisnessLogic.Chat.Chat;
 import BuisnessLogic.Project.AbstractProject;
+import Facade.ChatFacade;
 import Facade.Project.IProjectFacade;
 import Facade.Project.ProjectFacade;
 import Main.App;
+import UI.Chat.ChatUI;
 import UI.Meeting.MeetingsUI;
 import UI.Project.ProjectUI;
 import UI.Ressource.ResourceUI;
@@ -66,6 +70,16 @@ public class ReadProjectController implements Initializable {
 
     @FXML
     void goChat(ActionEvent actionEvent){
+
+        if(!ChatFacade.getInstance().getChatByProjectId(project.getId())) {
+            AbstractChat chat = new Chat("Chat_"+project.getName(),project.getId());
+            ChatFacade.getInstance().addChat(chat);
+        }
+        ChatUI chatUI = new ChatUI(project);
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if (box.getChildren().size() > 1)
+            box.getChildren().remove(1);
+        box.getChildren().add(chatUI.loadScene().getRoot());
 
     }
 

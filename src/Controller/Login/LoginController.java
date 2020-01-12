@@ -21,7 +21,12 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+
+/**
+ * A controller to manage login
+ */
 public class LoginController {
+
 
     @FXML
     public Button loginButton;
@@ -34,6 +39,11 @@ public class LoginController {
     @FXML
     public Text info;
 
+    /**
+     * method call when push "login" button on the UI, this method try to log the user with
+     * the login and password provided by UI's inputs
+     * @param actionEvent
+     */
     @FXML
     public void signIn(ActionEvent actionEvent) {
         if (login(inputUsername.getText(), inputPassword.getText())) {
@@ -54,12 +64,22 @@ public class LoginController {
 
     }
 
+    /**
+     * Method to go on the forgotten password page
+     * @param actionEvent
+     */
     @FXML
     public void goToPasswordForgottenPage(ActionEvent actionEvent) {
         UIForgottenPassword fg = new UIForgottenPassword();
         App.setInstanceScene(fg.loadScene());
     }
 
+    /**
+     * Method to try to log the user
+     * @param username
+     * @param password
+     * @return
+     */
     public boolean login(String username, String password) {
 
 

@@ -17,6 +17,9 @@ import javafx.scene.layout.HBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller of the read announcement page
+ */
 public class ReadAnnouncementController implements Initializable {
     int id;
     @FXML
@@ -30,6 +33,11 @@ public class ReadAnnouncementController implements Initializable {
         this.id=id; this.adminPanel=adminPanel;
     }
 
+    /**
+     * Method call when the controller is created
+     * @param arg0
+     * @param arg1
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         AbstractAnnouncement AnnouncementToRead = AnnouncementFacade.getInstance().getAnnouncementById(id);
@@ -50,6 +58,9 @@ public class ReadAnnouncementController implements Initializable {
         }
     }
 
+    /**Method call when the user click on the BackButton, this method generate the announcement management page and display it
+     * @param actionEvent
+     */
     @FXML
     public void backtoAnnouncements(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
