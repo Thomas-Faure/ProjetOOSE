@@ -11,11 +11,11 @@ import java.time.LocalTime;
 
 
 public class Announcement extends AbstractAnnouncement {
-	int id;
-	String title;
-	String message;
-	LocalDate date;
-	AbstractUser user;
+	private int id;
+	private String title;
+	private String message;
+	private LocalDate date;
+	private AbstractUser user;
 	public Announcement(int id,String title,String message,LocalDate date,AbstractUser user) {
 		this.id=id;
 		this.title=title;

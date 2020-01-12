@@ -13,15 +13,15 @@ import BuisnessLogic.User.User;
 
 
 public class Task extends AbstractTask {
-	int id;
-	Integer idSprint;
-	TaskState state;
-	String name;
-	int priority;
-	LocalDate deadline;
-	AbstractUser creator;
-	String description;
-	AbstractProject project;
+	private int id;
+	private Integer idSprint;
+	private TaskState state;
+	private String name;
+	private int priority;
+	private LocalDate deadline;
+	private AbstractUser creator;
+	private String description;
+	private AbstractProject project;
 
 	public Task(int id,String name,String description,int priority,LocalDate deadline,AbstractUser creator,TaskState state,AbstractProject project) {
 		this.id=id;
@@ -53,12 +53,9 @@ public class Task extends AbstractTask {
 		return this.project;
 	}
 
-	@Override
 	public Integer getIdSprint() {
 		return this.idSprint;
 	}
-
-	@Override
 	public void setIdSprint(int id) {
 		this.idSprint = id;
 	}
