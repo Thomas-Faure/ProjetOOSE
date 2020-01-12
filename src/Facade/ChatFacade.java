@@ -7,17 +7,19 @@ import DAO.MySQLDAOFactory;
 import Facade.Message.MessageFacade;
 import java.util.List;
 
+/**
+ *
+ * @author Guillaume Tessier
+ */
 public class ChatFacade implements IChatFacade {
     private ChatDAO dao;
-
-
-
     private AbstractChat currentChat;
-    public static ChatFacade FacadeInstance;
+    private static ChatFacade FacadeInstance;
 
     private ChatFacade(){
         this.dao = MySQLDAOFactory.getInstance().getChatDAO();
     }
+
 
     public static ChatFacade getInstance(){
         if(FacadeInstance == null){
@@ -26,6 +28,7 @@ public class ChatFacade implements IChatFacade {
         return FacadeInstance;
     }
 
+    @Override
     public AbstractChat getCurrentChat() {
         return currentChat;
     }

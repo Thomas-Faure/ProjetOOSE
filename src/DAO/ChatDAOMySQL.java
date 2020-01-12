@@ -2,13 +2,15 @@ package DAO;
 
 import BuisnessLogic.Chat.AbstractChat;
 import BuisnessLogic.Chat.Chat;
-import BuisnessLogic.Ressource.AbstractResource;
-import BuisnessLogic.Ressource.Resource;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ *
+ * @author Guillaume Tessier
+ */
 public class ChatDAOMySQL implements ChatDAO {
 
 	private static final String INSERT = "INSERT INTO chat (chatName, idProject) VALUES (?, ?)";

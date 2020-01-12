@@ -3,11 +3,14 @@ package Facade.Message;
 import BuisnessLogic.Message.AbstractMessage;
 import DAO.Message.MessageDAO;
 import DAO.MySQLDAOFactory;
-import org.omg.DynamicAny.DynAnyOperations;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author Guillaume Tessier
+ */
 public class MessageFacade implements IMessageFacade {
     private List<AbstractMessage> messageList;
     private MessageDAO dao;
@@ -18,6 +21,7 @@ public class MessageFacade implements IMessageFacade {
         this.messageList = new ArrayList<>();
     }
 
+    @Override
     public List<AbstractMessage> getMessageList() {
         return messageList;
     }

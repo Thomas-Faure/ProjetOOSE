@@ -15,6 +15,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author Guillaume Tessier
+ */
 public class MessageDAOMySQL implements MessageDAO {
 
     private static final String INSERT = "INSERT INTO message (contenu, idChat, createur) VALUES (?, ?, ?)";

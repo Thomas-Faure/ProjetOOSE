@@ -5,38 +5,30 @@ import BuisnessLogic.Chat.AbstractChat;
 import BuisnessLogic.Message.AbstractMessage;
 import BuisnessLogic.Message.Message;
 import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Ressource.AbstractResource;
 import BuisnessLogic.User.AbstractUser;
 import Controller.IController;
-import Controller.Resource.DropBoxConnexion;
-import Controller.Resource.ResourceController;
 import Facade.ChatFacade;
-import Facade.IChatFacade;
 import Facade.Message.MessageFacade;
-import Facade.ResourceFacade;
 import Facade.SessionFacade;
 import Main.App;
-import UI.Project.ProjectUI;
 import UI.Project.ReadProjectUI;
-import UI.Ressource.ResourceUI;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
-
-import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-
+/**
+ *
+ * @author Guillaume Tessier
+ */
 public class ChatController implements Initializable, IController {
 
     AbstractProject project;

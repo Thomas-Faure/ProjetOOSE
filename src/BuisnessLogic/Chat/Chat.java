@@ -3,17 +3,32 @@ package BuisnessLogic.Chat;
 import BuisnessLogic.Message.AbstractMessage;
 import java.util.List;
 
+/**
+ *
+ * @author Guillaume Tessier
+ */
 public class Chat extends AbstractChat {
     private int idChat;
     private String chatName;
     private List<AbstractMessage> historiqueMessage;
     private int idProject;
 
+    /**
+     * Constructor with 2 parameters
+     * @param chatName
+     * @param idProject
+     */
     public Chat(String chatName, int idProject) {
         this.chatName = chatName;
         this.idProject = idProject;
     }
 
+    /**
+     * Constructor with 3 parameters
+     * @param idChat
+     * @param chatName
+     * @param idProject
+     */
     public Chat(int idChat, String chatName, int idProject) {
         this.idChat = idChat;
         this.chatName = chatName;
@@ -41,7 +56,7 @@ public class Chat extends AbstractChat {
     }
 
     @Override
-    public void setIdProject() {
+    public void setIdProject(int idProject) {
         this.idProject=idProject;
     }
 
