@@ -22,8 +22,8 @@ import java.util.List;
  */
 public class IdeaDAOMySQL implements IdeaDAO {
 
-	private static final String INSERT = "INSERT INTO idea (name, description, subject, creator, state) VALUES (?, ?, ?, ?,?)";
-	private static final String UPDATE = "UPDATE idea SET name=?, description=?, subject=?, creator = ?, state=? WHERE idIdea=?";
+	private static final String INSERT = "INSERT INTO idea (name, description, subject, idUser, state) VALUES (?, ?, ?, ?,?)";
+	private static final String UPDATE = "UPDATE idea SET name=?, description=?, subject=?, idUser = ?, state=? WHERE idIdea=?";
 	private static final String DELETE = "DELETE FROM idea WHERE idIdea=?";
 	private static final String ALL = "SELECT * from idea";
 	private static final String IDEABYID = "SELECT * from idea where idIdea=?";
