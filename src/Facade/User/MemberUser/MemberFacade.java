@@ -8,6 +8,13 @@ import DAO.User.Member.MemberDAO;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Lauren Unquera - Polytech Montpellier IG4
+ * @Description Cette Classe correspond à la façade qui gère les membres.
+ * Il aura une instance statique à partir de laquelle on pourra récupérer
+ * les membres présents dans l'application. Est en lien avec le DAO MemberDAO
+ * correspondant pour récupérer les données depuis la base.
+ */
 public class MemberFacade implements IMemberFacade{
 
     private List<Member> members;
@@ -50,7 +57,6 @@ public class MemberFacade implements IMemberFacade{
 
     public boolean addMember(Member member) {
         if(instance.getDao().save(member)){
-            //on ajouter la nouvelle idee à la liste
             instance.members.add(member);
             return true;
         }else {

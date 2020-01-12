@@ -33,6 +33,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * @author Lauren Unquera - Polytech Montpellier IG4
+ * @Description Cette Classe correspond au contrôleur qui gère la vue "AllRolesUI".
+ * Il va servir aux utilisateurs pour regarder l'ensemble des roles qui ont été
+ * créés sur l'application.
+ * Les membres pourront choisir un role pour leur projet dans les roles qui sont proposés par
+ * l'application
+ */
 public class AllRolesController implements Initializable {
 
     private Member member;
@@ -89,7 +97,12 @@ public class AllRolesController implements Initializable {
     }
 */
 
-
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Permet d'initialiser l'UI correspondant avec
+     * tous les roles existantes dans l'application.
+     * Utilise la classe Cell propre à AllRolesController
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         if(rolesList != null){
@@ -106,6 +119,11 @@ public class AllRolesController implements Initializable {
 
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Permet de valider le choix du role pour le membre.
+     * En cas d'erreur, le signifie avec un UIError.
+     */
     public void validation(ActionEvent actionEvent) {
         member.setRole(toManage);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
@@ -125,6 +143,11 @@ public class AllRolesController implements Initializable {
         }
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Permet d'annuler le choix du role pour le membre.
+     * En cas d'erreur, le signifie avec un UIError.
+     */
     public void refuse(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
         toHide.setVisible(false);
@@ -132,6 +155,12 @@ public class AllRolesController implements Initializable {
         toShow.setVisible(true);
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Permet de revenir sur la page précédente / sur la page correspondant
+     * à la vue du membre (ReadAMemberUI)
+     * @param actionEvent
+     */
     public void backToPage(ActionEvent actionEvent) {
         ReadAMemberUI user = new ReadAMemberUI(this.member);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
@@ -140,6 +169,11 @@ public class AllRolesController implements Initializable {
         box.getChildren().add(user.loadScene().getRoot());
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Permet de valider la suppression du role courrant de l'application.
+     * En cas d'erreur, le signifie avec un UIError.
+     */
     public void validationD(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(!(roleFacade.deleteRole(toManage))){
@@ -158,6 +192,11 @@ public class AllRolesController implements Initializable {
         }
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Permet d'annluer la suppression du role courrant de l'application.
+     * En cas d'erreur, le signifie avec un UIError.
+     */
     public void refuseD(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm2");
         toHide.setVisible(false);
@@ -166,6 +205,13 @@ public class AllRolesController implements Initializable {
     }
 
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Classe propre à AllRoles qui servira à donner
+     * la liste des roles existants dans la base. Chaque role
+     * correspondra à une cellule dans laquelle on pourra trouver
+     * les boutons nécessaires à la gestion de ces roles.
+     */
     static class Cell extends ListCell<Role> {
         Role role;
         HBox hbox = new HBox();
@@ -205,10 +251,22 @@ public class AllRolesController implements Initializable {
                 }
             });
         }
+
+        /**
+         * @author Lauren Unquera - Polytech Montpellier IG4
+         * @Description Permet de mieux gérer les actions liées à l'appuie du bouton
+         * addRole (qui permet d'associer le role au membre)
+         */
         public void cellAddRole (AbstractRole role){
             Role newRole = new Role(role.getId(), role.getName());
             toManage = newRole;
         }
+
+        /**
+         * @author Lauren Unquera - Polytech Montpellier IG4
+         * @Description Permet de donner des information sur les roles
+         * des cellules, ici le nom des roles.
+         */
         public void updateItem(Role name, boolean empty){
             super.updateItem(name,empty);
             setText(null);
@@ -223,6 +281,10 @@ public class AllRolesController implements Initializable {
 
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Redirige l'utilisateur sur la page de création de role.
+     */
     public void CreateRole(ActionEvent actionEvent) {
         AddRoleUI role = new AddRoleUI(this.member);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");

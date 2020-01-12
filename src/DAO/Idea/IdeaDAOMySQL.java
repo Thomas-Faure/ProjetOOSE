@@ -14,7 +14,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * @author Lauren Unquera - Polytech Montpellier IG4
+ * @Description Cette Classe correspond au DAO qui gère les idées.
+ * IL est en lien avec la base de données sur laquelle il fait des
+ * requetes pour récupérer des données.
+ */
 public class IdeaDAOMySQL implements IdeaDAO {
 
 	private static final String INSERT = "INSERT INTO idea (name, description, subject, creator, state) VALUES (?, ?, ?, ?,?)";
@@ -27,6 +32,14 @@ public class IdeaDAOMySQL implements IdeaDAO {
 	
 	}
 
+	/**
+	 * @author Lauren Unquera - Polytech Montpellier IG4
+	 * @Description Fonction non utile pour cette version de l'application
+	 * Cette fonction premet de créer et retourner
+	 * une idée par rapport à une idée de la base de donnée
+	 * dont l'id est passé en paramètre.
+	 * @Param id : L'id de l'idée qu'on veut récuperer de la base de donnée
+	 */
 	@Override
 	public Idea createIdeaById(int id) {
 		 Idea idea=null;
@@ -52,6 +65,12 @@ public class IdeaDAOMySQL implements IdeaDAO {
 		    return idea;
 	}
 
+	/**
+	 * @author Lauren Unquera - Polytech Montpellier IG4
+	 * @Description Permet d'insérer dans la base de donnée une idée passée
+	 * en paramètre
+	 * @Param idea : AbstractIdea - idée qu'on veut insérer
+	 */
 	@Override
 	public boolean save(AbstractIdea idea) {
 		try {
@@ -73,6 +92,12 @@ public class IdeaDAOMySQL implements IdeaDAO {
 		}
 	}
 
+	/**
+	 * @author Lauren Unquera - Polytech Montpellier IG4
+	 * @Description Permet de modifier dans la base de donnée une idée passée
+	 * en paramètre
+	 * @Param idea : Idée qu'on veut modifier
+	 */
 	@Override
 	public boolean update(AbstractIdea idea) {
 
@@ -95,6 +120,12 @@ public class IdeaDAOMySQL implements IdeaDAO {
 		}
 	}
 
+	/**
+	 * @author Lauren Unquera - Polytech Montpellier IG4
+	 * @Description Permet de supprimer dans la base de donnée une idée dont
+	 * l'id est passé en paramètree
+	 * @Param id : ID de l'idée qu'on veut supprimer
+	 */
 	@Override
 	public boolean delete(int id) {
 
@@ -111,6 +142,11 @@ public class IdeaDAOMySQL implements IdeaDAO {
 		}
 	}
 
+	/**
+	 * @author Lauren Unquera - Polytech Montpellier IG4
+	 * @Description Retourne la liste de toutes les idées présentes dans
+	 * la base de données
+	 */
 	@Override
 	public List<AbstractIdea> getAllIdeas() {
 
@@ -148,6 +184,10 @@ public class IdeaDAOMySQL implements IdeaDAO {
 		return list;
 	}
 
+	/**
+	 * @author Lauren Unquera - Polytech Montpellier IG4
+	 * @Description Retourne l'idée dont l'id est passé en paramètre
+	 */
 	@Override
 	public AbstractIdea getIdeaById(int id) {
 		Idea idea = null;
@@ -177,8 +217,13 @@ public class IdeaDAOMySQL implements IdeaDAO {
 		return idea;
 	}
 
-	//Peut être non nécessaire
-	@Override
+	/**
+	 * @author Lauren Unquera - Polytech Montpellier IG4
+	 * @Description Fonction non nécessaire et non implémentée
+	 * dans cette version de l'application
+	 * mais pourra par exemple trouver son utilité pour une fonction de recherche
+	 * dans une future version
+	 */
 	public List<AbstractIdea> getIdeaByName(String name) {
 		return null;
 	}

@@ -26,5 +26,10 @@
         <Text layoutX="100" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject :" />
         <Text layoutX="100" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description :" />
         <Button fx:id="backButton" layoutX="245.0" layoutY="500.0" mnemonicParsing="false" onAction="#backToIdeaPage" prefHeight="50.0" prefWidth="157.0" text="Back" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="245.0" AnchorPane.rightAnchor="366.0" AnchorPane.topAnchor="500.0" />
+      <Text fx:id="etat" fill="#dd0e0e" layoutX="468.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Etat : non validée" wrappingWidth="258.30859375">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>

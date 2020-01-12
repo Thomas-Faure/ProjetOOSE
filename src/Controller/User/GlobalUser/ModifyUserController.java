@@ -24,6 +24,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
+/**
+ * @author Lauren Unquera - Polytech Montpellier IG4
+ * @Description Cette Classe correspond au contrôleur qui gère la vue "ModifyUserUI".
+ * Il va servir aux utilisateurs (admins) pour modifier l'utilisateur courrant qui a été
+ * passé en paramètre.
+ */
 public class ModifyUserController implements Initializable {
 
     private IGlobalUserFacade userFacade = GlobalUserFacade.getInstance();
@@ -59,6 +65,12 @@ public class ModifyUserController implements Initializable {
         toModify = user;
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Permet de revenir sur la page précédente / sur la page correspondant
+     * à la gestion de l'ensemble des utilisateurs (AllUsersUI)
+     * @param actionEvent
+     */
     public void backToUser(ActionEvent actionEvent) {
         AllUsersUI user = new AllUsersUI();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
@@ -67,22 +79,34 @@ public class ModifyUserController implements Initializable {
         box.getChildren().add(user.loadScene().getRoot());
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Cette fonction permet d'appliquer les modifications qui avaient été
+     * entrées dans le formulaire pour la modification de l'utilisateur courrant,
+     * une nouvelle UI apparaitra pour demander si l'utilisateur (admin) veut valider ou non ces modifications
+     * Une fois les modifications effectuées, renvoie l'utilisateur (admin) à la page précédente / la page
+     * correspondant à la gestion de l'ensemble des utilisateurs
+     * (AllUsersUI). Dans le cas contraire elle le signifie avec une UIError.
+     * @param actionEvent
+     */
     @FXML
     void modifyUser(ActionEvent actionEvent){
-        String hashtext="";
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-1");
-            byte[] messageDigest = md.digest(password.getText().getBytes());
-            BigInteger no = new BigInteger(1, messageDigest);
-            hashtext = no.toString(16);
-            while (hashtext.length() < 32) {
-                hashtext = "0" + hashtext;
+        if (! password.getText().isEmpty()){
+            String hashtext="";
+            try {
+                MessageDigest md = MessageDigest.getInstance("SHA-1");
+                byte[] messageDigest = md.digest(password.getText().getBytes());
+                BigInteger no = new BigInteger(1, messageDigest);
+                hashtext = no.toString(16);
+                while (hashtext.length() < 32) {
+                    hashtext = "0" + hashtext;
+                }
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
             }
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            toModify.setPassword(hashtext);
         }
         toModify.setUsername(username.getText());
-        toModify.setPassword(hashtext);
         toModify.setFirstName(firstName.getText());
         toModify.setLastName(lastName.getText());
         toModify.setCity(city.getText());
@@ -107,10 +131,16 @@ public class ModifyUserController implements Initializable {
                 box.getChildren().remove(1);
         }
     }
+
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Cette fonction permet d'initialiser la page en entrant
+     * dans les champs correspondants les valeurs des attributs de l'utilisateur
+     * qu'on veut modifier
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         username.setText(toModify.getUsername());
-        password.setText(toModify.getPassword());
         firstName.setText(toModify.getFirstName());
         lastName.setText(toModify.getLastName());
         city.setText(toModify.getCity());
@@ -122,6 +152,10 @@ public class ModifyUserController implements Initializable {
         }
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Cette fonction permet de valider la modification
+     */
     public void validation(ActionEvent actionEvent) {
         if(GlobalUserFacade.getInstance().modifyUser(toModify)){
             AllUsersUI user = new AllUsersUI();
@@ -138,6 +172,10 @@ public class ModifyUserController implements Initializable {
         }
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Cette fonction permet d'annuler la modification
+     */
     public void refuse(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
         toHide.setVisible(false);

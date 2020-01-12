@@ -7,7 +7,6 @@ import Main.App;
 import UI.Login.UILogin;
 import UI.UIError;
 import UI.UIGlobal;
-import UI.User.Global.AllUsersUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -20,6 +19,11 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * @author Lauren Unquera - Polytech Montpellier IG4
+ * @Description Cette Classe correspond au contrôleur qui gère la vue "CreateAccountUI".
+ * Il va servir aux utilisateurs (admins) pour créer/ajouter un utilisateur.
+ */
 public class CreateAccountController {
 
         @FXML
@@ -45,15 +49,26 @@ public class CreateAccountController {
         @FXML
         private Button backButton;
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Cette fonction est appelée lorsque l'utilisateur appuie
+     * sur le bouton "Back".
+     * Elle permet de rediriger l'utilisateur sur la page de la "UILogin" qui
+     * était la page précédente avant qu'il arrive sur celle-ci ("CreateAccountUI").
+     */
         @FXML
         public void backToUser(ActionEvent actionEvent) {
-            AllUsersUI user = new AllUsersUI();
-            HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-            if(box.getChildren().size() >1 )
-                box.getChildren().remove(1);
-            box.getChildren().add(user.loadScene().getRoot());
+            UILogin login = new UILogin();
+            App.setInstanceScene(login.loadScene());
         }
 
+        /**
+         * @author Lauren Unquera - Polytech Montpellier IG4
+         * @Description Cette fonction est appelée lorsque l'utilisateur appuie
+         * sur le bouton "Create account".
+         * Elle permet donc de créer un compte d'utilisateur.
+         * Une fois executée, elle redirigera l'utilisateur sur la page de la "UILogin".
+         */
         public void addNewUser(ActionEvent actionEvent) {
             String hashtext="";
             try {

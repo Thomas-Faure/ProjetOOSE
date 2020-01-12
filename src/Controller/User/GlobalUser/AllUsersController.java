@@ -32,6 +32,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * @author Lauren Unquera - Polytech Montpellier IG4
+ * @Description Cette Classe correspond au contrôleur qui gère la vue "AllUsersUI".
+ * Il va servir aux utilisateurs pour regarder l'ensemble des utilisateurs qui ont été
+ * créées et modifiées sur l'application.
+ * Les utilisateurs admin pourront créer, ajouter ou modifier un utilisateur
+ * partir de cette interfce.
+ */
 public class AllUsersController implements Initializable {
 
     int id;
@@ -86,6 +94,12 @@ public class AllUsersController implements Initializable {
 
      */
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Permet d'initialiser la page avec
+     * tous les utilisateurs existants dans l'application.
+     * Utilise la classe Cell propre à AllUsersController
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         if(usersList != null){
@@ -102,6 +116,11 @@ public class AllUsersController implements Initializable {
 
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Permet de valider la suppression courrante d'un utilisateur.
+     * En cas d'erreur, le signifie avec un UIError.
+     */
     public void validation(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(!(userFacade.deleteUser(toManage))){
@@ -120,6 +139,11 @@ public class AllUsersController implements Initializable {
         }
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Permet d'annuler la suppression courrante d'un utilisateur.
+     * En cas d'erreur, le signifie avec un UIError.
+     */
     public void refuse(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
         toHide.setVisible(false);
@@ -127,8 +151,17 @@ public class AllUsersController implements Initializable {
         toShow.setVisible(true);
     }
 
-
-
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Classe propre à AllUsers qui servira à donner
+     * la liste des utilisateurs existants dans la base. Chaque utilisateur
+     * correspondra à une cellule dans laquelle on pourra trouver
+     * les boutons nécessaires à la gestion de ces utilisateurs.
+     * Ces boutons dependent de si l'utilisateur de la session est un
+     * simple utilisateur sans droit (il n'aura accès qu'aux noms et prénoms des
+     * utilisateurs lisibles dans les cellules), ou si c'est un admin (il pourra donc
+     * modifier, ajouter, ou supprimer un utilisateur)
+     */
     static class Cell extends ListCell<User> {
         User user;
         HBox hbox = new HBox();
@@ -189,6 +222,12 @@ public class AllUsersController implements Initializable {
 
 
         }
+
+        /**
+         * @author Lauren Unquera - Polytech Montpellier IG4
+         * @Description Permet de donner des information sur les utilisateurs
+         * des cellules, ici le nom et prénom des utilisateurs.
+         */
         public void updateItem(User name, boolean empty){
             super.updateItem(name,empty);
             setText(null);
@@ -203,6 +242,11 @@ public class AllUsersController implements Initializable {
 
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Redirige l'utilisateur sur la page de création d'un
+     * utilisateur.
+     */
     public void addNewUser(ActionEvent actionEvent) {
         AddUserUI user = new AddUserUI();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");

@@ -19,7 +19,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -30,6 +33,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * @author Lauren Unquera - Polytech Montpellier IG4
+ * @Description Cette Classe correspond au contrôleur qui gère la vue "AddMemberUI".
+ * Il va servir aux utilisateurs (admins) pour créer/ajouter un membre au projet
+ * qui a été donné en paramètre.
+ */
 public class AddMemberController implements Initializable {
 
     private AbstractProject project;
@@ -84,17 +93,33 @@ public class AddMemberController implements Initializable {
     }
 
      */
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Sous fonction utilisée pour regarder si un utilisateur
+     * passé en paramètre de la fonction est un membre du projet (qui a été
+     * passé en paramètre lors de la création du controller)
+     */
     public boolean estMembre(AbstractUser user){
 
         for (int i = 0; i < memberFacade.getListMembers().size(); i++){
-            if ( memberFacade.getListMembers().get(i).getId() == user.getId()){
-                return true;
+            if (memberFacade.getListMembers().get(i).getId() == user.getId()) {
+                if ( (memberFacade.getListMembers().get(i).getProject().getId() == this.project.getId())){
+                    return true;
+                }
             }
+
         }
         return false;
 
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Permet d'initialiser la page avec
+     * tous les utilisateurs existants dans l'application. Ils pourront
+     * par la suite être ajoutés au projet et devenir membre ou non
+     * Utilise la classe Cell propre à AddMemberController
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         if(usersList != null){
@@ -116,6 +141,11 @@ public class AddMemberController implements Initializable {
 
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Permet de valider l'ajout courrant d'un membre au projet.
+     * En cas d'erreur, le signifie avec un UIError.
+     */
     public void validation(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(!(memberFacade.addMember(toManage))){
@@ -138,6 +168,11 @@ public class AddMemberController implements Initializable {
         }
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Permet d'annuler l'ajout courrant d'un membre au projet.
+     * En cas d'erreur, le signifie avec un UIError.
+     */
     public void refuse(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
         toHide.setVisible(false);
@@ -145,6 +180,13 @@ public class AddMemberController implements Initializable {
         toShow.setVisible(true);
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Cette fonction est appelée lorsque l'utilisateur appuie
+     * sur le bouton "Back".
+     * Elle permet de rediriger l'utilisateur sur la page de la "AllMembersUI" qui
+     * était la page précédente avant qu'il arrive sur celle-ci ("AddMemberUI").
+     */
     public void backToPage(ActionEvent actionEvent) {
         AllMembersUI user = new AllMembersUI(this.project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
@@ -154,6 +196,14 @@ public class AddMemberController implements Initializable {
     }
 
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Classe propre à AddMemberController qui servira à donner
+     * la liste des utilisateurs existants dans la base. Chaque utilisateur
+     * correspondra à une cellule dans laquelle on pourra trouver
+     * les boutons nécessaires à la gestion. Ainsi les utilisateurs
+     * de l'application existants peuvent être ajoutés en tant que membre du projet.
+     */
     public static class Cell extends ListCell<User> {
         AbstractProject cellProject;
         User user;
@@ -184,12 +234,26 @@ public class AddMemberController implements Initializable {
                 }
             });
         }
+
+        /**
+         * @author Lauren Unquera - Polytech Montpellier IG4
+         * @Description Fonction associée à l'appuie du boutton "add" de la cellule.
+         * Permet de créer un membre à partir des informations de l'utilisateur
+         * de cette cellule. Transmet ce membre à l'attribut "toManage" du controller
+         * pour pouvoir l'ajouter lors de la validation.
+         */
         public void cellAddMember (User user){
             Member newMember = new Member(user.getId(), user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(),
                     user.getCity(), user.getPhoneNumber(), user.getEmail(), user.getPosition(), user.isAdmin());
             newMember.setProject(this.cellProject);
             toManage = newMember;
         }
+
+        /**
+         * @author Lauren Unquera - Polytech Montpellier IG4
+         * @Description Permet de donner des information sur les utilisateurs
+         * des cellules, ici le nom et prénom des utilisateurs.
+         */
         public void updateItem(User name, boolean empty){
             super.updateItem(name,empty);
             setText(null);

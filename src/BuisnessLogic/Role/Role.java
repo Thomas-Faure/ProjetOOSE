@@ -1,5 +1,11 @@
 package BuisnessLogic.Role;
 
+/**
+ * @author Lauren Unquera - Polytech Montpellier IG4
+ * @Description Cette Classe correspond aux roles de projet qui
+ * existeront dans notre application. Les membres n'auront plus qu'à
+ * être associés à 1 role parmis ceux existant
+ */
 public class Role extends AbstractRole{
 
     private String roleName;

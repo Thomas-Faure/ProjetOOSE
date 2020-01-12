@@ -19,6 +19,11 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * @author Lauren Unquera - Polytech Montpellier IG4
+ * @Description Cette Classe correspond au contrôleur qui gère la vue "AddUserUI".
+ * Il va servir aux utilisateurs (admins) pour créer/ajouter un utilisateur.
+ */
 public class AddUserController {
 
     @FXML
@@ -44,6 +49,13 @@ public class AddUserController {
     @FXML
     private Button backButton;
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Cette fonction est appelée lorsque l'utilisateur appuie
+     * sur le bouton "Back".
+     * Elle permet de rediriger l'utilisateur sur la page de la "AllUsersUI" qui
+     * était la page précédente avant qu'il arrive sur celle-ci ("AddUserUI").
+     */
     @FXML
     public void backToUser(ActionEvent actionEvent) {
         AllUsersUI user = new AllUsersUI();
@@ -53,6 +65,13 @@ public class AddUserController {
         box.getChildren().add(user.loadScene().getRoot());
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Cette fonction est appelée lorsque l'utilisateur appuie
+     * sur le bouton "Add User".
+     * Elle permet donc de créer un compte d'utilisateur.
+     * Une fois executée, elle redirigera l'utilisateur sur la page de la "AllUsersUI".
+     */
     public void addNewUser(ActionEvent actionEvent) {
         String hashtext="";
         try {

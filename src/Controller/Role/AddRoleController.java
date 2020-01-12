@@ -13,6 +13,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
+/**
+ * @author Lauren Unquera - Polytech Montpellier IG4
+ * @Description Cette Classe correspond au contrôleur qui gère la vue "AddRoleUI".
+ * Il va servir aux utilisateurs pour créer/ajouter un role.
+ */
 public class AddRoleController {
 
     private Member member;
@@ -25,6 +30,13 @@ public class AddRoleController {
         this.member = newMember;
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Cette fonction est appelée lorsque l'utilisateur appuie
+     * sur le bouton "Create Role".
+     * Elle permet donc de créer un role.
+     * Une fois executée, elle redirigera l'utilisateur sur la page de la "AllRolesUI".
+     */
     @FXML
     void addNewRole(ActionEvent actionEvent){
         AbstractRole role = new Role(0, roleName.getText());
@@ -46,17 +58,15 @@ public class AddRoleController {
 
         }
     }
+
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Cette fonction est appelée lorsque l'utilisateur appuie
+     * sur le bouton "Back".
+     * Elle permet de rediriger l'utilisateur sur la page de la "AllRolesUI" qui
+     * était la page précédente avant qu'il arrive sur celle-ci ("AddRoleUI").
+     */
     @FXML
-    void backToProjetPage(ActionEvent actionEvent){
-        /*UITaskManagement task = new UITaskManagement();
-        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-        if(box.getChildren().size() >1 )
-            box.getChildren().remove(1);
-        box.getChildren().add(task.loadScene().getRoot());
-
-         */
-    }
-
     public void backToRole(ActionEvent actionEvent) {
         AllRolesUI roleui = new AllRolesUI(this.member);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
@@ -64,14 +74,4 @@ public class AddRoleController {
             box.getChildren().remove(1);
         box.getChildren().add(roleui.loadScene().getRoot());
     }
-/*
-    @FXML
-    void addTaskPage(ActionEvent actionEvent) {
-        UIAddTask addTask = new UIAddTask();
-        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-
-        box.getChildren().remove(1);
-        box.getChildren().add(addTask.loadScene().getRoot());
-    }
- */
 }

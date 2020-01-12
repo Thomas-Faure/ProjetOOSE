@@ -33,32 +33,18 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * @author Lauren Unquera - Polytech Montpellier IG4
+ * @Description Cette Classe correspond au contrôleur qui gère la vue "IdeaBoxUI".
+ * Il va servir aux utilisateurs pour regarder l'ensemble des idées qui ont été
+ * créées et modifiées sur l'application.
+ * Les utilisateurs admin pourront valider, refuser ou modifier une idée à
+ * partir de cette interfce.
+ */
 public class IdeaBoxController implements Initializable {
-
-    int id;
-/*
-    @FXML
-    private TextField name;
-    @FXML
-    private TextField subject;
-    @FXML
-    private TextField description;*/
 
     public IdeaBoxController(){
     }
-    public IdeaBoxController(int id){
-        this.id=id;
-    }
-
-    @FXML
-    public void backToIdeaPage(ActionEvent actionEvent) {
-        IdeaBoxUI idea = new IdeaBoxUI();
-        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-        if(box.getChildren().size() >1 )
-            box.getChildren().remove(1);
-        box.getChildren().add(idea.loadScene().getRoot());
-    }
-
 
     @FXML
     private ListView<AbstractIdea> ideasList ;
@@ -69,6 +55,24 @@ public class IdeaBoxController implements Initializable {
 
     //permet de garder la liste de base
     private static ObservableList<AbstractIdea> listViewTemp;
+
+
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Cette fonction ne trouve pas son utilité dans cette version de
+     * l'application mais elle peut être utilisée ou modifiée plus tard si l'on veut pourvoir
+     * revenir sur une certaine page
+     * @param actionEvent
+     */
+    @FXML
+    public void backToIdeaPage(ActionEvent actionEvent) {
+        IdeaBoxUI idea = new IdeaBoxUI();
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(idea.loadScene().getRoot());
+    }
+
     /*
     @FXML
     public void searchBar(KeyEvent keyEvent) {
@@ -103,6 +107,12 @@ public class IdeaBoxController implements Initializable {
 
      */
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Permet d'initialiser la boite à idée avec
+     * toutes les idées existantes dans l'application.
+     * Utilise la classe Cell propre à Idea Box
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         if(ideasList != null){
@@ -119,6 +129,11 @@ public class IdeaBoxController implements Initializable {
 
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Permet de valider la suppression courrante d'une idée.
+     * En cas d'erreur, le signifie avec un UIError.
+     */
     public void validation(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(!(ideaFacade.deleteIdea(toManage))){
@@ -137,6 +152,11 @@ public class IdeaBoxController implements Initializable {
         }
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Permet d'annuler la suppression courrante d'une idée.
+     * En cas d'erreur, le signifie avec un UIError.
+     */
     public void refuse(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
         toHide.setVisible(false);
@@ -145,14 +165,25 @@ public class IdeaBoxController implements Initializable {
     }
 
 
-
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Classe propre à IdeaBox qui servira à donner
+     * la liste des idées existantes dans la base. Chaque idée
+     * correspondra à une cellule dans laquelle on pourra trouver
+     * les boutons nécessaires à la gestion de ces idées.
+     * Ces boutons dependent de si l'utilisateur de la session est un
+     * simple utilisateur sans droit (il aura donc accès seulement à la
+     * lecture des idées), ou si c'est un admin (il pourra donc refuse,
+     * validate, read et modify n'importe quelle idée)
+     */
     static class Cell extends ListCell<AbstractIdea> {
         AbstractIdea idea;
         HBox hbox = new HBox();
         Image image = new Image("megaphone.png");
         ImageView img = new ImageView(image);
         Button btnR = new Button("Read");
-        Button btnD = new Button("Delete");
+        Button btnD = new Button("Refuse");
+        Button btnV = new Button("Validate");
         Button btnU = new Button("Modify");
         Label label = new Label("");
         Pane pane = new Pane();
@@ -164,7 +195,7 @@ public class IdeaBoxController implements Initializable {
             img.setFitWidth(20);
 
             if (SessionFacade.getInstance().getUser().isAdmin()) {
-                hbox.getChildren().addAll(img, label, pane, btnR, btnD, btnU);
+                hbox.getChildren().addAll(img, label, pane, btnR, btnV, btnD, btnU);
             }
             else {
                 hbox.getChildren().addAll(img, label, pane, btnR);
@@ -190,6 +221,17 @@ public class IdeaBoxController implements Initializable {
 
                 }
             });
+            btnV.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    idea.setState("Validated");
+                    IdeaFacade.getInstance().modifyIdea(idea);
+                    IdeaBoxUI updatePage = new IdeaBoxUI();
+                    HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+                    box.getChildren().remove(1);
+                    box.getChildren().add(updatePage.loadScene().getRoot());
+                }
+            });
             btnR.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
@@ -202,9 +244,13 @@ public class IdeaBoxController implements Initializable {
 
                 }
             });
-
-
         }
+
+        /**
+         * @author Lauren Unquera - Polytech Montpellier IG4
+         * @Description Permet de donner des information sur les idées
+         * des cellules, ici le nom des idée.
+         */
         public void updateItem(AbstractIdea name, boolean empty){
             super.updateItem(name,empty);
             setText(null);
@@ -219,6 +265,10 @@ public class IdeaBoxController implements Initializable {
 
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Redirige l'utilisateur sur la page de création d'idée.
+     */
     public void addNewIdea(ActionEvent actionEvent) {
         AddIdeaUI idea = new AddIdeaUI();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");

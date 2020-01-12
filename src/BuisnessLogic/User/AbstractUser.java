@@ -1,5 +1,12 @@
 package BuisnessLogic.User;
 
+/**
+ * @author Lauren Unquera - Polytech Montpellier IG4
+ * @Description Cette Interface correspond aux ensembles des différents types
+ * de User  dans notre application. Pour l'instant il existe les "member"
+ *  * qui correspondent aux membres associés à un projet; et les "globalUser"
+ *  * qui correspondent à l'ensemble des utilisateurs de l'application.
+ */
 public abstract class AbstractUser {
 
     public abstract int getId();

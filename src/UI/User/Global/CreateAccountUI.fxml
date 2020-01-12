@@ -29,7 +29,7 @@
         <TextField fx:id="city" layoutX="341.0" layoutY="329.0" prefHeight="24.0" prefWidth="400.0" />
         <TextField fx:id="position" layoutX="341.0" layoutY="359.0" prefHeight="24.0" prefWidth="400.0" />
         <TextField fx:id="phoneNumber" layoutX="341.0" layoutY="396.0" prefHeight="24.0" prefWidth="400.0" />
-        <CheckBox fx:id="isAdmin" layoutX="460.0" layoutY="455.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="84.0" text="Is Admin" />
+        <CheckBox fx:id="isAdmin" layoutX="460.0" layoutY="455.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="158.0" text="Is Admin" />
         <Text layoutX="241.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username :" />
         <Text layoutX="243.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password :" />
         <Text layoutX="241.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name :" />

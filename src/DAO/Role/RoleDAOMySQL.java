@@ -10,6 +10,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Lauren Unquera - Polytech Montpellier IG4
+ * @Description Cette Classe correspond au DAO qui gère les roles.
+ * IL est en lien avec la base de données sur laquelle il fait des
+ * requetes pour récupérer des données.
+ */
 public class RoleDAOMySQL implements RoleDAO {
 
     private static final String INSERT = "INSERT INTO role (name) VALUES (?)";
@@ -22,6 +28,14 @@ public class RoleDAOMySQL implements RoleDAO {
 
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Fonction non utile pour cette version de l'application
+     * Cette fonction premet de créer et retourner
+     * un role par rapport à une role de la base de donnée
+     * dont l'id est passé en paramètre.
+     * @Param id : L'id du role qu'on veut récuperer de la base de donnée
+     */
     public Role createRoleById(int id) {
         Role role=null;
         try {
@@ -43,6 +57,12 @@ public class RoleDAOMySQL implements RoleDAO {
         return role;
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Permet d'insérer dans la base de donnée un role passée
+     * en paramètre
+     * @Param role : AbstractRole - role qu'on veut insérer
+     */
     public boolean save(AbstractRole role) {
         try {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(INSERT);
@@ -58,6 +78,12 @@ public class RoleDAOMySQL implements RoleDAO {
         }
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Permet de modifier dans la base de donnée un role passé
+     * en paramètre
+     * @Param role : Role qu'on veut modifier
+     */
     public boolean update(AbstractRole role) {
 
         try {
@@ -75,6 +101,12 @@ public class RoleDAOMySQL implements RoleDAO {
         }
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Permet de supprimer dans la base de donnée un role dont
+     * l'id est passé en paramètree
+     * @Param id : ID du role qu'on veut supprimer
+     */
     public boolean delete(int id) {
 
         try {
@@ -90,6 +122,11 @@ public class RoleDAOMySQL implements RoleDAO {
         }
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Retourne la liste de tous les roles présents dans
+     * la base de données
+     */
     public List<AbstractRole> getAllRoles() {
 
         List<AbstractRole> list = new ArrayList<>();
@@ -113,6 +150,10 @@ public class RoleDAOMySQL implements RoleDAO {
         return list;
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Retourne le role dont l'id est passé en paramètre
+     */
     public AbstractRole getRoleById(int id) {
         AbstractRole role = null;
         try {
@@ -132,7 +173,13 @@ public class RoleDAOMySQL implements RoleDAO {
         return role;
     }
 
-    //Peut être non nécessaire
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Fonction non nécessaire et non implémentée
+     * dans cette version de l'application
+     * mais pourra par exemple trouver son utilité pour une fonction de recherche
+     * dans une future version
+     */
     public List<AbstractRole> getRoleByName(String name) {
         return null;
     }

@@ -7,7 +7,6 @@ import Facade.SessionFacade;
 import Main.App;
 import UI.Login.UIForgottenPassword;
 import UI.User.Global.CreateAccountUI;
-import UI.Role.AllRolesUI;
 import UI.WelcomeUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -85,6 +84,12 @@ public class LoginController {
         }
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Cette fonction permet de rediriger l'utilisateur
+     * sur la page de création de compte
+     * @param actionEvent
+     */
     public void addUser(ActionEvent actionEvent) {
         CreateAccountUI user = new CreateAccountUI();
         App.setInstanceScene(user.loadScene());

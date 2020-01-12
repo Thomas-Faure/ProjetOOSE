@@ -25,7 +25,7 @@
         <TextField fx:id="phoneNumber" layoutX="217.0" layoutY="399.0" prefHeight="24.0" prefWidth="400.0" />
         <CheckBox fx:id="isAdmin" layoutX="336.0" layoutY="458.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="84.0" text="Is Admin" />
         <Text layoutX="117.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username :" />
-        <Text layoutX="119.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password :" />
+        <Text layoutX="119.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New password :" />
         <Text layoutX="117.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name :" />
         <Text layoutX="118.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name :" />
         <Text layoutX="116.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail :" />

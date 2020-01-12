@@ -32,18 +32,35 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * @author Lauren Unquera - Polytech Montpellier IG4
+ * @Description Cette Classe correspond au contrôleur qui gère la vue "AllMembersUI".
+ * Il va servir pour gerer l'ensemble des membres associées au projet passé en
+ * paramètre qui ont été  créées sur l'application.
+ * On va pouvoir ajouter, créer, voir/modifier un membre grâce à cette interface.
+ */
 public class AllMembersController implements Initializable {
 
     private AbstractProject project;
-/*
-    private static ObservableList<User> listViewTemp;
-    private ListView<User> membersList ;
-    private IMemberFacade memberFacade = MemberFacade.getInstance();
-    private static Member toManage;
-*/
+
+    @FXML
+    private ListView<Member> usersList ;
+    private IGlobalUserFacade userFacade = GlobalUserFacade.getInstance();
+    private IMemberFacade memberFacade;
+    private static Member mtoManage;
+    private static ObservableList<Member> listViewTemp;
+
     public AllMembersController (AbstractProject project){
+
         this.project = project;
+        memberFacade = MemberFacade.getInstance();
     }
+
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Redirige l'utilisateur sur la page de création d'un
+     * membre.
+     */
     public void addNewMember(ActionEvent actionEvent) {
         AddMemberUI member = new AddMemberUI(this.project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
@@ -52,17 +69,6 @@ public class AllMembersController implements Initializable {
         box.getChildren().add(member.loadScene().getRoot());
     }
 
-    @FXML
-    private ListView<Member> usersList ;
-
-    private IGlobalUserFacade userFacade = GlobalUserFacade.getInstance();
-    private IMemberFacade memberFacade = MemberFacade.getInstance();
-
-    //private static User toManage;
-    private static Member mtoManage;
-
-    //permet de garder la liste de base
-    private static ObservableList<Member> listViewTemp;
     /*
     @FXML
     public void searchBar(KeyEvent keyEvent) {
@@ -96,15 +102,31 @@ public class AllMembersController implements Initializable {
     }
 
      */
+
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Sous fonction utilisée pour regarder si un utilisateur
+     * passé en paramètre de la fonction est un membre du projet (qui a été
+     * passé en paramètre lors de la création du controller)
+     */
     public boolean estMembreProjet (Member membre){
-        if (membre.getProject().getId() == this.project.getId()){
-            return true;
+        for (int i = 0; i < memberFacade.getListMembers().size(); i++){
+            if (memberFacade.getListMembers().get(i).getId() == membre.getId()) {
+                if ( (memberFacade.getListMembers().get(i).getProject().getId() == this.project.getId())){
+                    return true;
+                }
+            }
+
         }
-        else {
-            return false;
-        }
+        return false;
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Permet d'initialiser la page avec
+     * tous les membres du projet associé existants dans l'application.
+     * Utilise la classe Cell propre à AllMembersController
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         if(usersList != null){
@@ -125,6 +147,11 @@ public class AllMembersController implements Initializable {
 
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Permet de valider la suppression courrante d'un membre du projet.
+     * En cas d'erreur, le signifie avec un UIError.
+     */
     public void validation(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(!(memberFacade.deleteMember(mtoManage))){
@@ -147,6 +174,11 @@ public class AllMembersController implements Initializable {
         }
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Permet d'annuler la suppression courrante d'un membre du projet.
+     * En cas d'erreur, le signifie avec un UIError.
+     */
     public void refuse(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
         toHide.setVisible(false);
@@ -154,6 +186,13 @@ public class AllMembersController implements Initializable {
         toShow.setVisible(true);
     }
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Cette fonction est appelée lorsque l'utilisateur appuie
+     * sur le bouton "Back".
+     * Elle permet de rediriger l'utilisateur sur la page de la "ReadProjectUI" qui
+     * était la page précédente avant qu'il arrive sur celle-ci ("AllMembersUI").
+     */
     public void backToPage(ActionEvent actionEvent) {
         ReadProjectUI user = new ReadProjectUI(this.project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
@@ -163,6 +202,13 @@ public class AllMembersController implements Initializable {
     }
 
 
+    /**
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @Description Classe propre à AddMemberController qui servira à donner
+     * la liste des membres associés au projet. Chaque membre
+     * correspondra à une cellule dans laquelle on pourra trouver
+     * les boutons nécessaires à la gestion.
+     */
     static class Cell extends ListCell<Member> {
         Member user;
         AbstractProject cellProject;
@@ -207,9 +253,13 @@ public class AllMembersController implements Initializable {
 
                 }
             });
-
-
         }
+
+        /**
+         * @author Lauren Unquera - Polytech Montpellier IG4
+         * @Description Permet de donner des information sur les membres
+         * des cellules, ici le nom et prénom des utilisateurs.
+         */
         public void updateItem(Member name, boolean empty){
             super.updateItem(name,empty);
             setText(null);
