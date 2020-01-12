@@ -9,6 +9,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author Guillaume Tessier
+ */
 public class RessourceDAOMySQL implements RessourceDAO {
 
     private static final String INSERT = "INSERT INTO resource (path, filename, idProject) VALUES (?, ?, ?)";
@@ -21,13 +25,13 @@ public class RessourceDAOMySQL implements RessourceDAO {
     }
 
     @Override
-    public boolean save(AbstractResource resource, int projectID) {
+    public boolean save(AbstractResource resource) {
         boolean success = false;
         try {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(INSERT);
             ps.setString(1, resource.getPath());
             ps.setString(2, resource.getFilename());
-            ps.setInt(3, projectID);
+            ps.setInt(3, resource.getIdProject());
             int i = ps.executeUpdate();
             ps.close();
             if (i > 0) {
@@ -86,7 +90,8 @@ public class RessourceDAOMySQL implements RessourceDAO {
                 newResource = new Resource(
                         rs.getInt("idResource"),
                         rs.getString("path"),
-                        rs.getString("filename"));
+                        rs.getString("filename"),
+                        rs.getInt("idProject"));
             }
             ps.close();
         } catch (SQLException e) {

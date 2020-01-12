@@ -81,8 +81,8 @@ public class ResourceController implements Initializable {
 
         dropboxPPM.uploadFile(path_file,dropboxpath_file);
 
-        AbstractResource resource = new Resource(dropboxpath_file,filename);
-        ResourceFacade.getInstance().addResource(resource,project.getId());
+        AbstractResource resource = new Resource(dropboxpath_file,filename,project.getId());
+        ResourceFacade.getInstance().addResource(resource);
 
         ResourceUI resourceUI = new ResourceUI(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
