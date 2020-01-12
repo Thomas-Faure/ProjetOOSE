@@ -5,7 +5,9 @@ package Controller.Announcement;
  */
 import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Announcement.Announcement;
+import BuisnessLogic.User.AbstractUser;
 import Facade.Announcement.AnnouncementFacade;
+import Facade.SessionFacade;
 import Main.App;
 import UI.Announcement.UIAddAnnouncement;
 import UI.Announcement.UIAnnouncementManagement;
@@ -139,6 +141,10 @@ public class AnnouncementController implements Initializable {
         Pane pane = new Pane();
         public Cell(){
             super();
+            AbstractUser user = SessionFacade.getInstance().getUser();
+            if(!user.isAdmin()){
+                btnD.setDisable(true);
+            }
             hbox.setSpacing(10);
             img.setFitHeight(20);
             img.setFitWidth(20);

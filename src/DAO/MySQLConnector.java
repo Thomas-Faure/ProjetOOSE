@@ -19,9 +19,9 @@ public class MySQLConnector {
     private static MySQLConnector instance= null;
     private MySQLConnector(){
         JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-        DB_URL = "jdbc:mysql://localhost:3308/ppm?useUnicode=yes&characterEncoding=UTF-8&useTimezone=true&serverTimezone=UTC";
-        USER = "root";
-        PASS = "";
+        DB_URL = "jdbc:mysql://mysql-thomasfaure05.alwaysdata.net:3306/thomasfaure05_projetoose?useUnicode=yes&characterEncoding=UTF-8&useTimezone=true&serverTimezone=UTC";
+        USER = "197687_oose";
+        PASS = "projetoose1";
         conn = null;
     }
 

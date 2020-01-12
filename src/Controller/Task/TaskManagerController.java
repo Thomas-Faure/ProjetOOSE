@@ -5,7 +5,10 @@ package Controller.Task;
  */
 import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Task.AbstractTask;
+import BuisnessLogic.User.AbstractUser;
+import BuisnessLogic.User.User;
 import Controller.IController;
+import Facade.SessionFacade;
 import Facade.Task.TaskFacade;
 import Main.App;
 import UI.Task.*;
@@ -154,9 +157,14 @@ public class TaskManagerController implements Initializable, IController {
         public Cell(UIGlobalWithController ui){
             super();
             this.ui=ui;
+            AbstractUser user = SessionFacade.getInstance().getUser();
+            if(!user.isAdmin()){
+                btnD.setDisable(true);
+            }
             hbox.setSpacing(10);
             img.setFitHeight(20);
             img.setFitWidth(20);
+
             hbox.getChildren().addAll(img,label,pane,btnR,btnM,btnD);
             btnD.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
