@@ -15,6 +15,10 @@ import javafx.scene.layout.HBox;
 
 import java.time.LocalDate;
 
+/**
+ *
+ * @author Guillaume Tessier
+ */
 public class AddSprintController {
 
     @FXML
@@ -34,8 +38,8 @@ public class AddSprintController {
     void saveSprint(ActionEvent actionEvent){
         LocalDate localDateBegin = inputBeginDate.getValue();
         LocalDate localDateEnd = inputEndDate.getValue();
-        AbstractSprint newSprint = new Sprint(inputSprintName.getText(),localDateBegin,localDateEnd);
-        SprintFacade.getInstance().addSprint(newSprint,project.getId());
+        AbstractSprint newSprint = new Sprint(inputSprintName.getText(),localDateBegin,localDateEnd,project.getId());
+        SprintFacade.getInstance().addSprint(newSprint);
 
         SprintUI sprintUI = new SprintUI(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");

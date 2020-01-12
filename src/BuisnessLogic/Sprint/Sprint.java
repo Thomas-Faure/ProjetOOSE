@@ -7,26 +7,48 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author Guillaume Tessier
+ */
 public class Sprint extends AbstractSprint {
     int sprintID;
     String sprintName;
     LocalDate beginDate;
     LocalDate endDate;
     List<AbstractTask> taskList;
+    int idProject;
 
-    public Sprint(String sprintName, LocalDate beginDate, LocalDate endDate) {
+    /**
+     * Constructor with 4 parameters
+     * @param sprintName
+     * @param beginDate
+     * @param endDate
+     * @param idProject
+     */
+    public Sprint(String sprintName, LocalDate beginDate, LocalDate endDate, int idProject) {
         this.sprintName = sprintName;
         this.beginDate = beginDate;
         this.endDate = endDate;
         this.taskList = new ArrayList<AbstractTask>();
+        this.idProject = idProject;
     }
 
-    public Sprint(int sprintID, String sprintName, LocalDate beginDate, LocalDate endDate) {
+    /**
+     * Constructor with 5 parameters
+     * @param sprintID
+     * @param sprintName
+     * @param beginDate
+     * @param endDate
+     * @param idProject
+     */
+    public Sprint(int sprintID, String sprintName, LocalDate beginDate, LocalDate endDate, int idProject) {
         this.sprintID = sprintID;
         this.sprintName = sprintName;
         this.beginDate = beginDate;
         this.endDate = endDate;
         this.taskList = new ArrayList<AbstractTask>();
+        this.idProject = idProject;
     }
 
     @Override
@@ -83,5 +105,10 @@ public class Sprint extends AbstractSprint {
     @Override
     public void setTaskList(List<AbstractTask> taskList) {
         this.taskList = taskList;
+    }
+
+    @Override
+    public int getIdProject() {
+        return this.idProject;
     }
 }

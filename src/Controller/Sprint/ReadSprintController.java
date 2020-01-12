@@ -34,6 +34,10 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ *
+ * @auhtor Guillaume Tessier
+ */
 public class ReadSprintController implements Initializable, IController {
 
 

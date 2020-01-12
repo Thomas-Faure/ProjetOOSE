@@ -10,6 +10,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author Guillaume Tessier
+ */
 public class SprintDAOMySQL implements SprintDAO {
 
     private static final String INSERT = "INSERT INTO sprint (sprintName, beginDate, endDate, idProject) VALUES (?, ?, ?, ?)";
@@ -17,18 +21,19 @@ public class SprintDAOMySQL implements SprintDAO {
     private static final String DELETE = "DELETE FROM sprint WHERE idSprint=?";
     private static final String SPRINTBYID = "SELECT * FROM sprint WHERE idSprint=?";
     private static final String SPRINTSBYPROJECT = "SELECT idSprint FROM sprint WHERE idProject=?";
+
     public SprintDAOMySQL(){
     }
 
     @Override
-    public boolean save(AbstractSprint sprint, int projectID) {
+    public boolean save(AbstractSprint sprint) {
         boolean success = false;
         try {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(INSERT);
             ps.setString(1, sprint.getSprintName());
             ps.setDate(2, java.sql.Date.valueOf(sprint.getBeginDate().plusDays(1)));
             ps.setDate(3, java.sql.Date.valueOf(sprint.getEndDate().plusDays(1)));
-            ps.setInt(4,projectID);
+            ps.setInt(4,sprint.getIdProject());
             int i = ps.executeUpdate();
             ps.close();
             if (i > 0) {
@@ -91,7 +96,8 @@ public class SprintDAOMySQL implements SprintDAO {
                         rs.getInt("idSprint"),
                         rs.getString("sprintName"),
                         rs.getDate("beginDate").toLocalDate(),
-                        rs.getDate("endDate").toLocalDate());
+                        rs.getDate("endDate").toLocalDate(),
+                        rs.getInt("idProject"));
             }
             ps.close();
         } catch (SQLException e) {

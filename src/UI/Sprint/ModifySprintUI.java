@@ -14,6 +14,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+/**
+ *
+ * @author Guillaume Tessier
+ */
 public class ModifySprintUI implements UIGlobal {
     AbstractProject project;
     AbstractSprint sprint;

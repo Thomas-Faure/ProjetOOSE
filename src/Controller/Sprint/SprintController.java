@@ -24,6 +24,10 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ *
+ * @author Guillaume Tessier
+ */
 public class SprintController implements Initializable {
 
     @FXML
@@ -36,9 +40,6 @@ public class SprintController implements Initializable {
 
     private AbstractProject project;
 
-
-    /*public static SprintController instance;
-    private ISprintFacade sFacade;*/
 
     public SprintController(AbstractProject project){
         this.project = project;
