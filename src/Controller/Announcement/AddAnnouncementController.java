@@ -1,6 +1,7 @@
 package Controller.Announcement;
 import BuisnessLogic.Announcement.AbstractAnnouncement;
 import BuisnessLogic.Announcement.Announcement;
+import Controller.IController;
 import Facade.Announcement.AnnouncementFacade;
 import Facade.SessionFacade;
 import Main.App;
@@ -18,7 +19,7 @@ import java.util.ResourceBundle;
  * Controller of the add announcement page
  * @author Thomas Faure
  */
-public class AddAnnouncementController{
+public class AddAnnouncementController {
 
     @FXML
     private TextField title;

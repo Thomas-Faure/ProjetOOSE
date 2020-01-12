@@ -20,6 +20,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -35,9 +36,30 @@ public class ModifyTaskController implements Initializable {
     @FXML
     private DatePicker modifyDeadline;
     @FXML
-    private TextField modifyPriority;
+    private ToggleGroup group;
     @FXML
     private ChoiceBox stateChoiceBox;
+
+    @FXML
+    private RadioButton b1;
+    @FXML
+    private RadioButton b2;
+    @FXML
+    private RadioButton b3;
+    @FXML
+    private RadioButton b4;
+    @FXML
+    private RadioButton b5;
+    @FXML
+    private RadioButton b6;
+    @FXML
+    private RadioButton b7;
+    @FXML
+    private RadioButton b8;
+    @FXML
+    private RadioButton b9;
+    @FXML
+    private RadioButton b10;
     private static AbstractTask toModify;
     private AbstractProject project;
 
@@ -71,10 +93,12 @@ public class ModifyTaskController implements Initializable {
      */
     @FXML
     void modifyATask(ActionEvent actionEvent){
+        RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
+        String toogleGroupValue = selectedRadioButton.getText();
         if(task != null) {
             task.setName(modifySubject.getText());
             task.setDescription(modifyDescription.getText());
-            task.setPriority(Integer.parseInt(modifyPriority.getText()));
+            task.setPriority(Integer.parseInt(toogleGroupValue));
             task.setDeadline(modifyDeadline.getValue());
             task.setProject(project);
             task.setState(TaskState.getStateByString((String) stateChoiceBox.getSelectionModel().getSelectedItem()));
@@ -92,16 +116,26 @@ public class ModifyTaskController implements Initializable {
      */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+
         for(TaskState st : TaskState.values()){
             stateChoiceBox.getItems().add(st.getStatetoString());
         }
 
         if(task != null) {
+            List<Toggle> list = group.getToggles();
+            RadioButton selectedRadioButton;
+            for(Toggle toggle : list){
+                RadioButton toggleButton = (RadioButton) toggle;
+                if(Integer.parseInt(toggleButton.getText())  == task.getPriority()){
+                    selectedRadioButton = toggleButton;
+                    selectedRadioButton.setSelected(true);
+                }
+            }
             stateChoiceBox.getSelectionModel().select(task.getStateString());
             modifySubject.setText(task.getName());
             modifyDescription.setText(task.getDescription());
             modifyDeadline.setValue(task.getDeadline());
-            modifyPriority.setText(task.getPriority() + "");
+
         }else{
             UIError error = new UIError(new UITaskManagement(project));
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
