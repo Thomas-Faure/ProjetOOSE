@@ -3,14 +3,13 @@ package Controller.Task;
  *
  * @author Thomas Faure
  */
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Task.AbstractTask;
-import BuisnessLogic.Task.Task;
-import BuisnessLogic.Task.TaskState;
-import BuisnessLogic.User.User;
+import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.Task.AbstractTask;
+import BusinessLogic.Task.Task;
+import BusinessLogic.Task.TaskState;
 import Facade.Task.TaskFacade;
 import Main.App;
-import UI.Task.UITaskManagement;
+import UI.Task.TaskManagementUI;
 import UI.UIError;
 import UI.UIGlobalWithController;
 import javafx.event.ActionEvent;
@@ -137,7 +136,7 @@ public class ModifyTaskController implements Initializable {
             modifyDeadline.setValue(task.getDeadline());
 
         }else{
-            UIError error = new UIError(new UITaskManagement(project));
+            UIError error = new UIError(new TaskManagementUI(project));
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )
@@ -163,7 +162,7 @@ public class ModifyTaskController implements Initializable {
 
 
         }else{
-            UIError error = new UIError(new UITaskManagement(project));
+            UIError error = new UIError(new TaskManagementUI(project));
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )

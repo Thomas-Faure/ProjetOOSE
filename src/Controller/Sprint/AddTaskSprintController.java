@@ -1,15 +1,14 @@
 package Controller.Sprint;
 
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Sprint.AbstractSprint;
-import BuisnessLogic.Task.AbstractTask;
+import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.Sprint.AbstractSprint;
+import BusinessLogic.Task.AbstractTask;
 import Controller.IController;
 import Facade.Task.TaskFacade;
 import Main.App;
 import UI.Sprint.AddTaskSprintUI;
 import UI.Sprint.ReadSprintUI;
-import UI.Task.UIAddTask;
-import UI.Task.UIModifyTask;
+import UI.Task.AddTaskUI;
 import UI.UIGlobalWithController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,7 +25,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -62,7 +60,7 @@ public class AddTaskSprintController implements Initializable, IController {
     void createTaskBacklog(ActionEvent event){
 
 
-        UIAddTask createTaskUI = new UIAddTask(project,ui);
+        AddTaskUI createTaskUI = new AddTaskUI(project,ui);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);

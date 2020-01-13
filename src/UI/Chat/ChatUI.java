@@ -1,10 +1,8 @@
 package UI.Chat;
 
-import BuisnessLogic.Project.AbstractProject;
+import BusinessLogic.Project.AbstractProject;
 import Controller.Chat.ChatController;
 import Controller.IController;
-import Controller.Sprint.AddTaskSprintController;
-import UI.UIGlobal;
 import UI.UIGlobalWithController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

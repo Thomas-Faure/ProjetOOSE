@@ -3,11 +3,8 @@ package Facade.Announcement;
  *
  * @author Thomas Faure
  */
-import BuisnessLogic.Announcement.AbstractAnnouncement;
-import BuisnessLogic.Announcement.Announcement;
-import BuisnessLogic.Task.Task;
+import BusinessLogic.Announcement.AbstractAnnouncement;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

@@ -1,7 +1,7 @@
 package DAO.User.GlobalUser;
 
-import BuisnessLogic.User.AbstractUser;
-import BuisnessLogic.User.User;
+import BusinessLogic.User.AbstractUser;
+import BusinessLogic.User.User;
 
 import java.util.List;
 

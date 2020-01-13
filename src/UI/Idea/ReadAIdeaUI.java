@@ -1,6 +1,6 @@
 package UI.Idea;
 
-import BuisnessLogic.Idea.AbstractIdea;
+import BusinessLogic.Idea.AbstractIdea;
 import Controller.Idea.ReadAIdeaController;
 import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;

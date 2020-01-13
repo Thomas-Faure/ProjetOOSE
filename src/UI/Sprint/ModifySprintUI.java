@@ -1,8 +1,7 @@
 package UI.Sprint;
 
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Sprint.AbstractSprint;
-import Controller.Sprint.AddSprintController;
+import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.Sprint.AbstractSprint;
 import Controller.Sprint.ModifySprintController;
 import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;

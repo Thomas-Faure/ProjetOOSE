@@ -1,7 +1,7 @@
 package UI.User.Global;
 
-import BuisnessLogic.User.GlobalUser;
-import BuisnessLogic.User.User;
+import BusinessLogic.User.GlobalUser;
+import BusinessLogic.User.User;
 import Controller.User.GlobalUser.AccountController;
 import Facade.SessionFacade;
 import UI.UIGlobal;

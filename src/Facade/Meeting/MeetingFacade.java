@@ -1,13 +1,9 @@
 package Facade.Meeting;
 
-import BuisnessLogic.Meeting.AbstractMeeting;
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Ticket.AbstractTicket;
-import DAO.AbstractDAOFactory;
+import BusinessLogic.Meeting.AbstractMeeting;
+import BusinessLogic.Project.AbstractProject;
 import DAO.Meeting.MeetingDAO;
 import DAO.MySQLDAOFactory;
-import DAO.Ticket.TicketDAO;
-import Facade.Ticket.TicketFacade;
 
 import java.util.ArrayList;
 import java.util.List;

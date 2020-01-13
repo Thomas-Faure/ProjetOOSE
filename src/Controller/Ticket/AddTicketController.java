@@ -1,9 +1,7 @@
 package Controller.Ticket;
 
-import BuisnessLogic.Announcement.AbstractAnnouncement;
-import BuisnessLogic.Announcement.Announcement;
-import BuisnessLogic.Ticket.AbstractTicket;
-import BuisnessLogic.Ticket.Ticket;
+import BusinessLogic.Ticket.AbstractTicket;
+import BusinessLogic.Ticket.Ticket;
 
 import Facade.ISessionFacade;
 import Facade.SessionFacade;
@@ -20,7 +18,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class AddTicketController {
     private ITicketFacade tFacade = TicketFacade.getInstance();

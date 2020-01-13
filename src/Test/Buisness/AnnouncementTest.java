@@ -3,10 +3,10 @@ package Test.Buisness;
  *
  * @author Thomas Faure
  */
-import BuisnessLogic.Announcement.AbstractAnnouncement;
-import BuisnessLogic.Announcement.Announcement;
-import BuisnessLogic.User.AbstractUser;
-import BuisnessLogic.User.User;
+import BusinessLogic.Announcement.AbstractAnnouncement;
+import BusinessLogic.Announcement.Announcement;
+import BusinessLogic.User.AbstractUser;
+import BusinessLogic.User.User;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

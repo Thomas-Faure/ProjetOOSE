@@ -1,8 +1,7 @@
 package UI.Meeting;
 
-import BuisnessLogic.Meeting.AbstractMeeting;
-import BuisnessLogic.Project.AbstractProject;
-import Controller.Meeting.AddMeetingController;
+import BusinessLogic.Meeting.AbstractMeeting;
+import BusinessLogic.Project.AbstractProject;
 import Controller.Meeting.UpdateMeetingController;
 import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;

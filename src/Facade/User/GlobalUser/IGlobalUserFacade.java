@@ -1,6 +1,6 @@
 package Facade.User.GlobalUser;
 
-import BuisnessLogic.User.AbstractUser;
+import BusinessLogic.User.AbstractUser;
 
 import java.util.List;
 

@@ -1,10 +1,7 @@
 package Facade;
 
-import BuisnessLogic.Chat.AbstractChat;
-import BuisnessLogic.Chat.Chat;
-import BuisnessLogic.Message.AbstractMessage;
-import BuisnessLogic.Project.AbstractProject;
-import Controller.IController;
+import BusinessLogic.Chat.AbstractChat;
+import BusinessLogic.Message.AbstractMessage;
 import DAO.ChatDAO;
 import DAO.MySQLDAOFactory;
 import Facade.Message.MessageFacade;

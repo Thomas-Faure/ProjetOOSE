@@ -1,8 +1,7 @@
 package UI.Meeting;
 
-import BuisnessLogic.Project.AbstractProject;
+import BusinessLogic.Project.AbstractProject;
 import Controller.Meeting.AddMeetingController;
-import Controller.Ticket.ReadTicketController;
 import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

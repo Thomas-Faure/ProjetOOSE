@@ -1,6 +1,6 @@
 package Facade;
 
-import BuisnessLogic.Sprint.AbstractSprint;
+import BusinessLogic.Sprint.AbstractSprint;
 
 import java.util.List;
 

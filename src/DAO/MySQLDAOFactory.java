@@ -3,7 +3,6 @@ package DAO;
  *
  * @author Thomas Faure
  */
-import BuisnessLogic.Chat.Chat;
 import DAO.Announcement.AnnouncementDAO;
 import DAO.Announcement.AnnouncementDAOMySQL;
 import DAO.Idea.IdeaDAO;

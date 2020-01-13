@@ -3,7 +3,7 @@ package Test.Buisness;
  *
  * @author Thomas Faure
  */
-import BuisnessLogic.Task.TaskState;
+import BusinessLogic.Task.TaskState;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

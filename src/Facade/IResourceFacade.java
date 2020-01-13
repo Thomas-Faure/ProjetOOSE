@@ -1,7 +1,6 @@
 package Facade;
 
-import BuisnessLogic.Ressource.AbstractResource;
-import BuisnessLogic.Ressource.Resource;
+import BusinessLogic.Ressource.AbstractResource;
 
 import java.util.List;
 

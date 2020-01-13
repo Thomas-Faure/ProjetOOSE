@@ -1,11 +1,11 @@
 package Controller.Chat;
 
 
-import BuisnessLogic.Chat.AbstractChat;
-import BuisnessLogic.Message.AbstractMessage;
-import BuisnessLogic.Message.Message;
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.User.AbstractUser;
+import BusinessLogic.Chat.AbstractChat;
+import BusinessLogic.Message.AbstractMessage;
+import BusinessLogic.Message.Message;
+import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.User.AbstractUser;
 import Controller.IController;
 import Facade.ChatFacade;
 import Facade.Message.MessageFacade;

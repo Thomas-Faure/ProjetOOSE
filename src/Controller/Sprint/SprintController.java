@@ -1,7 +1,7 @@
 package Controller.Sprint;
 
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Sprint.AbstractSprint;
+import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.Sprint.AbstractSprint;
 import Facade.SprintFacade;
 import Main.App;
 import UI.Project.ReadProjectUI;
@@ -19,7 +19,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
-import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;

@@ -1,6 +1,6 @@
 package Controller.Project;
 
-import BuisnessLogic.Project.AbstractProject;
+import BusinessLogic.Project.AbstractProject;
 import Facade.Project.IProjectFacade;
 import Facade.Project.ProjectFacade;
 import Main.App;

@@ -1,8 +1,8 @@
 package Controller.Resource;
 
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Ressource.AbstractResource;
-import BuisnessLogic.Ressource.Resource;
+import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.Ressource.AbstractResource;
+import BusinessLogic.Ressource.Resource;
 import Facade.ResourceFacade;
 import Main.App;
 import UI.Ressource.ResourceUI;

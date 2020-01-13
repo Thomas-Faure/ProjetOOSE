@@ -1,6 +1,6 @@
 package Facade.Message;
 
-import BuisnessLogic.Message.AbstractMessage;
+import BusinessLogic.Message.AbstractMessage;
 import DAO.Message.MessageDAO;
 import DAO.MySQLDAOFactory;
 

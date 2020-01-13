@@ -1,7 +1,7 @@
 package DAO;
 
-import BuisnessLogic.Chat.AbstractChat;
-import BuisnessLogic.Chat.Chat;
+import BusinessLogic.Chat.AbstractChat;
+import BusinessLogic.Chat.Chat;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

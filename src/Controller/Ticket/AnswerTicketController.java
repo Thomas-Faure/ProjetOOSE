@@ -1,12 +1,9 @@
 package Controller.Ticket;
 
-import BuisnessLogic.Ticket.AbstractTicket;
-import BuisnessLogic.Ticket.Ticket;
+import BusinessLogic.Ticket.AbstractTicket;
 import Facade.Ticket.ITicketFacade;
 import Facade.Ticket.TicketFacade;
 import Main.App;
-import UI.Ticket.AnswerTicketUI;
-import UI.Ticket.MyTicketUI;
 import UI.Ticket.TicketUI;
 import UI.UIError;
 import javafx.event.ActionEvent;
@@ -18,7 +15,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class AnswerTicketController implements Initializable {

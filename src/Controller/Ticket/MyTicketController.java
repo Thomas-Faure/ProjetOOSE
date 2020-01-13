@@ -1,16 +1,14 @@
 package Controller.Ticket;
 
-import BuisnessLogic.Ticket.AbstractTicket;
-import BuisnessLogic.Ticket.Ticket;
+import BusinessLogic.Ticket.AbstractTicket;
+import BusinessLogic.Ticket.Ticket;
 import Facade.ISessionFacade;
 import Facade.SessionFacade;
 import Facade.Ticket.ITicketFacade;
 import Facade.Ticket.TicketFacade;
 import Main.App;
-import UI.Announcement.UIReadAnnouncement;
 import UI.Ticket.AddTicketUI;
 import UI.Ticket.ReadTicketUI;
-import UI.UIError;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,7 +19,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 

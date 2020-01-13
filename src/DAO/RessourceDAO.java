@@ -1,6 +1,6 @@
 package DAO;
 
-import BuisnessLogic.Ressource.AbstractResource;
+import BusinessLogic.Ressource.AbstractResource;
 
 import java.util.List;
 

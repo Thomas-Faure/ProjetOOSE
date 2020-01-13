@@ -1,8 +1,8 @@
 package Test.DAO;
 
 
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Project.Project;
+import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.Project.Project;
 import Facade.ChatFacade;
 import org.junit.jupiter.api.Test;
 
