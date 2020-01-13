@@ -3,8 +3,10 @@ package BuisnessLogic.Ticket;
 import BuisnessLogic.User.User;
 
 import java.time.LocalDate;
-import java.util.Date;
 
+/**
+ * @author Rémi Salmi
+ */
 public abstract class AbstractTicket {
 
     public abstract String getSubject();

@@ -60,7 +60,7 @@ public class AnswerTicketController implements Initializable {
             subject.setText(ticket.getSubject());
             problem.setText(ticket.getProblem());
             if (ticket.getCreator() != null){
-                ticketFrom.setText(ticket.getCreator().getFirstName() + " " + ticket.getCreator().getLastName());
+                ticketFrom.setText("Ticket from : " + ticket.getCreator().getFirstName() + " " + ticket.getCreator().getLastName());
             }
             pathIndication.setText("/Tickets/ticket n° " + ticket.getId());
 

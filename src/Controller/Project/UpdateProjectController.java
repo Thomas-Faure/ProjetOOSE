@@ -1,19 +1,14 @@
 package Controller.Project;
 
-import BuisnessLogic.Meeting.AbstractMeeting;
 import BuisnessLogic.Project.AbstractProject;
-import Facade.Meeting.IMeetingFacade;
-import Facade.Meeting.MeetingFacade;
 import Facade.Project.IProjectFacade;
 import Facade.Project.ProjectFacade;
 import Main.App;
-import UI.Meeting.MeetingsUI;
 import UI.Project.ProjectUI;
 import UI.UIError;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -22,6 +17,10 @@ import javafx.scene.text.Text;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Ce controller permet la gestion de l4ui de modification d'un projet
+ * @author Rémi Salmi
+ */
 public class UpdateProjectController implements Initializable {
 
     private AbstractProject project;
@@ -41,6 +40,11 @@ public class UpdateProjectController implements Initializable {
         this.project=project;
     }
 
+
+    /**
+     * Initialisation de l'UI
+     * @author Rémi Salmi
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         pathIndication.setText("/Projects/" + project.getName() + "/update");

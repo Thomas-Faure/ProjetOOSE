@@ -2,6 +2,10 @@ package BuisnessLogic.Meeting;
 
 import java.time.LocalDate;
 
+/**
+ * @author Rémi Salmi
+ */
+
 public abstract class AbstractMeeting {
 
     public abstract LocalDate getDate();

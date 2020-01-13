@@ -2,20 +2,12 @@ package Controller.Project;
 
 import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Project.Project;
-import BuisnessLogic.Ticket.AbstractTicket;
-import BuisnessLogic.Ticket.Ticket;
-import Controller.Ticket.TicketController;
 import Facade.Project.IProjectFacade;
 import Facade.Project.ProjectFacade;
-import Facade.Ticket.ITicketFacade;
-import Facade.Ticket.TicketFacade;
 import Main.App;
 import UI.Project.AddProjectUI;
 import UI.Project.ReadProjectUI;
 import UI.Project.UpdateProjectUI;
-import UI.Ticket.AddTicketUI;
-import UI.Ticket.AnswerTicketUI;
-import UI.Ticket.ReadTicketUI;
 import UI.Ticket.TicketUI;
 import UI.UIError;
 import javafx.collections.FXCollections;
@@ -31,11 +23,14 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * Ce controller permet la gestion de l'UI projet
+ * @author Rémi Salmi
+ */
 public class ProjectController implements Initializable {
 
     @FXML
@@ -54,6 +49,10 @@ public class ProjectController implements Initializable {
     //permet de garder la liste de base
     private static ObservableList<AbstractProject> listViewTemp;
     @FXML
+    /**
+     * Permet de rechercher un projet dans la liste
+     * @author Rémi Salmi
+     */
     public void searchBar(KeyEvent keyEvent) {
 
         if(!(inputSearch.getText().length() == 0)) {
@@ -83,6 +82,11 @@ public class ProjectController implements Initializable {
         }
 
     }
+
+    /**
+     * Initialisation de l'UI
+     * @author Rémi Salmi
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         if(projectsList != null){
@@ -99,6 +103,10 @@ public class ProjectController implements Initializable {
 
     }
 
+    /**
+     * Permet de valider la supression d'un projet
+     * @author Rémi Salmi
+     */
     public void validation(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(!(projectFacade.deleteProject(toManage))){
@@ -117,6 +125,10 @@ public class ProjectController implements Initializable {
         }
     }
 
+    /**
+     * Permet d'annuler la supression d'un projet
+     * @author Rémi Salmi
+     */
     public void refuse(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
         toHide.setVisible(false);
@@ -195,6 +207,10 @@ public class ProjectController implements Initializable {
 
     }
 
+    /**
+     * Permet de se diriger vers la page de création d'un projet
+     * @author Rémi Salmi
+     */
     @FXML
     void addProjectPage(ActionEvent actionEvent) {
         AddProjectUI addProject = new AddProjectUI();

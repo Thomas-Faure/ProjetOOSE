@@ -22,10 +22,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Ce controller permet de gérer l'UI de lecture d'un projet
+ * @author Rémi Salmi
+ */
 public class ReadProjectController implements Initializable {
 
     private AbstractProject project;
@@ -47,6 +50,11 @@ public class ReadProjectController implements Initializable {
         this.project=project;
     }
 
+
+    /**
+     * Initialisation de l'UI
+     * @author Rémi Salmi
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         pathIndication.setText("/Projects/" + project.getName());
@@ -59,6 +67,10 @@ public class ReadProjectController implements Initializable {
         }
     }
 
+    /**
+     * Permet de retourner à la page précédente
+     * @author Rémi Salmi
+     */
     @FXML
     void back(ActionEvent actionEvent){
         ProjectUI projectPage = new ProjectUI();
@@ -69,6 +81,11 @@ public class ReadProjectController implements Initializable {
     }
 
     @FXML
+
+    /**
+     * Permet de se diriger vers le chat du projet
+     * @author Rémi Salmi
+     */
     void goChat(ActionEvent actionEvent){
 
         if(!ChatFacade.getInstance().getChatByProjectId(project.getId())) {
@@ -83,6 +100,10 @@ public class ReadProjectController implements Initializable {
 
     }
 
+    /**
+     * Permet de se diriger vers la page de gestion des membres du projet
+     * @author Rémi Salmi
+     */
     @FXML
     void goMembers(ActionEvent actionEvent){
         AllMembersUI members = new AllMembersUI(project);
@@ -92,6 +113,10 @@ public class ReadProjectController implements Initializable {
         box.getChildren().add(members.loadScene().getRoot());
     }
 
+    /**
+     * Permet de se driger vers la page des resources du projet
+     * @author Rémi Salmi
+     */
     @FXML
     void goResources(ActionEvent actionEvent){
         ResourceUI resourceUI = new ResourceUI(project);
@@ -102,6 +127,10 @@ public class ReadProjectController implements Initializable {
     }
 
 
+    /**
+     * Permet de se diriger vers la page des meetings du projet
+     * @author Rémi Salmi
+     */
     @FXML
     void goMeetings(ActionEvent actionEvent){
         MeetingsUI meetingPage = new MeetingsUI(project);
@@ -118,6 +147,10 @@ public class ReadProjectController implements Initializable {
         box.getChildren().add(addSprintPage.loadScene().getRoot());
     }
 
+    /**
+     * Permet de se diriger vers la page des tasks ou sprints du projet
+     * @author Rémi Salmi
+     */
     public void goTasksSprints(ActionEvent actionEvent) {
         //tasks
         if(!project.isAgile()){

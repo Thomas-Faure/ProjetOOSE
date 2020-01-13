@@ -2,6 +2,9 @@ package BuisnessLogic.Project;
 
 import java.time.LocalDate;
 
+/**
+ * @author Rémi Salmi
+ */
 public abstract class AbstractProject {
     public abstract int getId();
     public abstract void setId(int id);

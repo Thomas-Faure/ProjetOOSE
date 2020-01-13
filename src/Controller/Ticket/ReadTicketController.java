@@ -61,7 +61,7 @@ public class ReadTicketController implements Initializable {
             answer.setText(ticket.getAnswer());
             problem.setText(ticket.getProblem());
             if (ticket.getCreator() != null){
-                ticketFrom.setText(ticket.getCreator().getFirstName() + " " + ticket.getCreator().getLastName());
+                ticketFrom.setText("Ticket from : " + ticket.getCreator().getFirstName() + " " + ticket.getCreator().getLastName());
             }
 
             if(isAdmin){

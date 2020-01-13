@@ -3,29 +3,25 @@ package Controller.Meeting;
 import BuisnessLogic.Meeting.AbstractMeeting;
 import BuisnessLogic.Meeting.Meeting;
 import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Ticket.AbstractTicket;
-import BuisnessLogic.Ticket.Ticket;
 import Facade.Meeting.IMeetingFacade;
 import Facade.Meeting.MeetingFacade;
-import Facade.Ticket.ITicketFacade;
-import Facade.Ticket.TicketFacade;
 import Main.App;
 import UI.Meeting.MeetingsUI;
-import UI.Ticket.MyTicketUI;
-import UI.Ticket.TicketUI;
 import UI.UIError;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
+
+/**
+ * Ce controller permet la gestion de l'UI AddMeeting
+ * @author Rémi Salmi
+ */
 
 public class AddMeetingController implements Initializable {
 
@@ -49,12 +45,20 @@ public class AddMeetingController implements Initializable {
         this.project=project;
     }
 
+    /**
+     * Initialisation de l'UI
+     * @author Rémi Salmi
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         pathIndication.setText("/Projects/" + project.getName() + "/New meeting");
         projectTitle.setText("project : " + project.getName());
     }
 
+    /**
+     * Permet d'annuler la création d'un meeting
+     * @author Rémi Salmi
+     */
     @FXML
     void cancel(ActionEvent actionEvent){
         MeetingsUI meetingsPage = new MeetingsUI(project);
@@ -64,6 +68,10 @@ public class AddMeetingController implements Initializable {
         box.getChildren().add(meetingsPage.loadScene().getRoot());
     }
 
+    /**
+     * Créer un nouveau meeting
+     * @author Rémi Salmi
+     */
     @FXML
     void addNewMeeting(ActionEvent actionEvent){
         AbstractMeeting meeting = new Meeting(1,date.getValue(),place.getText(), project.getId());
