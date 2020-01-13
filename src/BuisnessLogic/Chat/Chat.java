@@ -1,6 +1,8 @@
 package BuisnessLogic.Chat;
 
 import BuisnessLogic.Message.AbstractMessage;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +23,7 @@ public class Chat extends AbstractChat {
     public Chat(String chatName, int idProject) {
         this.chatName = chatName;
         this.idProject = idProject;
+        this.historiqueMessage = new ArrayList<AbstractMessage>();
     }
 
     /**
@@ -33,6 +36,7 @@ public class Chat extends AbstractChat {
         this.idChat = idChat;
         this.chatName = chatName;
         this.idProject = idProject;
+        this.historiqueMessage = new ArrayList<AbstractMessage>();
     }
 
     @Override

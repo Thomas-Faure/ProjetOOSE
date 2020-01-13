@@ -32,7 +32,7 @@ public class ChatUI implements UIGlobalWithController {
         creators.put(ChatController.class , new Callable<ChatController>() {
             @Override
             public ChatController call() throws Exception {
-                return new ChatController(project);
+                return new ChatController(project,ui);
             }
         });
         Parent root = null;

@@ -26,5 +26,6 @@
       <Text layoutX="14.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="People" textAlignment="CENTER" wrappingWidth="156.0" />
       <ListView fx:id="messagesView" layoutX="188.0" layoutY="162.0" prefHeight="362.0" prefWidth="460.0" />
       <Button fx:id="backButton" layoutX="61.0" layoutY="559.0" mnemonicParsing="false" onAction="#backToProjectView" text="back" />
+      <Button fx:id="refreshButton" layoutX="586.0" layoutY="111.0" mnemonicParsing="false" onAction="#refreshMessages" text="Refresh " />
   </children>
 </AnchorPane>
