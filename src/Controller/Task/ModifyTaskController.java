@@ -79,7 +79,7 @@ public class ModifyTaskController implements Initializable {
     void backToTasks(ActionEvent actionEvent){
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(ui.loadScene().getRoot());
-            System.out.println(ui);
+
             ui.getController().update();
             if(box.getChildren().size() >1 ){
                 box.getChildren().remove(1);
@@ -154,7 +154,7 @@ public class ModifyTaskController implements Initializable {
 
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(ui.loadScene().getRoot());
-            System.out.println(ui);
+
             ui.getController().update();
 
             if(box.getChildren().size() >1 ){

@@ -58,7 +58,7 @@ public class AddTaskController{
         if(TaskFacade.getInstance().addTask(task)){
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(ui.loadScene().getRoot());
-            System.out.println(ui);
+
             ui.getController().update();
 
             if(box.getChildren().size() >1 ){
