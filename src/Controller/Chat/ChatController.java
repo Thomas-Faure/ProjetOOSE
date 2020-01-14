@@ -107,7 +107,7 @@ public class ChatController implements Initializable, IController {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        titlepath.setText("/Project/"+project.getName()+"/Chat");
+        titlepath.setText("/Project/"+project.getName()+"/Messages");
         update();
     }
 
