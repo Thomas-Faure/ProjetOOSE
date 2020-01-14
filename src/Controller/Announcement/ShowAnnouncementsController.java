@@ -24,9 +24,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Controller of the show announcement page (announcements displayed to users)
@@ -80,8 +80,6 @@ public class ShowAnnouncementsController implements Initializable {
         }
     }
 
-    public void testFct(KeyEvent keyEvent) {
-    }
 
     /**
      * Method called when the user click on the "see more" button, call the read announcement page
@@ -105,6 +103,7 @@ public class ShowAnnouncementsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         if(AnnouncementFacade.getInstance().getAllAnnouncements()){
             announcementList = new ArrayList<>(AnnouncementFacade.getInstance().getListAnnouncements());
+            Collections.reverse(announcementList);
             prev.setDisable(true);
             next.setDisable(true);
             maxPage = announcementList.size()/3;

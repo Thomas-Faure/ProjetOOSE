@@ -74,12 +74,12 @@ public class TaskManagerController implements Initializable, IController {
             ArrayList<AbstractTask> array = new ArrayList<>(listViewTemp);
             ArrayList<AbstractTask> toDelete = new ArrayList<>();
             for (int i = 0; i < array.size(); ++i) {
-                String inputS =inputSearch.getText();
+                String inputS =inputSearch.getText().toLowerCase();
                 if(inputS.charAt(0) == '*'){
                     inputS= "\\"+inputS;
                 }
                 String regex = "(.*)" + inputS + "(.*)";
-                if (array.get(i).getName().matches(regex)) {
+                if (array.get(i).getName().toLowerCase().matches(regex)) {
                 } else {
                     toDelete.add(array.get(i));
                 }

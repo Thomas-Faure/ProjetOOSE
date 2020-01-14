@@ -26,7 +26,7 @@
           <TextArea fx:id="modifyDescription" layoutX="234.0" layoutY="117.0" prefHeight="183.0" prefWidth="452.0" />
             <Text layoutX="177.0" layoutY="493.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State:" />
             <ChoiceBox fx:id="stateChoiceBox" layoutX="234.0" layoutY="475.0" prefHeight="26.0" prefWidth="452.0" />
-            <HBox layoutX="303.0" layoutY="429.0" prefHeight="26.0" prefWidth="314.0">
+            <HBox layoutX="264.0" layoutY="428.0" prefHeight="26.0" prefWidth="314.0">
                <children>
                   <RadioButton fx:id="1" text="1">
                      <toggleGroup>
