@@ -4,7 +4,7 @@ import BusinessLogic.Idea.AbstractIdea;
 import BusinessLogic.Idea.Idea;
 import BusinessLogic.User.AbstractUser;
 import DAO.MySQLConnector;
-import Facade.SessionFacade;
+import Facade.Session.SessionFacade;
 import Facade.User.GlobalUser.GlobalUserFacade;
 import Facade.User.GlobalUser.IGlobalUserFacade;
 
@@ -20,7 +20,7 @@ import java.util.List;
  * IL est en lien avec la base de données sur laquelle il fait des
  * requetes pour récupérer des données.
  */
-public class IdeaDAOMySQL implements IdeaDAO {
+public class IdeaDAOMySQL implements IIdeaDAO {
 
 	private static final String INSERT = "INSERT INTO idea (name, description, subject, idUser, state) VALUES (?, ?, ?, ?,?)";
 	private static final String UPDATE = "UPDATE idea SET name=?, description=?, subject=?, idUser = ?, state=? WHERE idIdea=?";

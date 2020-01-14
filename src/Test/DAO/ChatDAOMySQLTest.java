@@ -3,7 +3,7 @@ package Test.DAO;
 
 import BusinessLogic.Project.AbstractProject;
 import BusinessLogic.Project.Project;
-import Facade.ChatFacade;
+import Facade.Chat.ChatFacade;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -3,7 +3,7 @@ package UI.User.Global;
 import BusinessLogic.User.GlobalUser;
 import BusinessLogic.User.User;
 import Controller.User.GlobalUser.AccountController;
-import Facade.SessionFacade;
+import Facade.Session.SessionFacade;
 import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

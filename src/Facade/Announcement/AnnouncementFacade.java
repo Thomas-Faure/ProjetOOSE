@@ -6,7 +6,7 @@ package Facade.Announcement;
 import BusinessLogic.Announcement.AbstractAnnouncement;
 
 
-import DAO.Announcement.AnnouncementDAO;
+import DAO.Announcement.IAnnouncementDAO;
 import DAO.MySQLDAOFactory;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.List;
 
 public class AnnouncementFacade implements IAnnouncementFacade {
     private List<AbstractAnnouncement> announcements;
-    private AnnouncementDAO dao;
+    private IAnnouncementDAO dao;
     public static AnnouncementFacade instance;
 
 

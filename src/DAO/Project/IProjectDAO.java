@@ -4,7 +4,7 @@ import BusinessLogic.Project.AbstractProject;
 
 import java.util.List;
 
-public interface ProjectDAO {
+public interface IProjectDAO {
 
     List<AbstractProject> getAllProjects();
 

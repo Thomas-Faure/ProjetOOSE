@@ -3,7 +3,7 @@ package Facade.User.GlobalUser;
 import BusinessLogic.User.AbstractUser;
 import BusinessLogic.User.User;
 import DAO.MySQLDAOFactory;
-import DAO.User.GlobalUser.GlobalUserDAO;
+import DAO.User.GlobalUser.IGlobalUserDAO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class GlobalUserFacade implements IGlobalUserFacade {
     private List<AbstractUser> users;
-    private GlobalUserDAO daoFactory;
+    private IGlobalUserDAO daoFactory;
 
     public static GlobalUserFacade instance;
 
@@ -37,7 +37,7 @@ public class GlobalUserFacade implements IGlobalUserFacade {
         return this.users;
     }
 
-    public GlobalUserDAO getDao(){
+    public IGlobalUserDAO getDao(){
         return this.daoFactory;
     }
 

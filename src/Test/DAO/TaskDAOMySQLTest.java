@@ -9,7 +9,7 @@ import BusinessLogic.Task.Task;
 import BusinessLogic.Task.TaskState;
 import BusinessLogic.User.AbstractUser;
 import BusinessLogic.User.User;
-import DAO.Task.TaskDAO;
+import DAO.Task.ITaskDAO;
 import DAO.Task.TaskDAOMySQL;
 import Facade.Project.ProjectFacade;
 import org.junit.jupiter.api.Test;
@@ -28,7 +28,7 @@ class TaskDAOMySQLTest {
      */
     @Test
     void save() {
-        TaskDAO dao = new TaskDAOMySQL();
+        ITaskDAO dao = new TaskDAOMySQL();
         AbstractUser user = new User(1,"name","firstname","lastname","password");
         ProjectFacade.getInstance().getAllProjects();
         AbstractProject project = ProjectFacade.getInstance().getListProjects().get(0);

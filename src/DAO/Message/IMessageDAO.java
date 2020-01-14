@@ -8,7 +8,7 @@ import java.util.List;
  *
  * @author Guillaume Tessier
  */
-public interface MessageDAO {
+public interface IMessageDAO {
 
     /**
      * Insert a new message in the database

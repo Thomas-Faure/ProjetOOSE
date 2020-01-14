@@ -2,7 +2,7 @@ package Controller.Announcement;
 import BusinessLogic.Announcement.AbstractAnnouncement;
 import BusinessLogic.Announcement.Announcement;
 import Facade.Announcement.AnnouncementFacade;
-import Facade.SessionFacade;
+import Facade.Session.SessionFacade;
 import Main.App;
 import UI.Announcement.AnnouncementManagementUI;
 import UI.UIError;

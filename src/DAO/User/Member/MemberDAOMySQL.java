@@ -19,7 +19,7 @@ import java.util.List;
  * IL est en lien avec la base de données sur laquelle il fait des
  * requetes pour récupérer des données.
  */
-public class MemberDAOMySQL implements MemberDAO {
+public class MemberDAOMySQL implements IMemberDAO {
 
     private static final String INSERT = "INSERT INTO `member` (idProject, idUser) VALUES (?, ?)";
     private static final String UPDATE = "UPDATE `member` SET idProject=?, idRole=?, idUser = ? WHERE idUser=?";

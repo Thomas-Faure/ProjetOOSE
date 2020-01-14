@@ -1,7 +1,7 @@
 package Controller;
 
 import BusinessLogic.User.AbstractUser;
-import Facade.SessionFacade;
+import Facade.Session.SessionFacade;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;

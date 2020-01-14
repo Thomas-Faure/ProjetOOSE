@@ -3,7 +3,7 @@ package Controller.Idea;
 import BusinessLogic.Idea.Idea;
 import BusinessLogic.User.AbstractUser;
 import Facade.Idea.IdeaFacade;
-import Facade.SessionFacade;
+import Facade.Session.SessionFacade;
 import Main.App;
 import UI.Idea.IdeaBoxUI;
 import UI.UIError;

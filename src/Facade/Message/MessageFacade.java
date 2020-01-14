@@ -1,7 +1,7 @@
 package Facade.Message;
 
 import BusinessLogic.Message.AbstractMessage;
-import DAO.Message.MessageDAO;
+import DAO.Message.IMessageDAO;
 import DAO.MySQLDAOFactory;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class MessageFacade implements IMessageFacade {
     private List<AbstractMessage> messageList;
-    private MessageDAO dao;
+    private IMessageDAO dao;
     public static MessageFacade FacadeInstance;
 
     private MessageFacade(){

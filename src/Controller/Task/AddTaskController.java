@@ -7,7 +7,7 @@ import BusinessLogic.Project.AbstractProject;
 import BusinessLogic.Task.AbstractTask;
 import BusinessLogic.Task.Task;
 import BusinessLogic.Task.TaskState;
-import Facade.SessionFacade;
+import Facade.Session.SessionFacade;
 import Facade.Task.TaskFacade;
 import Main.App;
 import UI.Announcement.AnnouncementManagementUI;

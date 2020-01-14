@@ -16,7 +16,7 @@ import java.util.List;
  * IL est en lien avec la base de données sur laquelle il fait des
  * requetes pour récupérer des données.
  */
-public class RoleDAOMySQL implements RoleDAO {
+public class RoleDAOMySQL implements IRoleDAO {
 
     private static final String INSERT = "INSERT INTO role (name) VALUES (?)";
     private static final String UPDATE = "UPDATE role SET name=? WHERE idRole=?";

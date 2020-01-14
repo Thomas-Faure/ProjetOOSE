@@ -1,7 +1,7 @@
 package Facade.Idea;
 
 import BusinessLogic.Idea.AbstractIdea;
-import DAO.Idea.IdeaDAO;
+import DAO.Idea.IIdeaDAO;
 import DAO.MySQLDAOFactory;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class IdeaFacade implements IIdeaFacade {
     private List<AbstractIdea> ideas;
-    private IdeaDAO daoFactory;
+    private IIdeaDAO daoFactory;
 
     public static IdeaFacade instance;
 
@@ -36,7 +36,7 @@ public class IdeaFacade implements IIdeaFacade {
         return this.ideas;
     }
 
-    public IdeaDAO getDao(){
+    public IIdeaDAO getDao(){
         return this.daoFactory;
     }
 

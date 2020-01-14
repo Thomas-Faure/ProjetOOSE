@@ -7,7 +7,7 @@ import BusinessLogic.Announcement.AbstractAnnouncement;
 import BusinessLogic.Announcement.Announcement;
 import BusinessLogic.User.AbstractUser;
 import Facade.Announcement.AnnouncementFacade;
-import Facade.SessionFacade;
+import Facade.Session.SessionFacade;
 import Main.App;
 import UI.Announcement.AddAnnouncementUI;
 import UI.Announcement.AnnouncementManagementUI;

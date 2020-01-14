@@ -5,7 +5,7 @@ import BusinessLogic.Project.AbstractProject;
 
 import java.util.List;
 
-public interface MeetingDAO {
+public interface IMeetingDAO {
 
     List<AbstractMeeting> getMeetingByProject(AbstractProject project);
 

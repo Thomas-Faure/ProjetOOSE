@@ -3,7 +3,7 @@ package Test.DAO;
  *
  * @author Thomas Faure
  */
-import Facade.SessionFacade;
+import Facade.Session.SessionFacade;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

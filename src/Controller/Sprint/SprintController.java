@@ -2,7 +2,7 @@ package Controller.Sprint;
 
 import BusinessLogic.Project.AbstractProject;
 import BusinessLogic.Sprint.AbstractSprint;
-import Facade.SprintFacade;
+import Facade.Sprint.SprintFacade;
 import Main.App;
 import UI.Project.ReadProjectUI;
 import UI.Sprint.AddSprintUI;

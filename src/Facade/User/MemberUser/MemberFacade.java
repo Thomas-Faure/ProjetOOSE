@@ -3,7 +3,7 @@ package Facade.User.MemberUser;
 import BusinessLogic.Project.AbstractProject;
 import BusinessLogic.User.Member;
 import DAO.MySQLDAOFactory;
-import DAO.User.Member.MemberDAO;
+import DAO.User.Member.IMemberDAO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public class MemberFacade implements IMemberFacade{
 
     private List<Member> members;
 
-    private MemberDAO daoFactory;
+    private IMemberDAO daoFactory;
 
     public static MemberFacade instance;
 
@@ -50,7 +50,7 @@ public class MemberFacade implements IMemberFacade{
 
     }
 
-    public MemberDAO getDao(){
+    public IMemberDAO getDao(){
         return this.daoFactory;
     }
 

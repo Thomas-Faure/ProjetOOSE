@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * It's a class to manage Tasks on the database
  */
-public class TaskDAOMySQL implements TaskDAO {
+public class TaskDAOMySQL implements ITaskDAO {
 
     private static final String INSERT = "INSERT INTO task (name, priority, deadline, creator,description,state,idProject,idSprint) VALUES (?, ?, ?, ?,?,?,?,?)";
     private static final String UPDATE = "UPDATE task SET name=?, priority=?, deadline=?, creator=?, description=?, state=?, idSprint=? WHERE idTask=?";

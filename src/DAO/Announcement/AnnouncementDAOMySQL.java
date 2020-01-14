@@ -19,7 +19,7 @@ import Facade.User.GlobalUser.GlobalUserFacade;
 /**
  * It's a class to manage Announcement on the database
  */
-public class AnnouncementDAOMySQL implements AnnouncementDAO {
+public class AnnouncementDAOMySQL implements IAnnouncementDAO {
 
 
 

@@ -3,7 +3,7 @@ package Controller.User.GlobalUser;
 
 import BusinessLogic.User.GlobalUser;
 import BusinessLogic.User.User;
-import Facade.SessionFacade;
+import Facade.Session.SessionFacade;
 import Facade.User.GlobalUser.GlobalUserFacade;
 import Facade.User.GlobalUser.IGlobalUserFacade;
 import Main.App;

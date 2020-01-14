@@ -15,7 +15,7 @@ import java.util.List;
  * Ce DAO permet de gérer l'accès aux meetings en BD
  * @author Rémi Salmi
  */
-public class MeetingDAOMySQL implements MeetingDAO {
+public class MeetingDAOMySQL implements IMeetingDAO {
 
     private static final String INSERT = "INSERT INTO meeting (date, place, idProject) VALUES (?, ?, ?)";
     private static final String UPDATE = "UPDATE meeting SET date=?, place=? WHERE idMeeting=?";

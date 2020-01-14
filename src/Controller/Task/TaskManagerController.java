@@ -7,7 +7,7 @@ import BusinessLogic.Project.AbstractProject;
 import BusinessLogic.Task.AbstractTask;
 import BusinessLogic.User.AbstractUser;
 import Controller.IController;
-import Facade.SessionFacade;
+import Facade.Session.SessionFacade;
 import Facade.Task.TaskFacade;
 import Main.App;
 import UI.Project.ReadProjectUI;

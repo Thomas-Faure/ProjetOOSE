@@ -18,7 +18,7 @@ import java.util.List;
  * IL est en lien avec la base de données sur laquelle il fait des
  * requetes pour récupérer des données.
  */
-public class GlobalUserDAOMySQL implements GlobalUserDAO {
+public class GlobalUserDAOMySQL implements IGlobalUserDAO {
 
     private static final String INSERT = "INSERT INTO user (username, password, firstName, lastName, city, phoneNumber, email, position, isAdmin ) VALUES (?, ?, ?, ?,?,?,?,?,?)";
     private static final String UPDATE = "UPDATE user SET username=?, password=?, firstName=?, lastName=?, city=?, phoneNumber=?, email=?, position=?, isAdmin=? WHERE idUser=?";

@@ -1,7 +1,7 @@
 package Controller;
 
 import BusinessLogic.User.AbstractUser;
-import Facade.SessionFacade;
+import Facade.Session.SessionFacade;
 import Main.App;
 import UI.Announcement.AnnouncementUI;
 import UI.Announcement.AnnouncementManagementUI;
@@ -17,9 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
