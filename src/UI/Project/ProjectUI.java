@@ -1,11 +1,13 @@
 package UI.Project;
 
-import Controller.Project.ProjectController;
 import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+/**
+ * @author Rémi Salmi
+ */
 public class ProjectUI implements UIGlobal {
 
     @Override

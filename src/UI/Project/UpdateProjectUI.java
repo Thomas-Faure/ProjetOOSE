@@ -7,11 +7,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.util.Callback;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+/**
+ * @author Rémi Salmi
+ */
 public class UpdateProjectUI implements UIGlobal {
 
     private AbstractProject project;
