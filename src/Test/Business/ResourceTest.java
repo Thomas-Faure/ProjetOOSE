@@ -1,4 +1,4 @@
-package Test.Buisness;
+package Test.Business;
 
 import BusinessLogic.Ressource.AbstractResource;
 import BusinessLogic.Ressource.Resource;
