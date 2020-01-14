@@ -1,7 +1,7 @@
 package Facade.Meeting;
 
-import BuisnessLogic.Meeting.AbstractMeeting;
-import BuisnessLogic.Project.AbstractProject;
+import BusinessLogic.Meeting.AbstractMeeting;
+import BusinessLogic.Project.AbstractProject;
 import DAO.Meeting.MeetingDAO;
 import DAO.MySQLDAOFactory;
 import java.util.ArrayList;

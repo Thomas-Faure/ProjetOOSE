@@ -1,9 +1,9 @@
 package DAO.Ticket;
 
-import BuisnessLogic.Ticket.AbstractTicket;
-import BuisnessLogic.Ticket.Ticket;
-import BuisnessLogic.User.AbstractUser;
-import BuisnessLogic.User.User;
+import BusinessLogic.Ticket.AbstractTicket;
+import BusinessLogic.Ticket.Ticket;
+import BusinessLogic.User.AbstractUser;
+import BusinessLogic.User.User;
 import DAO.MySQLConnector;
 import Facade.User.GlobalUser.GlobalUserFacade;
 import Facade.User.GlobalUser.IGlobalUserFacade;

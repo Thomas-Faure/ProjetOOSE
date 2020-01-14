@@ -1,9 +1,9 @@
 package DAO.Meeting;
 
 
-import BuisnessLogic.Meeting.AbstractMeeting;
-import BuisnessLogic.Meeting.Meeting;
-import BuisnessLogic.Project.AbstractProject;
+import BusinessLogic.Meeting.AbstractMeeting;
+import BusinessLogic.Meeting.Meeting;
+import BusinessLogic.Project.AbstractProject;
 import DAO.MySQLConnector;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
