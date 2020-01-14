@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="paneBasic" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Announcement.ShowAnnouncementsController">
+  <children>
+      <VBox fx:id="vboxList" layoutX="13.0" layoutY="21.0" prefHeight="492.0" prefWidth="742.0" />
+      <Button fx:id="next" layoutX="402.0" layoutY="547.0" mnemonicParsing="false" onAction="#next" text="Next" />
+      <Button fx:id="prev" layoutX="344.0" layoutY="547.0" mnemonicParsing="false" onAction="#prev" text="Prev" />
+  </children>
+</AnchorPane>

@@ -1,2 +1,10 @@
 *.iml
+<<<<<<< HEAD
 *.idea
+=======
+*.idea
+bin/
+*.class
+src/DAO/MySQLConnector.java
+ProjetOOSE.iml
+>>>>>>> develop

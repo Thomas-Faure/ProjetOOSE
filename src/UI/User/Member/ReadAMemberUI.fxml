@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="paneBasic" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" style="-fx-background-color: #ecf0f5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.User.MemberUser.ReadAMemberController">
+<children>
+    <AnchorPane fx:id="manager" prefHeight="600.0" prefWidth="768.0">
+        <children>
+            <ListView fx:id="rolesList" layoutX="94.0" layoutY="312.0" prefHeight="171.0" prefWidth="625.0" />
+            <Pane prefHeight="49.0" prefWidth="768.0" style="-fx-background-color: #367fa9;">
+                <children>
+                    <Text fill="WHITE" layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Read member" />
+                </children>
+            </Pane>
+            <Text layoutX="30.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Read Member">
+                <font>
+                    <Font name="System Bold" size="37.0" />
+                </font>
+            </Text>
+            <TextField fx:id="username" layoutX="185.0" layoutY="155.0" prefHeight="25.0" prefWidth="443.0" AnchorPane.bottomAnchor="420.0" AnchorPane.leftAnchor="185.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="155.0" />
+            <TextField fx:id="firstName" layoutX="185.0" layoutY="185.0" prefHeight="25.0" prefWidth="443.0" />
+            <TextField fx:id="lastName" layoutX="185.0" layoutY="218.0" prefHeight="25.0" prefWidth="443.0" />
+            <Text layoutX="99.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="username :" />
+            <Text layoutX="99.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="firstName :" />
+            <Text layoutX="100.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="lastName :" />
+            <Text layoutX="92.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Roles :">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Button fx:id="backButton2" layoutX="117.0" layoutY="505.0" mnemonicParsing="false" onAction="#backToPage" prefHeight="50.0" prefWidth="157.0" text="Back" />
+            <Button fx:id="backButton" layoutX="312.0" layoutY="505.0" mnemonicParsing="false" onAction="#deleteMember" prefHeight="50.0" prefWidth="157.0" text="Delete member" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="312.0" AnchorPane.rightAnchor="299.0" AnchorPane.topAnchor="505.0" />
+            <Button fx:id="backButton1" layoutX="506.0" layoutY="505.0" mnemonicParsing="false" onAction="#addRole" prefHeight="50.0" prefWidth="157.0" text="Add role" />
+            <!-- <Button fx:id="addUserButton" layoutX="418.0" layoutY="500.0" mnemonicParsing="false" onAction="#addNewMember" text="Add user" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="418.0" AnchorPane.rightAnchor="161.0" AnchorPane.topAnchor="500.0" />
+        -->
+        </children>
+    </AnchorPane>
+    <AnchorPane fx:id="confirm" layoutX="10.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" visible="false">
+        <children>
+            <Text layoutX="250.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you really want to delete this user ?" />
+            <Button fx:id="returnButton" layoutX="316.0" layoutY="300.0" mnemonicParsing="false" onAction="#validation" text="Ok" />
+            <Button fx:id="returnButton1" layoutX="420.0" layoutY="300.0" mnemonicParsing="false" onAction="#refuse" text="Return" />
+        </children>
+    </AnchorPane>
+    <AnchorPane fx:id="confirm2" layoutX="10.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" visible="false">
+        <children>
+            <Text layoutX="250.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you really want to delete this role ?" />
+            <Button fx:id="returnButton2" layoutX="316.0" layoutY="300.0" mnemonicParsing="false" onAction="#validationDelRole" text="Ok" />
+            <Button fx:id="returnButton3" layoutX="420.0" layoutY="300.0" mnemonicParsing="false" onAction="#refuseDelRole" text="Return" />
+        </children>
+    </AnchorPane>
+</children>
+</AnchorPane>
