@@ -6,6 +6,8 @@ import BusinessLogic.Ressource.Resource;
 import Facade.ResourceFacade;
 import Main.App;
 import UI.Ressource.ResourceUI;
+import UI.Ticket.TicketUI;
+import UI.UIError;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +15,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import java.net.URL;
 import java.util.List;
@@ -45,8 +48,10 @@ public class ResourceController implements Initializable {
     private ListView<AbstractResource> resourceList;
 
     private static ObservableList<AbstractResource> listViewTemp;
+    private static AbstractResource resourceToManage;
 
     private AbstractProject project;
+
 
     private DropBoxConnexion dropboxPPM;
 
@@ -91,6 +96,28 @@ public class ResourceController implements Initializable {
         box.getChildren().add(resourceUI.loadScene().getRoot());
     }
 
+    @FXML
+    public void validation(ActionEvent actionEvent) {
+
+        DropBoxConnexion dropboxPPM = new DropBoxConnexion();
+        dropboxPPM.deleteFile(resourceToManage.getPath());
+        ResourceFacade.getInstance().deleteResource(resourceToManage.getResourceID());
+
+        ResourceUI resourceUI = new ResourceUI(project);
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(resourceUI.loadScene().getRoot());
+    }
+
+    @FXML
+    public void refuse(ActionEvent actionEvent) {
+        AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+        toHide.setVisible(false);
+        AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#manager");
+        toShow.setVisible(true);
+    }
+
 
     static class Cell extends ListCell<AbstractResource> {
         AbstractResource resource;
@@ -109,15 +136,12 @@ public class ResourceController implements Initializable {
             btnDelete.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    DropBoxConnexion dropboxPPM = new DropBoxConnexion();
-                    dropboxPPM.deleteFile(resource.getPath());
-                    ResourceFacade.getInstance().deleteResource(resource.getResourceID());
+                    resourceToManage = resource;
+                    AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#manager");
+                    toHide.setVisible(false);
+                    AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+                    toShow.setVisible(true);
 
-                    ResourceUI resourceUI = new ResourceUI(project);
-                    HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-                    if(box.getChildren().size() >1 )
-                        box.getChildren().remove(1);
-                    box.getChildren().add(resourceUI.loadScene().getRoot());
                 }
             });
 
