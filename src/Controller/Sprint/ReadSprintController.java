@@ -5,8 +5,10 @@ import BusinessLogic.Sprint.AbstractSprint;
 import BusinessLogic.Task.AbstractTask;
 import BusinessLogic.Task.TaskState;
 import Controller.IController;
+import Facade.SessionFacade;
 import Facade.SprintFacade;
 import Facade.Task.TaskFacade;
+import Facade.User.MemberUser.MemberFacade;
 import Main.App;
 import UI.Sprint.AddTaskSprintUI;
 import UI.Sprint.ReadSprintUI;
@@ -120,6 +122,11 @@ public class ReadSprintController implements Initializable, IController {
         sprintNameText.setText(sprint.getSprintName());
         beginDateText.setText("Begin Date : "+sprint.getBeginDate());
         endDateText.setText("Begin End : "+sprint.getEndDate());
+
+        if(!SessionFacade.getInstance().getUser().isAdmin()){
+            deleteSprintButton.setDisable(true);
+        }
+
        update();
     }
 
