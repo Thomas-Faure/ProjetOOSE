@@ -2,3 +2,5 @@
 *.idea
 bin/
 *.class
+src/DAO/MySQLConnector.java
+ProjetOOSE.iml

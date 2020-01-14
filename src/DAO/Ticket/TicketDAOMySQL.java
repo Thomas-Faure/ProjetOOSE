@@ -7,13 +7,16 @@ import BusinessLogic.User.User;
 import DAO.MySQLConnector;
 import Facade.User.GlobalUser.GlobalUserFacade;
 import Facade.User.GlobalUser.IGlobalUserFacade;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Ce DAO permet de gérer les Ticket en BD
+ * @author Rémi Salmi
+ */
 public class TicketDAOMySQL implements TicketDAO {
 
     private IGlobalUserFacade userFacade = GlobalUserFacade.getInstance();
@@ -26,6 +29,10 @@ public class TicketDAOMySQL implements TicketDAO {
     private static final String TICKETBYID = "SELECT * from ticket where idTicket=?";
 
     @Override
+    /**
+     * Permet de récupérer tous les tickets
+     * @author Rémi Salmi
+     */
     public List<AbstractTicket> getAllTickets() {
         List<AbstractTicket> list = new ArrayList<>();
         try {
@@ -59,6 +66,10 @@ public class TicketDAOMySQL implements TicketDAO {
 
 
     @Override
+    /**
+     * Permet de récupérer les ticket de l'user connecté
+     * @author Rémi Salmi
+     */
     public List<AbstractTicket> getMyTickets(AbstractUser user) {
         List<AbstractTicket> list = new ArrayList<>();
         try {
@@ -88,6 +99,10 @@ public class TicketDAOMySQL implements TicketDAO {
     }
 
     @Override
+    /**
+     * Permet de récuperer un ticket par son id
+     * @author Rémi Salmi
+     */
     public AbstractTicket getTicketById(int id) {
         Ticket ticket = null;
         try {
@@ -115,6 +130,10 @@ public class TicketDAOMySQL implements TicketDAO {
 
 
     @Override
+    /**
+     * Permet de modifier un ticket
+     * @author Rémi Salmi
+     */
     public boolean update(AbstractTicket ticket) {
         try {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(UPDATE);
@@ -137,6 +156,10 @@ public class TicketDAOMySQL implements TicketDAO {
     }
 
     @Override
+    /**
+     * Permet de sauvegarder un nouveau ticket
+     * @author Rémi Salmi
+     */
     public boolean save(AbstractTicket t) {
         try {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(INSERT);
@@ -155,6 +178,10 @@ public class TicketDAOMySQL implements TicketDAO {
 
 
     @Override
+    /**
+     * Permet de supprimer un ticket
+     * @author Rémi Salmi
+     */
     public boolean delete(int id) {
         try {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(DELETE);
@@ -171,17 +198,6 @@ public class TicketDAOMySQL implements TicketDAO {
             throw new RuntimeException(e);
         }
 
-
-    }
-
-
-
-    public static void main(String[] args) {
-        TicketDAOMySQL sql = new TicketDAOMySQL();
-        List<AbstractTicket> list =sql.getAllTickets();
-        for(AbstractTicket a : list){
-            System.out.println(a.getProblem());
-        }
 
     }
 }

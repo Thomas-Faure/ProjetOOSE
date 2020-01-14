@@ -1,11 +1,13 @@
 package UI.Ticket;
 
-import Controller.Ticket.TicketController;
 import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+/**
+ * @author Rémi Salmi
+ */
 public class TicketUI implements UIGlobal {
 
     @Override
@@ -13,7 +15,7 @@ public class TicketUI implements UIGlobal {
         Parent root = null;
         try {
             FXMLLoader loader = new FXMLLoader();
-            root = loader.load(getClass().getResourceAsStream("TicketsUI.fxml"));
+            root = loader.load(getClass().getResourceAsStream("TicketUI.fxml"));
         }catch(Exception e){
             e.printStackTrace();
         }

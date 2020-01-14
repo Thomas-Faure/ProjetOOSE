@@ -12,11 +12,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-public class MeetingsUI implements UIGlobal {
+public class MeetingUI implements UIGlobal {
 
     private AbstractProject project;
 
-    public MeetingsUI(AbstractProject project){
+    public MeetingUI(AbstractProject project){
         this.project= project;
     }
 
@@ -31,7 +31,7 @@ public class MeetingsUI implements UIGlobal {
         });
         Parent root = null;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("MeetingsUI.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MeetingUI.fxml"));
             loader.setControllerFactory(new Callback<Class<?>, Object>() {
                 @Override
                 public Object call(Class<?> param) {

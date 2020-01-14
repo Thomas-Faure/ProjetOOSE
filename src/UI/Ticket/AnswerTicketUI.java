@@ -1,16 +1,18 @@
 package UI.Ticket;
 
 import Controller.Ticket.AnswerTicketController;
-import Controller.Ticket.ReadTicketController;
 import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.util.Callback;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
+
+/**
+ * @author Rémi Salmi
+ */
 
 public class AnswerTicketUI implements UIGlobal {
 

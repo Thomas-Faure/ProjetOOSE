@@ -13,10 +13,13 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Ce controller permet de gérer l'UI de réponse à un ticket
+ * @author Rémi Salmi
+ */
 public class AnswerTicketController implements Initializable {
 
     private ITicketFacade ticketFacade = TicketFacade.getInstance();
@@ -49,6 +52,10 @@ public class AnswerTicketController implements Initializable {
 
 
     @Override
+    /**
+     * Initialisation de l'UI
+     * @author Rémi Salmi
+     */
     public void initialize(URL arg0, ResourceBundle arg1) {
         AbstractTicket ticket = ticketFacade.getTicketById(id);
         if(ticket != null) {
@@ -70,6 +77,10 @@ public class AnswerTicketController implements Initializable {
         }
     }
 
+    /**
+     * Permet de retrouner à la page précédente
+     * @author Rémi Salmi
+     */
     @FXML
     public void back(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
@@ -79,6 +90,10 @@ public class AnswerTicketController implements Initializable {
         box.getChildren().add(ticketPage.loadScene().getRoot());
     }
 
+    /**
+     * Permet de répondre au ticket
+     * @author Rémi Salmi
+     */
     @FXML
     void answer(ActionEvent actionEvent){
         AbstractTicket ticket = ticketFacade.getTicketById(id);

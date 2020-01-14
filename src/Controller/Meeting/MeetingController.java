@@ -7,7 +7,7 @@ import Facade.Meeting.IMeetingFacade;
 import Facade.Meeting.MeetingFacade;
 import Main.App;
 import UI.Meeting.AddMeetingUI;
-import UI.Meeting.MeetingsUI;
+import UI.Meeting.MeetingUI;
 import UI.Meeting.UpdateMeetingUI;
 import UI.Project.ReadProjectUI;
 import UI.UIError;
@@ -120,7 +120,7 @@ public class MeetingController implements Initializable {
     public void validation(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(!(meetingFacade.deleteMeeting(toManage))){
-            UIError error = new UIError(new MeetingsUI(project));
+            UIError error = new UIError(new MeetingUI(project));
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(2);

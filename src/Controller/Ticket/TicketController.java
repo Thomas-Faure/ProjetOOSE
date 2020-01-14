@@ -1,12 +1,11 @@
 package Controller.Ticket;
 
+
 import BusinessLogic.Ticket.AbstractTicket;
 import BusinessLogic.Ticket.Ticket;
-
 import Facade.Ticket.ITicketFacade;
 import Facade.Ticket.TicketFacade;
 import Main.App;
-
 import UI.Ticket.AnswerTicketUI;
 import UI.Ticket.ReadTicketUI;
 import UI.Ticket.TicketUI;
@@ -24,13 +23,14 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-
-
 import java.net.URL;
 import java.util.ArrayList;
-
 import java.util.ResourceBundle;
 
+/**
+ * Ce controller permet de gérer l'UI des ticket (coté admin)
+ * @author Rémi Salmi
+ */
 public class TicketController implements Initializable {
 
     @FXML
@@ -52,6 +52,10 @@ public class TicketController implements Initializable {
     //permet de garder la liste de base
     private static ObservableList<AbstractTicket> listViewTemp;
     @FXML
+    /**
+     * Permet de rechercher un ticket dans la liste
+     * @author Rémi Salmi
+     */
     public void searchBar(KeyEvent keyEvent) {
 
         if(!(inputSearch.getText().length() == 0)) {
@@ -81,6 +85,11 @@ public class TicketController implements Initializable {
         }
 
     }
+
+    /**
+     * Initilaisation de l'UI
+     * @author Rémi Salmi
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         if(ticketsList != null){
@@ -97,6 +106,10 @@ public class TicketController implements Initializable {
 
     }
 
+    /**
+     * Permet de valider la supression d'un ticket
+     * @author Rémi Salmi
+     */
     public void validation(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(!(tFacade.deleteTicket(toManage))){
@@ -115,6 +128,10 @@ public class TicketController implements Initializable {
         }
     }
 
+    /**
+     * Permet d'annuler la suppression d'un ticket
+     * @author Rémi Salmi
+     */
     public void refuse(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
         toHide.setVisible(false);

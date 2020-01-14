@@ -14,10 +14,13 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Ce controller permet de gérer l'Ui de lecture d'un ticket
+ * @author Rémi Salmi
+ */
 public class ReadTicketController implements Initializable {
 
     private ITicketFacade ticketFacade = TicketFacade.getInstance();
@@ -49,7 +52,10 @@ public class ReadTicketController implements Initializable {
         this.isAdmin = isAdmin;
     }
 
-
+    /**
+     * Initialisation de l'UI
+     * @author Rémi Salmi
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         AbstractTicket ticket = ticketFacade.getTicketById(id);
@@ -82,6 +88,10 @@ public class ReadTicketController implements Initializable {
         }
     }
 
+    /**
+     * Permet de retourner à la page précédente
+     * @author Rémi Salmi
+     */
     @FXML
     public void back(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
