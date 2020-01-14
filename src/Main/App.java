@@ -38,16 +38,17 @@ public class App {
     public Scene getMenuScene(){
         return this.menu.loadScene();
     }
+
+    /**
+     *
+     * Method to set the scene menu
+     */
     public static void setMenuScene(){
         if(getInstance().menu == null){
             getInstance().menu=new Menu();
         }
         getInstance().setInstanceScene(getInstance().getMenuScene());
-        ProjectUI meetingsPage = new ProjectUI();
-        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-        if(box.getChildren().size() >1 )
-            box.getChildren().remove(1);
-        box.getChildren().add(meetingsPage.loadScene().getRoot());
+
     }
 
     /**Method to get the stage of the application

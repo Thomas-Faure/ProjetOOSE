@@ -17,7 +17,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,8 +30,7 @@ import java.util.ResourceBundle;
  * @author Thomas Faure
  */
 public class MenuController implements Initializable {
-    @FXML
-    private Button menuLogin;
+
     @FXML
     private Button menuProject;
     @FXML
@@ -40,18 +41,22 @@ public class MenuController implements Initializable {
     private Button menuTicket;
     @FXML
     private Button menuIdea;
-    @FXML
-    private Button menuMyIdea;
+
     @FXML
     private Button menuUser;
     @FXML
-    private Button MyTicket;
+    private Button menuMyTicket;
     @FXML
     private Button menuAccount;
+
+    public MenuController(){
+
+    }
 
     /**Method called when the user click on "log off", log off the user
      * @param event
      */
+
     @FXML
     void logOff(ActionEvent event){
         SessionFacade.getInstance().removeUser();
@@ -65,6 +70,7 @@ public class MenuController implements Initializable {
      */
     @FXML
     void goWelcomePage(ActionEvent event){
+        initialiseColor();
         WelcomeUI ui = new WelcomeUI();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
@@ -77,6 +83,8 @@ public class MenuController implements Initializable {
      */
     @FXML
     void goMenuProject(ActionEvent event){
+        initialiseColor();
+        setSelectedColor(menuProject);
         ProjectUI project = new ProjectUI();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
@@ -89,6 +97,8 @@ public class MenuController implements Initializable {
      */
     @FXML
     void goMenuAnnouncementManager(ActionEvent event){
+        initialiseColor();
+        setSelectedColor(menuAnnouncementManager);
         AnnouncementManagementUI announcement = new AnnouncementManagementUI();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
@@ -102,6 +112,8 @@ public class MenuController implements Initializable {
      */
     @FXML
     void goMenuTicket(ActionEvent event){
+        initialiseColor();
+        setSelectedColor(menuTicket);
         TicketUI ticket = new TicketUI();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
@@ -114,6 +126,8 @@ public class MenuController implements Initializable {
      */
     @FXML
     void goMyTicket(ActionEvent event){
+        initialiseColor();
+        setSelectedColor(menuMyTicket);
         MyTicketUI myTicket = new MyTicketUI();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
@@ -126,6 +140,8 @@ public class MenuController implements Initializable {
      */
     @FXML
     void goMenuIdea(ActionEvent event){
+        initialiseColor();
+        setSelectedColor(menuIdea);
         IdeaBoxUI ideabox = new IdeaBoxUI();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
@@ -147,6 +163,8 @@ public class MenuController implements Initializable {
      */
     @FXML
     void goMenuUser(ActionEvent event){
+        initialiseColor();
+        setSelectedColor(menuUser);
         AllUsersUI users = new AllUsersUI();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
@@ -160,6 +178,8 @@ public class MenuController implements Initializable {
      */
     @FXML
     void goMenuAnnouncement(ActionEvent event){
+        initialiseColor();
+        setSelectedColor(menuAnnouncement);
         AnnouncementUI announcement = new AnnouncementUI();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
@@ -168,14 +188,13 @@ public class MenuController implements Initializable {
 
     }
 
-    public MenuController(){
-
-    }
 
     /**Method called when the user click on the account button, this method show the account page
      * @param actionEvent
      */
     public void goMenuAccount(ActionEvent actionEvent) {
+        initialiseColor();
+        setSelectedColor(menuAccount);
         MyAccountUI users = new MyAccountUI();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
@@ -183,9 +202,36 @@ public class MenuController implements Initializable {
         box.getChildren().add(users.loadScene().getRoot());
 
     }
+    public void setSelectedColor(Button button){
+        String selectedColor = " #000000";
+        button.setStyle("-fx-background-color: "+selectedColor+";");
+    }
+
+    public void initialiseColor(){
+    String initialColor = " #1e282c";
+
+    menuProject.setStyle("-fx-background-color: "+initialColor+";");
+
+    menuAnnouncementManager.setStyle("-fx-background-color: "+initialColor+";");
+
+    menuAnnouncement.setStyle("-fx-background-color: "+initialColor+";");
+
+    menuTicket.setStyle("-fx-background-color: "+initialColor+";");
+
+    menuIdea.setStyle("-fx-background-color: "+initialColor+";");
+
+    menuUser.setStyle("-fx-background-color: "+initialColor+";");
+
+    menuMyTicket.setStyle("-fx-background-color: "+initialColor+";");
+
+    menuAccount.setStyle("-fx-background-color: "+initialColor+";");
+
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        initialiseColor();
+
         AbstractUser user = SessionFacade.getInstance().getUser();
         if(!user.isAdmin()){
             //to disable
