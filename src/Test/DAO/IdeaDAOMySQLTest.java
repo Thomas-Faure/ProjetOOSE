@@ -4,7 +4,7 @@ import BusinessLogic.Idea.AbstractIdea;
 import BusinessLogic.Idea.Idea;
 import BusinessLogic.User.AbstractUser;
 import BusinessLogic.User.User;
-import DAO.Idea.IdeaDAO;
+import DAO.Idea.IIdeaDAO;
 import DAO.Idea.IdeaDAOMySQL;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class IdeaDAOMySQLTest {
     @Test
     void save() {
-        IdeaDAO dao = new IdeaDAOMySQL();
+        IIdeaDAO dao = new IdeaDAOMySQL();
         AbstractUser user = new User(1,"name","firstname","lastname","password");
         AbstractIdea idea = new Idea(1,"nom","description", "Subject", user, "validated");
         boolean valid = dao.save(idea);

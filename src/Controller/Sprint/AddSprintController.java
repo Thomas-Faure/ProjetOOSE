@@ -3,7 +3,7 @@ package Controller.Sprint;
 import BusinessLogic.Project.AbstractProject;
 import BusinessLogic.Sprint.AbstractSprint;
 import BusinessLogic.Sprint.Sprint;
-import Facade.SprintFacade;
+import Facade.Sprint.SprintFacade;
 import Main.App;
 import UI.Sprint.SprintUI;
 import javafx.event.ActionEvent;

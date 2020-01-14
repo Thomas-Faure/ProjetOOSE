@@ -7,7 +7,7 @@ import BusinessLogic.Announcement.AbstractAnnouncement;
 import BusinessLogic.Announcement.Announcement;
 import BusinessLogic.User.AbstractUser;
 import Facade.Announcement.AnnouncementFacade;
-import Facade.SessionFacade;
+import Facade.Session.SessionFacade;
 import Main.App;
 import UI.Announcement.AddAnnouncementUI;
 import UI.Announcement.AnnouncementManagementUI;
@@ -27,6 +27,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -61,12 +63,12 @@ public class AnnouncementController implements Initializable {
             ArrayList<AbstractAnnouncement> array = new ArrayList<>(listViewTemp);
             ArrayList<AbstractAnnouncement> toDelete = new ArrayList<>();
             for (int i = 0; i < array.size(); ++i) {
-                String inputS =inputSearch.getText();
+                String inputS =inputSearch.getText().toLowerCase();
                 if(inputS.charAt(0) == '*'){
                     inputS= "\\"+inputS;
                 }
                 String regex = "(.*)" + inputS + "(.*)";
-                if (array.get(i).getTitle().matches(regex)) {
+                if (array.get(i).getTitle().toLowerCase().matches(regex)) {
 
                 } else {
                     toDelete.add(array.get(i));

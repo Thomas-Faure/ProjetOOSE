@@ -7,7 +7,7 @@ import BusinessLogic.Announcement.AbstractAnnouncement;
 import BusinessLogic.Announcement.Announcement;
 import BusinessLogic.User.AbstractUser;
 import BusinessLogic.User.User;
-import DAO.Announcement.AnnouncementDAO;
+import DAO.Announcement.IAnnouncementDAO;
 import DAO.Announcement.AnnouncementDAOMySQL;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +26,7 @@ class AnnouncementDAOMySQLTest {
      */
     @Test
     void save() {
-        AnnouncementDAO dao = new AnnouncementDAOMySQL();
+        IAnnouncementDAO dao = new AnnouncementDAOMySQL();
         AbstractUser user = new User(1,"name","firstname","lastname","password");
         AbstractAnnouncement announcement = new Announcement(1,"title","message",LocalDate.now(),user);
         boolean valid = dao.save(announcement);
@@ -37,7 +37,7 @@ class AnnouncementDAOMySQLTest {
      */
     @Test
     void update() {
-        AnnouncementDAO dao = new AnnouncementDAOMySQL();
+        IAnnouncementDAO dao = new AnnouncementDAOMySQL();
         List<AbstractAnnouncement> list = dao.getAllAnnouncements();
         AbstractAnnouncement announcement = null;
         if(list.size() != 0) {

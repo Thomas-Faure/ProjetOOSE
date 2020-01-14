@@ -5,7 +5,7 @@ import BusinessLogic.Idea.AbstractIdea;
 import BusinessLogic.Idea.Idea;
 import Facade.Idea.IIdeaFacade;
 import Facade.Idea.IdeaFacade;
-import Facade.SessionFacade;
+import Facade.Session.SessionFacade;
 import Main.App;
 import UI.Idea.AddIdeaUI;
 import UI.Idea.IdeaBoxUI;

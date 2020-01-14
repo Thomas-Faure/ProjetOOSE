@@ -2,7 +2,7 @@ package Controller.Sprint;
 
 import BusinessLogic.Project.AbstractProject;
 import BusinessLogic.Sprint.AbstractSprint;
-import Facade.SprintFacade;
+import Facade.Sprint.SprintFacade;
 import Main.App;
 import UI.Project.ReadProjectUI;
 import UI.Sprint.AddSprintUI;
@@ -19,6 +19,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.List;
@@ -32,6 +33,9 @@ public class SprintController implements Initializable {
 
     @FXML
     private Button buttonCreate;
+
+    @FXML
+    private Text titlePath;
 
     @FXML
     private ListView<AbstractSprint> sprintList;
@@ -87,6 +91,7 @@ public class SprintController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        titlePath.setText("Project/"+ project.getName()+"/Sprints");
         if(sprintList != null){
 
             List<AbstractSprint> listeElement = SprintFacade.getInstance().getListSprintByProject(project.getId());

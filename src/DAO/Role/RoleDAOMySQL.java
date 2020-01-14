@@ -16,7 +16,7 @@ import java.util.List;
  * requetes pour récupérer des données.
  * @author Lauren Unquera - Polytech Montpellier IG4
  */
-public class RoleDAOMySQL implements RoleDAO {
+public class RoleDAOMySQL implements IRoleDAO {
 
     private static final String INSERT = "INSERT INTO role (name) VALUES (?)";
     private static final String UPDATE = "UPDATE role SET name=? WHERE idRole=?";

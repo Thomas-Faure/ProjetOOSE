@@ -2,7 +2,7 @@ package Facade.Project;
 
 import BusinessLogic.Project.AbstractProject;
 import DAO.MySQLDAOFactory;
-import DAO.Project.ProjectDAO;
+import DAO.Project.IProjectDAO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class ProjectFacade implements IProjectFacade {
     private List<AbstractProject> projects;
-    private ProjectDAO dao;
+    private IProjectDAO dao;
     public static ProjectFacade instance;
 
     private ProjectFacade(){

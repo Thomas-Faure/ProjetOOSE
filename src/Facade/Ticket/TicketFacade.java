@@ -4,7 +4,7 @@ package Facade.Ticket;
 import BusinessLogic.Ticket.AbstractTicket;
 import BusinessLogic.User.AbstractUser;
 import DAO.MySQLDAOFactory;
-import DAO.Ticket.TicketDAO;
+import DAO.Ticket.ITicketDAO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class TicketFacade implements ITicketFacade {
     private List<AbstractTicket> tickets;
-    private TicketDAO dao;
+    private ITicketDAO dao;
     public static TicketFacade instance;
 
 

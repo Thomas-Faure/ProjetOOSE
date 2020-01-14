@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author Guillaume Tessier
  */
-public class MessageDAOMySQL implements MessageDAO {
+public class MessageDAOMySQL implements IMessageDAO {
 
     private static final String INSERT = "INSERT INTO message (contenu, idChat, createur) VALUES (?, ?, ?)";
     private static final String DELETE = "DELETE FROM message WHERE idMessage=?";

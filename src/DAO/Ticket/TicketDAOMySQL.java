@@ -17,7 +17,7 @@ import java.util.List;
  * Ce DAO permet de gérer les Ticket en BD
  * @author Rémi Salmi
  */
-public class TicketDAOMySQL implements TicketDAO {
+public class TicketDAOMySQL implements ITicketDAO {
 
     private IGlobalUserFacade userFacade = GlobalUserFacade.getInstance();
 

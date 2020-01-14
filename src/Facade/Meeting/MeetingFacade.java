@@ -2,7 +2,7 @@ package Facade.Meeting;
 
 import BusinessLogic.Meeting.AbstractMeeting;
 import BusinessLogic.Project.AbstractProject;
-import DAO.Meeting.MeetingDAO;
+import DAO.Meeting.IMeetingDAO;
 import DAO.MySQLDAOFactory;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class MeetingFacade implements IMeetingFacade {
     private List<AbstractMeeting> meetings;
-    private MeetingDAO dao;
+    private IMeetingDAO dao;
     public static MeetingFacade instance;
 
     private MeetingFacade(){

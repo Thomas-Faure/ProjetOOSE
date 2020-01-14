@@ -1,14 +1,17 @@
 package DAO;
 
-import DAO.Announcement.AnnouncementDAO;
-import DAO.Idea.IdeaDAO;
-import DAO.Meeting.MeetingDAO;
-import DAO.Message.MessageDAO;
-import DAO.Project.ProjectDAO;
-import DAO.Role.RoleDAO;
-import DAO.Task.TaskDAO;
-import DAO.Ticket.TicketDAO;
-import DAO.User.Member.MemberDAO;
+import DAO.Announcement.IAnnouncementDAO;
+import DAO.Chat.IChatDAO;
+import DAO.Idea.IIdeaDAO;
+import DAO.Meeting.IMeetingDAO;
+import DAO.Message.IMessageDAO;
+import DAO.Project.IProjectDAO;
+import DAO.Resource.IResourceDAO;
+import DAO.Role.IRoleDAO;
+import DAO.Sprint.ISprintDAO;
+import DAO.Task.ITaskDAO;
+import DAO.Ticket.ITicketDAO;
+import DAO.User.Member.IMemberDAO;
 /**
  *	Abstract class of the DaoFactory
  * @author Thomas Faure
@@ -17,47 +20,47 @@ public abstract class AbstractDAOFactory {
     /**Method to create an announcementDAO
      * @return an AnnouncementDAO
      */
-    protected abstract AnnouncementDAO getAnnouncementDAO();
+    protected abstract IAnnouncementDAO getAnnouncementDAO();
     /**Method to create a ChatDAO
      * @return an ChatDAO
      */
-    protected abstract ChatDAO getChatDAO();
+    protected abstract IChatDAO getChatDAO();
     /**Method to create an IdeaDAO
      * @return an IdeaDAO
      */
-    protected abstract IdeaDAO getIdeaDAO();
+    protected abstract IIdeaDAO getIdeaDAO();
     /**Method to create an MeetingDAO
      * @return an MeetingDAO
      */
-    protected abstract MeetingDAO getMeetingDAO();
+    protected abstract IMeetingDAO getMeetingDAO();
     /**Method to create an MemberDAO
      * @return an MemberDAO
      */
-    protected abstract MemberDAO getMemberDAO();
+    protected abstract IMemberDAO getMemberDAO();
     /**Method to create an ProjectDAO
      * @return an ProjectDAO
      */
-    protected abstract ProjectDAO getProjectDAO();
+    protected abstract IProjectDAO getProjectDAO();
     /**Method to create an RessourceDAO
      * @return an RessourceDAO
      */
-    protected abstract RessourceDAO getResourceDAO();
+    protected abstract IResourceDAO getResourceDAO();
     /**Method to create an RoleDAO
      * @return an RoleDAO
      */
-    protected abstract RoleDAO getRoleDAO();
+    protected abstract IRoleDAO getRoleDAO();
     /**Method to create an SprintDAO
      * @return an SprintDAO
      */
-    protected abstract SprintDAO getSprintDAO();
+    protected abstract ISprintDAO getSprintDAO();
     /**Method to create an TaskDAO
      * @return an TaskDAO
      */
-    protected abstract TaskDAO getTaskDAO();
+    protected abstract ITaskDAO getTaskDAO();
     /**Method to create an TicketDAO
      * @return an TicketDAO
      */
-    protected abstract TicketDAO getTicketDAO();
+    protected abstract ITicketDAO getTicketDAO();
 
-    protected abstract MessageDAO getMessageDAO();
+    protected abstract IMessageDAO getMessageDAO();
 }

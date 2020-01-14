@@ -3,7 +3,7 @@ package Controller.Project;
 import BusinessLogic.Chat.AbstractChat;
 import BusinessLogic.Chat.Chat;
 import BusinessLogic.Project.AbstractProject;
-import Facade.ChatFacade;
+import Facade.Chat.ChatFacade;
 import Facade.Project.IProjectFacade;
 import Facade.Project.ProjectFacade;
 import Main.App;

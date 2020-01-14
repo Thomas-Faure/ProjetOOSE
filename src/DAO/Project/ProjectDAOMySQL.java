@@ -13,7 +13,7 @@ import java.util.List;
  * Ce DAO permet de gérer les projet en BD
  * @author Rémi Salmi
  */
-public class ProjectDAOMySQL implements ProjectDAO {
+public class ProjectDAOMySQL implements IProjectDAO {
 
     private static final String INSERT = "INSERT INTO project (title, description, dateCreation, isAgile) VALUES (?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE project SET title=?, description=? WHERE idProject=?";

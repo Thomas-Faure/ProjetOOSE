@@ -5,7 +5,7 @@ import BusinessLogic.User.AbstractUser;
 
 import java.util.List;
 
-public interface TicketDAO {
+public interface ITicketDAO {
 
     List<AbstractTicket> getAllTickets();
     List<AbstractTicket> getMyTickets(AbstractUser user);

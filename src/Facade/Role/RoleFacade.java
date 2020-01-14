@@ -2,7 +2,7 @@ package Facade.Role;
 
 import BusinessLogic.Role.AbstractRole;
 import DAO.MySQLDAOFactory;
-import DAO.Role.RoleDAO;
+import DAO.Role.IRoleDAO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class RoleFacade implements IRoleFacade {
     private List<AbstractRole> roles;
-    private RoleDAO daoFactory;
+    private IRoleDAO daoFactory;
 
     public static RoleFacade instance;
 
@@ -36,7 +36,7 @@ public class RoleFacade implements IRoleFacade {
         return this.roles;
     }
 
-    public RoleDAO getDao(){
+    public IRoleDAO getDao(){
         return this.daoFactory;
     }
 

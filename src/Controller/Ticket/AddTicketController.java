@@ -3,8 +3,8 @@ package Controller.Ticket;
 
 import BusinessLogic.Ticket.AbstractTicket;
 import BusinessLogic.Ticket.Ticket;
-import Facade.ISessionFacade;
-import Facade.SessionFacade;
+import Facade.Session.ISessionFacade;
+import Facade.Session.SessionFacade;
 import Facade.Ticket.ITicketFacade;
 import Facade.Ticket.TicketFacade;
 import Main.App;

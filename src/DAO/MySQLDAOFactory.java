@@ -3,25 +3,31 @@ package DAO;
  *
  * @author Thomas Faure
  */
-import DAO.Announcement.AnnouncementDAO;
+import DAO.Announcement.IAnnouncementDAO;
 import DAO.Announcement.AnnouncementDAOMySQL;
-import DAO.Idea.IdeaDAO;
+import DAO.Chat.ChatDAOMySQL;
+import DAO.Chat.IChatDAO;
+import DAO.Idea.IIdeaDAO;
 import DAO.Idea.IdeaDAOMySQL;
-import DAO.Meeting.MeetingDAO;
+import DAO.Meeting.IMeetingDAO;
 import DAO.Meeting.MeetingDAOMySQL;
-import DAO.Message.MessageDAO;
+import DAO.Message.IMessageDAO;
 import DAO.Message.MessageDAOMySQL;
-import DAO.Project.ProjectDAO;
+import DAO.Project.IProjectDAO;
 import DAO.Project.ProjectDAOMySQL;
-import DAO.Role.RoleDAO;
+import DAO.Resource.IResourceDAO;
+import DAO.Resource.ResourceDAOMySQL;
+import DAO.Role.IRoleDAO;
 import DAO.Role.RoleDAOMySQL;
-import DAO.Task.TaskDAO;
+import DAO.Sprint.ISprintDAO;
+import DAO.Sprint.SprintDAOMySQL;
+import DAO.Task.ITaskDAO;
 import DAO.Task.TaskDAOMySQL;
-import DAO.Ticket.TicketDAO;
+import DAO.Ticket.ITicketDAO;
 import DAO.Ticket.TicketDAOMySQL;
-import DAO.User.GlobalUser.GlobalUserDAO;
+import DAO.User.GlobalUser.IGlobalUserDAO;
 import DAO.User.GlobalUser.GlobalUserDAOMySQL;
-import DAO.User.Member.MemberDAO;
+import DAO.User.Member.IMemberDAO;
 import DAO.User.Member.MemberDAOMySQL;
 
 /**
@@ -46,57 +52,57 @@ public  class MySQLDAOFactory extends AbstractDAOFactory {
     }
 
 
-    public  GlobalUserDAO getUserDAO() {
+    public IGlobalUserDAO getUserDAO() {
         return new GlobalUserDAOMySQL();
     }
 
 
-    public  IdeaDAO getIdeaDAO() {
+    public IIdeaDAO getIdeaDAO() {
         return new IdeaDAOMySQL();
     }
 
     @Override
-    public MeetingDAO getMeetingDAO() {
+    public IMeetingDAO getMeetingDAO() {
         return new MeetingDAOMySQL();
     }
 
 
-    public  RoleDAO getRoleDAO() {
+    public IRoleDAO getRoleDAO() {
         return new RoleDAOMySQL();
     }
-    public  AnnouncementDAO getAnnouncementDAO() {
+    public IAnnouncementDAO getAnnouncementDAO() {
         return new AnnouncementDAOMySQL();
     }
 
-    public  TicketDAO getTicketDAO() {
+    public ITicketDAO getTicketDAO() {
         return new TicketDAOMySQL();
     }
 
-    public  RessourceDAO getResourceDAO(){
-        return new RessourceDAOMySQL();
+    public IResourceDAO getResourceDAO(){
+        return new ResourceDAOMySQL();
     };
 
-    public  ChatDAO getChatDAO(){ return new ChatDAOMySQL();}
+    public IChatDAO getChatDAO(){ return new ChatDAOMySQL();}
 
-    public  SprintDAO getSprintDAO(){ return new SprintDAOMySQL();}
+    public ISprintDAO getSprintDAO(){ return new SprintDAOMySQL();}
 
     @Override
-    public TaskDAO getTaskDAO() {
+    public ITaskDAO getTaskDAO() {
         return new TaskDAOMySQL();
     }
 
     ;
     @Override
-    public  MemberDAO getMemberDAO() {
+    public IMemberDAO getMemberDAO() {
         return new MemberDAOMySQL();
     }
 
     @Override
-    public ProjectDAO getProjectDAO() {
+    public IProjectDAO getProjectDAO() {
         return new ProjectDAOMySQL();
     }
     @Override
-    public MessageDAO getMessageDAO() {
+    public IMessageDAO getMessageDAO() {
         return new MessageDAOMySQL();
     }
 

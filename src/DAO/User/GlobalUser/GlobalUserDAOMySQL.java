@@ -18,7 +18,7 @@ import java.util.List;
  * requetes pour récupérer des données.
  * @author Lauren Unquera - Polytech Montpellier IG4
  */
-public class GlobalUserDAOMySQL implements GlobalUserDAO {
+public class GlobalUserDAOMySQL implements IGlobalUserDAO {
 
     private static final String INSERT = "INSERT INTO user (username, password, firstName, lastName, city, phoneNumber, email, position, isAdmin ) VALUES (?, ?, ?, ?,?,?,?,?,?)";
     private static final String UPDATE = "UPDATE user SET username=?, password=?, firstName=?, lastName=?, city=?, phoneNumber=?, email=?, position=?, isAdmin=? WHERE idUser=?";

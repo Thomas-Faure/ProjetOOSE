@@ -17,7 +17,7 @@
     <TextField fx:id="inputUsername" layoutX="275.0" layoutY="232.0" prefWidth="448.0" />
     <PasswordField fx:id="inputPassword" layoutX="276.0" layoutY="363.0" prefWidth="448.0" />
     <Text fx:id="info" layoutX="483.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
-      <Pane prefHeight="49.0" prefWidth="1000.0" style="-fx-background-color: #367fa9;">
+      <Pane prefHeight="49.0" prefWidth="1020.0" style="-fx-background-color: #367fa9;">
          <children>
             <Text fill="WHITE" layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" />
          </children>

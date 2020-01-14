@@ -18,6 +18,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
+
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -28,6 +30,9 @@ import java.util.ResourceBundle;
 public class ModifyTaskController implements Initializable {
 
     AbstractTask task;
+
+    @FXML
+    private Text pathIndication;
     @FXML
     private TextField modifySubject;
     @FXML
@@ -115,7 +120,7 @@ public class ModifyTaskController implements Initializable {
      */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-
+        pathIndication.setText("/Projects/" + project.getName()+"/Tasks/update/"+task.getId());
         for(TaskState st : TaskState.values()){
             stateChoiceBox.getItems().add(st.getStatetoString());
         }

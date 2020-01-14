@@ -3,7 +3,7 @@ package Controller.Login;
  *
  * @author Thomas Faure
  */
-import Facade.SessionFacade;
+import Facade.Session.SessionFacade;
 import Main.App;
 import UI.User.Global.CreateAccountUI;
 import UI.WelcomeUI;

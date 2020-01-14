@@ -15,6 +15,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -23,6 +25,8 @@ import java.util.ResourceBundle;
  */
 public class ReadTaskController implements Initializable {
     int id;
+    @FXML
+    private Text pathIndication;
     @FXML
     private TextField state;
     @FXML
@@ -58,6 +62,8 @@ public class ReadTaskController implements Initializable {
      */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        pathIndication.setText("/Projects/" + project.getName()+"/Tasks/read/"+id);
+
         AbstractTask taskToRead = TaskFacade.getInstance().getTaskById(id);
         if(taskToRead!= null) {
             subject.setText(taskToRead.getName());

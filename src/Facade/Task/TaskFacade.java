@@ -6,7 +6,7 @@ package Facade.Task;
 import BusinessLogic.Project.AbstractProject;
 import BusinessLogic.Task.AbstractTask;
 import DAO.MySQLDAOFactory;
-import DAO.Task.TaskDAO;
+import DAO.Task.ITaskDAO;
 
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.List;
 
 public class TaskFacade implements ITaskFacade {
     private List<AbstractTask> tasks;
-    private TaskDAO daoFactory;
+    private ITaskDAO daoFactory;
 
 
     public static TaskFacade instance;
@@ -35,7 +35,7 @@ public class TaskFacade implements ITaskFacade {
         return this.tasks;
     }
 
-    public TaskDAO getDao(){
+    public ITaskDAO getDao(){
         return this.daoFactory;
     }
 

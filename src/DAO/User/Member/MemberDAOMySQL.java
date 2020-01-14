@@ -19,7 +19,7 @@ import java.util.List;
  * requetes pour récupérer des données.
  * @author Lauren Unquera - Polytech Montpellier IG4
  */
-public class MemberDAOMySQL implements MemberDAO {
+public class MemberDAOMySQL implements IMemberDAO {
 
     private static final String INSERT = "INSERT INTO `member` (idProject, idUser) VALUES (?, ?)";
     private static final String UPDATE = "UPDATE `member` SET idProject=?, idRole=?, idUser = ? WHERE idUser=?";
