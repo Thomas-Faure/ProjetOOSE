@@ -13,15 +13,15 @@
 <AnchorPane fx:id="paneBasic" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Task.AddTaskController">
   <children>
     <TextField fx:id="subject" layoutX="234.0" layoutY="64.0" prefWidth="452.0" AnchorPane.bottomAnchor="510.6666666666667" AnchorPane.leftAnchor="234.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="64.0" />
-    <Text layoutX="163.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject:" />
-    <Text layoutX="131.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" />
+    <Text layoutX="155.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject:" />
+    <Text layoutX="133.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" />
     <Text layoutX="152.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deadline:" AnchorPane.bottomAnchor="241.94921875" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="566.658203125" AnchorPane.topAnchor="341.05078125" />
     <Button fx:id="backButton" layoutX="24.0" layoutY="530.0" mnemonicParsing="false" onAction="#backToTaskPage" prefHeight="33.0" prefWidth="69.0" text="Back" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="675.0" AnchorPane.topAnchor="530.0" />
     <Text layoutX="156.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priority:" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="156.0" AnchorPane.rightAnchor="571.6171875" AnchorPane.topAnchor="408.0" />
     <Button fx:id="addTaskButton" layoutX="417.0" layoutY="478.0" mnemonicParsing="false" onAction="#addNewTask" prefHeight="33.0" prefWidth="87.0" text="Add task" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="417.0" AnchorPane.rightAnchor="264.0" AnchorPane.topAnchor="478.0" />
     <DatePicker fx:id="deadline" layoutX="234.0" layoutY="336.0" prefHeight="26.0" prefWidth="452.0" />
       <TextArea fx:id="description" layoutX="234.0" layoutY="143.0" prefHeight="183.0" prefWidth="452.0" />
-      <HBox layoutX="303.0" layoutY="403.0" prefHeight="26.0" prefWidth="314.0">
+      <HBox layoutX="260.0" layoutY="402.0" prefHeight="26.0" prefWidth="314.0">
          <children>
           <RadioButton fx:id="1" text="1">
             <toggleGroup>
