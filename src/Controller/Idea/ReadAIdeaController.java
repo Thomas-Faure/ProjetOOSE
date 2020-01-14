@@ -8,6 +8,7 @@ import UI.Idea.IdeaBoxUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
@@ -30,7 +31,7 @@ public class ReadAIdeaController implements Initializable {
     @FXML
     private TextField subject;
     @FXML
-    private TextField description;
+    private TextArea description;
 
     public ReadAIdeaController(){
     }
