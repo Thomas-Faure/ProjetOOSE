@@ -69,6 +69,12 @@ public class ReadAIdeaController implements Initializable {
         name.setText(toRead.getName());
         subject.setText(toRead.getSubject());
         description.setText(toRead.getDescription());
-        etat.setText(toRead.getState());
+        if(toRead.getState() == null){
+            etat.setText("not validated");
+        }
+        else {
+            etat.setText(toRead.getState());
+        }
+
     }
 }
