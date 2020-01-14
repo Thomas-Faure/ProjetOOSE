@@ -15,7 +15,7 @@ public class MyTicketUI implements UIGlobal {
         Parent root = null;
         try {
             FXMLLoader loader = new FXMLLoader();
-            root = loader.load(getClass().getResourceAsStream("MyTicketsUI.fxml"));
+            root = loader.load(getClass().getResourceAsStream("MyTicketUI.fxml"));
         }catch(Exception e){
             e.printStackTrace();
         }

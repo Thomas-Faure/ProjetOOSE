@@ -6,7 +6,7 @@ import BusinessLogic.Project.AbstractProject;
 import Facade.Meeting.IMeetingFacade;
 import Facade.Meeting.MeetingFacade;
 import Main.App;
-import UI.Meeting.MeetingsUI;
+import UI.Meeting.MeetingUI;
 import UI.UIError;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -61,7 +61,7 @@ public class AddMeetingController implements Initializable {
      */
     @FXML
     void cancel(ActionEvent actionEvent){
-        MeetingsUI meetingsPage = new MeetingsUI(project);
+        MeetingUI meetingsPage = new MeetingUI(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
@@ -76,13 +76,13 @@ public class AddMeetingController implements Initializable {
     void addNewMeeting(ActionEvent actionEvent){
         AbstractMeeting meeting = new Meeting(1,date.getValue(),place.getText(), project.getId());
         if(meetingFacade.addMeeting(meeting)){
-            MeetingsUI meetingsPage = new MeetingsUI(project);
+            MeetingUI meetingsPage = new MeetingUI(project);
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(1);
             box.getChildren().add(meetingsPage.loadScene().getRoot());
         }else{
-            UIError error = new UIError(new MeetingsUI(project));
+            UIError error = new UIError(new MeetingUI(project));
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )

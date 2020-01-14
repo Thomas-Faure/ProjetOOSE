@@ -8,7 +8,7 @@ import Facade.Project.IProjectFacade;
 import Facade.Project.ProjectFacade;
 import Main.App;
 import UI.Chat.ChatUI;
-import UI.Meeting.MeetingsUI;
+import UI.Meeting.MeetingUI;
 import UI.Project.ProjectUI;
 import UI.Ressource.ResourceUI;
 import UI.Sprint.AddSprintUI;
@@ -133,7 +133,7 @@ public class ReadProjectController implements Initializable {
      */
     @FXML
     void goMeetings(ActionEvent actionEvent){
-        MeetingsUI meetingPage = new MeetingsUI(project);
+        MeetingUI meetingPage = new MeetingUI(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
