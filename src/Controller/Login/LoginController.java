@@ -5,7 +5,6 @@ package Controller.Login;
  */
 import Facade.SessionFacade;
 import Main.App;
-import UI.Login.UIForgottenPassword;
 import UI.User.Global.CreateAccountUI;
 import UI.WelcomeUI;
 import javafx.event.ActionEvent;
@@ -64,15 +63,7 @@ public class LoginController {
 
     }
 
-    /**
-     * Method to go on the forgotten password page
-     * @param actionEvent
-     */
-    @FXML
-    public void goToPasswordForgottenPage(ActionEvent actionEvent) {
-        UIForgottenPassword fg = new UIForgottenPassword();
-        App.setInstanceScene(fg.loadScene());
-    }
+
 
     /**
      * Method to try to log the user
