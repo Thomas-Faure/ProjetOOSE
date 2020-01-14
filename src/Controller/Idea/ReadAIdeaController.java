@@ -1,6 +1,6 @@
 package Controller.Idea;
 
-import BuisnessLogic.Idea.AbstractIdea;
+import BusinessLogic.Idea.AbstractIdea;
 import Facade.Idea.IIdeaFacade;
 import Facade.Idea.IdeaFacade;
 import Main.App;

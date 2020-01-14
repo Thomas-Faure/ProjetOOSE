@@ -1,7 +1,7 @@
 package Test.Buisness;
 
-import BuisnessLogic.Sprint.AbstractSprint;
-import BuisnessLogic.Sprint.Sprint;
+import BusinessLogic.Sprint.AbstractSprint;
+import BusinessLogic.Sprint.Sprint;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

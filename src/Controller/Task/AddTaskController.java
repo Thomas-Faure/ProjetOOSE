@@ -3,16 +3,15 @@ package Controller.Task;
  *
  * @author Thomas Faure
  */
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Task.AbstractTask;
-import BuisnessLogic.Task.Task;
-import BuisnessLogic.Task.TaskState;
+import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.Task.AbstractTask;
+import BusinessLogic.Task.Task;
+import BusinessLogic.Task.TaskState;
 import Facade.SessionFacade;
 import Facade.Task.TaskFacade;
 import Main.App;
-import UI.Announcement.UIAnnouncementManagement;
-import UI.Task.UIAddTask;
-import UI.Task.UITaskManagement;
+import UI.Announcement.AnnouncementManagementUI;
+import UI.Task.AddTaskUI;
 import UI.UIError;
 import UI.UIGlobalWithController;
 import javafx.event.ActionEvent;
@@ -58,14 +57,14 @@ public class AddTaskController{
         if(TaskFacade.getInstance().addTask(task)){
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(ui.loadScene().getRoot());
-            System.out.println(ui);
+
             ui.getController().update();
 
             if(box.getChildren().size() >1 ){
                 box.getChildren().remove(1);
             }
         }else{
-            UIError error = new UIError(new UIAnnouncementManagement());
+            UIError error = new UIError(new AnnouncementManagementUI());
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )
@@ -89,7 +88,7 @@ public class AddTaskController{
 
     @FXML
     void addTaskPage(ActionEvent actionEvent) {
-        UIAddTask addTask = new UIAddTask(project,ui);
+        AddTaskUI addTask = new AddTaskUI(project,ui);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
 
         box.getChildren().remove(1);

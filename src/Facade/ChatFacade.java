@@ -1,7 +1,7 @@
 package Facade;
 
-import BuisnessLogic.Chat.AbstractChat;
-import BuisnessLogic.Message.AbstractMessage;
+import BusinessLogic.Chat.AbstractChat;
+import BusinessLogic.Message.AbstractMessage;
 import DAO.ChatDAO;
 import DAO.MySQLDAOFactory;
 import Facade.Message.MessageFacade;
@@ -54,15 +54,13 @@ public class ChatFacade implements IChatFacade {
         AbstractChat chat = dao.getChatByProjectId(idProject);
 
         if(chat!=null) {
+            this.currentChat = chat;
             MessageFacade messageFacade = MessageFacade.getInstance();
             messageFacade.getAllMessageByChat(chat.getIdChat());
             List<AbstractMessage> messageStored = messageFacade.getMessageList();
-            chat.setHistoriqueMessage(messageStored);
-            this.currentChat = chat;
+            this.currentChat.setHistoriqueMessage(messageStored);
             result=true;
         }
-
-
         return result;
     }
 

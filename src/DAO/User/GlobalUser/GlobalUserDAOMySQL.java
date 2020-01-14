@@ -1,9 +1,9 @@
 package DAO.User.GlobalUser;
 
-import BuisnessLogic.User.AbstractUser;
-import BuisnessLogic.User.GlobalUser;
-import BuisnessLogic.User.Member;
-import BuisnessLogic.User.User;
+import BusinessLogic.User.AbstractUser;
+import BusinessLogic.User.GlobalUser;
+import BusinessLogic.User.Member;
+import BusinessLogic.User.User;
 import DAO.MySQLConnector;
 
 import java.sql.PreparedStatement;

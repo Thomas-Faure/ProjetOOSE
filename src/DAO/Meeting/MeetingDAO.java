@@ -1,7 +1,7 @@
 package DAO.Meeting;
 
-import BuisnessLogic.Meeting.AbstractMeeting;
-import BuisnessLogic.Project.AbstractProject;
+import BusinessLogic.Meeting.AbstractMeeting;
+import BusinessLogic.Project.AbstractProject;
 
 import java.util.List;
 

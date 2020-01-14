@@ -3,10 +3,10 @@ package DAO.Task;
  *
  * @author Thomas Faure
  */
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Task.AbstractTask;
-import BuisnessLogic.Task.Task;
-import BuisnessLogic.Task.TaskState;
+import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.Task.AbstractTask;
+import BusinessLogic.Task.Task;
+import BusinessLogic.Task.TaskState;
 import DAO.MySQLConnector;
 import Facade.Project.ProjectFacade;
 import Facade.User.GlobalUser.GlobalUserFacade;

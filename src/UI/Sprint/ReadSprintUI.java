@@ -1,11 +1,10 @@
 package UI.Sprint;
 
 
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Sprint.AbstractSprint;
+import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.Sprint.AbstractSprint;
 import Controller.IController;
 import Controller.Sprint.ReadSprintController;
-import UI.UIGlobal;
 import UI.UIGlobalWithController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

@@ -1,7 +1,6 @@
 package Facade;
 
-import BuisnessLogic.Ressource.*;
-import DAO.AbstractDAOFactory;
+import BusinessLogic.Ressource.*;
 import DAO.MySQLDAOFactory;
 import DAO.RessourceDAO;
 

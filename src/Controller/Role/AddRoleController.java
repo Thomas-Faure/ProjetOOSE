@@ -1,8 +1,8 @@
 package Controller.Role;
 
-import BuisnessLogic.Role.AbstractRole;
-import BuisnessLogic.Role.Role;
-import BuisnessLogic.User.Member;
+import BusinessLogic.Role.AbstractRole;
+import BusinessLogic.Role.Role;
+import BusinessLogic.User.Member;
 import Facade.Role.RoleFacade;
 import Main.App;
 import UI.Role.AllRolesUI;

@@ -3,9 +3,8 @@ package Facade.Task;
  *
  * @author Thomas Faure
  */
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Task.AbstractTask;
-import BuisnessLogic.Task.Task;
+import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.Task.AbstractTask;
 import DAO.MySQLDAOFactory;
 import DAO.Task.TaskDAO;
 

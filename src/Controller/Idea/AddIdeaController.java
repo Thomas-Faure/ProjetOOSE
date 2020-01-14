@@ -1,7 +1,7 @@
 package Controller.Idea;
 
-import BuisnessLogic.Idea.Idea;
-import BuisnessLogic.User.AbstractUser;
+import BusinessLogic.Idea.Idea;
+import BusinessLogic.User.AbstractUser;
 import Facade.Idea.IdeaFacade;
 import Facade.SessionFacade;
 import Main.App;

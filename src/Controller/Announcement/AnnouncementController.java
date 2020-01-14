@@ -3,17 +3,16 @@ package Controller.Announcement;
  *
  * @author Thomas Faure
  */
-import BuisnessLogic.Announcement.AbstractAnnouncement;
-import BuisnessLogic.Announcement.Announcement;
-import BuisnessLogic.User.AbstractUser;
+import BusinessLogic.Announcement.AbstractAnnouncement;
+import BusinessLogic.Announcement.Announcement;
+import BusinessLogic.User.AbstractUser;
 import Facade.Announcement.AnnouncementFacade;
 import Facade.SessionFacade;
 import Main.App;
-import UI.Announcement.UIAddAnnouncement;
-import UI.Announcement.UIAnnouncementManagement;
-import UI.Announcement.UIModifyAnnouncement;
-import UI.Announcement.UIReadAnnouncement;
-import UI.Task.UITaskManagement;
+import UI.Announcement.AddAnnouncementUI;
+import UI.Announcement.AnnouncementManagementUI;
+import UI.Announcement.ModifyAnnouncementUI;
+import UI.Announcement.ReadAnnouncementUI;
 import UI.UIError;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,7 +29,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -107,7 +105,7 @@ public class AnnouncementController implements Initializable {
     public void validation(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(!(AnnouncementFacade.getInstance().deleteAnnouncement(toManage))){
-            UIError error = new UIError(new UIAnnouncementManagement());
+            UIError error = new UIError(new AnnouncementManagementUI());
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(2);
@@ -162,7 +160,7 @@ public class AnnouncementController implements Initializable {
             btnM.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    UIModifyAnnouncement modifyAnnouncement = new UIModifyAnnouncement(announcement.getId());
+                    ModifyAnnouncementUI modifyAnnouncement = new ModifyAnnouncementUI(announcement.getId());
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
                     box.getChildren().remove(1);
                     box.getChildren().add(modifyAnnouncement.loadScene().getRoot());
@@ -171,7 +169,7 @@ public class AnnouncementController implements Initializable {
             btnR.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    UIReadAnnouncement read = new UIReadAnnouncement(announcement.getId(),true);
+                    ReadAnnouncementUI read = new ReadAnnouncementUI(announcement.getId(),true);
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
                     box.getChildren().remove(1);
                     box.getChildren().add(read.loadScene().getRoot());
@@ -193,7 +191,7 @@ public class AnnouncementController implements Initializable {
 
     @FXML
     void addAnnouncementPage(ActionEvent actionEvent) {
-        UIAddAnnouncement addAnnouncement = new UIAddAnnouncement();
+        AddAnnouncementUI addAnnouncement = new AddAnnouncementUI();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
 
         box.getChildren().remove(1);

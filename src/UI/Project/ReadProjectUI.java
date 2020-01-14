@@ -1,6 +1,6 @@
 package UI.Project;
 
-import BuisnessLogic.Project.AbstractProject;
+import BusinessLogic.Project.AbstractProject;
 import Controller.Project.ReadProjectController;
 import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;

@@ -1,7 +1,7 @@
 package DAO.Role;
 
-import BuisnessLogic.Role.AbstractRole;
-import BuisnessLogic.Role.Role;
+import BusinessLogic.Role.AbstractRole;
+import BusinessLogic.Role.Role;
 import DAO.MySQLConnector;
 
 import java.sql.PreparedStatement;

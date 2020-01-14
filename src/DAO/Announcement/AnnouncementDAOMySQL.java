@@ -9,10 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import BuisnessLogic.Announcement.AbstractAnnouncement;
-import BuisnessLogic.Announcement.Announcement;
-import BuisnessLogic.Task.AbstractTask;
-import BuisnessLogic.User.User;
+import BusinessLogic.Announcement.AbstractAnnouncement;
+import BusinessLogic.Announcement.Announcement;
 
 import DAO.MySQLConnector;
 import Facade.User.GlobalUser.GlobalUserFacade;

@@ -1,8 +1,8 @@
 package Controller.User.GlobalUser;
 
 
-import BuisnessLogic.User.GlobalUser;
-import BuisnessLogic.User.User;
+import BusinessLogic.User.GlobalUser;
+import BusinessLogic.User.User;
 import Facade.SessionFacade;
 import Facade.User.GlobalUser.GlobalUserFacade;
 import Facade.User.GlobalUser.IGlobalUserFacade;

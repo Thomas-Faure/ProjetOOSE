@@ -1,7 +1,6 @@
 package DAO;
 
-import BuisnessLogic.Sprint.AbstractSprint;
-import BuisnessLogic.Task.AbstractTask;
+import BusinessLogic.Sprint.AbstractSprint;
 
 import java.util.List;
 

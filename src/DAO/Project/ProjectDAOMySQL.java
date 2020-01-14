@@ -1,7 +1,7 @@
 package DAO.Project;
 
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Project.Project;
+import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.Project.Project;
 import DAO.MySQLConnector;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -1,8 +1,7 @@
 package Facade.Ticket;
 
-import BuisnessLogic.Announcement.AbstractAnnouncement;
-import BuisnessLogic.Ticket.AbstractTicket;
-import BuisnessLogic.User.AbstractUser;
+import BusinessLogic.Ticket.AbstractTicket;
+import BusinessLogic.User.AbstractUser;
 
 import java.util.List;
 

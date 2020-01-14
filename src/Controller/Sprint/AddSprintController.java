@@ -1,8 +1,8 @@
 package Controller.Sprint;
 
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Sprint.AbstractSprint;
-import BuisnessLogic.Sprint.Sprint;
+import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.Sprint.AbstractSprint;
+import BusinessLogic.Sprint.Sprint;
 import Facade.SprintFacade;
 import Main.App;
 import UI.Sprint.SprintUI;

@@ -1,6 +1,6 @@
 package Controller.Ticket;
 
-import BuisnessLogic.Ticket.AbstractTicket;
+import BusinessLogic.Ticket.AbstractTicket;
 import Facade.Ticket.ITicketFacade;
 import Facade.Ticket.TicketFacade;
 import Main.App;

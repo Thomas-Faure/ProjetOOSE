@@ -1,6 +1,6 @@
 package Facade.Idea;
 
-import BuisnessLogic.Idea.AbstractIdea;
+import BusinessLogic.Idea.AbstractIdea;
 
 import java.util.List;
 

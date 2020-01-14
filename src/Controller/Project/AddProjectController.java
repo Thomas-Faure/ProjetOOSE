@@ -1,7 +1,7 @@
 package Controller.Project;
 
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Project.Project;
+import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.Project.Project;
 import Facade.Project.IProjectFacade;
 import Facade.Project.ProjectFacade;
 import Main.App;

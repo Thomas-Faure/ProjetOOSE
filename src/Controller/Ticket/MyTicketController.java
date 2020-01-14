@@ -1,7 +1,7 @@
 package Controller.Ticket;
 
-import BuisnessLogic.Ticket.AbstractTicket;
-import BuisnessLogic.Ticket.Ticket;
+import BusinessLogic.Ticket.AbstractTicket;
+import BusinessLogic.Ticket.Ticket;
 import Facade.ISessionFacade;
 import Facade.SessionFacade;
 import Facade.Ticket.ITicketFacade;

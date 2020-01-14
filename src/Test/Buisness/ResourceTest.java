@@ -1,7 +1,7 @@
 package Test.Buisness;
 
-import BuisnessLogic.Ressource.AbstractResource;
-import BuisnessLogic.Ressource.Resource;
+import BusinessLogic.Ressource.AbstractResource;
+import BusinessLogic.Ressource.Resource;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

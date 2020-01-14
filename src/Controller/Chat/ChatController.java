@@ -1,17 +1,18 @@
 package Controller.Chat;
 
 
-import BuisnessLogic.Chat.AbstractChat;
-import BuisnessLogic.Message.AbstractMessage;
-import BuisnessLogic.Message.Message;
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.User.AbstractUser;
+import BusinessLogic.Chat.AbstractChat;
+import BusinessLogic.Message.AbstractMessage;
+import BusinessLogic.Message.Message;
+import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.User.AbstractUser;
 import Controller.IController;
 import Facade.ChatFacade;
 import Facade.Message.MessageFacade;
 import Facade.SessionFacade;
 import Main.App;
 import UI.Project.ReadProjectUI;
+import UI.UIGlobalWithController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -49,14 +50,19 @@ public class ChatController implements Initializable, IController {
     private Button backButton;
 
     @FXML
+    private Button refreshButton;
+
+    @FXML
     private Button sendButton;
 
     private List<AbstractMessage> historiqueMessage;
 
     private static ObservableList<AbstractMessage> listViewTemp;
+    private UIGlobalWithController ui;
 
-    public ChatController(AbstractProject project){
+    public ChatController(AbstractProject project,UIGlobalWithController ui){
         this.project = project;
+        this.ui=ui;
     }
 
 
@@ -67,6 +73,11 @@ public class ChatController implements Initializable, IController {
         AbstractMessage newMessage = new Message(messageTextArea.getText(),currentChat.getIdChat(), SessionFacade.getInstance().getUser());
         MessageFacade.getInstance().addMessage(newMessage);
         messageTextArea.setText("");
+        update();
+    }
+
+    @FXML
+    void refreshMessages(ActionEvent actionEvent){
         update();
     }
 

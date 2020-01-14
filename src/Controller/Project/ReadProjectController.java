@@ -1,8 +1,8 @@
 package Controller.Project;
 
-import BuisnessLogic.Chat.AbstractChat;
-import BuisnessLogic.Chat.Chat;
-import BuisnessLogic.Project.AbstractProject;
+import BusinessLogic.Chat.AbstractChat;
+import BusinessLogic.Chat.Chat;
+import BusinessLogic.Project.AbstractProject;
 import Facade.ChatFacade;
 import Facade.Project.IProjectFacade;
 import Facade.Project.ProjectFacade;
@@ -13,7 +13,7 @@ import UI.Project.ProjectUI;
 import UI.Ressource.ResourceUI;
 import UI.Sprint.AddSprintUI;
 import UI.Sprint.SprintUI;
-import UI.Task.UITaskManagement;
+import UI.Task.TaskManagementUI;
 import UI.User.Member.AllMembersUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -154,7 +154,7 @@ public class ReadProjectController implements Initializable {
     public void goTasksSprints(ActionEvent actionEvent) {
         //tasks
         if(!project.isAgile()){
-            UITaskManagement taskManagement = new UITaskManagement(project);
+            TaskManagementUI taskManagement = new TaskManagementUI(project);
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(1);

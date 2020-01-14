@@ -3,17 +3,15 @@ package Controller.Task;
  *
  * @author Thomas Faure
  */
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Task.AbstractTask;
-import BuisnessLogic.User.AbstractUser;
-import BuisnessLogic.User.User;
+import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.Task.AbstractTask;
+import BusinessLogic.User.AbstractUser;
 import Controller.IController;
 import Facade.SessionFacade;
 import Facade.Task.TaskFacade;
 import Main.App;
 import UI.Task.*;
 import UI.UIError;
-import UI.UIGlobal;
 import UI.UIGlobalWithController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -115,7 +113,7 @@ public class TaskManagerController implements Initializable, IController {
 
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(!(TaskFacade.getInstance().deleteTask(toManage))){
-            UIError error = new UIError(new UITaskManagement(project));
+            UIError error = new UIError(new TaskManagementUI(project));
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(2);
@@ -180,7 +178,7 @@ public class TaskManagerController implements Initializable, IController {
                 @Override
                 public void handle(ActionEvent e) {
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-                    UIModifyTask modifyTask = new UIModifyTask(task,project,ui);
+                    ModifyTaskUI modifyTask = new ModifyTaskUI(task,project,ui);
 
 
                     box.getChildren().remove(1);
@@ -190,7 +188,7 @@ public class TaskManagerController implements Initializable, IController {
             btnR.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    UIReadTask read = new UIReadTask(task.getId(),project);
+                    ReadTaskUI read = new ReadTaskUI(task.getId(),project);
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
                     box.getChildren().remove(1);
                     box.getChildren().add(read.loadScene().getRoot());
@@ -217,7 +215,7 @@ public class TaskManagerController implements Initializable, IController {
      */
     @FXML
     void addTaskPage(ActionEvent actionEvent) {
-        UIAddTask addTask = new UIAddTask(project,ui);
+        AddTaskUI addTask = new AddTaskUI(project,ui);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
 
         box.getChildren().remove(1);

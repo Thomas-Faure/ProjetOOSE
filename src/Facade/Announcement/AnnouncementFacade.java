@@ -3,8 +3,7 @@ package Facade.Announcement;
  *
  * @author Thomas Faure
  */
-import BuisnessLogic.Announcement.AbstractAnnouncement;
-import BuisnessLogic.Announcement.Announcement;
+import BusinessLogic.Announcement.AbstractAnnouncement;
 
 
 import DAO.Announcement.AnnouncementDAO;

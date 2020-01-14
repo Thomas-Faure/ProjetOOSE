@@ -1,8 +1,8 @@
 package DAO.Idea;
 
 
-import BuisnessLogic.Idea.Idea;
-import BuisnessLogic.Idea.AbstractIdea;
+import BusinessLogic.Idea.Idea;
+import BusinessLogic.Idea.AbstractIdea;
 
 import java.util.List;
 

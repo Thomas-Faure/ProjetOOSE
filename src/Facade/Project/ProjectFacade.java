@@ -1,6 +1,6 @@
 package Facade.Project;
 
-import BuisnessLogic.Project.AbstractProject;
+import BusinessLogic.Project.AbstractProject;
 import DAO.MySQLDAOFactory;
 import DAO.Project.ProjectDAO;
 import java.util.ArrayList;

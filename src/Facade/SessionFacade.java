@@ -1,6 +1,6 @@
 package Facade;
 
-import BuisnessLogic.User.User;
+import BusinessLogic.User.User;
 import DAO.MySQLDAOFactory;
 import DAO.Task.TaskDAO;
 import DAO.User.GlobalUser.GlobalUserDAO;

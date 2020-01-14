@@ -1,6 +1,6 @@
 package UI.User.Global;
 
-import BuisnessLogic.User.GlobalUser;
+import BusinessLogic.User.GlobalUser;
 import Controller.User.GlobalUser.ReadAUserController;
 import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;

@@ -1,11 +1,8 @@
 package DAO.Message;
 
-import BuisnessLogic.Message.AbstractMessage;
-import BuisnessLogic.Message.Message;
-import BuisnessLogic.Ressource.AbstractResource;
-import BuisnessLogic.Ressource.Resource;
-import BuisnessLogic.User.AbstractUser;
-import BuisnessLogic.User.GlobalUser;
+import BusinessLogic.Message.AbstractMessage;
+import BusinessLogic.Message.Message;
+import BusinessLogic.User.AbstractUser;
 import DAO.MySQLConnector;
 import DAO.User.GlobalUser.GlobalUserDAOMySQL;
 

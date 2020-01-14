@@ -41,7 +41,6 @@ public class UIError implements UIGlobal {
 					Callable<?> callable = creators.get(param);
 					if (callable == null) {
 						try {
-							// default handling: use no-arg constructor
 							return param.newInstance();
 						} catch (InstantiationException | IllegalAccessException ex) {
 							throw new IllegalStateException(ex);

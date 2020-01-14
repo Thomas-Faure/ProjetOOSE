@@ -1,8 +1,8 @@
 package DAO.Idea;
 
-import BuisnessLogic.Idea.AbstractIdea;
-import BuisnessLogic.Idea.Idea;
-import BuisnessLogic.User.AbstractUser;
+import BusinessLogic.Idea.AbstractIdea;
+import BusinessLogic.Idea.Idea;
+import BusinessLogic.User.AbstractUser;
 import DAO.MySQLConnector;
 import Facade.SessionFacade;
 import Facade.User.GlobalUser.GlobalUserFacade;
