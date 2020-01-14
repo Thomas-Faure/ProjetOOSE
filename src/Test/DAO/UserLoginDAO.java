@@ -15,7 +15,7 @@ public class UserLoginDAO {
     @Test
     void Connect(){
         String username = "thomas";
-        String password = "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8";
+        String password = "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8";//it's "password" in SHA-1 encryption
         boolean test = SessionFacade.getInstance().login(username,password);
         assertEquals(true, test, "to connect");
 
