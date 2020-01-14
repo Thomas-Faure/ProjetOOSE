@@ -34,7 +34,7 @@
             </VBox>
                   <Pane prefHeight="49.0" prefWidth="232.0" style="-fx-background-color: #367fa9;">
                      <children>
-                        <Button fx:id="welcomePageButton" mnemonicParsing="false" onAction="#goWelcomePage" prefHeight="50.0" prefWidth="232.0" style="-fx-background-color: transparent;">
+                        <Button fx:id="welcomePageButton" mnemonicParsing="false" onAction="#goWelcomePage" prefHeight="50.0" prefWidth="219.0" style="-fx-background-color: transparent;">
                            <graphic>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="PPM">
                                  <font>
