@@ -5,11 +5,14 @@ import BusinessLogic.Sprint.AbstractSprint;
 import BusinessLogic.Task.AbstractTask;
 import BusinessLogic.Task.TaskState;
 import Controller.IController;
+import Controller.Resource.DropBoxConnexion;
+import Facade.ResourceFacade;
 import Facade.SessionFacade;
 import Facade.SprintFacade;
 import Facade.Task.TaskFacade;
 import Facade.User.MemberUser.MemberFacade;
 import Main.App;
+import UI.Ressource.ResourceUI;
 import UI.Sprint.AddTaskSprintUI;
 import UI.Sprint.ReadSprintUI;
 import UI.Sprint.SprintUI;
@@ -25,6 +28,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -82,14 +86,18 @@ public class ReadSprintController implements Initializable, IController {
 
     @FXML
     void deleteSprint(ActionEvent actionEvent) {
-        SprintFacade.getInstance().deleteSprint(sprint.getSprintID());
+        /*SprintFacade.getInstance().deleteSprint(sprint.getSprintID());
 
 
         SprintUI sprintUI = new SprintUI(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
-        box.getChildren().add(sprintUI.loadScene().getRoot());
+        box.getChildren().add(sprintUI.loadScene().getRoot());*/
+        AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#manager");
+        toHide.setVisible(false);
+        AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+        toShow.setVisible(true);
     }
 
     @FXML
@@ -101,6 +109,26 @@ public class ReadSprintController implements Initializable, IController {
             box.getChildren().remove(1);
         box.getChildren().add(sprintUI.loadScene().getRoot());
 
+    }
+
+    @FXML
+    public void validation(ActionEvent actionEvent) {
+
+        SprintFacade.getInstance().deleteSprint(sprint.getSprintID());
+        SprintUI sprintUI = new SprintUI(project);
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(sprintUI.loadScene().getRoot());
+    }
+
+
+    @FXML
+    public void refuse(ActionEvent actionEvent) {
+        AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+        toHide.setVisible(false);
+        AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#manager");
+        toShow.setVisible(true);
     }
 
     private AbstractProject project;
