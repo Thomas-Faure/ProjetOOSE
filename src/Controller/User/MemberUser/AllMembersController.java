@@ -1,6 +1,8 @@
 package Controller.User.MemberUser;
 
+
 import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.User.AbstractUser;
 import BusinessLogic.User.Member;
 import Facade.User.GlobalUser.GlobalUserFacade;
 import Facade.User.GlobalUser.IGlobalUserFacade;
@@ -109,16 +111,17 @@ public class AllMembersController implements Initializable {
      * passé en paramètre de la fonction est un membre du projet (qui a été
      * passé en paramètre lors de la création du controller)
      */
-    public boolean estMembreProjet (Member membre){
+    public boolean estMembre(AbstractUser user){
+
         for (int i = 0; i < memberFacade.getListMembers().size(); i++){
-            if (memberFacade.getListMembers().get(i).getId() == membre.getId()) {
-                if ( (memberFacade.getListMembers().get(i).getProject().getId() == this.project.getId())){
-                    return true;
-                }
+            if ( (memberFacade.getListMembers().get(i).getId() == user.getId()) &&
+                    (memberFacade.getListMembers().get(i).getProject().getId() == this.project.getId())) {
+                return true;
             }
 
         }
         return false;
+
     }
 
     /**
@@ -134,7 +137,7 @@ public class AllMembersController implements Initializable {
             if(memberFacade.getAllMembers()) {
                 ArrayList<Member> listeElement = new ArrayList<>();
                 for (int i = 0; i < memberFacade.getListMembers().size(); i++){
-                    if (this.estMembreProjet(memberFacade.getListMembers().get(i))){
+                    if (this.estMembre(memberFacade.getListMembers().get(i))){
                         listeElement.add(memberFacade.getListMembers().get(i));
                     }
                 }

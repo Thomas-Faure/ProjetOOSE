@@ -171,7 +171,8 @@ public class IdeaDAOMySQL implements IdeaDAO {
 						rs.getString("name"),
 						rs.getString("description"),
 						rs.getString("subject"),
-						user
+						user,
+						rs.getString("state")
 
 				);
 				list.add(idea);
@@ -199,7 +200,7 @@ public class IdeaDAOMySQL implements IdeaDAO {
 			while(rs.next()){
 				AbstractUser user = SessionFacade.getInstance().getUser();
 				for (int i = 0; i < userFacade.getListUsers().size(); i++){
-					if (userFacade.getListUsers().get(i).getId() == rs.getInt("creator")){
+					if (userFacade.getListUsers().get(i).getId() == rs.getInt("idUser")){
 						user = userFacade.getListUsers().get(i);
 					}
 				}
@@ -208,7 +209,9 @@ public class IdeaDAOMySQL implements IdeaDAO {
 						rs.getString("name"),
 						rs.getString("description"),
 						rs.getString("subject"),
-						user);
+						user,
+						rs.getString("state")
+				);
 			}
 			ps.close();
 		} catch (SQLException e) {

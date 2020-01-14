@@ -1,4 +1,4 @@
-package Test.Buisness;
+package Test.Business;
 
 import BusinessLogic.Sprint.AbstractSprint;
 import BusinessLogic.Sprint.Sprint;

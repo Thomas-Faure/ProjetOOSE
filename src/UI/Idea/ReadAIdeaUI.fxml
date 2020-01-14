@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="paneBasic" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" style="-fx-background-color: #ecf0f5;" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Idea.ReadAIdeaController">
+<AnchorPane fx:id="paneBasic" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" style="-fx-background-color: #ecf0f5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Idea.ReadAIdeaController">
     <children>
         <Pane prefHeight="49.0" prefWidth="768.0" style="-fx-background-color: #367fa9;">
             <children>
@@ -22,15 +22,15 @@
         </Text>
         <TextField fx:id="name" layoutX="172.0" layoutY="153.0" prefWidth="20.0" AnchorPane.bottomAnchor="412.0" AnchorPane.leftAnchor="172.0" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="153.0" />
         <TextField fx:id="subject" layoutX="172.0" layoutY="214.0" prefHeight="35.0" prefWidth="443.0" AnchorPane.bottomAnchor="351.0" AnchorPane.leftAnchor="172.0" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="214.0" />
-        <Text layoutX="113.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name :" />
+        <Text layoutX="106.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name :" />
         <Text layoutX="103.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject :" />
         <Text layoutX="76.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description :" />
         <Button fx:id="backButton" layoutX="306.0" layoutY="502.0" mnemonicParsing="false" onAction="#backToIdeaPage" prefHeight="50.0" prefWidth="157.0" text="Back" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="306.0" AnchorPane.rightAnchor="305.0" AnchorPane.topAnchor="502.0" />
-      <Text fx:id="etat" fill="#dd0e0e" layoutX="543.0" layoutY="537.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Etat : non validée" wrappingWidth="258.30859375">
+        <Text fx:id="etat" fill="#ff4e4e" layoutX="577.0" layoutY="536.0" wrappingWidth="145.0" AnchorPane.bottomAnchor="57.9765625" AnchorPane.leftAnchor="577.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="510.1015625">
          <font>
-            <Font size="25.0" />
-         </font>
-      </Text>
+            <Font size="24.0" />
+         </font></Text>
       <TextArea fx:id="description" layoutX="172.0" layoutY="270.0" prefHeight="200.0" prefWidth="443.0" />
+      <Text layoutX="531.0" layoutY="531.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State : " />
     </children>
 </AnchorPane>
