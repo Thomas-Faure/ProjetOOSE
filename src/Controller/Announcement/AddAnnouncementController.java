@@ -8,17 +8,22 @@ import UI.Announcement.AnnouncementManagementUI;
 import UI.UIError;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 
+import java.net.URL;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
 /**
  * Controller of the add announcement page
  * @author Thomas Faure
  */
-public class AddAnnouncementController {
-
+public class AddAnnouncementController implements Initializable {
+    @FXML
+    private Text pathIndication;
     @FXML
     private TextField title;
     @FXML
@@ -61,4 +66,9 @@ public class AddAnnouncementController {
         box.getChildren().add(announcementManagement.loadScene().getRoot());
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        pathIndication.setText("/Announcement/add");
+
+    }
 }

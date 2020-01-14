@@ -16,14 +16,21 @@ import UI.UIError;
 import UI.UIGlobalWithController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Controller of the add task page
  */
-public class AddTaskController{
+public class AddTaskController implements Initializable {
 
+    @FXML
+    private Text pathIndication;
     @FXML
     private TextField subject;
     @FXML
@@ -93,5 +100,10 @@ public class AddTaskController{
 
         box.getChildren().remove(1);
         box.getChildren().add(addTask.loadScene().getRoot());
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        pathIndication.setText("/Projects/" + project.getName()+"/Tasks/add");
     }
 }
