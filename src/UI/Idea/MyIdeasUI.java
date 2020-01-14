@@ -5,8 +5,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 /**
+ * Cette Classe correspond à l'UI qui gère la page MyIdeasUI.fxml
  * @author Lauren Unquera - Polytech Montpellier IG4
- * @Description Cette Classe correspond à l'UI qui gère la page MyIdeasUI.fxml
  */
 public class MyIdeasUI {
     public Scene loadScene(){

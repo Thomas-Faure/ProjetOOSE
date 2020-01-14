@@ -27,10 +27,10 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
 /**
- * @author Lauren Unquera - Polytech Montpellier IG4
- * @Description Cette Classe correspond au contrôleur qui gère la vue "MyAccountUI".
+ * Cette Classe correspond au contrôleur qui gère la vue "MyAccountUI".
  * Il va servir aux utilisateurs pour gérer leur paramètre de compte (modifier leur
  * email, ville, téléphone etc...)
+ * @author Lauren Unquera - Polytech Montpellier IG4
  */
 public class AccountController implements Initializable {
 
@@ -79,10 +79,10 @@ public class AccountController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction permet d'appliquer les modifications que l'utilisateurs
+     * Cette fonction permet d'appliquer les modifications que l'utilisateurs
      * avait entré dans le formulaire pour le compte. Il y a un champ "new password" qui permet
      * à l'utilisateur de changer son mot de passe. Ce dernier est converti en SHA1.
+     * @author Lauren Unquera - Polytech Montpellier IG4
      * @param actionEvent
      */
     @FXML
@@ -128,9 +128,9 @@ public class AccountController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction permet d'initialiser la page en entrant
+     * Cette fonction permet d'initialiser la page en entrant
      * dans les champs correspondants les valeurs des attributs de l'utilisateur
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -148,8 +148,8 @@ public class AccountController implements Initializable {
     }
 
     /**
+     * Cette fonction permet de valider les modifications du compte
      * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction permet de valider les modifications du compte
      */
     public void validation(ActionEvent actionEvent) {
         if(GlobalUserFacade.getInstance().modifyUser(toModify)){
@@ -168,8 +168,8 @@ public class AccountController implements Initializable {
     }
 
     /**
+     * Cette fonction permet d'annuler la modification
      * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction permet d'annuler la modification
      */
     public void refuse(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");

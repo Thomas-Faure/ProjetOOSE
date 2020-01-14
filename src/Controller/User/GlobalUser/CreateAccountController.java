@@ -20,9 +20,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * @author Lauren Unquera - Polytech Montpellier IG4
- * @Description Cette Classe correspond au contrôleur qui gère la vue "CreateAccountUI".
+ * Cette Classe correspond au contrôleur qui gère la vue "CreateAccountUI".
  * Il va servir aux utilisateurs (admins) pour créer/ajouter un utilisateur.
+ * @author Lauren Unquera - Polytech Montpellier IG4
  */
 public class CreateAccountController {
 
@@ -50,11 +50,11 @@ public class CreateAccountController {
         private Button backButton;
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction est appelée lorsque l'utilisateur appuie
+     * Cette fonction est appelée lorsque l'utilisateur appuie
      * sur le bouton "Back".
      * Elle permet de rediriger l'utilisateur sur la page de la "UILogin" qui
      * était la page précédente avant qu'il arrive sur celle-ci ("CreateAccountUI").
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
         @FXML
         public void backToUser(ActionEvent actionEvent) {
@@ -63,11 +63,11 @@ public class CreateAccountController {
         }
 
         /**
-         * @author Lauren Unquera - Polytech Montpellier IG4
-         * @Description Cette fonction est appelée lorsque l'utilisateur appuie
+         * Cette fonction est appelée lorsque l'utilisateur appuie
          * sur le bouton "Create account".
          * Elle permet donc de créer un compte d'utilisateur.
          * Une fois executée, elle redirigera l'utilisateur sur la page de la "UILogin".
+         * @author Lauren Unquera - Polytech Montpellier IG4
          */
         public void addNewUser(ActionEvent actionEvent) {
             String hashtext="";

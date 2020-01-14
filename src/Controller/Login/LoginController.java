@@ -96,9 +96,9 @@ public class LoginController {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction permet de rediriger l'utilisateur
+     * Cette fonction permet de rediriger l'utilisateur
      * sur la page de création de compte
+     * @author Lauren Unquera - Polytech Montpellier IG4
      * @param actionEvent
      */
     public void addUser(ActionEvent actionEvent) {

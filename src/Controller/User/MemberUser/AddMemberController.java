@@ -34,10 +34,10 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
- * @author Lauren Unquera - Polytech Montpellier IG4
- * @Description Cette Classe correspond au contrôleur qui gère la vue "AddMemberUI".
+ * Cette Classe correspond au contrôleur qui gère la vue "AddMemberUI".
  * Il va servir aux utilisateurs (admins) pour créer/ajouter un membre au projet
  * qui a été donné en paramètre.
+ * @author Lauren Unquera - Polytech Montpellier IG4
  */
 public class AddMemberController implements Initializable {
 
@@ -60,44 +60,12 @@ public class AddMemberController implements Initializable {
 
     //permet de garder la liste de base
     private static ObservableList<User> listViewTemp;
-    /*
-    @FXML
-    public void searchBar(KeyEvent keyEvent) {
 
-        if(!(inputSearch.getText().length() == 0)) {
-            ArrayList<AbstractProject> array = new ArrayList<>(listViewTemp);
-            ArrayList<AbstractProject> toDelete = new ArrayList<>();
-            for (int i = 0; i < array.size(); ++i) {
-                String inputS =inputSearch.getText();
-                if(inputS.charAt(0) == '*'){
-                    inputS= "\\"+inputS;
-                }
-                String regex = "(.*)" + inputS + "(.*)";
-                if (array.get(i).getName().matches(regex)) {
-
-                } else {
-                    toDelete.add(array.get(i));
-                }
-            }
-
-            for (AbstractProject i : toDelete) {
-                array.remove(i);
-            }
-            ObservableList<AbstractProject> listViewT = FXCollections.observableArrayList(array);
-            projectsList.setItems(listViewT);
-
-        }else{
-            projectsList.setItems(listViewTemp);
-        }
-
-    }
-
-     */
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Sous fonction utilisée pour regarder si un utilisateur
+     * Sous fonction utilisée pour regarder si un utilisateur
      * passé en paramètre de la fonction est un membre du projet (qui a été
      * passé en paramètre lors de la création du controller)
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     public boolean estMembre(AbstractUser user){
 
@@ -112,11 +80,11 @@ public class AddMemberController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet d'initialiser la page avec
+     * Permet d'initialiser la page avec
      * tous les utilisateurs existants dans l'application. Ils pourront
      * par la suite être ajoutés au projet et devenir membre ou non
      * Utilise la classe Cell propre à AddMemberController
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -140,9 +108,9 @@ public class AddMemberController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet de valider l'ajout courrant d'un membre au projet.
+     * Permet de valider l'ajout courrant d'un membre au projet.
      * En cas d'erreur, le signifie avec un UIError.
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     public void validation(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
@@ -167,9 +135,9 @@ public class AddMemberController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet d'annuler l'ajout courrant d'un membre au projet.
+     * Permet d'annuler l'ajout courrant d'un membre au projet.
      * En cas d'erreur, le signifie avec un UIError.
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     public void refuse(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
@@ -179,11 +147,11 @@ public class AddMemberController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction est appelée lorsque l'utilisateur appuie
+     * Cette fonction est appelée lorsque l'utilisateur appuie
      * sur le bouton "Back".
      * Elle permet de rediriger l'utilisateur sur la page de la "AllMembersUI" qui
      * était la page précédente avant qu'il arrive sur celle-ci ("AddMemberUI").
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     public void backToPage(ActionEvent actionEvent) {
         AllMembersUI user = new AllMembersUI(this.project);
@@ -195,12 +163,12 @@ public class AddMemberController implements Initializable {
 
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Classe propre à AddMemberController qui servira à donner
+     * Classe propre à AddMemberController qui servira à donner
      * la liste des utilisateurs existants dans la base. Chaque utilisateur
      * correspondra à une cellule dans laquelle on pourra trouver
      * les boutons nécessaires à la gestion. Ainsi les utilisateurs
      * de l'application existants peuvent être ajoutés en tant que membre du projet.
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     public static class Cell extends ListCell<User> {
         AbstractProject cellProject;
@@ -234,11 +202,11 @@ public class AddMemberController implements Initializable {
         }
 
         /**
-         * @author Lauren Unquera - Polytech Montpellier IG4
-         * @Description Fonction associée à l'appuie du boutton "add" de la cellule.
+         * Fonction associée à l'appuie du boutton "add" de la cellule.
          * Permet de créer un membre à partir des informations de l'utilisateur
          * de cette cellule. Transmet ce membre à l'attribut "toManage" du controller
          * pour pouvoir l'ajouter lors de la validation.
+         * @author Lauren Unquera - Polytech Montpellier IG4
          */
         public void cellAddMember (User user){
             Member newMember = new Member(user.getId(), user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(),
@@ -248,9 +216,9 @@ public class AddMemberController implements Initializable {
         }
 
         /**
-         * @author Lauren Unquera - Polytech Montpellier IG4
-         * @Description Permet de donner des information sur les utilisateurs
+         * Permet de donner des information sur les utilisateurs
          * des cellules, ici le nom et prénom des utilisateurs.
+         * @author Lauren Unquera - Polytech Montpellier IG4
          */
         public void updateItem(User name, boolean empty){
             super.updateItem(name,empty);

@@ -6,8 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 /**
+ * Cette Classe correspond à l'UI qui gère la page IdeaBoxUI.fxml
  * @author Lauren Unquera - Polytech Montpellier IG4
- * @Description Cette Classe correspond à l'UI qui gère la page IdeaBoxUI.fxml
  */
 public class IdeaBoxUI implements UIGlobal {
     public Scene loadScene(){

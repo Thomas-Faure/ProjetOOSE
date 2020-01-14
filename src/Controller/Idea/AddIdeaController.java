@@ -14,9 +14,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
 /**
- * @author Lauren Unquera - Polytech Montpellier IG4
- * @Description Cette Classe correspond au contrôleur qui gère la vue "AddIdeaUI".
+ *
+ * Cette Classe correspond au contrôleur qui gère la vue "AddIdeaUI".
  * Il va servir aux utilisateurs pour créer/ajouter une idée.
+ * @author Lauren Unquera - Polytech Montpellier IG4
  */
 public class AddIdeaController  {
 
@@ -28,12 +29,13 @@ public class AddIdeaController  {
     private TextField description;
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction est appelée lorsque l'utilisateur appuie
+     *
+     * Cette fonction est appelée lorsque l'utilisateur appuie
      * sur le bouton "Add Idea".
      * Elle permet donc de créer une idée. L'état de cet idée sera null et le
      * créateur sera l'utilisateur de la session
      * Une fois executée, elle redirigera l'utilisateur sur la page de la "Idea Box".
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     @FXML
     void addNewIdea(ActionEvent actionEvent){
@@ -59,11 +61,12 @@ public class AddIdeaController  {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction est appelée lorsque l'utilisateur appuie
+     *
+     * Cette fonction est appelée lorsque l'utilisateur appuie
      * sur le bouton "Back".
      * Elle permet de rediriger l'utilisateur sur la page de la "Idea Box" qui
      * était la page précédente avant qu'il arrive sur celle-ci ("AddIdeaUI").
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     @FXML
     void backToIdeaPage(ActionEvent actionEvent){

@@ -27,7 +27,7 @@ class AnnouncementTest {
 
         AbstractAnnouncement announcement = new Announcement(1,"title","message", LocalDate.now(),user);
         assertEquals(1,announcement.getId());
-    }
+}
 
     /**
      * Test the id's setter of an announcement

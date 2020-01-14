@@ -17,10 +17,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * @author Lauren Unquera - Polytech Montpellier IG4
- * @Description Cette Classe correspond au contrôleur qui gère la vue "ReadAIdeaUI".
+ * Cette Classe correspond au contrôleur qui gère la vue "ReadAIdeaUI".
  * Il va servir aux utilisateurs (tous) pour lire l'idée courrante qui a été
  * passée en paramètre.
+ * @author Lauren Unquera - Polytech Montpellier IG4
  */
 public class ReadAIdeaController implements Initializable {
 
@@ -44,11 +44,11 @@ public class ReadAIdeaController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction est appelée lorsque l'utilisateur appuie
+     * Cette fonction est appelée lorsque l'utilisateur appuie
      * sur le bouton "Back".
      * Permet de revenir sur la page précédente / sur la page correspondant
      * à la boite à idée (IdeaBoxUI)
+     * @author Lauren Unquera - Polytech Montpellier IG4
      * @param actionEvent
      */
     @FXML
@@ -61,9 +61,10 @@ public class ReadAIdeaController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction permet d'initialiser la page en entrant
+     *
+     * Cette fonction permet d'initialiser la page en entrant
      * dans les champs correspondants les valeurs des attributs de l'idée
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     public void initialize(URL arg0, ResourceBundle arg1) {
         name.setText(toRead.getName());

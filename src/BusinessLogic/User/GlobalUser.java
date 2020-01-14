@@ -1,10 +1,11 @@
 package BusinessLogic.User;
 
 /**
- * @author Lauren Unquera - Polytech Montpellier IG4
- * @Description Cette Classe correspond  correspondent à l'ensemble des utilisateurs de l'application.
+ *
+ * Cette Classe correspond  correspondent à l'ensemble des utilisateurs de l'application.
  * Ils n'ont pas d'attributs en particulier dans cette version de l'application par rapport aux
  * autres User.
+ * @author Lauren Unquera - Polytech Montpellier IG4
  */
 public class GlobalUser extends User{
 

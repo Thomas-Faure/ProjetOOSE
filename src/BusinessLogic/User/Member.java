@@ -5,9 +5,10 @@ import BusinessLogic.Project.AbstractProject;
 import BusinessLogic.Role.AbstractRole;
 
 /**
- * @author Lauren Unquera - Polytech Montpellier IG4
- * @Description Cette Classe correspond correspondent à l'ensemble des utilisateurs qui sont membres
+ *
+ * Cette Classe correspond correspondent à l'ensemble des utilisateurs qui sont membres
  * d'un projet. Par rapport aux autres utilisateurs, ils sont associés à un Role et à un Projet.
+ * @author Lauren Unquera - Polytech Montpellier IG4
  */
 public class Member extends User {
 

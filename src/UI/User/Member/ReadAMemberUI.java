@@ -12,9 +12,9 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 /**
- * @author Lauren Unquera - Polytech Montpellier IG4
- * @Description Cette Classe correspond à l'UI qui gère la page ReadAMemberUI.fxml.
+ * Cette Classe correspond à l'UI qui gère la page ReadAMemberUI.fxml.
  * Gere le paramètre qui lui a été donné (cf.Constructeur).
+ * @author Lauren Unquera - Polytech Montpellier IG4
  */
 public class ReadAMemberUI {
     private Member member;

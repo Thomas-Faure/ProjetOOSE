@@ -18,10 +18,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * @author Lauren Unquera - Polytech Montpellier IG4
- * @Description Cette Classe correspond au contrôleur qui gère la vue "ReadAUserUI".
+ * Cette Classe correspond au contrôleur qui gère la vue "ReadAUserUI".
  * Il va servir aux utilisateurs (tous) pour lire l'utilisateur courrant qui a été
  * passée en paramètre.
+ * @author Lauren Unquera - Polytech Montpellier IG4
  */
 public class ReadAUserController implements Initializable {
 
@@ -59,11 +59,11 @@ public class ReadAUserController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction est appelée lorsque l'utilisateur appuie
+     * Cette fonction est appelée lorsque l'utilisateur appuie
      * sur le bouton "Back".
      * Elle permet de rediriger l'utilisateur sur la page de la "AllUsersUI" qui
      * était la page précédente avant qu'il arrive sur celle-ci ("AddUserUI").
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     @FXML
     public void backToUser(ActionEvent actionEvent) {
@@ -75,9 +75,9 @@ public class ReadAUserController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction permet d'initialiser la page en entrant
+     * Cette fonction permet d'initialiser la page en entrant
      * dans les champs correspondants les valeurs des attributs de l'utilisateur
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     public void initialize(URL arg0, ResourceBundle arg1) {
         username.setText(toRead.getUsername());

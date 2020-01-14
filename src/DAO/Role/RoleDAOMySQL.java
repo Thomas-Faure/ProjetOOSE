@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Lauren Unquera - Polytech Montpellier IG4
- * @Description Cette Classe correspond au DAO qui gère les roles.
+ * Cette Classe correspond au DAO qui gère les roles.
  * IL est en lien avec la base de données sur laquelle il fait des
  * requetes pour récupérer des données.
+ * @author Lauren Unquera - Polytech Montpellier IG4
  */
 public class RoleDAOMySQL implements RoleDAO {
 
@@ -29,12 +29,12 @@ public class RoleDAOMySQL implements RoleDAO {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Fonction non utile pour cette version de l'application
+     * Fonction non utile pour cette version de l'application
      * Cette fonction premet de créer et retourner
      * un role par rapport à une role de la base de donnée
      * dont l'id est passé en paramètre.
-     * @Param id : L'id du role qu'on veut récuperer de la base de donnée
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @param id : L'id du role qu'on veut récuperer de la base de donnée
      */
     public Role createRoleById(int id) {
         Role role=null;
@@ -58,10 +58,10 @@ public class RoleDAOMySQL implements RoleDAO {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet d'insérer dans la base de donnée un role passée
+     * Permet d'insérer dans la base de donnée un role passée
      * en paramètre
-     * @Param role : AbstractRole - role qu'on veut insérer
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @param role : AbstractRole - role qu'on veut insérer
      */
     public boolean save(AbstractRole role) {
         try {
@@ -79,10 +79,10 @@ public class RoleDAOMySQL implements RoleDAO {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet de modifier dans la base de donnée un role passé
+     * Permet de modifier dans la base de donnée un role passé
      * en paramètre
-     * @Param role : Role qu'on veut modifier
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @param role : Role qu'on veut modifier
      */
     public boolean update(AbstractRole role) {
 
@@ -102,10 +102,10 @@ public class RoleDAOMySQL implements RoleDAO {
     }
 
     /**
+     * Permet de supprimer dans la base de donnée un role dont
+     * l'id est passé en paramètre
      * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet de supprimer dans la base de donnée un role dont
-     * l'id est passé en paramètree
-     * @Param id : ID du role qu'on veut supprimer
+     * @param id : ID du role qu'on veut supprimer
      */
     public boolean delete(int id) {
 
@@ -123,9 +123,9 @@ public class RoleDAOMySQL implements RoleDAO {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Retourne la liste de tous les roles présents dans
+     * Retourne la liste de tous les roles présents dans
      * la base de données
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     public List<AbstractRole> getAllRoles() {
 
@@ -151,8 +151,8 @@ public class RoleDAOMySQL implements RoleDAO {
     }
 
     /**
+     * Retourne le role dont l'id est passé en paramètre
      * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Retourne le role dont l'id est passé en paramètre
      */
     public AbstractRole getRoleById(int id) {
         AbstractRole role = null;
@@ -174,11 +174,11 @@ public class RoleDAOMySQL implements RoleDAO {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Fonction non nécessaire et non implémentée
+     * Fonction non nécessaire et non implémentée
      * dans cette version de l'application
      * mais pourra par exemple trouver son utilité pour une fonction de recherche
      * dans une future version
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     public List<AbstractRole> getRoleByName(String name) {
         return null;

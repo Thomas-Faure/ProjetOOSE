@@ -20,10 +20,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * @author Lauren Unquera - Polytech Montpellier IG4
- * @Description Cette Classe correspond au contrôleur qui gère la vue "ModifyIdeaUI".
+ * Cette Classe correspond au contrôleur qui gère la vue "ModifyIdeaUI".
  * Il va servir aux utilisateurs (admins) pour modifier l'idée courrante qui a été
  * passée en paramètre.
+ * @author Lauren Unquera - Polytech Montpellier IG4
  */
 public class ModifyIdeaController implements Initializable {
 
@@ -47,9 +47,9 @@ public class ModifyIdeaController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet de revenir sur la page précédente / sur la page correspondant
+     * Permet de revenir sur la page précédente / sur la page correspondant
      * à la boite à idée (IdeaBoxUI)
+     * @author Lauren Unquera - Polytech Montpellier IG4
      * @param actionEvent
      */
     @FXML
@@ -62,13 +62,13 @@ public class ModifyIdeaController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction permet d'appliquer les modifications que l'utilisateurs
+     * Cette fonction permet d'appliquer les modifications que l'utilisateurs
      * avait entré dans le formulaire à l'idée courrante, une nouvelle UI apparaitra pour
      * damander si l'utilisateur veut valider ou non ces modifications
      * Une fois les modifications effectuées, renvoie l'utilisateur à la page précédente / la page
      * correspondant à la boite à idée (IdeaBoxUI). Dans le cas contraire elle le signifie avec
      * une UIError.
+     * @author Lauren Unquera - Polytech Montpellier IG4
      * @param actionEvent
      */
     @FXML
@@ -92,9 +92,9 @@ public class ModifyIdeaController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction permet d'initialiser la page en entrant
+     * Cette fonction permet d'initialiser la page en entrant
      * dans les champs correspondants les valeurs des attributs de l'idée
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -105,8 +105,8 @@ public class ModifyIdeaController implements Initializable {
     }
 
     /**
+     * Cette fonction permet de valider la modification
      * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction permet de valider la modification
      */
     public void validation(ActionEvent actionEvent) {
         if(IdeaFacade.getInstance().modifyIdea((Idea)toModify)){
@@ -125,8 +125,8 @@ public class ModifyIdeaController implements Initializable {
     }
 
     /**
+     * Cette fonction permet d'annuler la modification
      * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction permet d'annuler la modification
      */
     public void refuse(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");

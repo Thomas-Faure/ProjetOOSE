@@ -4,9 +4,10 @@ package BusinessLogic.Idea;
 import BusinessLogic.User.AbstractUser;
 
 /**
- * @author Lauren Unquera - Polytech Montpellier IG4
- * @Description Cette classe correspond aux idées que les utilisateurs
+ *
+ * Cette classe correspond aux idées que les utilisateurs
  * peuvent publier pour proposer des suggestions
+ * @author Lauren Unquera - Polytech Montpellier IG4
  */
 public class Idea extends AbstractIdea {
 
@@ -79,27 +80,33 @@ public class Idea extends AbstractIdea {
 
 	/**
 	 *
+	 * Simple accesseur mais privilégiez les fonctions refuse() et validate()
+	 * @author Lauren Unquera - Polytech Montpellier IG4
 	 * @param state Doit être soit "Validated", soit "Refused"
-	 * @Description Simple accesseur mais privilégiez les fonctions refuse() et validate()
+	 *
 	 */
 	public void setState(String state) { this.state = state; }
 
 
 	/**
-	 * @Description : Pour l'instant ne fait rien de spécial autre que modifier l'état de
+	 *
+	 * Pour l'instant ne fait rien de spécial autre que modifier l'état de
 	 * l'idée car on décide de supprimer les
 	 * idées qui sont "Refused", mais si l'on décide de garder un historique pour une future
 	 * version de l'application, cette fonction pourra fournir plus de fonctionnalité
+	 * @author Lauren Unquera - Polytech Montpellier IG4
 	 */
 	public void refuse() {
 		setState("Refused");
 	}
 
 	/**
-	 * @Description : Pour l'instant ne fait rien de spécial autre que modifier l'état de l'idée
+	 *
+	 * Pour l'instant ne fait rien de spécial autre que modifier l'état de l'idée
 	 * car on décide de ne plus modifier les idées qui sont "validated"
 	 * mais à l'avenir, pour une future
 	 * version de l'application, cette fonction pourra fournir plus de fonctionnalité
+	 * @author Lauren Unquera - Polytech Montpellier IG4
 	 */
 	public void validate() {
 		setState("Validated");

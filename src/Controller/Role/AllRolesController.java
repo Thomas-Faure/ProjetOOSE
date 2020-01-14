@@ -34,12 +34,12 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
- * @author Lauren Unquera - Polytech Montpellier IG4
- * @Description Cette Classe correspond au contrôleur qui gère la vue "AllRolesUI".
+ * Cette Classe correspond au contrôleur qui gère la vue "AllRolesUI".
  * Il va servir aux utilisateurs pour regarder l'ensemble des roles qui ont été
  * créés sur l'application.
  * Les membres pourront choisir un role pour leur projet dans les roles qui sont proposés par
  * l'application
+ * @author Lauren Unquera - Polytech Montpellier IG4
  */
 public class AllRolesController implements Initializable {
 
@@ -58,50 +58,16 @@ public class AllRolesController implements Initializable {
 
     private IRoleFacade roleFacade = RoleFacade.getInstance();
     private IMemberFacade memberFacade = MemberFacade.getInstance();
-    //private IMemberFacade memberFacade = MemberFacade.getInstance();
 
     private static Role toManage;
 
-    //permet de garder la liste de base
     private static ObservableList<Role> listViewTemp;
-    /*
-    @FXML
-    public void searchBar(KeyEvent keyEvent) {
-
-        if(!(inputSearch.getText().length() == 0)) {
-            ArrayList<AbstractProject> array = new ArrayList<>(listViewTemp);
-            ArrayList<AbstractProject> toDelete = new ArrayList<>();
-            for (int i = 0; i < array.size(); ++i) {
-                String inputS =inputSearch.getText();
-                if(inputS.charAt(0) == '*'){
-                    inputS= "\\"+inputS;
-                }
-                String regex = "(.*)" + inputS + "(.*)";
-                if (array.get(i).getName().matches(regex)) {
-
-                } else {
-                    toDelete.add(array.get(i));
-                }
-            }
-
-            for (AbstractProject i : toDelete) {
-                array.remove(i);
-            }
-            ObservableList<AbstractProject> listViewT = FXCollections.observableArrayList(array);
-            projectsList.setItems(listViewT);
-
-        }else{
-            projectsList.setItems(listViewTemp);
-        }
-
-    }
-*/
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet d'initialiser l'UI correspondant avec
+     * Permet d'initialiser l'UI correspondant avec
      * tous les roles existantes dans l'application.
      * Utilise la classe Cell propre à AllRolesController
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -120,9 +86,9 @@ public class AllRolesController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet de valider le choix du role pour le membre.
+     * Permet de valider le choix du role pour le membre.
      * En cas d'erreur, le signifie avec un UIError.
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     public void validation(ActionEvent actionEvent) {
         member.setRole(toManage);
@@ -144,9 +110,9 @@ public class AllRolesController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet d'annuler le choix du role pour le membre.
+     * Permet d'annuler le choix du role pour le membre.
      * En cas d'erreur, le signifie avec un UIError.
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     public void refuse(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
@@ -156,9 +122,9 @@ public class AllRolesController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet de revenir sur la page précédente / sur la page correspondant
+     * Permet de revenir sur la page précédente / sur la page correspondant
      * à la vue du membre (ReadAMemberUI)
+     * @author Lauren Unquera - Polytech Montpellier IG4
      * @param actionEvent
      */
     public void backToPage(ActionEvent actionEvent) {
@@ -170,9 +136,9 @@ public class AllRolesController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet de valider la suppression du role courrant de l'application.
+     * Permet de valider la suppression du role courrant de l'application.
      * En cas d'erreur, le signifie avec un UIError.
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     public void validationD(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
@@ -193,9 +159,9 @@ public class AllRolesController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet d'annluer la suppression du role courrant de l'application.
+     * Permet d'annluer la suppression du role courrant de l'application.
      * En cas d'erreur, le signifie avec un UIError.
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     public void refuseD(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm2");
@@ -206,11 +172,11 @@ public class AllRolesController implements Initializable {
 
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Classe propre à AllRoles qui servira à donner
+     * Classe propre à AllRoles qui servira à donner
      * la liste des roles existants dans la base. Chaque role
      * correspondra à une cellule dans laquelle on pourra trouver
      * les boutons nécessaires à la gestion de ces roles.
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     static class Cell extends ListCell<Role> {
         Role role;
@@ -253,9 +219,9 @@ public class AllRolesController implements Initializable {
         }
 
         /**
-         * @author Lauren Unquera - Polytech Montpellier IG4
-         * @Description Permet de mieux gérer les actions liées à l'appuie du bouton
+         * Permet de mieux gérer les actions liées à l'appuie du bouton
          * addRole (qui permet d'associer le role au membre)
+         * @author Lauren Unquera - Polytech Montpellier IG4
          */
         public void cellAddRole (AbstractRole role){
             Role newRole = new Role(role.getId(), role.getName());
@@ -263,9 +229,9 @@ public class AllRolesController implements Initializable {
         }
 
         /**
-         * @author Lauren Unquera - Polytech Montpellier IG4
-         * @Description Permet de donner des information sur les roles
+         * Permet de donner des information sur les roles
          * des cellules, ici le nom des roles.
+         * @author Lauren Unquera - Polytech Montpellier IG4
          */
         public void updateItem(Role name, boolean empty){
             super.updateItem(name,empty);
@@ -282,8 +248,8 @@ public class AllRolesController implements Initializable {
     }
 
     /**
+     * Redirige l'utilisateur sur la page de création de role.
      * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Redirige l'utilisateur sur la page de création de role.
      */
     public void CreateRole(ActionEvent actionEvent) {
         AddRoleUI role = new AddRoleUI(this.member);

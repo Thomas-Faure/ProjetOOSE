@@ -33,12 +33,12 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
- * @author Lauren Unquera - Polytech Montpellier IG4
- * @Description Cette Classe correspond au contrôleur qui gère la vue "AllUsersUI".
+ * Cette Classe correspond au contrôleur qui gère la vue "AllUsersUI".
  * Il va servir aux utilisateurs pour regarder l'ensemble des utilisateurs qui ont été
  * créées et modifiées sur l'application.
  * Les utilisateurs admin pourront créer, ajouter ou modifier un utilisateur
  * partir de cette interfce.
+ * @author Lauren Unquera - Polytech Montpellier IG4
  */
 public class AllUsersController implements Initializable {
 
@@ -58,47 +58,13 @@ public class AllUsersController implements Initializable {
 
     private static User toManage;
 
-    //permet de garder la liste de base
     private static ObservableList<User> listViewTemp;
-    /*
-    @FXML
-    public void searchBar(KeyEvent keyEvent) {
-
-        if(!(inputSearch.getText().length() == 0)) {
-            ArrayList<AbstractProject> array = new ArrayList<>(listViewTemp);
-            ArrayList<AbstractProject> toDelete = new ArrayList<>();
-            for (int i = 0; i < array.size(); ++i) {
-                String inputS =inputSearch.getText();
-                if(inputS.charAt(0) == '*'){
-                    inputS= "\\"+inputS;
-                }
-                String regex = "(.*)" + inputS + "(.*)";
-                if (array.get(i).getName().matches(regex)) {
-
-                } else {
-                    toDelete.add(array.get(i));
-                }
-            }
-
-            for (AbstractProject i : toDelete) {
-                array.remove(i);
-            }
-            ObservableList<AbstractProject> listViewT = FXCollections.observableArrayList(array);
-            projectsList.setItems(listViewT);
-
-        }else{
-            projectsList.setItems(listViewTemp);
-        }
-
-    }
-
-     */
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet d'initialiser la page avec
+     * Permet d'initialiser la page avec
      * tous les utilisateurs existants dans l'application.
      * Utilise la classe Cell propre à AllUsersController
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -117,9 +83,9 @@ public class AllUsersController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet de valider la suppression courrante d'un utilisateur.
+     * Permet de valider la suppression courrante d'un utilisateur.
      * En cas d'erreur, le signifie avec un UIError.
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     public void validation(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
@@ -140,9 +106,9 @@ public class AllUsersController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet d'annuler la suppression courrante d'un utilisateur.
+     * Permet d'annuler la suppression courrante d'un utilisateur.
      * En cas d'erreur, le signifie avec un UIError.
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     public void refuse(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
@@ -152,8 +118,7 @@ public class AllUsersController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Classe propre à AllUsers qui servira à donner
+     * Classe propre à AllUsers qui servira à donner
      * la liste des utilisateurs existants dans la base. Chaque utilisateur
      * correspondra à une cellule dans laquelle on pourra trouver
      * les boutons nécessaires à la gestion de ces utilisateurs.
@@ -161,6 +126,7 @@ public class AllUsersController implements Initializable {
      * simple utilisateur sans droit (il n'aura accès qu'aux noms et prénoms des
      * utilisateurs lisibles dans les cellules), ou si c'est un admin (il pourra donc
      * modifier, ajouter, ou supprimer un utilisateur)
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     static class Cell extends ListCell<User> {
         User user;
@@ -224,9 +190,9 @@ public class AllUsersController implements Initializable {
         }
 
         /**
-         * @author Lauren Unquera - Polytech Montpellier IG4
-         * @Description Permet de donner des information sur les utilisateurs
+         * Permet de donner des information sur les utilisateurs
          * des cellules, ici le nom et prénom des utilisateurs.
+         * @author Lauren Unquera - Polytech Montpellier IG4
          */
         public void updateItem(User name, boolean empty){
             super.updateItem(name,empty);
@@ -244,7 +210,7 @@ public class AllUsersController implements Initializable {
 
     /**
      * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Redirige l'utilisateur sur la page de création d'un
+     * Redirige l'utilisateur sur la page de création d'un
      * utilisateur.
      */
     public void addNewUser(ActionEvent actionEvent) {

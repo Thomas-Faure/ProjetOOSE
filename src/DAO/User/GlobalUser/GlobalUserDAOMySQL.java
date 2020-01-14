@@ -13,10 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Lauren Unquera - Polytech Montpellier IG4
- * @Description Cette Classe correspond au DAO qui gère les globalUser.
+ * Cette Classe correspond au DAO qui gère les globalUser.
  * IL est en lien avec la base de données sur laquelle il fait des
  * requetes pour récupérer des données.
+ * @author Lauren Unquera - Polytech Montpellier IG4
  */
 public class GlobalUserDAOMySQL implements GlobalUserDAO {
 
@@ -31,8 +31,8 @@ public class GlobalUserDAOMySQL implements GlobalUserDAO {
     }
 
     /**
-     * @author Thomas Faure / Lauren Unquera - Polytech Montpellier IG4
-     * @Description Fonction utilisée pour le login (réalisé par Thomas)
+     * Fonction utilisée pour le login (réalisé par Thomas)
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     @Override
     public User createUser(String username, String password) {
@@ -63,10 +63,10 @@ public class GlobalUserDAOMySQL implements GlobalUserDAO {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet d'insérer dans la base de donnée un utilisateur (globalUser)
+     * Permet d'insérer dans la base de donnée un utilisateur (globalUser)
      * passé en paramètre
-     * @Param user : AbstractUser - utilisateur qu'on veut insérer
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @param user : AbstractUser - utilisateur qu'on veut insérer
      */
     @Override
     public boolean save(AbstractUser user) {
@@ -96,10 +96,10 @@ public class GlobalUserDAOMySQL implements GlobalUserDAO {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet de modifier dans la base de donnée un utilisateur (globalUser)
+     * Permet de modifier dans la base de donnée un utilisateur (globalUser)
      * passé en paramètre
-     * @Param user : Utilisateur qu'on veut modifier
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @param user : Utilisateur qu'on veut modifier
      */
     @Override
     public boolean update(AbstractUser user) {
@@ -133,10 +133,10 @@ public class GlobalUserDAOMySQL implements GlobalUserDAO {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet de supprimer dans la base de donnée un utilisateur dont
+     * Permet de supprimer dans la base de donnée un utilisateur dont
      * l'id est passé en paramètre
-     * @Param id : ID de l'utilisateur qu'on veut supprimer
+     * @author Lauren Unquera - Polytech Montpellier IG4
+     * @param id : ID de l'utilisateur qu'on veut supprimer
      */
     @Override
     public boolean delete(int id) {
@@ -161,9 +161,9 @@ public class GlobalUserDAOMySQL implements GlobalUserDAO {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Retourne la liste de tous les utilisateurs (GlobalUser)
+     * Retourne la liste de tous les utilisateurs (GlobalUser)
      * présents dans la base de données
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     @Override
     public List<AbstractUser> getAllUsers() {
@@ -198,8 +198,8 @@ public class GlobalUserDAOMySQL implements GlobalUserDAO {
     }
 
     /**
+     * Retourne l'utilisateur dont l'id est passé en paramètre
      * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Retourne l'utilisateur dont l'id est passé en paramètre
      */
     @Override
     public AbstractUser getUserById(int id) {
@@ -232,11 +232,11 @@ public class GlobalUserDAOMySQL implements GlobalUserDAO {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Fonction non nécessaire et non implémentée
+     * Fonction non nécessaire et non implémentée
      * dans cette version de l'application
      * mais pourra par exemple trouver son utilité pour une fonction de recherche
      * dans une future version
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     public List<Member> getUserByName(String name) {
         return null;

@@ -15,10 +15,10 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 /**
- * @author Lauren Unquera - Polytech Montpellier IG4
- * @Description Cette Classe correspond à l'UI qui gère la page MyAccountUI.fxml
+ * Cette Classe correspond à l'UI qui gère la page MyAccountUI.fxml
  * Gère le paramètre user qui correspond à l'utilisateur de la session qu'il
  * donnera au controller de la page
+ * @author Lauren Unquera - Polytech Montpellier IG4
  */
 public class MyAccountUI implements UIGlobal {
     private GlobalUser user = new GlobalUser();

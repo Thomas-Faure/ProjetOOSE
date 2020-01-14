@@ -14,9 +14,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
 /**
- * @author Lauren Unquera - Polytech Montpellier IG4
- * @Description Cette Classe correspond au contrôleur qui gère la vue "AddRoleUI".
+ * Cette Classe correspond au contrôleur qui gère la vue "AddRoleUI".
  * Il va servir aux utilisateurs pour créer/ajouter un role.
+ * @author Lauren Unquera - Polytech Montpellier IG4
  */
 public class AddRoleController {
 
@@ -31,11 +31,11 @@ public class AddRoleController {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction est appelée lorsque l'utilisateur appuie
+     * Cette fonction est appelée lorsque l'utilisateur appuie
      * sur le bouton "Create Role".
      * Elle permet donc de créer un role.
      * Une fois executée, elle redirigera l'utilisateur sur la page de la "AllRolesUI".
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     @FXML
     void addNewRole(ActionEvent actionEvent){
@@ -60,11 +60,11 @@ public class AddRoleController {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction est appelée lorsque l'utilisateur appuie
+     * Cette fonction est appelée lorsque l'utilisateur appuie
      * sur le bouton "Back".
      * Elle permet de rediriger l'utilisateur sur la page de la "AllRolesUI" qui
      * était la page précédente avant qu'il arrive sur celle-ci ("AddRoleUI").
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     @FXML
     public void backToRole(ActionEvent actionEvent) {

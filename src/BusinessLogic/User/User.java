@@ -1,14 +1,15 @@
 package BusinessLogic.User;
 
 /**
- * @author Lauren Unquera - Polytech Montpellier IG4
- * @Description Cette (super) Classe correspond aux ensembles des différents types
+ *
+ * Cette (super) Classe correspond aux ensembles des différents types
  * de User dans notre application. Pour l'instant il existe les "member"
  * qui correspondent aux membres associés à un projet; et les "globalUser"
  * qui correspondent à l'ensemble des utilisateurs de l'application
  * Les utilisateurs peuvent être amdmin ou non.
  * En étant admin ils auront plus de droit et de contrôle sur l'application
  * (Gestion des idées, des annonces, ...)
+ * @author Lauren Unquera - Polytech Montpellier IG4
  */
 public class User extends AbstractUser {
     private int id;

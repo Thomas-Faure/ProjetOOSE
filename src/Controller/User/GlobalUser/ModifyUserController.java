@@ -25,10 +25,10 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
 /**
- * @author Lauren Unquera - Polytech Montpellier IG4
- * @Description Cette Classe correspond au contrôleur qui gère la vue "ModifyUserUI".
+ * Cette Classe correspond au contrôleur qui gère la vue "ModifyUserUI".
  * Il va servir aux utilisateurs (admins) pour modifier l'utilisateur courrant qui a été
  * passé en paramètre.
+ * @author Lauren Unquera - Polytech Montpellier IG4
  */
 public class ModifyUserController implements Initializable {
 
@@ -66,9 +66,9 @@ public class ModifyUserController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet de revenir sur la page précédente / sur la page correspondant
+     * Permet de revenir sur la page précédente / sur la page correspondant
      * à la gestion de l'ensemble des utilisateurs (AllUsersUI)
+     * @author Lauren Unquera - Polytech Montpellier IG4
      * @param actionEvent
      */
     public void backToUser(ActionEvent actionEvent) {
@@ -80,13 +80,13 @@ public class ModifyUserController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction permet d'appliquer les modifications qui avaient été
+     * Cette fonction permet d'appliquer les modifications qui avaient été
      * entrées dans le formulaire pour la modification de l'utilisateur courrant,
      * une nouvelle UI apparaitra pour demander si l'utilisateur (admin) veut valider ou non ces modifications
      * Une fois les modifications effectuées, renvoie l'utilisateur (admin) à la page précédente / la page
      * correspondant à la gestion de l'ensemble des utilisateurs
      * (AllUsersUI). Dans le cas contraire elle le signifie avec une UIError.
+     * @author Lauren Unquera - Polytech Montpellier IG4
      * @param actionEvent
      */
     @FXML
@@ -133,10 +133,10 @@ public class ModifyUserController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction permet d'initialiser la page en entrant
+     * Cette fonction permet d'initialiser la page en entrant
      * dans les champs correspondants les valeurs des attributs de l'utilisateur
      * qu'on veut modifier
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -153,8 +153,8 @@ public class ModifyUserController implements Initializable {
     }
 
     /**
+     * Cette fonction permet de valider la modification
      * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction permet de valider la modification
      */
     public void validation(ActionEvent actionEvent) {
         if(GlobalUserFacade.getInstance().modifyUser(toModify)){
@@ -173,8 +173,8 @@ public class ModifyUserController implements Initializable {
     }
 
     /**
+     * Cette fonction permet d'annuler la modification
      * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction permet d'annuler la modification
      */
     public void refuse(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");

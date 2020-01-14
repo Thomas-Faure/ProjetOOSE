@@ -1,7 +1,6 @@
 package Controller.User.MemberUser;
 
 
-import BusinessLogic.Project.AbstractProject;
 import BusinessLogic.Role.Role;
 import BusinessLogic.User.Member;
 import Facade.Role.IRoleFacade;
@@ -32,10 +31,10 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
- * @author Lauren Unquera - Polytech Montpellier IG4
- * @Description Cette Classe correspond au contrôleur qui gère la vue "ReadAMemberUI".
+ * Cette Classe correspond au contrôleur qui gère la vue "ReadAMemberUI".
  * Il va servir pour lire le membre courrant qui a été
  * passée en paramètre.
+ * @author Lauren Unquera - Polytech Montpellier IG4
  */
 public class ReadAMemberController implements Initializable {
 
@@ -61,45 +60,12 @@ public class ReadAMemberController implements Initializable {
     private static Role toManage;
     private static ObservableList<Role> listViewTemp;
 
-    /*
-    @FXML
-    public void searchBar(KeyEvent keyEvent) {
-
-        if(!(inputSearch.getText().length() == 0)) {
-            ArrayList<AbstractProject> array = new ArrayList<>(listViewTemp);
-            ArrayList<AbstractProject> toDelete = new ArrayList<>();
-            for (int i = 0; i < array.size(); ++i) {
-                String inputS =inputSearch.getText();
-                if(inputS.charAt(0) == '*'){
-                    inputS= "\\"+inputS;
-                }
-                String regex = "(.*)" + inputS + "(.*)";
-                if (array.get(i).getName().matches(regex)) {
-
-                } else {
-                    toDelete.add(array.get(i));
-                }
-            }
-
-            for (AbstractProject i : toDelete) {
-                array.remove(i);
-            }
-            ObservableList<AbstractProject> listViewT = FXCollections.observableArrayList(array);
-            projectsList.setItems(listViewT);
-
-        }else{
-            projectsList.setItems(listViewTemp);
-        }
-
-    }
-
-     */
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction permet d'initialiser la page en entrant
+     * Cette fonction permet d'initialiser la page en entrant
      * dans les champs correspondants les valeurs des attributs du membre et
      * de présenter le rôle que le memr=bre a dans le projet associé
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -128,9 +94,9 @@ public class ReadAMemberController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet de valider la suppression courrante d'un membre du projet.
+     * Permet de valider la suppression courrante d'un membre du projet.
      * En cas d'erreur, le signifie avec un UIError.
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     public void validation(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
@@ -150,9 +116,9 @@ public class ReadAMemberController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet d'annuler la suppression courrante d'un membre du projet.
+     * Permet d'annuler la suppression courrante d'un membre du projet.
      * En cas d'erreur, le signifie avec un UIError.
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     public void refuse(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
@@ -162,9 +128,9 @@ public class ReadAMemberController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet de valider la suppression courrante du role du membre.
+     * Permet de valider la suppression courrante du role du membre.
      * En cas d'erreur, le signifie avec un UIError.
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     public void validationDelRole(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
@@ -183,9 +149,9 @@ public class ReadAMemberController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet d'annuler la suppression courrante du role du membre.
+     * Permet d'annuler la suppression courrante du role du membre.
      * En cas d'erreur, le signifie avec un UIError.
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     public void refuseDelRole(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm2");
@@ -195,11 +161,11 @@ public class ReadAMemberController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Cette fonction est appelée lorsque l'utilisateur appuie
+     * Cette fonction est appelée lorsque l'utilisateur appuie
      * sur le bouton "Back".
      * Elle permet de rediriger l'utilisateur sur la page de la "AllMembersUI" qui
      * était la page précédente avant qu'il arrive sur celle-ci ("ReadAMemberUI").
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     public void backToPage(ActionEvent actionEvent) {
         AllMembersUI allm = new AllMembersUI(this.member.getProject());
@@ -210,9 +176,9 @@ public class ReadAMemberController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Sous fonction qui permet de gérer les UI correspondantes qui
+     * Sous fonction qui permet de gérer les UI correspondantes qui
      * doivent s'ouvrir ou se fermer pour la confirmation de la suppression du membre
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     public void deleteMember(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#manager");
@@ -223,8 +189,8 @@ public class ReadAMemberController implements Initializable {
     }
 
     /**
+     * Permet de rediriger l'utilisateur sur la page d'ajout/de création de role (AllRolesUI)
      * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Permet de rediriger l'utilisateur sur la page d'ajout/de création de role (AllRolesUI)
      */
     public void addRole(ActionEvent actionEvent) {
         AllRolesUI allm = new AllRolesUI(this.member);
@@ -235,8 +201,7 @@ public class ReadAMemberController implements Initializable {
     }
 
     /**
-     * @author Lauren Unquera - Polytech Montpellier IG4
-     * @Description Classe propre à ReadAMemberController qui servira à donner
+     * Classe propre à ReadAMemberController qui servira à donner
      * la liste des roles du membre. Dans cette version de l'application
      * le membre n'a qu'un seul rôle, mais si on en trouve l'utilité,
      * tout a été arrangé pour pouvoir gérer le fait qu'il ait plusieurs
@@ -244,6 +209,7 @@ public class ReadAMemberController implements Initializable {
      * correspondra à une cellule dans laquelle on pourra trouver
      * les boutons nécessaires à la gestion de ces role (notamment
      * la suppression du role pour le membre)
+     * @author Lauren Unquera - Polytech Montpellier IG4
      */
     static class Cell extends ListCell<Role> {
         Role role;
@@ -275,9 +241,9 @@ public class ReadAMemberController implements Initializable {
         }
 
         /**
-         * @author Lauren Unquera - Polytech Montpellier IG4
-         * @Description Permet de donner des information sur les roles
+         * Permet de donner des information sur les roles
          * des cellules, ici le nom.
+         * @author Lauren Unquera - Polytech Montpellier IG4
          */
         public void updateItem(Role name, boolean empty){
             super.updateItem(name,empty);
