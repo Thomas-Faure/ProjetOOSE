@@ -14,6 +14,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         App.getInstance();
+        stage.setResizable(false);
         App.setInstanceStage(stage);
         UILogin login = new UILogin();
         App.setInstanceScene(login.loadScene());
