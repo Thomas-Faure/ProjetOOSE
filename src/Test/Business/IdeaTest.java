@@ -6,7 +6,7 @@ import BusinessLogic.User.AbstractUser;
 import BusinessLogic.User.User;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+
 
 /**
  * Test de Idea de la business Logic
@@ -20,6 +20,9 @@ public class IdeaTest {
 
         AbstractIdea idea = new Idea(1,"nom","description", "Subject", user, "validated");
         assertEquals("nom", idea.getName());
+    }
+
+    private void assertEquals(String nom, String name) {
     }
 
 

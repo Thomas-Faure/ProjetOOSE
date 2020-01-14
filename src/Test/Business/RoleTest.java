@@ -4,7 +4,8 @@ import BusinessLogic.Role.AbstractRole;
 import BusinessLogic.Role.Role;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 /**
  * Test de Role de la business Logic

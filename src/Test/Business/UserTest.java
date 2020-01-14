@@ -4,7 +4,8 @@ import BusinessLogic.User.AbstractUser;
 import BusinessLogic.User.User;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 /**
  * Test de User de la business Logic

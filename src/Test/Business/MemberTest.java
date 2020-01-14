@@ -8,7 +8,7 @@ import BusinessLogic.User.Member;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 
-import static org.junit.Assert.assertEquals;
+
 
 /**
  * Test de User de la business Logic
@@ -22,6 +22,9 @@ public class MemberTest {
         AbstractRole role = new Role(1, "nom");
         member.setRole(role);
         assertEquals("nom", member.getRole().getName());
+    }
+
+    private void assertEquals(String nom, String name) {
     }
 
     @Test
