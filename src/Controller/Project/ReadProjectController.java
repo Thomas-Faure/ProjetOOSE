@@ -1,19 +1,19 @@
 package Controller.Project;
 
-import BuisnessLogic.Chat.AbstractChat;
-import BuisnessLogic.Chat.Chat;
-import BuisnessLogic.Project.AbstractProject;
+import BusinessLogic.Chat.AbstractChat;
+import BusinessLogic.Chat.Chat;
+import BusinessLogic.Project.AbstractProject;
 import Facade.ChatFacade;
 import Facade.Project.IProjectFacade;
 import Facade.Project.ProjectFacade;
 import Main.App;
 import UI.Chat.ChatUI;
-import UI.Meeting.MeetingsUI;
+import UI.Meeting.MeetingUI;
 import UI.Project.ProjectUI;
 import UI.Ressource.ResourceUI;
 import UI.Sprint.AddSprintUI;
 import UI.Sprint.SprintUI;
-import UI.Task.UITaskManagement;
+import UI.Task.TaskManagementUI;
 import UI.User.Member.AllMembersUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,10 +22,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Ce controller permet de gérer l'UI de lecture d'un projet
+ * @author Rémi Salmi
+ */
 public class ReadProjectController implements Initializable {
 
     private AbstractProject project;
@@ -47,6 +50,11 @@ public class ReadProjectController implements Initializable {
         this.project=project;
     }
 
+
+    /**
+     * Initialisation de l'UI
+     * @author Rémi Salmi
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         pathIndication.setText("/Projects/" + project.getName());
@@ -59,6 +67,10 @@ public class ReadProjectController implements Initializable {
         }
     }
 
+    /**
+     * Permet de retourner à la page précédente
+     * @author Rémi Salmi
+     */
     @FXML
     void back(ActionEvent actionEvent){
         ProjectUI projectPage = new ProjectUI();
@@ -69,6 +81,11 @@ public class ReadProjectController implements Initializable {
     }
 
     @FXML
+
+    /**
+     * Permet de se diriger vers le chat du projet
+     * @author Rémi Salmi
+     */
     void goChat(ActionEvent actionEvent){
 
         if(!ChatFacade.getInstance().getChatByProjectId(project.getId())) {
@@ -83,6 +100,10 @@ public class ReadProjectController implements Initializable {
 
     }
 
+    /**
+     * Permet de se diriger vers la page de gestion des membres du projet
+     * @author Rémi Salmi
+     */
     @FXML
     void goMembers(ActionEvent actionEvent){
         AllMembersUI members = new AllMembersUI(project);
@@ -92,6 +113,10 @@ public class ReadProjectController implements Initializable {
         box.getChildren().add(members.loadScene().getRoot());
     }
 
+    /**
+     * Permet de se driger vers la page des resources du projet
+     * @author Rémi Salmi
+     */
     @FXML
     void goResources(ActionEvent actionEvent){
         ResourceUI resourceUI = new ResourceUI(project);
@@ -102,9 +127,13 @@ public class ReadProjectController implements Initializable {
     }
 
 
+    /**
+     * Permet de se diriger vers la page des meetings du projet
+     * @author Rémi Salmi
+     */
     @FXML
     void goMeetings(ActionEvent actionEvent){
-        MeetingsUI meetingPage = new MeetingsUI(project);
+        MeetingUI meetingPage = new MeetingUI(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
@@ -118,10 +147,14 @@ public class ReadProjectController implements Initializable {
         box.getChildren().add(addSprintPage.loadScene().getRoot());
     }
 
+    /**
+     * Permet de se diriger vers la page des tasks ou sprints du projet
+     * @author Rémi Salmi
+     */
     public void goTasksSprints(ActionEvent actionEvent) {
         //tasks
         if(!project.isAgile()){
-            UITaskManagement taskManagement = new UITaskManagement(project);
+            TaskManagementUI taskManagement = new TaskManagementUI(project);
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(1);

@@ -1,10 +1,8 @@
 package UI.Chat;
 
-import BuisnessLogic.Project.AbstractProject;
+import BusinessLogic.Project.AbstractProject;
 import Controller.Chat.ChatController;
 import Controller.IController;
-import Controller.Sprint.AddTaskSprintController;
-import UI.UIGlobal;
 import UI.UIGlobalWithController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,7 +30,7 @@ public class ChatUI implements UIGlobalWithController {
         creators.put(ChatController.class , new Callable<ChatController>() {
             @Override
             public ChatController call() throws Exception {
-                return new ChatController(project);
+                return new ChatController(project,ui);
             }
         });
         Parent root = null;

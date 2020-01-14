@@ -1,7 +1,7 @@
 package Facade;
 
-import BuisnessLogic.Idea.AbstractIdea;
-import BuisnessLogic.Idea.Idea;
+import BusinessLogic.Idea.AbstractIdea;
+import BusinessLogic.Idea.Idea;
 import DAO.Idea.IdeaDAO;
 import DAO.MySQLDAOFactory;
 

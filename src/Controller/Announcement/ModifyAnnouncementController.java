@@ -3,12 +3,10 @@ package Controller.Announcement;
  *
  * @author Thomas Faure
  */
-import BuisnessLogic.Announcement.AbstractAnnouncement;
+import BusinessLogic.Announcement.AbstractAnnouncement;
 import Facade.Announcement.AnnouncementFacade;
 import Main.App;
-import UI.Announcement.AnnouncementUI;
-import UI.Announcement.UIAnnouncementManagement;
-import UI.Task.UITaskManagement;
+import UI.Announcement.AnnouncementManagementUI;
 import UI.UIError;
 import UI.UIGlobal;
 import javafx.event.ActionEvent;
@@ -67,7 +65,7 @@ public class ModifyAnnouncementController implements Initializable {
             message.setText(announcementToModify.getMessage());
         }
         else{
-            UIError error = new UIError(new UIAnnouncementManagement());
+            UIError error = new UIError(new AnnouncementManagementUI());
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )
@@ -80,7 +78,7 @@ public class ModifyAnnouncementController implements Initializable {
      * @param actionEvent
      */
     public void backtoAnnouncements(ActionEvent actionEvent) {
-        UIGlobal announcementUI = new UIAnnouncementManagement();
+        UIGlobal announcementUI = new AnnouncementManagementUI();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
@@ -93,12 +91,12 @@ public class ModifyAnnouncementController implements Initializable {
     public void validation(ActionEvent actionEvent) {
         if(AnnouncementFacade.getInstance().modifyAnnouncement(toModify)){
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-            UIAnnouncementManagement am = new UIAnnouncementManagement();
+            AnnouncementManagementUI am = new AnnouncementManagementUI();
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(1);
             box.getChildren().add(am.loadScene().getRoot());
         }else{
-            UIError error = new UIError(new UIAnnouncementManagement());
+            UIError error = new UIError(new AnnouncementManagementUI());
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )

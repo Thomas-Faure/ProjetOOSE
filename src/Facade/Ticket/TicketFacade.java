@@ -1,14 +1,17 @@
 package Facade.Ticket;
 
-import BuisnessLogic.Announcement.AbstractAnnouncement;
-import BuisnessLogic.Ticket.AbstractTicket;
-import BuisnessLogic.User.AbstractUser;
+
+import BusinessLogic.Ticket.AbstractTicket;
+import BusinessLogic.User.AbstractUser;
 import DAO.MySQLDAOFactory;
 import DAO.Ticket.TicketDAO;
-
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Cette facade permet de gérer les tickets
+ * @author Rémi Salmi
+ */
 public class TicketFacade implements ITicketFacade {
     private List<AbstractTicket> tickets;
     private TicketDAO dao;
@@ -20,6 +23,10 @@ public class TicketFacade implements ITicketFacade {
         this.tickets = new ArrayList<>();
     }
 
+    /**
+     * Retourne l'instance de la facade
+     * @author Rémi Salmi
+     */
     public static TicketFacade getInstance(){
         if(instance == null){
             instance =new TicketFacade();
@@ -28,12 +35,20 @@ public class TicketFacade implements ITicketFacade {
     }
 
     @Override
+    /**
+     * Permet de récupérer tous les tickets
+     * @author Rémi Salmi
+     */
     public boolean getAllTickets() {
         this.tickets = dao.getAllTickets();
         return true;
     }
 
     @Override
+    /**
+     * Permet de recupérer les tickets de l'user connecté
+     * @author Rémi Salmi
+     */
     public boolean getMyTickets(AbstractUser user) {
         this.tickets = dao.getMyTickets(user);
         return true;
@@ -42,6 +57,10 @@ public class TicketFacade implements ITicketFacade {
 
 
     @Override
+    /**
+     * Permet de créer un ticket
+     * @author Rémi Salmi
+     */
     public boolean addTicket(AbstractTicket ticket){
         if(dao.save(ticket)){
             //on ajouter la nouvelle tache à la liste
@@ -53,6 +72,10 @@ public class TicketFacade implements ITicketFacade {
     }
 
     @Override
+    /**
+     * Permet de supprimer un ticket
+     * @author Rémi Salmi
+     */
     public boolean deleteTicket(AbstractTicket ticket) {
         if(dao.delete(ticket.getId())){
             return true;
@@ -62,6 +85,10 @@ public class TicketFacade implements ITicketFacade {
     }
 
     @Override
+    /**
+     * Permet de répondre à un ticket
+     * @author Rémi Salmi
+     */
     public boolean answer(AbstractTicket ticket, String answer) {
         ticket.setAnswer(answer);
         if(dao.update(ticket)){
@@ -76,11 +103,19 @@ public class TicketFacade implements ITicketFacade {
         }
     }
 
+    /**
+     * Permet de retourner la liste de ticket de l'instance
+     * @author Rémi Salmi
+     */
     public List<AbstractTicket> getListTickets() {
         return this.tickets;
     }
 
     @Override
+    /**
+     * Permet de récupérer un ticket par son id
+     * @author Rémi Salmi
+     */
     public AbstractTicket getTicketById(int id) {
         AbstractTicket ticket;
         ticket = dao.getTicketById(id);

@@ -1,6 +1,6 @@
 package Controller.Idea;
 
-import BuisnessLogic.Idea.AbstractIdea;
+import BusinessLogic.Idea.AbstractIdea;
 import Facade.Idea.IIdeaFacade;
 import Facade.Idea.IdeaFacade;
 import Main.App;
@@ -8,8 +8,10 @@ import UI.Idea.IdeaBoxUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,7 +32,9 @@ public class ReadAIdeaController implements Initializable {
     @FXML
     private TextField subject;
     @FXML
-    private TextField description;
+    private TextArea description;
+    @FXML
+    private Text etat;
 
     public ReadAIdeaController(){
     }
@@ -65,5 +69,6 @@ public class ReadAIdeaController implements Initializable {
         name.setText(toRead.getName());
         subject.setText(toRead.getSubject());
         description.setText(toRead.getDescription());
+        etat.setText(toRead.getState());
     }
 }

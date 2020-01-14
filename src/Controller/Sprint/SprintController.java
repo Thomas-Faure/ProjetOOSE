@@ -1,7 +1,7 @@
 package Controller.Sprint;
 
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Sprint.AbstractSprint;
+import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.Sprint.AbstractSprint;
 import Facade.SprintFacade;
 import Main.App;
 import UI.Project.ReadProjectUI;
@@ -16,10 +16,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
-import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -37,6 +37,8 @@ public class SprintController implements Initializable {
     private ListView<AbstractSprint> sprintList;
 
     private static ObservableList<AbstractSprint> listViewTemp;
+
+    private static AbstractSprint sprintToManage;
 
     private AbstractProject project;
 
@@ -61,6 +63,26 @@ public class SprintController implements Initializable {
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
         box.getChildren().add(readProject.loadScene().getRoot());
+    }
+
+    @FXML
+    public void validation(ActionEvent actionEvent) {
+
+        SprintFacade.getInstance().deleteSprint(sprintToManage.getSprintID());
+        SprintUI sprintUI = new SprintUI(project);
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(sprintUI.loadScene().getRoot());
+    }
+
+
+    @FXML
+    public void refuse(ActionEvent actionEvent) {
+        AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+        toHide.setVisible(false);
+        AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#manager");
+        toShow.setVisible(true);
     }
 
     @Override
@@ -115,13 +137,11 @@ public class SprintController implements Initializable {
             btnDelete.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    SprintFacade.getInstance().deleteSprint(sprint.getSprintID());
-
-                    SprintUI sprintUI = new SprintUI(project);
-                    HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-                    if(box.getChildren().size() >1 )
-                        box.getChildren().remove(1);
-                    box.getChildren().add(sprintUI.loadScene().getRoot());
+                    sprintToManage = sprint;
+                    AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#manager");
+                    toHide.setVisible(false);
+                    AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+                    toShow.setVisible(true);
                 }
             });
 

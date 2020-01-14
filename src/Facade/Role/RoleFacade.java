@@ -1,6 +1,6 @@
 package Facade.Role;
 
-import BuisnessLogic.Role.AbstractRole;
+import BusinessLogic.Role.AbstractRole;
 import DAO.MySQLDAOFactory;
 import DAO.Role.RoleDAO;
 

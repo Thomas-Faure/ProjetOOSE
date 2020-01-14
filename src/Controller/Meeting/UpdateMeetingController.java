@@ -1,13 +1,11 @@
 package Controller.Meeting;
 
-import BuisnessLogic.Meeting.AbstractMeeting;
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Ticket.AbstractTicket;
+import BusinessLogic.Meeting.AbstractMeeting;
+import BusinessLogic.Project.AbstractProject;
 import Facade.Meeting.IMeetingFacade;
 import Facade.Meeting.MeetingFacade;
 import Main.App;
-import UI.Meeting.MeetingsUI;
-import UI.Ticket.TicketUI;
+import UI.Meeting.MeetingUI;
 import UI.UIError;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,10 +14,13 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Ce controller permet la gestion de l'UI de mise a jour d'un meeting
+ * @author Rémi Salmi
+ */
 public class UpdateMeetingController implements Initializable {
 
     private AbstractMeeting meeting;
@@ -43,6 +44,10 @@ public class UpdateMeetingController implements Initializable {
         this.project = project;
     }
 
+    /**
+     * Initialisation de l'UI
+     * @author Rémi Salmi
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         pathIndication.setText("/Projects/" + meeting.getIdProject() + "/update meeting");
@@ -50,27 +55,35 @@ public class UpdateMeetingController implements Initializable {
         place.setText(meeting.getPlace());
     }
 
+    /**
+     * Permet d'annuler la modification d'un meeting
+     * @author Rémi Salmi
+     */
     @FXML
     void cancel(ActionEvent actionEvent){
-        MeetingsUI meetingsPage = new MeetingsUI(project);
+        MeetingUI meetingsPage = new MeetingUI(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
         box.getChildren().add(meetingsPage.loadScene().getRoot());
     }
 
+    /**
+     * Permet de modifier le meeting
+     * @author Rémi Salmi
+     */
     @FXML
     void updateMeeting(ActionEvent actionEvent){
         meeting.setDate(date.getValue());
         meeting.setPlace(place.getText());
         if(meetingFacade.update(meeting)){
-            MeetingsUI meetingsPage = new MeetingsUI(project);
+            MeetingUI meetingsPage = new MeetingUI(project);
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(1);
             box.getChildren().add(meetingsPage.loadScene().getRoot());
         }else{
-            UIError error = new UIError(new MeetingsUI(project));
+            UIError error = new UIError(new MeetingUI(project));
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )

@@ -1,18 +1,19 @@
 package UI.Meeting;
 
-import BuisnessLogic.Project.AbstractProject;
+import BusinessLogic.Project.AbstractProject;
 import Controller.Meeting.AddMeetingController;
-import Controller.Ticket.ReadTicketController;
 import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.util.Callback;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+/**
+ * @author Rémi Salmi
+ */
 public class AddMeetingUI implements UIGlobal {
 
     private AbstractProject project;

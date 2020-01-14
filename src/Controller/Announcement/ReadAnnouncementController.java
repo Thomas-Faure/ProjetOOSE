@@ -3,11 +3,11 @@ package Controller.Announcement;
  *
  * @author Thomas Faure
  */
-import BuisnessLogic.Announcement.AbstractAnnouncement;
+import BusinessLogic.Announcement.AbstractAnnouncement;
 import Facade.Announcement.AnnouncementFacade;
 import Main.App;
 import UI.Announcement.AnnouncementUI;
-import UI.Announcement.UIAnnouncementManagement;
+import UI.Announcement.AnnouncementManagementUI;
 import UI.UIError;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -49,7 +49,7 @@ public class ReadAnnouncementController implements Initializable {
             if(!adminPanel){
                 error = new UIError(new AnnouncementUI());
             }else{
-                error = new UIError(new UIAnnouncementManagement());
+                error = new UIError(new AnnouncementManagementUI());
             }
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(error.loadScene().getRoot());
@@ -67,7 +67,7 @@ public class ReadAnnouncementController implements Initializable {
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
         if(adminPanel) {
-            UIAnnouncementManagement announcement = new UIAnnouncementManagement();
+            AnnouncementManagementUI announcement = new AnnouncementManagementUI();
             box.getChildren().add(announcement.loadScene().getRoot());
         }else{
             AnnouncementUI announcement = new AnnouncementUI();

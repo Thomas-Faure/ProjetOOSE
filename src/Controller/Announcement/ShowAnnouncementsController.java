@@ -3,10 +3,10 @@ package Controller.Announcement;
  *
  * @author Thomas Faure
  */
-import BuisnessLogic.Announcement.AbstractAnnouncement;
+import BusinessLogic.Announcement.AbstractAnnouncement;
 import Facade.Announcement.AnnouncementFacade;
 import Main.App;
-import UI.Announcement.UIReadAnnouncement;
+import UI.Announcement.ReadAnnouncementUI;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -89,7 +89,7 @@ public class ShowAnnouncementsController implements Initializable {
     private class clickMore implements EventHandler<Event> {
         @Override
         public void handle(Event evt) {
-            UIReadAnnouncement read = new UIReadAnnouncement(Integer.parseInt(((Control)evt.getSource()).getId()),false);
+            ReadAnnouncementUI read = new ReadAnnouncementUI(Integer.parseInt(((Control)evt.getSource()).getId()),false);
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().remove(1);
             box.getChildren().add(read.loadScene().getRoot());

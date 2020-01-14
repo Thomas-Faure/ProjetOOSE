@@ -5,6 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+/**
+ * @author Rémi Salmi
+ */
 public class AddProjectUI implements UIGlobal {
 
     @Override

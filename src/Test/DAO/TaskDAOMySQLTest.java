@@ -3,12 +3,12 @@ package Test.DAO;
  *
  * @author Thomas Faure
  */
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Task.AbstractTask;
-import BuisnessLogic.Task.Task;
-import BuisnessLogic.Task.TaskState;
-import BuisnessLogic.User.AbstractUser;
-import BuisnessLogic.User.User;
+import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.Task.AbstractTask;
+import BusinessLogic.Task.Task;
+import BusinessLogic.Task.TaskState;
+import BusinessLogic.User.AbstractUser;
+import BusinessLogic.User.User;
 import DAO.Task.TaskDAO;
 import DAO.Task.TaskDAOMySQL;
 import Facade.Project.ProjectFacade;

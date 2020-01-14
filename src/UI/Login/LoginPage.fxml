@@ -3,25 +3,30 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #ecf0f5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Login.LoginController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #ecf0f5;" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Login.LoginController">
   <children>
-    <Button fx:id="loginButton" layoutX="452.0" layoutY="431.0" mnemonicParsing="false" onAction="#signIn" prefHeight="25.0" prefWidth="96.0" text="Sign in" />
+    <Button fx:id="loginButton" layoutX="383.0" layoutY="432.0" mnemonicParsing="false" onAction="#signIn" prefHeight="25.0" prefWidth="96.0" text="Sign in" />
     <Text layoutX="276.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" />
     <Text layoutX="275.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" />
-    <Text layoutX="455.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login Page" />
     <TextField fx:id="inputUsername" layoutX="275.0" layoutY="232.0" prefWidth="448.0" />
     <PasswordField fx:id="inputPassword" layoutX="276.0" layoutY="363.0" prefWidth="448.0" />
-    <Button fx:id="passwordForgotten" layoutX="768.0" layoutY="505.0" mnemonicParsing="false" onAction="#goToPasswordForgottenPage" text="Password forgotten" />
     <Text fx:id="info" layoutX="483.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
       <Pane prefHeight="49.0" prefWidth="1000.0" style="-fx-background-color: #367fa9;">
          <children>
             <Text fill="WHITE" layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" />
          </children>
       </Pane>
-      <Button fx:id="CreateAccount" layoutX="768.0" layoutY="456.0" mnemonicParsing="false" onAction="#addUser" prefHeight="25.0" prefWidth="120.0" text="Create account" />
+      <Button fx:id="CreateAccount" layoutX="498.0" layoutY="432.0" mnemonicParsing="false" onAction="#addUser" prefHeight="25.0" prefWidth="120.0" text="Create account" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="424.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="LOGO_PPM.png" />
+         </image>
+      </ImageView>
   </children>
 </AnchorPane>

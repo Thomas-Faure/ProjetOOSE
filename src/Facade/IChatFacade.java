@@ -1,6 +1,6 @@
 package Facade;
 
-import BuisnessLogic.Chat.AbstractChat;
+import BusinessLogic.Chat.AbstractChat;
 
 /**
  *

@@ -1,10 +1,10 @@
 package Controller;
 
-import BuisnessLogic.User.AbstractUser;
+import BusinessLogic.User.AbstractUser;
 import Facade.SessionFacade;
 import Main.App;
 import UI.Announcement.AnnouncementUI;
-import UI.Announcement.UIAnnouncementManagement;
+import UI.Announcement.AnnouncementManagementUI;
 import UI.Idea.IdeaBoxUI;
 import UI.Login.UILogin;
 import UI.Project.ProjectUI;
@@ -17,9 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import sun.plugin.javascript.navig.Anchor;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -91,7 +89,7 @@ public class MenuController implements Initializable {
      */
     @FXML
     void goMenuAnnouncementManager(ActionEvent event){
-        UIAnnouncementManagement announcement = new UIAnnouncementManagement();
+        AnnouncementManagementUI announcement = new AnnouncementManagementUI();
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
@@ -192,6 +190,7 @@ public class MenuController implements Initializable {
         if(!user.isAdmin()){
             //to disable
             menuAnnouncementManager.setDisable(true);
+            menuTicket.setDisable(true);
         }
     }
 }

@@ -1,7 +1,7 @@
 package DAO;
 
 
-import BuisnessLogic.Chat.AbstractChat;
+import BusinessLogic.Chat.AbstractChat;
 
 /**
  *

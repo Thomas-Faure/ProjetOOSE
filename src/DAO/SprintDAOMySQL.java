@@ -1,8 +1,8 @@
 package DAO;
 
 
-import BuisnessLogic.Sprint.AbstractSprint;
-import BuisnessLogic.Sprint.Sprint;
+import BusinessLogic.Sprint.AbstractSprint;
+import BusinessLogic.Sprint.Sprint;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

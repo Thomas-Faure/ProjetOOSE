@@ -1,6 +1,6 @@
 package DAO.Message;
 
-import BuisnessLogic.Message.AbstractMessage;
+import BusinessLogic.Message.AbstractMessage;
 
 import java.util.List;
 

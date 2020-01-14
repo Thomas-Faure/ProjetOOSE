@@ -1,17 +1,22 @@
 package Controller.Sprint;
 
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Sprint.AbstractSprint;
-import BuisnessLogic.Task.AbstractTask;
-import BuisnessLogic.Task.TaskState;
+import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.Sprint.AbstractSprint;
+import BusinessLogic.Task.AbstractTask;
+import BusinessLogic.Task.TaskState;
 import Controller.IController;
+import Controller.Resource.DropBoxConnexion;
+import Facade.ResourceFacade;
+import Facade.SessionFacade;
 import Facade.SprintFacade;
 import Facade.Task.TaskFacade;
+import Facade.User.MemberUser.MemberFacade;
 import Main.App;
+import UI.Ressource.ResourceUI;
 import UI.Sprint.AddTaskSprintUI;
 import UI.Sprint.ReadSprintUI;
 import UI.Sprint.SprintUI;
-import UI.Task.UIModifyTask;
+import UI.Task.ModifyTaskUI;
 import UI.UIGlobalWithController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,13 +28,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 import javafx.fxml.FXML;
 
-import javax.swing.*;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -81,14 +86,18 @@ public class ReadSprintController implements Initializable, IController {
 
     @FXML
     void deleteSprint(ActionEvent actionEvent) {
-        SprintFacade.getInstance().deleteSprint(sprint.getSprintID());
+        /*SprintFacade.getInstance().deleteSprint(sprint.getSprintID());
 
 
         SprintUI sprintUI = new SprintUI(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
-        box.getChildren().add(sprintUI.loadScene().getRoot());
+        box.getChildren().add(sprintUI.loadScene().getRoot());*/
+        AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#manager");
+        toHide.setVisible(false);
+        AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+        toShow.setVisible(true);
     }
 
     @FXML
@@ -100,6 +109,26 @@ public class ReadSprintController implements Initializable, IController {
             box.getChildren().remove(1);
         box.getChildren().add(sprintUI.loadScene().getRoot());
 
+    }
+
+    @FXML
+    public void validation(ActionEvent actionEvent) {
+
+        SprintFacade.getInstance().deleteSprint(sprint.getSprintID());
+        SprintUI sprintUI = new SprintUI(project);
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(sprintUI.loadScene().getRoot());
+    }
+
+
+    @FXML
+    public void refuse(ActionEvent actionEvent) {
+        AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
+        toHide.setVisible(false);
+        AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#manager");
+        toShow.setVisible(true);
     }
 
     private AbstractProject project;
@@ -121,6 +150,11 @@ public class ReadSprintController implements Initializable, IController {
         sprintNameText.setText(sprint.getSprintName());
         beginDateText.setText("Begin Date : "+sprint.getBeginDate());
         endDateText.setText("Begin End : "+sprint.getEndDate());
+
+        if(!SessionFacade.getInstance().getUser().isAdmin()){
+            deleteSprintButton.setDisable(true);
+        }
+
        update();
     }
 
@@ -179,7 +213,7 @@ public class ReadSprintController implements Initializable, IController {
                     HBox boxCurrent = (HBox) App.getInstanceScene().lookup("#HBOX");
                     Node currentUI = boxCurrent.getChildren().get(1);
 
-                    UIModifyTask updateTaskUI = new UIModifyTask(task,project,ui);
+                    ModifyTaskUI updateTaskUI = new ModifyTaskUI(task,project,ui);
                     HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
                     if(box.getChildren().size() >1 )
                         box.getChildren().remove(1);

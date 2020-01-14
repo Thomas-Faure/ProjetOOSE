@@ -1,8 +1,8 @@
 package DAO.Idea;
 
-import BuisnessLogic.Idea.AbstractIdea;
-import BuisnessLogic.Idea.Idea;
-import BuisnessLogic.User.AbstractUser;
+import BusinessLogic.Idea.AbstractIdea;
+import BusinessLogic.Idea.Idea;
+import BusinessLogic.User.AbstractUser;
 import DAO.MySQLConnector;
 import Facade.SessionFacade;
 import Facade.User.GlobalUser.GlobalUserFacade;
@@ -171,7 +171,8 @@ public class IdeaDAOMySQL implements IdeaDAO {
 						rs.getString("name"),
 						rs.getString("description"),
 						rs.getString("subject"),
-						user
+						user,
+						rs.getString("state")
 
 				);
 				list.add(idea);
@@ -208,7 +209,9 @@ public class IdeaDAOMySQL implements IdeaDAO {
 						rs.getString("name"),
 						rs.getString("description"),
 						rs.getString("subject"),
-						user);
+						user,
+						rs.getString("state")
+				);
 			}
 			ps.close();
 		} catch (SQLException e) {

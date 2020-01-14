@@ -1,9 +1,7 @@
 package Facade;
 
 
-import BuisnessLogic.Sprint.AbstractSprint;
-import BuisnessLogic.Sprint.Sprint;
-import DAO.AbstractDAOFactory;
+import BusinessLogic.Sprint.AbstractSprint;
 import DAO.MySQLDAOFactory;
 import DAO.SprintDAO;
 

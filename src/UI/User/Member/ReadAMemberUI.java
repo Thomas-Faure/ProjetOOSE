@@ -1,6 +1,6 @@
 package UI.User.Member;
 
-import BuisnessLogic.User.Member;
+import BusinessLogic.User.Member;
 import Controller.User.MemberUser.ReadAMemberController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

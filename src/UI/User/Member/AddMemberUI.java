@@ -1,6 +1,6 @@
 package UI.User.Member;
 
-import BuisnessLogic.Project.AbstractProject;
+import BusinessLogic.Project.AbstractProject;
 import Controller.User.MemberUser.AddMemberController;
 import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;

@@ -1,6 +1,6 @@
 package DAO.User.Member;
 
-import BuisnessLogic.User.Member;
+import BusinessLogic.User.Member;
 import DAO.MySQLConnector;
 import Facade.Project.IProjectFacade;
 import Facade.Project.ProjectFacade;

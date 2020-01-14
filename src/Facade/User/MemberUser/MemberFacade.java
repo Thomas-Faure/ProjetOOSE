@@ -1,7 +1,7 @@
 package Facade.User.MemberUser;
 
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.User.Member;
+import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.User.Member;
 import DAO.MySQLDAOFactory;
 import DAO.User.Member.MemberDAO;
 

@@ -1,7 +1,7 @@
 package DAO;
 
-import BuisnessLogic.Ressource.AbstractResource;
-import BuisnessLogic.Ressource.Resource;
+import BusinessLogic.Ressource.AbstractResource;
+import BusinessLogic.Ressource.Resource;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

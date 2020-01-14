@@ -1,6 +1,6 @@
 package UI.Role;
 
-import BuisnessLogic.User.Member;
+import BusinessLogic.User.Member;
 import Controller.Role.AllRolesController;
 import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;

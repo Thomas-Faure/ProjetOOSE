@@ -3,12 +3,12 @@ package Controller.Task;
  *
  * @author Thomas Faure
  */
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Task.AbstractTask;
+import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.Task.AbstractTask;
 
 import Facade.Task.TaskFacade;
 import Main.App;
-import UI.Task.UITaskManagement;
+import UI.Task.TaskManagementUI;
 import UI.UIError;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,7 +45,7 @@ public class ReadTaskController implements Initializable {
      */
     @FXML
     void backToTasks(ActionEvent actionEvent){
-        UITaskManagement task = new UITaskManagement(project);
+        TaskManagementUI task = new TaskManagementUI(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
@@ -66,7 +66,7 @@ public class ReadTaskController implements Initializable {
             priority.setText(taskToRead.getPriority() + "");
             state.setText(taskToRead.getStateString());
         }else{
-            UIError error = new UIError(new UITaskManagement(project));
+            UIError error = new UIError(new TaskManagementUI(project));
             HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )

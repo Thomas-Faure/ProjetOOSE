@@ -1,15 +1,18 @@
 package DAO.Project;
 
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Project.Project;
+import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.Project.Project;
 import DAO.MySQLConnector;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Ce DAO permet de gérer les projet en BD
+ * @author Rémi Salmi
+ */
 public class ProjectDAOMySQL implements ProjectDAO {
 
     private static final String INSERT = "INSERT INTO project (title, description, dateCreation, isAgile) VALUES (?, ?, ?, ?)";
@@ -19,6 +22,10 @@ public class ProjectDAOMySQL implements ProjectDAO {
     private static final String PROJECTBYID = "SELECT * from project where idProject=?";
 
     @Override
+    /**
+     * Permet de récupérer tous les projets
+     * @author Rémi Salmi
+     */
     public List<AbstractProject> getAllProjects() {
         List<AbstractProject> list = new ArrayList<>();
         try {
@@ -49,6 +56,10 @@ public class ProjectDAOMySQL implements ProjectDAO {
     }
 
     @Override
+    /**
+     * Permet de supprimer un projet
+     * @author Rémi Salmi
+     */
     public boolean delete(int id) {
         try {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(DELETE);
@@ -66,6 +77,10 @@ public class ProjectDAOMySQL implements ProjectDAO {
         }
     }
 
+    /**
+     * Permet de sauvegarder un nouveau projet
+     * @author Rémi Salmi
+     */
     @Override
     public boolean save(AbstractProject project) {
         try {
@@ -84,6 +99,10 @@ public class ProjectDAOMySQL implements ProjectDAO {
     }
 
     @Override
+    /**
+     * Permet de mettre a jour un projet
+     * @author Rémi Salmi
+     */
     public boolean update(AbstractProject project) {
         try {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(UPDATE);
@@ -104,6 +123,10 @@ public class ProjectDAOMySQL implements ProjectDAO {
     }
 
     @Override
+    /**
+     * Permet de récupérer un projet par son id
+     * @author Rémi Salmi
+     */
     public AbstractProject getProjectById(int id) {
         AbstractProject project = null;
         try {

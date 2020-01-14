@@ -1,7 +1,6 @@
 package Facade;
 
-import BuisnessLogic.Task.Task;
-import BuisnessLogic.User.User;
+import BusinessLogic.User.User;
 
 public interface ISessionFacade {
 

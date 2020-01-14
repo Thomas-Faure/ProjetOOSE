@@ -3,10 +3,10 @@ package Test.DAO;
  *
  * @author Thomas Faure
  */
-import BuisnessLogic.Announcement.AbstractAnnouncement;
-import BuisnessLogic.Announcement.Announcement;
-import BuisnessLogic.User.AbstractUser;
-import BuisnessLogic.User.User;
+import BusinessLogic.Announcement.AbstractAnnouncement;
+import BusinessLogic.Announcement.Announcement;
+import BusinessLogic.User.AbstractUser;
+import BusinessLogic.User.User;
 import DAO.Announcement.AnnouncementDAO;
 import DAO.Announcement.AnnouncementDAOMySQL;
 import org.junit.jupiter.api.Test;

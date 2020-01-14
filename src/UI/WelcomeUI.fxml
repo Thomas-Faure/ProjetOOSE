@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -9,7 +11,7 @@
     <children>
         <Pane prefHeight="49.0" prefWidth="768.0" style="-fx-background-color: #367fa9;">
             <children>
-                <Text fill="WHITE" layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/Idea/" />
+                <Text fill="WHITE" layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/Welcome/" />
             </children>
         </Pane>
         <Text layoutX="302.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome">
@@ -22,5 +24,11 @@
             <Font name="System Bold" size="19.0" />
          </font>
       </Text>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="308.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@LOGO_PPM.png" />
+         </image>
+      </ImageView>
+     
     </children>
 </AnchorPane>

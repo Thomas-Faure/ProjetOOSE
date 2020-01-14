@@ -9,6 +9,7 @@
 
 <AnchorPane fx:id="paneBasic" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" style="-fx-background-color: #ecf0f5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Sprint.SprintController">
   <children>
+      <AnchorPane fx:id="manager" prefHeight="600.0" prefWidth="768.0">
       <Pane prefHeight="49.0" prefWidth="768.0" style="-fx-background-color: #367fa9;">
          <children>
             <Text fill="WHITE" layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/Sprints" />
@@ -22,5 +23,13 @@
       <ListView fx:id="sprintList" layoutX="30.0" layoutY="144.0" prefHeight="362.0" prefWidth="690.0" />
       <Button fx:id="buttonCreate" layoutX="615.0" layoutY="111.0" mnemonicParsing="false" onAction="#createSprint" text="Create Sprint" />
       <Button fx:id="backButton" layoutX="384.0" layoutY="538.0" mnemonicParsing="false" onAction="#backToProjectView" text="Back" />
+      </AnchorPane>
+      <AnchorPane fx:id="confirm" layoutX="10.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="768.0" visible="false">
+          <children>
+              <Text layoutX="250.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you really want to delete this sprint ?" />
+              <Button fx:id="returnButton" layoutX="316.0" layoutY="300.0" mnemonicParsing="false" onAction="#validation" text="Ok" />
+              <Button fx:id="returnButton1" layoutX="420.0" layoutY="300.0" mnemonicParsing="false" onAction="#refuse" text="Return" />
+          </children>
+      </AnchorPane>
   </children>
 </AnchorPane>

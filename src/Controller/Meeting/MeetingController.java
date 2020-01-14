@@ -1,22 +1,15 @@
 package Controller.Meeting;
 
-import BuisnessLogic.Meeting.AbstractMeeting;
-import BuisnessLogic.Meeting.Meeting;
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Ticket.AbstractTicket;
-import BuisnessLogic.Ticket.Ticket;
-import Controller.Ticket.TicketController;
+import BusinessLogic.Meeting.AbstractMeeting;
+import BusinessLogic.Meeting.Meeting;
+import BusinessLogic.Project.AbstractProject;
 import Facade.Meeting.IMeetingFacade;
 import Facade.Meeting.MeetingFacade;
 import Main.App;
 import UI.Meeting.AddMeetingUI;
-import UI.Meeting.MeetingsUI;
+import UI.Meeting.MeetingUI;
 import UI.Meeting.UpdateMeetingUI;
-import UI.Project.ProjectUI;
-import UI.Task.UITaskManagement;
-import UI.Ticket.AddTicketUI;
-import UI.Ticket.AnswerTicketUI;
-import UI.Ticket.ReadTicketUI;
+import UI.Project.ReadProjectUI;
 import UI.UIError;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,13 +25,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-
 import java.net.URL;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+
+/**
+ * Ce controller permet de gérer l'UI Meeting
+ * @author Rémi Salmi
+ */
 public class MeetingController implements Initializable {
 
     private static AbstractProject project;
@@ -64,6 +59,11 @@ public class MeetingController implements Initializable {
     //permet de garder la liste de base
     private static ObservableList<AbstractMeeting> listViewTemp;
 
+
+    /**
+     * Permet de rechercher un meeting dans la liste
+     * @author Rémi Salmi
+     */
     @FXML
     public void searchBar(KeyEvent keyEvent) {
 
@@ -94,6 +94,11 @@ public class MeetingController implements Initializable {
         }
 
     }
+
+    /**
+     * Initialisation de l'UI
+     * @author Rémi Salmi
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         if(meetingsList != null){
@@ -108,10 +113,14 @@ public class MeetingController implements Initializable {
     }
 
 
+    /**
+     * Permet de valider la suppression d'un meeting
+     * @author Rémi Salmi
+     */
     public void validation(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(!(meetingFacade.deleteMeeting(toManage))){
-            UIError error = new UIError(new MeetingsUI(project));
+            UIError error = new UIError(new MeetingUI(project));
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(2);
@@ -126,6 +135,10 @@ public class MeetingController implements Initializable {
         }
     }
 
+    /**
+     * Permet d'annuler la suppression d'un meeting
+     * @author Rémi Salmi
+     */
     public void refuse(ActionEvent actionEvent) {
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#confirm");
         toHide.setVisible(false);
@@ -133,6 +146,10 @@ public class MeetingController implements Initializable {
         toShow.setVisible(true);
     }
 
+    /**
+     * Permet de se diriger vers la page de création d'un meeting
+     * @author Rémi Salmi
+     */
     @FXML
     void newMeeting(ActionEvent actionEvent) {
         AddMeetingUI addMeeting = new AddMeetingUI(project);
@@ -142,13 +159,17 @@ public class MeetingController implements Initializable {
         box.getChildren().add(addMeeting.loadScene().getRoot());
     }
 
+    /**
+     * Permet de retourner sur la page précédente
+     * @author Rémi Salmi
+     */
     @FXML
     void back(ActionEvent actionEvent){
-        ProjectUI meetingsPage = new ProjectUI();
+        ReadProjectUI projectPage = new ReadProjectUI(project);
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
         if(box.getChildren().size() >1 )
             box.getChildren().remove(1);
-        box.getChildren().add(meetingsPage.loadScene().getRoot());
+        box.getChildren().add(projectPage.loadScene().getRoot());
     }
 
 

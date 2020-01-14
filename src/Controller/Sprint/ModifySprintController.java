@@ -1,11 +1,9 @@
 package Controller.Sprint;
 
-import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Sprint.AbstractSprint;
-import BuisnessLogic.Sprint.Sprint;
+import BusinessLogic.Project.AbstractProject;
+import BusinessLogic.Sprint.AbstractSprint;
 import Facade.SprintFacade;
 import Main.App;
-import UI.Sprint.ModifySprintUI;
 import UI.Sprint.SprintUI;
 import UI.UIError;
 import javafx.event.ActionEvent;
