@@ -1,6 +1,5 @@
 package Controller.User.MemberUser;
 
-import BuisnessLogic.Project.AbstractProject;
 import BuisnessLogic.Role.Role;
 import BuisnessLogic.User.Member;
 import Facade.Role.IRoleFacade;
@@ -133,9 +132,9 @@ public class ReadAMemberController implements Initializable {
      */
     public void validation(ActionEvent actionEvent) {
         HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-        AbstractProject project = this.member.getProject();
+        //AbstractProject project = this.member.getProject();
         if(!(memberFacade.deleteMember(this.member))){
-            UIError error = new UIError( new AllMembersUI(project));
+            UIError error = new UIError( new AllMembersUI(this.member.getProject()));
             box.getChildren().add(error.loadScene().getRoot());
             if(box.getChildren().size() >1 )
                 box.getChildren().remove(2);

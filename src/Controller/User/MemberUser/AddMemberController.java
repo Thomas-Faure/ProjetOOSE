@@ -102,10 +102,8 @@ public class AddMemberController implements Initializable {
     public boolean estMembre(AbstractUser user){
 
         for (int i = 0; i < memberFacade.getListMembers().size(); i++){
-            if (memberFacade.getListMembers().get(i).getId() == user.getId()) {
-                if ( (memberFacade.getListMembers().get(i).getProject().getId() == this.project.getId())){
-                    return true;
-                }
+            if (memberFacade.getListMembers().get(i).getId() == user.getId() ){
+                return true;
             }
 
         }
