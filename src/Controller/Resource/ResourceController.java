@@ -5,6 +5,7 @@ import BusinessLogic.Ressource.AbstractResource;
 import BusinessLogic.Ressource.Resource;
 import Facade.ResourceFacade;
 import Main.App;
+import UI.Project.ReadProjectUI;
 import UI.Ressource.ResourceUI;
 import UI.Ticket.TicketUI;
 import UI.UIError;
@@ -116,6 +117,15 @@ public class ResourceController implements Initializable {
         toHide.setVisible(false);
         AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#manager");
         toShow.setVisible(true);
+    }
+
+    @FXML
+    void backToProjectView(ActionEvent actionEvent){
+        ReadProjectUI readProject = new ReadProjectUI(project);
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+        if(box.getChildren().size() >1 )
+            box.getChildren().remove(1);
+        box.getChildren().add(readProject.loadScene().getRoot());
     }
 
 
