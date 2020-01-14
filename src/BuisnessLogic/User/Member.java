@@ -42,5 +42,7 @@ public class Member extends User {
         this.project = newProject;
     }
 
+    public void deleteProject (AbstractProject newProject) { this.project = null;}
+
 
 }
