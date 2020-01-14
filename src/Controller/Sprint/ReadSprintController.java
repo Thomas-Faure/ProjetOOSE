@@ -82,14 +82,6 @@ public class ReadSprintController implements Initializable, IController {
 
     @FXML
     void deleteSprint(ActionEvent actionEvent) {
-        /*SprintFacade.getInstance().deleteSprint(sprint.getSprintID());
-
-
-        SprintUI sprintUI = new SprintUI(project);
-        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
-        if(box.getChildren().size() >1 )
-            box.getChildren().remove(1);
-        box.getChildren().add(sprintUI.loadScene().getRoot());*/
         AnchorPane toHide = (AnchorPane) App.getInstanceScene().lookup("#manager");
         toHide.setVisible(false);
         AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#confirm");
@@ -142,7 +134,7 @@ public class ReadSprintController implements Initializable, IController {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        titlePath.setText("Project/"+ project.getName()+"/Sprint");
+        titlePath.setText("Project/"+ project.getName()+"/Sprint/"+sprint.getSprintName());
         sprintNameText.setText(sprint.getSprintName());
         beginDateText.setText("Begin Date : "+sprint.getBeginDate());
         endDateText.setText("Begin End : "+sprint.getEndDate());
