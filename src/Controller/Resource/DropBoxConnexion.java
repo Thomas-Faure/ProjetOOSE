@@ -9,7 +9,8 @@ import java.io.*;
 
 public class DropBoxConnexion {
 
-    private static final String ACCESS_TOKEN = "-fzGF5VgtXAAAAAAAAAAJjlaSlBCxnxHMLWTSKJIJgBwEK3694qy4U4lRd1UAbfL";
+    private static final String ACCESS_TOKEN = "-fzGF5VgtXAAAAAAAAAANO34PyIGJsq7gbYRUtocG196gblH80mHPT70QXhEskHJ";
+
 
     private DbxRequestConfig config;
     private DbxClientV2 client;

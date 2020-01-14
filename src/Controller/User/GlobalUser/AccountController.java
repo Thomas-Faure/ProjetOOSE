@@ -150,6 +150,7 @@ public class AccountController implements Initializable {
     /**
      * Cette fonction permet de valider les modifications du compte
      * @author Lauren Unquera - Polytech Montpellier IG4
+     *
      */
     public void validation(ActionEvent actionEvent) {
         if(GlobalUserFacade.getInstance().modifyUser(toModify)){

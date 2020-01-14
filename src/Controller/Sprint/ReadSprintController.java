@@ -37,7 +37,7 @@ import java.util.ResourceBundle;
 
 /**
  *
- * @auhtor Guillaume Tessier
+ * @author Guillaume Tessier
  */
 public class ReadSprintController implements Initializable, IController {
 

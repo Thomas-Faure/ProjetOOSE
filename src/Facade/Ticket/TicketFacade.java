@@ -26,6 +26,7 @@ public class TicketFacade implements ITicketFacade {
     /**
      * Retourne l'instance de la facade
      * @author Rémi Salmi
+     * @return instance de la facade
      */
     public static TicketFacade getInstance(){
         if(instance == null){
