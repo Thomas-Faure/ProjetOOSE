@@ -3,18 +3,17 @@ package DAO.Meeting;
 import BuisnessLogic.Meeting.AbstractMeeting;
 import BuisnessLogic.Meeting.Meeting;
 import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Ticket.AbstractTicket;
-import BuisnessLogic.Ticket.Ticket;
-import DAO.Meeting.MeetingDAO;
 import DAO.MySQLConnector;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Ce DAO permet de gérer l'accès aux meetings en BD
+ * @author Rémi Salmi
+ */
 public class MeetingDAOMySQL implements MeetingDAO {
 
     private static final String INSERT = "INSERT INTO meeting (date, place, idProject) VALUES (?, ?, ?)";
@@ -24,6 +23,10 @@ public class MeetingDAOMySQL implements MeetingDAO {
     private static final String MEETINGBYIDPROJECT = "SELECT * from meeting where idProject=?";
 
     @Override
+    /**
+     * Cette méthode permet de récupérer les meetings d'un projet
+     * @author Rémi Salmi
+     */
     public List<AbstractMeeting> getMeetingByProject(AbstractProject project) {
         List<AbstractMeeting> list = new ArrayList<>();
         try {
@@ -52,6 +55,10 @@ public class MeetingDAOMySQL implements MeetingDAO {
     }
 
     @Override
+    /**
+     * Cette méthode permet de supprimer un meeting
+     * @author Rémi Salmi
+     */
     public boolean delete(int id) {
         try {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(DELETE);
@@ -70,6 +77,10 @@ public class MeetingDAOMySQL implements MeetingDAO {
     }
 
     @Override
+    /**
+     * Cette méthode permet de sauvegarder un meeting
+     * @author Rémi Salmi
+     */
     public boolean save(AbstractMeeting meeting) {
         try {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(INSERT);
@@ -86,6 +97,10 @@ public class MeetingDAOMySQL implements MeetingDAO {
     }
 
     @Override
+    /**
+     * Cette méthode permet de modifier un meeting
+     * @author Rémi Salmi
+     */
     public boolean update(AbstractMeeting meeting) {
         try {
             PreparedStatement ps = MySQLConnector.getSQLConnection().prepareStatement(UPDATE);

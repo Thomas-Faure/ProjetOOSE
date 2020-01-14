@@ -1,27 +1,25 @@
 package Controller.Ticket;
 
-import BuisnessLogic.Announcement.AbstractAnnouncement;
-import BuisnessLogic.Announcement.Announcement;
 import BuisnessLogic.Ticket.AbstractTicket;
 import BuisnessLogic.Ticket.Ticket;
-
 import Facade.ISessionFacade;
 import Facade.SessionFacade;
 import Facade.Ticket.ITicketFacade;
 import Facade.Ticket.TicketFacade;
 import Main.App;
 import UI.Ticket.MyTicketUI;
-
 import UI.UIError;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-
 import java.time.LocalDate;
-import java.util.Date;
 
+/**
+ * Ce controller permet de gérer l'UI d'ajout de ticket
+ * @author Rémi Salmi
+ */
 public class AddTicketController {
     private ITicketFacade tFacade = TicketFacade.getInstance();
     private ISessionFacade sessionFacade = SessionFacade.getInstance();
@@ -30,6 +28,10 @@ public class AddTicketController {
     @FXML
     private TextArea problem;
 
+    /**
+     * Cette méthode permet d'annuler l'ajout d'un ticket
+     * @author Rémi Salmi
+     */
     @FXML
     void cancel(ActionEvent actionEvent){
         MyTicketUI myTicketsPage = new MyTicketUI();
@@ -39,6 +41,10 @@ public class AddTicketController {
         box.getChildren().add(myTicketsPage.loadScene().getRoot());
     }
 
+    /**
+     * Cette méthode permet d'ajouter un ticket
+     * @author Rémi Salmi
+     */
     @FXML
     void addNewTicket(ActionEvent actionEvent){
         AbstractTicket ticket = new Ticket(1,subject.getText(),LocalDate.now(),problem.getText(),sessionFacade.getUser(),null);

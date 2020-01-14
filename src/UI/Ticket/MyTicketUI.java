@@ -5,6 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+/**
+ * @author Rémi Salmi
+ */
+
 public class MyTicketUI implements UIGlobal {
     @Override
     public Scene loadScene() {

@@ -1,11 +1,13 @@
 package UI.Ticket;
 
-import Controller.Ticket.TicketController;
 import UI.UIGlobal;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+/**
+ * @author Rémi Salmi
+ */
 public class TicketUI implements UIGlobal {
 
     @Override

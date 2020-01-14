@@ -7,10 +7,8 @@ import Facade.SessionFacade;
 import Facade.Ticket.ITicketFacade;
 import Facade.Ticket.TicketFacade;
 import Main.App;
-import UI.Announcement.UIReadAnnouncement;
 import UI.Ticket.AddTicketUI;
 import UI.Ticket.ReadTicketUI;
-import UI.UIError;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,14 +19,16 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * Ce controller permet de gérer l'UI de mes tickets
+ * @author Rémi Salmi
+ */
 public class MyTicketController implements Initializable {
     @FXML
     private TextField inputSearch ;
@@ -49,6 +49,10 @@ public class MyTicketController implements Initializable {
 
     //permet de garder la liste de base
     private static ObservableList<AbstractTicket> listViewTemp;
+    /**
+     * Permet de rechercher un ticket
+     * @author Rémi Salmi
+     */
     @FXML
     public void searchBar(KeyEvent keyEvent) {
 
@@ -79,6 +83,10 @@ public class MyTicketController implements Initializable {
         }
 
     }
+    /**
+     * Initialisation de l'UI
+     * @author Rémi Salmi
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         if(myTicketsList != null){
@@ -149,6 +157,11 @@ public class MyTicketController implements Initializable {
 
     }
 
+
+    /**
+     * Permet de se diriger vers la page d'ajout de ticket
+     * @author Rémi Salmi
+     */
     @FXML
     void addTicketPage(ActionEvent actionEvent) {
         AddTicketUI addTicket = new AddTicketUI();

@@ -52,6 +52,10 @@ public class UpdateProjectController implements Initializable {
         description.setText(project.getDescription());
     }
 
+    /**
+     * Permet d'annuler la mise à jour d'un projet
+     * @author Rémi Salmi
+     */
     @FXML
     void cancel(ActionEvent actionEvent){
         ProjectUI projectPage = new ProjectUI();
@@ -61,6 +65,10 @@ public class UpdateProjectController implements Initializable {
         box.getChildren().add(projectPage.loadScene().getRoot());
     }
 
+    /**
+     * Permet de mettre à jour un projet
+     * @author Rémi Salmi
+     */
     @FXML
     void updateProject(ActionEvent actionEvent){
         project.setName(name.getText());

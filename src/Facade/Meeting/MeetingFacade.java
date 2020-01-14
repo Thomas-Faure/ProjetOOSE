@@ -2,16 +2,15 @@ package Facade.Meeting;
 
 import BuisnessLogic.Meeting.AbstractMeeting;
 import BuisnessLogic.Project.AbstractProject;
-import BuisnessLogic.Ticket.AbstractTicket;
-import DAO.AbstractDAOFactory;
 import DAO.Meeting.MeetingDAO;
 import DAO.MySQLDAOFactory;
-import DAO.Ticket.TicketDAO;
-import Facade.Ticket.TicketFacade;
-
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Cette facade permet la gestion des meetings
+ * @author Rémi Salmi
+ */
 public class MeetingFacade implements IMeetingFacade {
     private List<AbstractMeeting> meetings;
     private MeetingDAO dao;
@@ -22,6 +21,10 @@ public class MeetingFacade implements IMeetingFacade {
         this.meetings = new ArrayList<>();
     }
 
+    /**
+     * Renvoie l'instance de la facade
+     * @author Rémi Salmi
+     */
     public static MeetingFacade getInstance(){
         if(instance == null){
             instance =new MeetingFacade();
@@ -30,12 +33,20 @@ public class MeetingFacade implements IMeetingFacade {
     }
 
     @Override
+    /**
+     * Permet de récupérer les meetings d'un projet
+     * @author Rémi Salmi
+     */
     public List<AbstractMeeting> getMeetingByProject(AbstractProject project) {
         this.meetings = dao.getMeetingByProject(project);
         return this.meetings;
     }
 
     @Override
+    /**
+     * Permet de supprimer un meeting
+     * @author Rémi Salmi
+     */
     public boolean deleteMeeting(AbstractMeeting meeting) {
         if(dao.delete(meeting.getId())){
             return true;
@@ -45,9 +56,12 @@ public class MeetingFacade implements IMeetingFacade {
     }
 
     @Override
+    /**
+     * Permet d'ajouter un meeting
+     * @author Rémi Salmi
+     */
     public boolean addMeeting(AbstractMeeting meeting) {
         if(dao.save(meeting)){
-            //on ajouter la nouvelle tache à la liste
             this.meetings.add(meeting);
             return true;
         }else {
@@ -56,6 +70,10 @@ public class MeetingFacade implements IMeetingFacade {
     }
 
     @Override
+    /**
+     * Permet de meetre a jour un meeting
+     * @author Rémi Salmi
+     */
     public boolean update(AbstractMeeting meeting) {
         if(dao.update(meeting)){
             int i = 0;
