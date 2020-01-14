@@ -190,6 +190,7 @@ public class MenuController implements Initializable {
         if(!user.isAdmin()){
             //to disable
             menuAnnouncementManager.setDisable(true);
+            menuTicket.setDisable(true);
         }
     }
 }

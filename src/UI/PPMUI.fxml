@@ -16,10 +16,10 @@
           <children>
             <VBox alignment="CENTER" layoutY="49.0" prefHeight="551.0" prefWidth="219.0" style="-fx-background-color: #222d32;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="49.0">
               <children>
-                  <Button fx:id="menuProject" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMenuProject" prefHeight="64.0" prefWidth="262.0" style="-fx-background-color: #1e282c;" text="Projects" textFill="WHITE" />
+                  <Button fx:id="menuTicket" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMenuTicket" prefHeight="64.0" prefWidth="262.0" style="-fx-background-color: #1e282c;" text="Tickets Manager" textFill="WHITE" />
                   <Button fx:id="menuAnnouncementManager" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMenuAnnouncementManager" prefHeight="64.0" prefWidth="262.0" style="-fx-background-color: #1e282c;" text="Announcements Manager" textFill="WHITE" />
+                  <Button fx:id="menuProject" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMenuProject" prefHeight="64.0" prefWidth="262.0" style="-fx-background-color: #1e282c;" text="Projects" textFill="WHITE" />
                   <Button fx:id="menuAnnouncement" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMenuAnnouncement" prefHeight="64.0" prefWidth="262.0" style="-fx-background-color: #1e282c;" text="Announcements" textFill="WHITE" />
-                  <Button fx:id="menuTicket" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMenuTicket" prefHeight="64.0" prefWidth="262.0" style="-fx-background-color: #1e282c;" text="Tickets" textFill="WHITE" />
                   <Button fx:id="MyTicket" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMyTicket" prefHeight="64.0" prefWidth="262.0" style="-fx-background-color: #1e282c;" text="My Tickets" textFill="WHITE" />
                   <Button fx:id="menuUser" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMenuUser" prefHeight="64.0" prefWidth="262.0" style="-fx-background-color: #1e282c;" text="User" textFill="WHITE" />
                   <Button fx:id="menuIdea" accessibleRole="PARENT" mnemonicParsing="false" onAction="#goMenuIdea" prefHeight="64.0" prefWidth="262.0" style="-fx-background-color: #1e282c;" text="Idea box" textFill="WHITE" />
