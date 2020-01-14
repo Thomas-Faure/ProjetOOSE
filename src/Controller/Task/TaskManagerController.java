@@ -10,6 +10,7 @@ import Controller.IController;
 import Facade.SessionFacade;
 import Facade.Task.TaskFacade;
 import Main.App;
+import UI.Project.ReadProjectUI;
 import UI.Task.*;
 import UI.UIError;
 import UI.UIGlobalWithController;
@@ -26,6 +27,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -38,6 +40,8 @@ public class TaskManagerController implements Initializable, IController {
 
     @FXML
     private TextField inputSearch;
+    @FXML
+    private Text pathIndication;
     @FXML
     private ListView<AbstractTask> taskList;
     private static AbstractTask toManage;
@@ -56,6 +60,7 @@ public class TaskManagerController implements Initializable, IController {
      */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        pathIndication.setText("/Projects/" + project.getName()+"/Tasks");
         update();
 
     }
@@ -137,6 +142,14 @@ public class TaskManagerController implements Initializable, IController {
         toHide.setVisible(false);
         AnchorPane toShow = (AnchorPane) App.getInstanceScene().lookup("#manager");
         toShow.setVisible(true);
+    }
+
+    public void backButton(ActionEvent actionEvent) {
+        ReadProjectUI read = new ReadProjectUI(project);
+        HBox box = (HBox) App.getInstanceScene().lookup("#HBOX");
+
+        box.getChildren().remove(1);
+        box.getChildren().add(read.loadScene().getRoot());
     }
 
 
