@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.net.URL;
@@ -35,6 +36,8 @@ public class ReadAIdeaController implements Initializable {
     private TextArea description;
     @FXML
     private Text etat;
+    @FXML
+    private Text pathIndication;
 
     public ReadAIdeaController(){
     }
@@ -66,6 +69,7 @@ public class ReadAIdeaController implements Initializable {
      * dans les champs correspondants les valeurs des attributs de l'idée
      */
     public void initialize(URL arg0, ResourceBundle arg1) {
+        pathIndication.setText("/Idea box/" + toRead.getName());
         name.setText(toRead.getName());
         subject.setText(toRead.getSubject());
         description.setText(toRead.getDescription());
@@ -74,6 +78,7 @@ public class ReadAIdeaController implements Initializable {
         }
         else {
             etat.setText(toRead.getState());
+            etat.setFill(Color.GREEN);
         }
 
     }

@@ -13,6 +13,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -47,6 +48,8 @@ public class ReadAUserController implements Initializable {
     private Button addUserButton;
     @FXML
     private Button backButton;
+    @FXML
+    private Text pathIndication;
 
     private IGlobalUserFacade userFacade = GlobalUserFacade.getInstance();
     private static GlobalUser toRead;
@@ -80,6 +83,7 @@ public class ReadAUserController implements Initializable {
      * dans les champs correspondants les valeurs des attributs de l'utilisateur
      */
     public void initialize(URL arg0, ResourceBundle arg1) {
+        pathIndication.setText("/Users/" + toRead.getUsername());
         username.setText(toRead.getUsername());
         password.setText(toRead.getPassword());
         firstName.setText(toRead.getFirstName());
