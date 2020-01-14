@@ -203,7 +203,7 @@ public class MenuController implements Initializable {
 
     }
     public void setSelectedColor(Button button){
-        String selectedColor = " #000000";
+        String selectedColor = " #367fa9";
         button.setStyle("-fx-background-color: "+selectedColor+";");
     }
 
